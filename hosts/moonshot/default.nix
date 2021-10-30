@@ -23,11 +23,10 @@
 
   services.printing.enable = true;
 
-  sound.enable = true;
-
   hardware = {
     pulseaudio.enable = true;
     cpu.amd.updateMicrocode = true;
+    nvidia.modesetting.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
