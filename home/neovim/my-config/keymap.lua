@@ -3,13 +3,15 @@ vim.o.timeoutlen = 1200
 
 local wk = require("which-key")
 wk.setup({
+    window = { border = "single" },
     icons = { separator = " " },
     layout = {
         height = { max = 18 },
-        width = { max = 40 }
+        width = { max = 36 }
     }
 })
 
+-- f
 local file_keymap = {
     name = "file",
     f = { "<cmd>Telescope find_files<cr>", "Find File"},
@@ -17,18 +19,26 @@ local file_keymap = {
     r = { "<cmd>Telescope oldfiles<cr>", "Recent Files"},
     s = { "<cmd>w<cr>", "Save File" },
 }
+-- b
 local buffer_keymap = {
     name = "buffer",
     b = { "<cmd>Telescope buffers<cr>", "Switch Buffer"},
 }
+-- s
 local search_keymap = {
     name = "search",
     s = { "<cmd>Telescope grep_string<cr>", "Search Current Symbol"},
     f = { "<cmd>Telescope live_grep<cr>", "Search File"},
-    i = { "<cmd>Telescope treesitter<cr>", "Search File"},
+    i = { "<cmd>Telescope treesitter<cr>", "Search Syntax Node"},
 }
+-- v
 local vcs_keymap = {
-    name = "version control"
+    name = "version control",
+}
+-- q
+local session_keymap = {
+    name = "state",
+    l = { "<cmd>SearchSession<cr>", "Load Sessions"},
 }
 
 wk.register({

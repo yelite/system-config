@@ -42,10 +42,9 @@ in
         require "my-config.basic"
         require "my-config.keymap"
         require "my-config.treesitter"
+        require "my-config.colors"
 
       END🤞
-
-      colorscheme nord
       '';
 
     # for treesitter

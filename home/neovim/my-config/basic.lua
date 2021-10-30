@@ -15,7 +15,7 @@ o.expandtab = true
 
 o.foldmethod = 'expr'
 o.foldexpr = 'nvim_treesitter#foldexpr()'
-o.foldlevel = 99
+o.foldlevel = 99 -- Unfold everything by default
 
 o.backup = false
 o.writebackup = false
@@ -25,12 +25,14 @@ o.updatetime = 800
 o.signcolumn = "number"
 o.number = true
 
+o.completeopt = "menu,preview,noinsert"
+
 g.neovide_remember_window_size = true
 g.neovide_input_use_logo = true
 
 if g.neovide then
-  g.neovide_cursor_animation_length = 0.04
-  g.neovide_cursor_trail_size = 0.5
+  g.neovide_cursor_animation_length = 0
+  g.neovide_cursor_trail_size = 0
   g.neovide_remember_window_size = true
 end
 
@@ -55,3 +57,4 @@ require("auto-session").setup {
 }
 require("session-lens").setup {
 }
+
