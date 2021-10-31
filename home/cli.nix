@@ -8,4 +8,8 @@
   home.packages = with pkgs; [
     nix-index
   ];
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
 }
