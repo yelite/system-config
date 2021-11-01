@@ -8,6 +8,7 @@
       keepEnv = true;
       cmd = "${pkgs.xkeysnail}/bin/xkeysnail";
       args = [
+        "--watch"
         "-q"
         "${./config.py}"
       ];

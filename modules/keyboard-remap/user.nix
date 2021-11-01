@@ -11,7 +11,7 @@
     };
     Service = {
       Type = "simple";
-      ExecStart = "/run/wrappers/bin/doas -n ${pkgs.xkeysnail}/bin/xkeysnail -q ${./config.py}";
+      ExecStart = "/run/wrappers/bin/doas -n ${pkgs.xkeysnail}/bin/xkeysnail --watch -q ${./config.py}";
       Restart = "on-failure";
       RestartSec = 4;
     };
