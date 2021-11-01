@@ -2,6 +2,7 @@ local o = vim.o
 local g = vim.g
 
 o.mouse = "a"
+o.clipboard = "unnamedplus"
 
 o.cursorline = true
 o.wrap = false
@@ -35,6 +36,14 @@ if g.neovide then
   g.neovide_cursor_trail_size = 0
   g.neovide_remember_window_size = true
 end
+
+local gps = require("nvim-gps")
+require('lualine').setup{
+    options = { theme = 'nord' },
+    sections = {
+        lualine_c = { gps.get_location, condition = gps.is_available }
+    }
+}
 
 local ts_actions = require('telescope.actions')
 require('telescope').setup {

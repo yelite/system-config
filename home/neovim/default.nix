@@ -16,6 +16,10 @@ in
 
     plugins = with pkgs.vimPlugins; [
       nord-nvim
+      nvim-web-devicons
+
+      lualine-nvim
+      nvim-gps
 
       nvim-treesitter
       nvim-treesitter-textobjects
@@ -26,7 +30,6 @@ in
 
       telescope-nvim
       telescope-fzf-native-nvim
-      nvim-web-devicons
 
       which-key-nvim
       extraVimPlugins.mapx
