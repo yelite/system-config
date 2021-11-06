@@ -45,6 +45,7 @@ in
         require "my-config.basic"
         require "my-config.keymap"
         require "my-config.treesitter"
+        require "my-config.statusline"
         require "my-config.colors"
 
       END🤞

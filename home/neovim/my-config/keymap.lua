@@ -40,8 +40,8 @@ local session_keymap = {
     name = "state",
     q = { "<cmd>qa<cr>", "Quit" },
     Q = { "<cmd>wa<cr><cmd>qa<cr>", "Save and Quit" },
-    l = { "<cmd>SearchSession<cr>", "Load Sessions"},
-    s = { "<cmd>SaveSession<cr>", "Load Sessions"},
+    l = { "<cmd>SearchSession<cr>", "Search Sessions"},
+    s = { "<cmd>SaveSession<cr>", "Save Session"},
 }
 
 wk.register({

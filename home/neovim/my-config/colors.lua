@@ -10,6 +10,7 @@ function M.patchNordColors()
 
     nord_util.highlight("WhichKeyFloating", { bg = nord_colors.nord1_gui })
     nord_util.highlight("WhichKeyFloat", { bg = nord_colors.nord1_gui })
+    nord_util.highlight("DiffChange", { fg = nord_colors.nord13_gui })
 end
 
 vim.cmd[[
