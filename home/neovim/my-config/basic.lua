@@ -6,6 +6,15 @@ o.mouse = "a"
 o.clipboard = "unnamedplus"
 
 o.cursorline = true
+vim.cmd[[
+augroup CursorLine
+    au!
+    au VimEnter * setlocal cursorline
+    au WinEnter * setlocal cursorline
+    au BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+augroup END
+]]
 o.wrap = false
 
 o.splitbelow = true
