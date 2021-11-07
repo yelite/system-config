@@ -18,7 +18,9 @@ in
     plugins = with pkgs.vimPlugins; [
       nord-nvim
       nvim-web-devicons
+
       extraPlugins.autosave
+      auto-pairs
 
       lualine-nvim
       nvim-gps
