@@ -1,15 +1,15 @@
 vim.g.mapleader = " "
 vim.o.timeoutlen = 1200
 
-local wk = require("which-key")
-wk.setup({
+local wk = require "which-key"
+wk.setup {
     window = { border = "single" },
     icons = { separator = " " },
     layout = {
         height = { max = 18 },
         width = { max = 36 },
     },
-})
+}
 
 -- f
 local file_keymap = {
@@ -56,8 +56,8 @@ wk.register({
     prefix = "<leader>",
 })
 
-local m = require("mapx")
-m.setup({ whichkey = true })
+local m = require "mapx"
+m.setup { whichkey = true }
 
 -- Emacs-like movement keybindings
 m.inoremap("<C-b>", "<Left>")

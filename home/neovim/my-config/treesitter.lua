@@ -1,4 +1,4 @@
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter.configs").setup {
     -- Note: installing nix grammer requires treesitter installed as command line too
     ensure_installed = {
         "rust",
@@ -86,4 +86,4 @@ require("nvim-treesitter.configs").setup({
             },
         },
     },
-})
+}
