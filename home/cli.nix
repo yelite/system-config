@@ -7,6 +7,7 @@
 
   home.packages = with pkgs; [
     nix-index
+    nix-tree
     unzip
   ];
 
