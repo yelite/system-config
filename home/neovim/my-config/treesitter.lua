@@ -1,9 +1,9 @@
-require('nvim-treesitter.configs').setup {
+require("nvim-treesitter.configs").setup({
     -- Note: installing nix grammer requires treesitter installed as command line too
     ensure_installed = {
-        "rust", 
-        "python", 
-        "html", 
+        "rust",
+        "python",
+        "html",
         "css",
         "javascript",
         "bash",
@@ -16,7 +16,7 @@ require('nvim-treesitter.configs').setup {
         "typescript",
         "toml",
         "yaml",
-        "vim"
+        "vim",
     },
     highlight = {
         enable = true,
@@ -79,13 +79,11 @@ require('nvim-treesitter.configs').setup {
         },
         lsp_interop = {
             enable = true,
-            border = 'none',
+            border = "none",
             peek_definition_code = {
                 ["<leader>gf"] = "@function.outer",
                 ["<leader>gF"] = "@class.outer",
             },
         },
-
     },
-}
-
+})

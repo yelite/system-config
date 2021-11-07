@@ -1,6 +1,6 @@
 { pkgs, inputs, ... }:
 let
-  extraVimPlugins = (import ./plugins.nix) pkgs;
+  extraPlugins = (import ./plugins.nix) pkgs;
 in
 {
   imports = [
@@ -9,6 +9,7 @@ in
   home.packages = with pkgs; [
     fd
     ripgrep
+    stylua
   ];
 
   programs.neovim = {
@@ -17,6 +18,7 @@ in
     plugins = with pkgs.vimPlugins; [
       nord-nvim
       nvim-web-devicons
+      extraPlugins.autosave
 
       lualine-nvim
       nvim-gps
@@ -26,17 +28,18 @@ in
       nvim-treesitter-refactor
 
       auto-session
-      extraVimPlugins.session-lens
+      extraPlugins.session-lens
 
       telescope-nvim
       telescope-fzf-native-nvim
 
       which-key-nvim
-      extraVimPlugins.mapx
+      extraPlugins.mapx
 
+      neoformat
       vim-nix
 
-      extraVimPlugins.stabilize
+      extraPlugins.stabilize
     ];
 
     extraConfig = ''
@@ -45,6 +48,7 @@ in
         require "my-config.basic"
         require "my-config.keymap"
         require "my-config.treesitter"
+        require "my-config.languages"
         require "my-config.statusline"
         require "my-config.colors"
 

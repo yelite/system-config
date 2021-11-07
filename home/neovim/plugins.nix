@@ -1,3 +1,4 @@
+# TODO move to flake
 {pkgs, ...}:
 {
   stabilize = pkgs.vimUtils.buildVimPluginFrom2Nix {
@@ -30,6 +31,17 @@
       repo = "mapx.nvim";
       rev = "main";
       sha256 = "sha256-E/RESkgC9lKcYUX0YIZQeNGiPI68eIEOamaAo75YbSc=";
+    };
+  };
+  
+  autosave = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    pname = "autosave";
+    version = "master";
+    src = pkgs.fetchFromGitHub {
+      owner = "Pocco81";
+      repo = "AutoSave.nvim";
+      rev = "140c47757051706c484525472296ca5213fdf598";
+      sha256 = "sha256-l1REQsT3+hYIf+XReT2DdQOvDyWiNWgvronhgHq0TQg=";
     };
   };
 }
