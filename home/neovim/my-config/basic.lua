@@ -72,7 +72,7 @@ require("session-lens").setup {}
 require("autosave").setup {
     enabled = true,
     execution_message = "",
-    events = { "InsertLeave", "BufLeave" },
+    events = { "BufLeave" },
     conditions = {
         exists = true,
         filename_is_not = {},
