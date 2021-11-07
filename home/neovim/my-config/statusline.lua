@@ -7,15 +7,14 @@ local function pad_mode(mode)
     return mode .. string.rep(" ", 7 - #mode)
 end
 
--- We need to manually redraw tabline to get the latest output from nvim-gps
-local function redraw_tabline()
-    -- Since this function could be called when redrawing statusline,
-    -- we need to defer the call to redrawtabline to the next tick of loop
-    -- otherwise it won't redraw
-    vim.schedule(function()
-        vim.cmd [[redrawtabline]]
-    end)
-end
+-- We need to redraw tabline if cursor moves to update nvim-gps
+vim.cmd [[  
+augroup TablineUpdate
+    au!
+    au CursorMoved * redrawtabline
+    au CursorMovedI * redrawtabline
+augroup END
+]]
 
 local diff_component = {
     "diff",
@@ -35,17 +34,7 @@ require("lualine").setup {
         lualine_y = {
             diff_component,
         },
-        lualine_z = {
-            {
-                "location",
-                fmt = function(l)
-                    -- We don't need to format the location string
-                    -- It's just for triggering tabline redraw
-                    redraw_tabline()
-                    return l
-                end,
-            },
-        },
+        lualine_z = { "location" },
     },
     inactive_sections = {
         lualine_a = {},

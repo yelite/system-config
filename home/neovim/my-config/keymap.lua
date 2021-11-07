@@ -31,6 +31,11 @@ local search_keymap = {
     f = { "<cmd>Telescope live_grep<cr>", "Search File" },
     i = { "<cmd>Telescope treesitter<cr>", "Search Syntax Node" },
 }
+-- i
+local code_keymap = {
+    name = "code actions",
+    f = { "<cmd>Neoformat<cr>", "Format Code" }
+}
 -- v
 local vcs_keymap = {
     name = "version control",
@@ -48,6 +53,7 @@ wk.register({
     f = file_keymap,
     b = buffer_keymap,
     s = search_keymap,
+    i = code_keymap,
     v = vcs_keymap,
     q = session_keymap,
     ["j"] = buffer_keymap.b,
