@@ -34,7 +34,7 @@ o.writebackup = false
 
 o.updatetime = 800
 
-o.signcolumn = "number"
+o.signcolumn = "auto"
 o.number = true
 
 o.completeopt = "menu,preview,noinsert"
@@ -73,7 +73,7 @@ require("session-lens").setup {}
 require("autosave").setup {
     enabled = true,
     execution_message = "",
-    events = { "BufLeave" },
+    events = { "BufLeave", "CursorHold", "InsertLeave" },
     conditions = {
         exists = true,
         filename_is_not = {},
@@ -83,9 +83,13 @@ require("autosave").setup {
     write_all_buffers = false,
     on_off_commands = false,
     clean_command_line_interval = 0,
-    debounce_delay = 200,
+    debounce_delay = 3500,
 }
 
 require("toggleterm").setup {
     start_in_insert = true,
+}
+require("gitsigns").setup {
+    signcolumn = false,
+    numhl = true,
 }

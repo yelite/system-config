@@ -92,6 +92,10 @@ m.cnoremap("<C-n>", "<Down>")
 m.cnoremap("<C-a>", "<Home>")
 m.cnoremap("<C-e>", "<End>")
 
+-- Quickly paste in insert and visual modes
+m.inoremap("<C-y>", "<C-r>+")
+m.vnoremap("<C-y>", [["+p]])
+
 m.inoremap("<C-Space>", "<C-n>")
 m.cnoremap("<C-Space>", "<C-n>")
 

@@ -9,6 +9,7 @@
     nix-index
     nix-tree
     unzip
+    lazygit
   ];
 
   home.sessionVariables = {

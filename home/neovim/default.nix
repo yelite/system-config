@@ -21,6 +21,8 @@ in
 
       extraPlugins.autosave
       auto-pairs
+      vim-repeat
+      vim-surround
 
       lualine-nvim
       nvim-gps
@@ -38,6 +40,8 @@ in
 
       which-key-nvim
       extraPlugins.mapx
+
+      gitsigns-nvim
 
       neoformat
       vim-nix
