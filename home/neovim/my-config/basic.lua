@@ -7,7 +7,7 @@ o.clipboard = "unnamedplus"
 
 o.cursorline = true
 vim.cmd [[
-augroup CursorLine
+augroup MyCursorLine
     au!
     au VimEnter * setlocal cursorline
     au WinEnter * setlocal cursorline
@@ -19,6 +19,7 @@ o.wrap = false
 
 o.splitbelow = true
 o.splitright = true
+o.hidden = true
 
 o.tabstop = 4
 o.shiftwidth = 4
@@ -83,4 +84,8 @@ require("autosave").setup {
     on_off_commands = false,
     clean_command_line_interval = 0,
     debounce_delay = 200,
+}
+
+require("toggleterm").setup {
+    start_in_insert = true,
 }

@@ -9,7 +9,7 @@ end
 
 -- We need to redraw tabline if cursor moves to update nvim-gps
 vim.cmd [[  
-augroup TablineUpdate
+augroup MyTablineUpdate
     au!
     au CursorMoved * redrawtabline
     au CursorMovedI * redrawtabline

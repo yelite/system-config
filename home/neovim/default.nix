@@ -34,6 +34,7 @@ in
 
       telescope-nvim
       telescope-fzf-native-nvim
+      toggleterm-nvim
 
       which-key-nvim
       extraPlugins.mapx
@@ -55,7 +56,7 @@ in
         require "my-config.colors"
 
       END🤞
-      '';
+    '';
 
     # for treesitter
     extraPackages = [ pkgs.gcc ];
@@ -68,5 +69,5 @@ in
   };
 
   xdg.configFile."nvim/lua/my-config".source = ./my-config;
-  
+
 }

@@ -1,3 +1,5 @@
+local M = {}
+
 vim.g.mapleader = " "
 vim.o.timeoutlen = 1200
 
@@ -24,6 +26,11 @@ local buffer_keymap = {
     name = "buffer",
     b = { "<cmd>Telescope buffers<cr>", "Switch Buffer" },
 }
+-- i
+local code_keymap = {
+    name = "code actions",
+    f = { "<cmd>Neoformat<cr>", "Format Code" },
+}
 -- s
 local search_keymap = {
     name = "search",
@@ -31,10 +38,11 @@ local search_keymap = {
     f = { "<cmd>Telescope live_grep<cr>", "Search File" },
     i = { "<cmd>Telescope treesitter<cr>", "Search Syntax Node" },
 }
--- i
-local code_keymap = {
-    name = "code actions",
-    f = { "<cmd>Neoformat<cr>", "Format Code" }
+-- t
+local toggle_feature_keymap = {
+    name = "toggle features",
+    t = { [[<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<cr>]], "Open Terminal" },
+    f = { [[<cmd>exe v:count1 . "ToggleTerm direction=float"<cr>]], "Open Floating Terminal" },
 }
 -- v
 local vcs_keymap = {
@@ -52,8 +60,9 @@ local session_keymap = {
 wk.register({
     f = file_keymap,
     b = buffer_keymap,
-    s = search_keymap,
     i = code_keymap,
+    t = toggle_feature_keymap,
+    s = search_keymap,
     v = vcs_keymap,
     q = session_keymap,
     ["j"] = buffer_keymap.b,
@@ -64,6 +73,9 @@ wk.register({
 
 local m = require "mapx"
 m.setup { whichkey = true }
+
+m.nnoremap("0", "^")
+m.nnoremap("^", "0")
 
 -- Emacs-like movement keybindings
 m.inoremap("<C-b>", "<Left>")
@@ -82,3 +94,21 @@ m.cnoremap("<C-e>", "<End>")
 
 m.inoremap("<C-Space>", "<C-n>")
 m.cnoremap("<C-Space>", "<C-n>")
+
+function M.set_terminal_keymaps()
+    m.tnoremap([[<Esc>]], [[<C-\><C-n>]], m.buffer)
+    m.tnoremap([[<C-t>]], [[<cmd>ToggleTerm<cr>]], m.buffer)
+    m.inoremap([[<C-t>]], [[<cmd>ToggleTerm<cr>]], m.buffer)
+    m.tnoremap([[<C-w>h]], [[<C-\><C-n><C-W>h]], m.buffer)
+    m.tnoremap([[<C-w>j]], [[<C-\><C-n><C-W>j]], m.buffer)
+    m.tnoremap([[<C-w>k]], [[<C-\><C-n><C-W>k]], m.buffer)
+    m.tnoremap([[<C-w>l]], [[<C-\><C-n><C-W>l]], m.buffer)
+end
+vim.cmd [[
+augroup MyToggleTerm
+    au!
+    au TermOpen term://* lua require("my-config.keymap").set_terminal_keymaps()
+augroup END
+]]
+
+return M
