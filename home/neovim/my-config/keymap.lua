@@ -13,7 +13,7 @@ wk.setup {
     },
 }
 
--- f
+-- f -> file
 local file_keymap = {
     name = "file",
     f = { "<cmd>Telescope find_files<cr>", "Find File" },
@@ -21,34 +21,37 @@ local file_keymap = {
     r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
     s = { "<cmd>w<cr>", "Save File" },
 }
--- b
+-- b -> buffer
 local buffer_keymap = {
     name = "buffer",
     b = { "<cmd>Telescope buffers<cr>", "Switch Buffer" },
+    n = { "<cmd>bn<cr>", "Next Buffer" },
+    p = { "<cmd>bp<cr>", "Previous Buffer" },
 }
--- i
+-- i -> code intelligence
 local code_keymap = {
     name = "code actions",
     f = { "<cmd>Neoformat<cr>", "Format Code" },
 }
--- s
+-- s -> search
 local search_keymap = {
     name = "search",
     s = { "<cmd>Telescope grep_string<cr>", "Search Current Symbol" },
     f = { "<cmd>Telescope live_grep<cr>", "Search File" },
     i = { "<cmd>Telescope treesitter<cr>", "Search Syntax Node" },
 }
--- t
+-- t -> toggle mode
 local toggle_feature_keymap = {
     name = "toggle features",
     t = { [[<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<cr>]], "Open Terminal" },
     f = { [[<cmd>exe v:count1 . "ToggleTerm direction=float"<cr>]], "Open Floating Terminal" },
 }
--- v
+-- v -> version control
 local vcs_keymap = {
     name = "version control",
+    v = { [[<cmd>lua require("my-config.terminal").toggle_lazygit()<cr>]], "Open lazygit" },
 }
--- q
+-- q -> session
 local session_keymap = {
     name = "state",
     q = { "<cmd>qa<cr>", "Quit" },

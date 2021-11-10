@@ -54,6 +54,7 @@ in
         
         require "my-config.basic"
         require "my-config.keymap"
+        require "my-config.terminal"
         require "my-config.treesitter"
         require "my-config.languages"
         require "my-config.statusline"
