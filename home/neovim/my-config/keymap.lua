@@ -102,8 +102,8 @@ m.vnoremap("<C-y>", [["+p]])
 m.inoremap("<C-Space>", "<C-n>")
 m.cnoremap("<C-Space>", "<C-n>")
 
+-- Keys for terminal mode
 function M.set_terminal_keymaps()
-    m.tnoremap([[<Esc>]], [[<C-\><C-n>]], m.buffer)
     m.tnoremap([[<C-t>]], [[<cmd>ToggleTerm<cr>]], m.buffer)
     m.inoremap([[<C-t>]], [[<cmd>ToggleTerm<cr>]], m.buffer)
     m.tnoremap([[<C-w>h]], [[<C-\><C-n><C-W>h]], m.buffer)
