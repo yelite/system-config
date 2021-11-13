@@ -6,23 +6,20 @@ in
   imports = [
   ];
 
-  home.packages = with pkgs; [
-    fd
-    ripgrep
-    stylua
-  ];
-
   programs.neovim = {
     enable = true;
 
-    plugins = with pkgs.vimPlugins; [
+    plugins =  with pkgs.vimPlugins; with extraPlugins;[
       nord-nvim
       nvim-web-devicons
 
-      extraPlugins.autosave
+      plenary-nvim
+      popup-nvim
+      autosave
       nvim-autopairs
       vim-repeat
       vim-surround
+      lightspeed-nvim
 
       lualine-nvim
       nvim-gps
@@ -32,21 +29,27 @@ in
       nvim-treesitter-refactor
 
       auto-session
-      extraPlugins.session-lens
+      session-lens
 
       telescope-nvim
       telescope-fzf-native-nvim
       toggleterm-nvim
 
       which-key-nvim
-      extraPlugins.mapx
+      mapx
 
       gitsigns-nvim
 
       neoformat
       vim-nix
+      nvim-lspconfig
+      lsp-status-nvim
+      lspsaga-nvim
+      rust-tools-nvim
+      nvim-dap
+      coq_nvim
 
-      extraPlugins.stabilize
+      stabilize
     ];
 
     extraConfig = ''
@@ -64,12 +67,20 @@ in
     '';
 
     # for treesitter
-    extraPackages = [ pkgs.gcc ];
+    extraPackages = with pkgs; [
+      gcc
+      fd
+      ripgrep
+      stylua
+      rust-analyzer
+      rustfmt
+      graphviz # For rust crate graph visualization
+    ];
 
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    withPython3 = false;
+    withPython3 = true;
     withRuby = false;
   };
 

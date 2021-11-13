@@ -31,6 +31,8 @@ local buffer_keymap = {
 -- i -> code intelligence
 local code_keymap = {
     name = "code actions",
+    a = { "<cmd>Lspsaga code_action<cr>", "Code Actions" },
+    r = { "<cmd>Lspsaga rename<cr>", "Rename Symbol" },
     f = { "<cmd>Neoformat<cr>", "Format Code" },
 }
 -- s -> search
@@ -99,8 +101,16 @@ m.cnoremap("<C-e>", "<End>")
 m.inoremap("<C-y>", "<C-r>+")
 m.vnoremap("<C-y>", [["+p]])
 
-m.inoremap("<C-Space>", "<C-n>")
-m.cnoremap("<C-Space>", "<C-n>")
+-- LSP
+m.inoremap("<C-x>", "<cmd>Lspsaga code_action<cr>")
+function M.bind_general_lsp_keys(bufnr)
+    local buf_opt = { buffer = bufnr }
+    m.nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<cr>", m.silent, buf_opt)
+    m.nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", m.silent, buf_opt)
+    m.nnoremap("gr", "<cmd>lua vim.lsp.buf.references()<cr>", m.silent, buf_opt)
+    m.nnoremap("K", "<cmd>lua vim.lsp.buf.hover()<cr>", m.silent, buf_opt)
+    m.nnoremap("go", "<cmd>Lspsaga show_line_diagnostics<cr>", m.silent, buf_opt)
+end
 
 -- Keys for terminal mode
 function M.set_terminal_keymaps()
@@ -117,5 +127,33 @@ augroup MyToggleTerm
     au TermOpen term://* lua require("my-config.keymap").set_terminal_keymaps()
 augroup END
 ]]
+
+-- Keys for coq and auto-pairs
+local npairs = require "nvim-autopairs"
+
+local function combined_cr()
+    if vim.fn.pumvisible() ~= 0 then
+        if vim.fn.complete_info({ "selected" }).selected ~= -1 then
+            return npairs.esc "<c-y>"
+        else
+            return npairs.esc "<c-e>" .. npairs.autopairs_cr()
+        end
+    else
+        return npairs.autopairs_cr()
+    end
+end
+
+local function combined_bs()
+    if vim.fn.pumvisible() ~= 0 and vim.fn.complete_info({ "mode" }).mode == "eval" then
+        return npairs.esc "<c-e>" .. npairs.autopairs_bs()
+    else
+        return npairs.autopairs_cr()
+    end
+end
+
+m.inoremap("<esc>", [[pumvisible() ? "<c-e><esc>" : "<esc>"]], m.expr)
+m.inoremap("<c-c>", [[pumvisible() ? "<c-e>" : "<c-c>"]], m.expr)
+m.inoremap("<cr>", combined_cr, m.expr)
+m.inoremap("<bs>", combined_bs, m.expr)
 
 return M

@@ -66,8 +66,8 @@ require("stabilize").setup {
 
 require("nvim-autopairs").setup {
     disable_filetype = { "TelescopePrompt", "spectre_panel" },
-    map_cr = true,
-    map_c_w = true,
+    map_cr = false,
+    map_c_w = false,
 }
 
 require("auto-session").setup {
