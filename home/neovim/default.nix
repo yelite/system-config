@@ -20,7 +20,7 @@ in
       nvim-web-devicons
 
       extraPlugins.autosave
-      auto-pairs
+      nvim-autopairs
       vim-repeat
       vim-surround
 

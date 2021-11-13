@@ -64,6 +64,12 @@ require("stabilize").setup {
     force = true,
 }
 
+require("nvim-autopairs").setup {
+    disable_filetype = { "TelescopePrompt", "spectre_panel" },
+    map_cr = true,
+    map_c_w = true,
+}
+
 require("auto-session").setup {
     auto_session_enable_last_session = true,
     auto_session_suppress_dirs = { "/etc" },
