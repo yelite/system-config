@@ -32,6 +32,7 @@
 
       hostDefaults.modules = [
         ./modules/basic.nix
+        ./modules/cachix.nix
         inputs.hm.nixosModule
         {
           home-manager = {

@@ -8,6 +8,7 @@
   home.packages = with pkgs; [
     nix-index
     nix-tree
+    cachix
     unzip
     lazygit
   ];
