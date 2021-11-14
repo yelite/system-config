@@ -40,8 +40,8 @@
     src = pkgs.fetchFromGitHub {
       owner = "tami5";
       repo = "lspsaga.nvim";
-      rev = "cb66f44ad366852ca8bc2b2199d40836260fadf5";
-      sha256 = "sha256-qH6xjWzzwRY0wpf3mn6KsiJ9//thQuYfe0URcEdxDgM=";
+      rev = "c884214b57fea2f5f6f04e1245a3e55cc19bbe96";
+      sha256 = "sha256-1OQgWGCOujoCQtsZPKDWuN9emVLeClWzG87xNTwDTVQ=";
     };
   };
 

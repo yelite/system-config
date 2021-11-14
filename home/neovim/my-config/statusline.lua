@@ -1,3 +1,4 @@
+local lsp_status = require "lsp-status"
 local gps = require "nvim-gps"
 gps.setup()
 
@@ -28,6 +29,12 @@ require("lualine").setup {
         lualine_b = {},
         lualine_c = { "filename" },
         lualine_x = {
+            {
+                require("lsp-status").status,
+                cond = function()
+                    return #vim.lsp.buf_get_clients() > 0
+                end,
+            },
             { "diagnostics", sources = { "nvim_lsp", "coc" } },
             "filetype",
         },

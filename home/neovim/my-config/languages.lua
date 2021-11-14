@@ -4,6 +4,8 @@ local lspsaga = require "lspsaga"
 local rust_tools = require "rust-tools"
 local keymap = require "my-config.keymap"
 
+lsp_status.register_progress()
+
 vim.g.coq_settings = {
     auto_start = "shut-up",
     xdg = true,
@@ -26,17 +28,27 @@ lsp_status.config {
 }
 
 local function lsp_on_attach(client, bufnr)
-    keymap.bind_general_lsp_keys(bufnr)
+    keymap.bind_lsp_keys(client, bufnr)
     lsp_status.on_attach(client, bufnr)
 end
 
-nvim_lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities {
-    on_attach = lsp_on_attach,
-    capabilities = lsp_status.capabilities,
-})
-
-lspsaga.setup()
-rust_tools.setup()
+lspsaga.init_lsp_saga {
+    use_saga_diagnostic_sign = false,
+    code_action_prompt = {
+        sign = false,
+    },
+}
+rust_tools.setup {
+    tools = {
+        hover_actions = {
+            auto_focus = false,
+        },
+    },
+    server = coq.lsp_ensure_capabilities {
+        on_attach = lsp_on_attach,
+        capabilities = lsp_status.capabilities,
+    },
+}
 
 -- auto format
 vim.cmd [[

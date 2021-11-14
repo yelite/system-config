@@ -34,7 +34,7 @@ o.writebackup = false
 
 o.updatetime = 800
 
-o.signcolumn = "auto"
+o.signcolumn = "no"
 o.number = true
 
 o.completeopt = "menu,preview,noinsert"

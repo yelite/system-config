@@ -31,8 +31,6 @@ local buffer_keymap = {
 -- i -> code intelligence
 local code_keymap = {
     name = "code actions",
-    a = { "<cmd>Lspsaga code_action<cr>", "Code Actions" },
-    r = { "<cmd>Lspsaga rename<cr>", "Rename Symbol" },
     f = { "<cmd>Neoformat<cr>", "Format Code" },
 }
 -- s -> search
@@ -45,8 +43,8 @@ local search_keymap = {
 -- t -> toggle mode
 local toggle_feature_keymap = {
     name = "toggle features",
-    t = { [[<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<cr>]], "Open Terminal" },
-    f = { [[<cmd>exe v:count1 . "ToggleTerm direction=float"<cr>]], "Open Floating Terminal" },
+    f = { [[<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<cr>]], "Open Terminal" },
+    t = { [[<cmd>exe v:count1 . "ToggleTerm direction=float"<cr>]], "Open Floating Terminal" },
 }
 -- v -> version control
 local vcs_keymap = {
@@ -102,14 +100,39 @@ m.inoremap("<C-y>", "<C-r>+")
 m.vnoremap("<C-y>", [["+p]])
 
 -- LSP
-m.inoremap("<C-x>", "<cmd>Lspsaga code_action<cr>")
-function M.bind_general_lsp_keys(bufnr)
-    local buf_opt = { buffer = bufnr }
-    m.nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<cr>", m.silent, buf_opt)
-    m.nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", m.silent, buf_opt)
-    m.nnoremap("gr", "<cmd>lua vim.lsp.buf.references()<cr>", m.silent, buf_opt)
-    m.nnoremap("K", "<cmd>lua vim.lsp.buf.hover()<cr>", m.silent, buf_opt)
-    m.nnoremap("go", "<cmd>Lspsaga show_line_diagnostics<cr>", m.silent, buf_opt)
+local function bind_rust_lsp_keys(bufnr)
+    local opt = { buffer = bufnr, silent = true }
+    m.nnoremap("<leader>ie", "<cmd>RustRunnables<cr>", opt, "Rust Runnables")
+    m.nnoremap("<leader>ih", "<cmd>RustToggleInlayHints<cr>", opt, "Toggle Rust Inlay Hints")
+    m.nnoremap("<leader>im", "<cmd>RustExpandMacro<cr>", opt, "Rust Expand Macro")
+    m.nnoremap("<leader>ip", "<cmd>RustParentModule<cr>", opt, "Parent Module")
+    m.nnoremap("<leader>ic", "<cmd>RustOpenCargo<cr>", opt, "Open Cargo")
+end
+
+function M.bind_lsp_keys(client, bufnr)
+    local opt = { buffer = bufnr, silent = true }
+    m.nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opt, "Definition")
+    m.nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opt, "Declaration")
+    m.nnoremap("gt", "<cmd>Telescope lsp_type_definitions<cr>", opt, "Type Definition")
+    m.nnoremap("gr", "<cmd>Telescope lsp_references<cr>", opt, "References")
+    m.nnoremap("gs", "<cmd>Telescope lsp_document_symbols<cr>", opt, "Document Symbols")
+    m.nnoremap("gS", "<cmd>Telescope lsp_workspace_symbols<cr>", opt, "Workspace Symbols")
+    m.nnoremap("go", "<cmd>Lspsaga show_line_diagnostics<cr>", opt, "Show Line Diagnostics")
+    m.nnoremap("ga", "<cmd>Lspsaga code_action<cr>", opt, "Code Actions")
+    m.nnoremap("K", "<cmd>lua vim.lsp.buf.hover()<cr>", opt, "LSP Hover")
+    m.nnoremap("[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", opt, "Prevous Diagnostic")
+    m.nnoremap("]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", opt, "Next Diagnostic")
+
+    m.nnoremap("<leader>is", "<cmd>Telescope lsp_document_symbols<cr>", opt, "Document Symbols")
+    m.nnoremap("<leader>iS", "<cmd>Telescope lsp_workspace_symbols<cr>", opt, "Workspace Symbols")
+    m.nnoremap("<leader>id", "<cmd>Telescope lsp_document_diagnostics<cr>", opt, "Document Diagnostics")
+    m.nnoremap("<leader>iD", "<cmd>Telescope lsp_workspace_diagnostics<cr>", opt, "Workspace Diagnostics")
+    m.nnoremap("<leader>ia", "<cmd>Telescope lsp_range_code_actions<cr>", opt, "Workspace Symbols")
+    m.nnoremap("<leader>ir", "<cmd>Lspsaga rename<cr>", opt, "Rename Symbol")
+
+    if client.name == "rust_analyzer" then
+        bind_rust_lsp_keys(bufnr)
+    end
 end
 
 -- Keys for terminal mode
@@ -147,7 +170,7 @@ local function combined_bs()
     if vim.fn.pumvisible() ~= 0 and vim.fn.complete_info({ "mode" }).mode == "eval" then
         return npairs.esc "<c-e>" .. npairs.autopairs_bs()
     else
-        return npairs.autopairs_cr()
+        return npairs.autopairs_bs()
     end
 end
 
