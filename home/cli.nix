@@ -11,6 +11,7 @@
     cachix
     unzip
     lazygit
+    steam-run
   ];
 
   home.sessionVariables = {
