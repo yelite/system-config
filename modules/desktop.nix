@@ -6,19 +6,22 @@
       material-design-icons
 
       merriweather
+      source-han-sans
+      source-han-serif
+      source-han-mono
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
 
-      (nerdfonts.override { fonts = [ "FiraCode" ]; })
+      (nerdfonts.override { fonts = [ "FiraCode" "Inconsolata" ]; })
     ];
 
     enableDefaultFonts = false;
 
     fontconfig.defaultFonts = {
-      serif = [ "Noto Serif" "Noto Color Emoji" ];
-      sansSerif = [ "Noto Sans" "Noto Color Emoji" ];
-      monospace = [ "FiraCode Nerd Font Mono" "Noto Color Emoji" ];
+      serif = [ "Noto Serif" "Noto Sans CJK SC" "Noto Sans Symbols" "Noto Color Emoji" ];
+      sansSerif = [ "Noto Sans" "Noto Sans CJK SC" "Noto Sans Symbols" "Noto Color Emoji" ];
+      monospace = [ "FiraCode Nerd Font Mono" "Noto Sans Symbols" "Noto Color Emoji" ];
       emoji = [ "Noto Color Emoji" ];
     };
   };
