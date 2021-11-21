@@ -127,7 +127,7 @@ function M.bind_lsp_keys(client, bufnr)
     m.nnoremap("<leader>iS", "<cmd>Telescope lsp_workspace_symbols<cr>", opt, "Workspace Symbols")
     m.nnoremap("<leader>id", "<cmd>Telescope lsp_document_diagnostics<cr>", opt, "Document Diagnostics")
     m.nnoremap("<leader>iD", "<cmd>Telescope lsp_workspace_diagnostics<cr>", opt, "Workspace Diagnostics")
-    m.nnoremap("<leader>ia", "<cmd>Telescope lsp_range_code_actions<cr>", opt, "Workspace Symbols")
+    m.nnoremap("<leader>ia", "<cmd>Telescope lsp_range_code_actions<cr>", opt, "Code Actions")
     m.nnoremap("<leader>ir", "<cmd>Lspsaga rename<cr>", opt, "Rename Symbol")
 
     if client.name == "rust_analyzer" then
