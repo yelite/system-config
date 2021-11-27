@@ -9,7 +9,7 @@ in
   programs.neovim = {
     enable = true;
 
-    plugins =  with pkgs.vimPlugins; with extraPlugins;[
+    plugins = with pkgs.vimPlugins; with extraPlugins;[
       nord-nvim
       nvim-web-devicons
 
@@ -85,5 +85,4 @@ in
   };
 
   xdg.configFile."nvim/lua/my-config".source = ./my-config;
-
 }

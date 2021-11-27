@@ -130,6 +130,10 @@ function M.bind_lsp_keys(client, bufnr)
     m.nnoremap("<leader>ia", "<cmd>Telescope lsp_range_code_actions<cr>", opt, "Code Actions")
     m.nnoremap("<leader>ir", "<cmd>Lspsaga rename<cr>", opt, "Rename Symbol")
 
+    m.inoremap("<C-h>", "<cmd>Lspsaga signature_help<cr>", opt)
+    m.inoremap("<C-k>", "<cmd>lua vim.lsp.buf.hover()<cr>", opt)
+    m.inoremap("<C-i>", "<cmd>Lspsaga code_action<cr>", opt)
+
     if client.name == "rust_analyzer" then
         bind_rust_lsp_keys(bufnr)
     end
