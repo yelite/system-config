@@ -4,8 +4,6 @@ local lspsaga = require "lspsaga"
 local rust_tools = require "rust-tools"
 local keymap = require "my-config.keymap"
 
-lsp_status.register_progress()
-
 vim.g.coq_settings = {
     auto_start = "shut-up",
     xdg = true,
@@ -21,11 +19,6 @@ vim.g.coq_settings = {
     },
 }
 local coq = require "coq"
-
-lsp_status.config {
-    diagnostics = false,
-    current_function = false,
-}
 
 local function lsp_on_attach(client, bufnr)
     keymap.bind_lsp_keys(client, bufnr)
