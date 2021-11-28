@@ -1,6 +1,6 @@
 { pkgs, inputs, ... }:
 let
-  extraPlugins = (import ./plugins.nix) pkgs;
+  extraPlugins = (import ./extract-extra-plugins.nix) pkgs inputs;
 in
 {
   imports = [
@@ -47,9 +47,9 @@ in
       lspsaga-nvim
       rust-tools-nvim
       nvim-dap
-      coq_nvim
+      coq-nvim
 
-      stabilize
+      stabilize-nvim
     ];
 
     extraConfig = ''
