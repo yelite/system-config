@@ -96,3 +96,9 @@ require("gitsigns").setup {
     signcolumn = false,
     numhl = true,
 }
+
+require("Comment").setup {
+    mappings = {
+        extended = true,
+    },
+}

@@ -20,6 +20,7 @@ in
       vim-repeat
       vim-surround
       lightspeed-nvim
+      comment-nvim
 
       lualine-nvim
       nvim-gps
