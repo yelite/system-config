@@ -77,7 +77,16 @@ wk.register({
 local m = require "mapx"
 m.setup { whichkey = true }
 
-m.nnoremap("0", "^")
+local function goto_start_of_line()
+    local current_col = vim.api.nvim_win_get_cursor(0)[2]
+    vim.api.nvim_command [[normal! ^]]
+    local new_col = vim.api.nvim_win_get_cursor(0)[2]
+    if new_col == current_col then
+        vim.api.nvim_command [[normal! 0]]
+    end
+end
+
+m.nnoremap("0", goto_start_of_line)
 m.nnoremap("^", "0")
 
 -- Emacs-like movement keybindings
