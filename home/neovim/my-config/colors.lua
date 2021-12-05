@@ -12,13 +12,14 @@ function M.patchNordColors()
     nord_util.highlight("DiffChange", { fg = nord_colors.nord13_gui })
 end
 
+vim.cmd [[colorscheme nord]]
+M.patchNordColors()
+
 vim.cmd [[
 augroup MyColors
     autocmd!
     autocmd ColorScheme nord lua require"my-config.colors".patchNordColors()
 augroup end
 ]]
-
-vim.cmd [[colorscheme nord]]
 
 return M
