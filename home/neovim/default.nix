@@ -20,6 +20,7 @@ in
       nvim-autopairs
       vim-repeat
       vim-surround
+      vim-subversive
       lightspeed-nvim
       comment-nvim
 

@@ -13,6 +13,12 @@ wk.setup {
     },
 }
 
+-- e -> edit
+local edit_keymap = {
+    name = "edit",
+    s = { "<plug>(SubversiveSubstituteWordRange)", "Substitute Word in Range" },
+    S = { "<plug>(SubversiveSubstituteRange)", "Substitue Range" },
+}
 -- f -> file
 local file_keymap = {
     name = "file",
@@ -61,6 +67,7 @@ local session_keymap = {
 }
 
 wk.register({
+    e = edit_keymap,
     f = file_keymap,
     b = buffer_keymap,
     i = code_keymap,
@@ -107,6 +114,10 @@ m.cnoremap("<C-e>", "<End>")
 -- Quickly paste in insert and visual modes
 m.inoremap("<C-y>", "<C-r>+")
 m.vnoremap("<C-y>", [["+p]])
+
+-- Substitue
+m.nmap("r", "<plug>(SubversiveSubstitute)")
+m.nmap("rr", "<plug>(SubversiveSubstituteLine)")
 
 -- LSP
 local function bind_rust_lsp_keys(bufnr)
