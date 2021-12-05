@@ -22,6 +22,13 @@ local diff_component = {
     symbols = { added = " ", modified = "柳", removed = " " },
 }
 
+local lsp_status_component = {
+    require("lsp-status").status_progress,
+    cond = function()
+        return #vim.lsp.buf_get_clients() > 0
+    end,
+}
+
 lsp_status.register_progress()
 lsp_status.config {
     diagnostics = false,
@@ -35,18 +42,11 @@ require("lualine").setup {
         lualine_b = {},
         lualine_c = { "filename" },
         lualine_x = {
-            {
-                require("lsp-status").status_progress,
-                cond = function()
-                    return #vim.lsp.buf_get_clients() > 0
-                end,
-            },
             { "diagnostics", sources = { "nvim_lsp", "coc" } },
+            diff_component,
             "filetype",
         },
-        lualine_y = {
-            diff_component,
-        },
+        lualine_y = { lsp_status_component },
         lualine_z = { "location" },
     },
     inactive_sections = {
