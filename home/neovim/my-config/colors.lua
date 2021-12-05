@@ -1,7 +1,6 @@
 local M = {}
 
 vim.g.nord_borders = true
-vim.g.colors_name = "nord"
 
 function M.patchNordColors()
     local nord = require "nord"
@@ -19,5 +18,7 @@ augroup MyColors
     autocmd ColorScheme nord lua require"my-config.colors".patchNordColors()
 augroup end
 ]]
+
+vim.cmd [[colorscheme nord]]
 
 return M
