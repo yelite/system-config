@@ -16,6 +16,8 @@ augroup MyCursorLine
 augroup END
 ]]
 o.wrap = false
+-- Until https://github.com/neovim/neovim/issues/14209 is fixed
+vim.wo.colorcolumn = "99999"
 
 o.splitbelow = true
 o.splitright = true
@@ -63,6 +65,8 @@ require("telescope").load_extension "fzf"
 require("stabilize").setup {
     force = true,
 }
+
+require("indent_blankline").setup()
 
 require("nvim-autopairs").setup {
     disable_filetype = { "TelescopePrompt", "spectre_panel" },

@@ -12,6 +12,7 @@ in
     plugins = with pkgs.vimPlugins; with extraPlugins;[
       nord-nvim
       nvim-web-devicons
+      indent-blankline-nvim
 
       plenary-nvim
       popup-nvim
