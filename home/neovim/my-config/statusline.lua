@@ -42,11 +42,12 @@ require("lualine").setup {
         lualine_b = {},
         lualine_c = { "filename" },
         lualine_x = {
+            lsp_status_component,
             { "diagnostics", sources = { "nvim_lsp", "coc" } },
             diff_component,
             "filetype",
         },
-        lualine_y = { lsp_status_component },
+        lualine_y = {},
         lualine_z = { "location" },
     },
     inactive_sections = {

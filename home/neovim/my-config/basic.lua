@@ -67,6 +67,12 @@ require("stabilize").setup {
 }
 
 require("indent_blankline").setup()
+vim.cmd [[
+augroup MyIndentBlankline
+    au!
+    au FileType help lua require'indent_blankline.commands'.disable()
+augroup END
+]]
 
 require("nvim-autopairs").setup {
     disable_filetype = { "TelescopePrompt", "spectre_panel" },
