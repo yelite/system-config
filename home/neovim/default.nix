@@ -10,49 +10,46 @@ in
     enable = true;
 
     plugins = with pkgs.vimPlugins; with extraPlugins;[
-      nord-nvim
-      nvim-web-devicons
-      indent-blankline-nvim
-
       plenary-nvim
       popup-nvim
-      autosave
-      nvim-autopairs
-      vim-repeat
-      vim-surround
-      vim-subversive
-      lightspeed-nvim
-      comment-nvim
-
-      lualine-nvim
-      nvim-gps
 
       nvim-treesitter
       nvim-treesitter-textobjects
       nvim-treesitter-refactor
 
-      auto-session
-      session-lens
+      nord-nvim
+      nvim-web-devicons
+      indent-blankline-nvim
+      gitsigns-nvim
+      stabilize-nvim
 
+      lightspeed-nvim
+      nvim-autopairs
+      vim-repeat
+      vim-surround
+      vim-subversive
+
+      lualine-nvim
+      nvim-gps
       telescope-nvim
       telescope-fzf-native-nvim
       toggleterm-nvim
-
       which-key-nvim
       mapx
 
-      gitsigns-nvim
+      autosave
+      auto-session
+      session-lens
 
-      neoformat
-      vim-nix
       nvim-lspconfig
       lsp-status-nvim
       lspsaga-nvim
       rust-tools-nvim
       nvim-dap
       coq-nvim
-
-      stabilize-nvim
+      comment-nvim
+      neoformat
+      vim-nix
     ];
 
     extraConfig = ''

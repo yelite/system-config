@@ -116,8 +116,13 @@ m.inoremap("<C-y>", "<C-r>+")
 m.vnoremap("<C-y>", [["+p]])
 
 -- Substitue
-m.nmap("r", "<plug>(SubversiveSubstitute)")
-m.nmap("rr", "<plug>(SubversiveSubstituteLine)")
+m.nmap("R", "<plug>(SubversiveSubstitute)")
+m.nmap("RR", "<plug>(SubversiveSubstituteLine)")
+-- c without putting deleted text into register
+m.nnoremap("c", [["_c]])
+m.xnoremap("c", [["_c]])
+m.nnoremap("C", [["_C]])
+m.xnoremap("C", [["_C]])
 
 -- LSP
 local function bind_rust_lsp_keys(bufnr)
