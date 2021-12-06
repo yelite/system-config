@@ -45,6 +45,7 @@ in
       nvim-lspconfig
       lsp-status-nvim
       lspsaga-nvim
+      vim-illuminate
       rust-tools-nvim
       nvim-dap
       coq-nvim

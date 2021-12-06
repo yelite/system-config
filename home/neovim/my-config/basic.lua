@@ -6,15 +6,7 @@ o.mouse = "a"
 o.clipboard = "unnamedplus"
 
 o.cursorline = true
-vim.cmd [[
-augroup MyCursorLine
-    au!
-    au VimEnter * setlocal cursorline
-    au WinEnter * setlocal cursorline
-    au BufWinEnter * setlocal cursorline
-    au WinLeave * setlocal nocursorline
-augroup END
-]]
+o.cursorlineopt = "number"
 o.wrap = false
 -- Until https://github.com/neovim/neovim/issues/14209 is fixed
 vim.wo.colorcolumn = "99999"
@@ -40,6 +32,14 @@ o.signcolumn = "no"
 o.number = true
 
 o.completeopt = "menu,preview,noinsert"
+
+-- vim-illuminate
+g.Illuminate_delay = 250
+g.Illuminate_ftblacklist = {
+    "TelescopePrompt",
+    "help",
+    "man",
+}
 
 g.neovide_remember_window_size = true
 g.neovide_input_use_logo = true

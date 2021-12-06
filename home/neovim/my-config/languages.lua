@@ -23,6 +23,7 @@ local coq = require "coq"
 local function lsp_on_attach(client, bufnr)
     keymap.bind_lsp_keys(client, bufnr)
     lsp_status.on_attach(client, bufnr)
+    require("illuminate").on_attach(client)
 end
 
 lspsaga.init_lsp_saga {
