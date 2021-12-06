@@ -115,6 +115,22 @@
         "type": "github"
       }
     },
+    "neovim-tabout": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1630043968,
+        "narHash": "sha256-ohXzCKe6U808glo4fwJVMA6yeHbE4mW6r5fK7YLBWyk=",
+        "owner": "abecodes",
+        "repo": "tabout.nvim",
+        "rev": "1c8293c3b5e9f87496964c39b2b6b266f8cb2603",
+        "type": "github"
+      },
+      "original": {
+        "owner": "abecodes",
+        "repo": "tabout.nvim",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1638376152,
@@ -138,6 +154,7 @@
         "neovim-lspsaga-nvim": "neovim-lspsaga-nvim",
         "neovim-mapx": "neovim-mapx",
         "neovim-session-lens": "neovim-session-lens",
+        "neovim-tabout": "neovim-tabout",
         "nixpkgs": "nixpkgs",
         "utils": "utils"
       }

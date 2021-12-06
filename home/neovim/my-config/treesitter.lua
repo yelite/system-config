@@ -87,3 +87,22 @@ require("nvim-treesitter.configs").setup {
         },
     },
 }
+
+-- This has to be loaded after treesitter
+require("tabout").setup {
+    tabkey = "<Tab>",
+    backwards_tabkey = "<S-Tab>",
+    act_as_tab = true,
+    act_as_shift_tab = false,
+    enable_backwards = true,
+    tabouts = {
+        { open = "'", close = "'" },
+        { open = '"', close = '"' },
+        { open = "`", close = "`" },
+        { open = "(", close = ")" },
+        { open = "[", close = "]" },
+        { open = "{", close = "}" },
+    },
+    ignore_beginning = false,
+    exclude = {}, -- tabout will ignore these filetypes
+}

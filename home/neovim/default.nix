@@ -24,6 +24,7 @@ in
       stabilize-nvim
 
       lightspeed-nvim
+      tabout
       nvim-autopairs
       vim-repeat
       vim-surround

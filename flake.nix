@@ -1,38 +1,6 @@
 {
   description = "Config for my home computers";
 
-  inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
-    hm = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # neovim plugins
-    neovim-mapx = {
-      url = "github:b0o/mapx.nvim";
-      flake = false;
-    };
-    neovim-session-lens = {
-      url = "github:rmagatti/session-lens";
-      flake = false;
-    };
-    neovim-lspsaga-nvim = {
-      # Use tami5's fork
-      url = "github:tami5/lspsaga.nvim";
-      flake = false;
-    };
-    neovim-coq-nvim = {
-      url = "github:ms-jpq/coq_nvim";
-      flake = false;
-    };
-    neovim-autosave = {
-      url = "github:Pocco81/AutoSave.nvim";
-      flake = false;
-    };
-  };
-
   outputs = { self, utils, nixpkgs, ... }@inputs: utils.lib.mkFlake
     {
       inherit self inputs;
@@ -65,4 +33,41 @@
         }
       ];
     };
+
+  inputs = {
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
+    hm = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # neovim plugins
+    neovim-mapx = {
+      url = "github:b0o/mapx.nvim";
+      flake = false;
+    };
+    neovim-session-lens = {
+      url = "github:rmagatti/session-lens";
+      flake = false;
+    };
+    neovim-lspsaga-nvim = {
+      # Use tami5's fork
+      url = "github:tami5/lspsaga.nvim";
+      flake = false;
+    };
+    neovim-coq-nvim = {
+      url = "github:ms-jpq/coq_nvim";
+      flake = false;
+    };
+    neovim-autosave = {
+      url = "github:Pocco81/AutoSave.nvim";
+      flake = false;
+    };
+    neovim-tabout = {
+      url = "github:abecodes/tabout.nvim";
+      flake = false;
+    };
+  };
+
 }
