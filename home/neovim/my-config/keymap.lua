@@ -18,6 +18,7 @@ local edit_keymap = {
     name = "edit",
     s = { "<plug>(SubversiveSubstituteWordRange)", "Substitute Word in Range" },
     S = { "<plug>(SubversiveSubstituteRange)", "Substitue Range" },
+    p = { "<cmd>Telescope neoclip<cr>", "Clipboard History" },
 }
 -- f -> file
 local file_keymap = {
@@ -111,6 +112,9 @@ m.cnoremap("<C-n>", "<Down>")
 m.cnoremap("<C-a>", "<Home>")
 m.cnoremap("<C-e>", "<End>")
 
+--  to clear search highlight in addition to redraw
+m.cnoremap("<C-l>", "<cmd>noh<cr><C-l>")
+
 -- Quickly paste in insert and visual modes
 m.inoremap("<C-y>", "<C-r>+")
 m.vnoremap("<C-y>", [["+p]])
@@ -123,6 +127,9 @@ m.nnoremap("c", [["_c]])
 m.xnoremap("c", [["_c]])
 m.nnoremap("C", [["_C]])
 m.xnoremap("C", [["_C]])
+-- zp/P to force linewise put
+m.nnoremap("zp", "<cmd>put<cr>")
+m.nnoremap("zP", "<cmd>put!<cr>")
 
 -- LSP
 local function bind_rust_lsp_keys(bufnr)

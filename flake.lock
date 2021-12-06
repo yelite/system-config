@@ -99,6 +99,22 @@
         "type": "github"
       }
     },
+    "neovim-neoclip": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1636199156,
+        "narHash": "sha256-qsHCyTJIPnYB5KCs5pwfsKuJV9UvDcoiQViqRwB6/Os=",
+        "owner": "AckslD",
+        "repo": "nvim-neoclip.lua",
+        "rev": "cb4eff8bb7bb4bbb3d1629178a7dc62322773e05",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AckslD",
+        "repo": "nvim-neoclip.lua",
+        "type": "github"
+      }
+    },
     "neovim-session-lens": {
       "flake": false,
       "locked": {
@@ -153,6 +169,7 @@
         "neovim-coq-nvim": "neovim-coq-nvim",
         "neovim-lspsaga-nvim": "neovim-lspsaga-nvim",
         "neovim-mapx": "neovim-mapx",
+        "neovim-neoclip": "neovim-neoclip",
         "neovim-session-lens": "neovim-session-lens",
         "neovim-tabout": "neovim-tabout",
         "nixpkgs": "nixpkgs",

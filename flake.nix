@@ -68,6 +68,10 @@
       url = "github:abecodes/tabout.nvim";
       flake = false;
     };
+    neovim-neoclip = {
+      url = "github:AckslD/nvim-neoclip.lua";
+      flake = false;
+    };
   };
 
 }

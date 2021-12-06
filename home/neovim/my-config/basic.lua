@@ -61,6 +61,7 @@ require("telescope").setup {
     },
 }
 require("telescope").load_extension "fzf"
+require("telescope").load_extension "neoclip"
 
 require("stabilize").setup {
     force = true,
@@ -110,5 +111,32 @@ require("gitsigns").setup {
 require("Comment").setup {
     mappings = {
         extended = true,
+    },
+}
+
+require("neoclip").setup {
+    history = 200,
+    enable_persistant_history = true,
+    db_path = vim.fn.stdpath "data" .. "/databases/neoclip.sqlite3",
+    filter = nil,
+    preview = true,
+    default_register = '"',
+    content_spec_column = false,
+    on_paste = {
+        set_reg = false,
+    },
+    keys = {
+        i = {
+            select = "<cr>",
+            paste = "<c-j>",
+            paste_behind = "<c-k>",
+            custom = {},
+        },
+        n = {
+            select = "<cr>",
+            paste = "p",
+            paste_behind = "P",
+            custom = {},
+        },
     },
 }

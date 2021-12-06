@@ -41,6 +41,7 @@ in
       autosave
       auto-session
       session-lens
+      neoclip
 
       nvim-lspconfig
       lsp-status-nvim
@@ -52,6 +53,11 @@ in
       comment-nvim
       neoformat
       vim-nix
+
+      {
+        plugin = sqlite-lua;
+        config = "let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'";
+      }
     ];
 
     extraConfig = ''
@@ -77,6 +83,7 @@ in
       rust-analyzer
       rustfmt
       graphviz # For rust crate graph visualization
+      sqlite # For sqlite.lua
     ];
 
     viAlias = true;
