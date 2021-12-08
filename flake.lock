@@ -83,6 +83,22 @@
         "type": "github"
       }
     },
+    "neovim-lua-dev": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1638623524,
+        "narHash": "sha256-9JPebJ5ritCrIwjXw3UG+mNFNr0iou5LHC0cXzP5gAU=",
+        "owner": "folke",
+        "repo": "lua-dev.nvim",
+        "rev": "1933c7e014e69484572b7fa1bf73bc51c42f10f4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "lua-dev.nvim",
+        "type": "github"
+      }
+    },
     "neovim-mapx": {
       "flake": false,
       "locked": {
@@ -168,6 +184,7 @@
         "neovim-autosave": "neovim-autosave",
         "neovim-coq-nvim": "neovim-coq-nvim",
         "neovim-lspsaga-nvim": "neovim-lspsaga-nvim",
+        "neovim-lua-dev": "neovim-lua-dev",
         "neovim-mapx": "neovim-mapx",
         "neovim-neoclip": "neovim-neoclip",
         "neovim-session-lens": "neovim-session-lens",

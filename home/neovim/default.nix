@@ -47,6 +47,7 @@ in
       lsp-status-nvim
       lspsaga-nvim
       vim-illuminate
+      lua-dev
       rust-tools-nvim
       nvim-dap
       coq-nvim
@@ -82,6 +83,7 @@ in
       stylua
       rust-analyzer
       rustfmt
+      sumneko-lua-language-server
       graphviz # For rust crate graph visualization
       sqlite # For sqlite.lua
     ];

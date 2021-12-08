@@ -72,6 +72,10 @@
       url = "github:AckslD/nvim-neoclip.lua";
       flake = false;
     };
+    neovim-lua-dev = {
+      url = "github:folke/lua-dev.nvim";
+      flake = false;
+    };
   };
 
 }

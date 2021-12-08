@@ -22,7 +22,7 @@ local coq = require "coq"
 
 local function lsp_on_attach(client, bufnr)
     keymap.bind_lsp_keys(client, bufnr)
-    lsp_status.on_attach(client, bufnr)
+    lsp_status.on_attach(client)
     require("illuminate").on_attach(client)
 end
 
@@ -32,6 +32,7 @@ lspsaga.init_lsp_saga {
         sign = false,
     },
 }
+
 rust_tools.setup {
     tools = {
         hover_actions = {
@@ -43,6 +44,17 @@ rust_tools.setup {
         capabilities = lsp_status.capabilities,
     },
 }
+
+-- TODO move this into project-specific settings because
+-- lua-dev should only be used with init.lua development
+local luadev = require("lua-dev").setup {
+    lspconfig = {
+        cmd = { "lua-language-server" },
+        on_attach = lsp_on_attach,
+        capabilities = lsp_status.capabilities,
+    },
+}
+nvim_lsp.sumneko_lua.setup(luadev)
 
 -- auto format
 vim.cmd [[
