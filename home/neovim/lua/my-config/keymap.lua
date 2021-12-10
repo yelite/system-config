@@ -32,6 +32,8 @@ local file_keymap = {
 local buffer_keymap = {
     name = "buffer",
     b = { "<cmd>Telescope buffers<cr>", "Switch Buffer" },
+    d = { "<cmd>Bdelete<cr>", "Close Buffer" },
+    D = { "<cmd>Bdelete!<cr>", "Force Close Buffer" },
     n = { "<cmd>bn<cr>", "Next Buffer" },
     p = { "<cmd>bp<cr>", "Previous Buffer" },
 }

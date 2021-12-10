@@ -50,18 +50,7 @@ if g.neovide then
     g.neovide_remember_window_size = true
 end
 
-local ts_actions = require "telescope.actions"
-require("telescope").setup {
-    defaults = {
-        mappings = {
-            i = {
-                ["<esc>"] = ts_actions.close,
-            },
-        },
-    },
-}
-require("telescope").load_extension "fzf"
-require("telescope").load_extension "neoclip"
+require "my-config.telescope"
 
 require("stabilize").setup {
     force = true,

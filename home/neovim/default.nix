@@ -22,6 +22,7 @@ in
       indent-blankline-nvim
       gitsigns-nvim
       stabilize-nvim
+      bufdelete-nvim
 
       lightspeed-nvim
       tabout

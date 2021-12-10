@@ -86,6 +86,10 @@
       url = "github:folke/lua-dev.nvim";
       flake = false;
     };
+    neovim-bufdelete-nvim = {
+      url = "github:yelite/bufdelete.nvim";
+      flake = false;
+    };
   };
 
 }

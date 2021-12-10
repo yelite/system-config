@@ -51,6 +51,22 @@
         "type": "github"
       }
     },
+    "neovim-bufdelete-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1639112882,
+        "narHash": "sha256-4TtTE2iwI83QjxTJyAbYf9+pYIOpxKX0UBwLlloG+ks=",
+        "owner": "yelite",
+        "repo": "bufdelete.nvim",
+        "rev": "331ad2068bfde5d73f8bca5c09c1e9cf78e64825",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yelite",
+        "repo": "bufdelete.nvim",
+        "type": "github"
+      }
+    },
     "neovim-coq-nvim": {
       "flake": false,
       "locked": {
@@ -182,6 +198,7 @@
       "inputs": {
         "hm": "hm",
         "neovim-autosave": "neovim-autosave",
+        "neovim-bufdelete-nvim": "neovim-bufdelete-nvim",
         "neovim-coq-nvim": "neovim-coq-nvim",
         "neovim-lspsaga-nvim": "neovim-lspsaga-nvim",
         "neovim-lua-dev": "neovim-lua-dev",
