@@ -95,5 +95,5 @@ in
     withRuby = false;
   };
 
-  xdg.configFile."nvim/lua/my-config".source = ./my-config;
+  xdg.configFile."nvim/lua".source = ./lua;
 }

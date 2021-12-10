@@ -5,6 +5,8 @@
     {
       inherit self inputs;
 
+      supportedSystems = [ "x86_64-linux" ];
+
       channelsConfig.allowUnfree = true;
 
       hosts = {
@@ -32,6 +34,14 @@
           };
         }
       ];
+
+      outputsBuilder = channels:
+        let
+          pkgs = channels.nixpkgs;
+        in
+        {
+          devShells.nvim-config = import ./home/neovim/dev-shell.nix pkgs;
+        };
     };
 
   inputs = {
