@@ -63,15 +63,7 @@ in
 
     extraConfig = ''
       lua << END🤞
-        
-        require "my-config.basic"
-        require "my-config.keymap"
-        require "my-config.terminal"
-        require "my-config.treesitter"
-        require "my-config.languages"
-        require "my-config.statusline"
-        require "my-config.colors"
-
+        require "my-config"
       END🤞
     '';
 

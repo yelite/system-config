@@ -140,3 +140,29 @@ require("neoclip").setup {
         },
     },
 }
+
+require "my-config.keymap"
+require "my-config.terminal"
+require "my-config.treesitter"
+require "my-config.languages"
+require "my-config.statusline"
+require "my-config.colors"
+
+-- This has to be loaded after treesitter
+require("tabout").setup {
+    tabkey = "<Tab>",
+    backwards_tabkey = "<S-Tab>",
+    act_as_tab = true,
+    act_as_shift_tab = false,
+    enable_backwards = true,
+    tabouts = {
+        { open = "'", close = "'" },
+        { open = '"', close = '"' },
+        { open = "`", close = "`" },
+        { open = "(", close = ")" },
+        { open = "[", close = "]" },
+        { open = "{", close = "}" },
+    },
+    ignore_beginning = false,
+    exclude = {}, -- tabout will ignore these filetypes
+}
