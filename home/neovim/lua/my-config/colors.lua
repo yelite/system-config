@@ -8,7 +8,7 @@ function M.patchNordColors()
     local nord_util = require "nord.util"
 
     nord_util.highlight("illuminatedWord", { bg = nord_colors.nord1_gui })
-    nord_util.highlight("illuminatedCurWord", { bg = nord_colors.nord1_gui })
+    vim.cmd [[hi clear illuminatedCurWord]]
     nord_util.highlight("WhichKeyFloating", { bg = nord_colors.nord1_gui })
     nord_util.highlight("WhichKeyFloat", { bg = nord_colors.nord1_gui })
     nord_util.highlight("DiffChange", { fg = nord_colors.nord13_gui })
