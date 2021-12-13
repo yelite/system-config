@@ -1,5 +1,6 @@
 local bufdelete = require "bufdelete"
 local action_state = require "telescope.actions.state"
+local trouble = require "trouble.providers.telescope"
 
 local function delete_buffer(prompt_bufnr)
     local current_picker = action_state.get_current_picker(prompt_bufnr)
@@ -14,6 +15,7 @@ require("telescope").setup {
         mappings = {
             i = {
                 ["<esc>"] = ts_actions.close,
+                ["<c-t>"] = trouble.open_with_trouble,
             },
         },
     },

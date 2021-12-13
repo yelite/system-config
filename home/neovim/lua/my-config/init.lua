@@ -97,6 +97,21 @@ require("gitsigns").setup {
     numhl = true,
 }
 
+require("trouble").setup {
+    indent_line = false,
+    auto_preview = false,
+}
+
+require("todo-comments").setup {
+    signs = false,
+    FIX = {
+        icon = " ",
+        color = "error",
+        alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
+    },
+    TODO = { icon = " ", color = "info" },
+}
+
 require("Comment").setup {
     mappings = {
         extended = true,

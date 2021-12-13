@@ -90,6 +90,10 @@
       url = "github:yelite/bufdelete.nvim";
       flake = false;
     };
+    neovim-trouble-nvim = {
+      url = "github:yelite/trouble.nvim";
+      flake = false;
+    };
   };
 
 }

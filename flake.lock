@@ -179,6 +179,22 @@
         "type": "github"
       }
     },
+    "neovim-trouble-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1639327498,
+        "narHash": "sha256-h5QBhZZBa1n4qJbeyI3TekLq4S7bso/MrQZ83nAakmE=",
+        "owner": "yelite",
+        "repo": "trouble.nvim",
+        "rev": "d5589f530c77133cdae0a60cf42da81fe20bfa92",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yelite",
+        "repo": "trouble.nvim",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1638376152,
@@ -206,6 +222,7 @@
         "neovim-neoclip": "neovim-neoclip",
         "neovim-session-lens": "neovim-session-lens",
         "neovim-tabout": "neovim-tabout",
+        "neovim-trouble-nvim": "neovim-trouble-nvim",
         "nixpkgs": "nixpkgs",
         "utils": "utils"
       }

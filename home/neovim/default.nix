@@ -47,13 +47,15 @@ in
       nvim-lspconfig
       lsp-status-nvim
       lspsaga-nvim
+      trouble-nvim
       vim-illuminate
-      lua-dev
-      rust-tools-nvim
       nvim-dap
       coq-nvim
+      todo-comments-nvim
       comment-nvim
       neoformat
+      lua-dev
+      rust-tools-nvim
       vim-nix
 
       {

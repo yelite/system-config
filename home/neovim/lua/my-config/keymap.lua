@@ -41,6 +41,13 @@ local buffer_keymap = {
 local code_keymap = {
     name = "code actions",
     f = { "<cmd>Neoformat<cr>", "Format Code" },
+
+    s = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace Symbols" },
+    S = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+    d = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
+    D = { "<cmd>Trouble document_diagnostics<cr>", "Document Diagnostics" },
+    a = { "<cmd>Telescope lsp_range_code_actions<cr>", "Code Actions" },
+    r = { "<cmd>Lspsaga rename<cr>", "Rename Symbol" },
 }
 -- s -> search
 local search_keymap = {
@@ -54,6 +61,7 @@ local toggle_feature_keymap = {
     name = "toggle features",
     f = { [[<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<cr>]], "Open Terminal" },
     t = { [[<cmd>exe v:count1 . "ToggleTerm direction=float"<cr>]], "Open Floating Terminal" },
+    d = { [[<cmd>TroubleToggle<cr>]], "Trouble Window" },
 }
 -- v -> version control
 local vcs_keymap = {
@@ -68,6 +76,11 @@ local session_keymap = {
     l = { "<cmd>SearchSession<cr>", "Search Sessions" },
     s = { "<cmd>SaveSession<cr>", "Save Session" },
 }
+-- p -> project
+local project_keymap = {
+    name = "project",
+    t = { "<cmd>TodoTelescope<cr>", "Todo Items" },
+}
 
 wk.register({
     e = edit_keymap,
@@ -78,8 +91,10 @@ wk.register({
     s = search_keymap,
     v = vcs_keymap,
     q = session_keymap,
-    ["j"] = buffer_keymap.b,
-    ["k"] = file_keymap.f,
+    p = project_keymap,
+    ["j"] = buffer_keymap.b, -- Switch Buffer
+    ["k"] = file_keymap.f, -- Find Files
+    ["l"] = code_keymap.s, -- Workspace Symbols
 }, {
     prefix = "<leader>",
 })
@@ -148,7 +163,7 @@ function M.bind_lsp_keys(client, bufnr)
     m.nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opt, "Definition")
     m.nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opt, "Declaration")
     m.nnoremap("gt", "<cmd>Telescope lsp_type_definitions<cr>", opt, "Type Definition")
-    m.nnoremap("gr", "<cmd>Telescope lsp_references<cr>", opt, "References")
+    m.nnoremap("gr", "<cmd>Trouble lsp_references<cr>", opt, "References")
     m.nnoremap("gs", "<cmd>Telescope lsp_workspace_symbols<cr>", opt, "Workspace Symbols")
     m.nnoremap("gS", "<cmd>Telescope lsp_document_symbols<cr>", opt, "Document Symbols")
     m.nnoremap("go", "<cmd>Lspsaga show_line_diagnostics<cr>", opt, "Show Line Diagnostics")
@@ -156,13 +171,6 @@ function M.bind_lsp_keys(client, bufnr)
     m.nnoremap("K", "<cmd>lua vim.lsp.buf.hover()<cr>", opt, "LSP Hover")
     m.nnoremap("[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", opt, "Prevous Diagnostic")
     m.nnoremap("]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", opt, "Next Diagnostic")
-
-    m.nnoremap("<leader>is", "<cmd>Telescope lsp_workspace_symbols<cr>", opt, "Workspace Symbols")
-    m.nnoremap("<leader>iS", "<cmd>Telescope lsp_document_symbols<cr>", opt, "Document Symbols")
-    m.nnoremap("<leader>id", "<cmd>Telescope lsp_workspace_diagnostics<cr>", opt, "Workspace Diagnostics")
-    m.nnoremap("<leader>iD", "<cmd>Telescope lsp_document_diagnostics<cr>", opt, "Document Diagnostics")
-    m.nnoremap("<leader>ia", "<cmd>Telescope lsp_range_code_actions<cr>", opt, "Code Actions")
-    m.nnoremap("<leader>ir", "<cmd>Lspsaga rename<cr>", opt, "Rename Symbol")
 
     m.inoremap("<C-h>", "<cmd>Lspsaga signature_help<cr>", opt)
     m.inoremap("<C-k>", "<cmd>lua vim.lsp.buf.hover()<cr>", opt)
