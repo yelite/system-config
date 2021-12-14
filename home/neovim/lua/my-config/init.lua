@@ -171,5 +171,6 @@ require("tabout").setup {
         { open = "{", close = "}" },
     },
     ignore_beginning = false,
+    completion = false,
     exclude = {}, -- tabout will ignore these filetypes
 }

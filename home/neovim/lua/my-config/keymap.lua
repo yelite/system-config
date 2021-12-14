@@ -174,7 +174,7 @@ function M.bind_lsp_keys(client, bufnr)
 
     m.inoremap("<C-h>", "<cmd>Lspsaga signature_help<cr>", opt)
     m.inoremap("<C-k>", "<cmd>lua vim.lsp.buf.hover()<cr>", opt)
-    m.inoremap("<C-i>", "<cmd>Lspsaga code_action<cr>", opt)
+    m.inoremap("<C-o>", "<cmd>Lspsaga code_action<cr>", opt)
 
     if client.name == "rust_analyzer" then
         bind_rust_lsp_keys(bufnr)
