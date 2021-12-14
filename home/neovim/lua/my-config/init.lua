@@ -104,12 +104,15 @@ require("trouble").setup {
 
 require("todo-comments").setup {
     signs = false,
-    FIX = {
-        icon = " ",
-        color = "error",
-        alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
+    keywords = {
+        FIX = {
+            icon = " ",
+            color = "error",
+            alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
+        },
+        TODO = { icon = " ", color = "info" },
     },
-    TODO = { icon = " ", color = "info" },
+    merge_keywords = false,
 }
 
 require("Comment").setup {
