@@ -43,7 +43,7 @@ require("lualine").setup {
         lualine_c = { "filename" },
         lualine_x = {
             lsp_status_component,
-            { "diagnostics", sources = { "nvim_lsp", "coc" } },
+            { "diagnostics", sources = { "nvim_diagnostic", "coc" } },
             diff_component,
             "filetype",
         },
@@ -55,7 +55,7 @@ require("lualine").setup {
         lualine_b = {},
         lualine_c = { "filename" },
         lualine_x = {
-            { "diagnostics", sources = { "nvim_lsp", "coc" } },
+            { "diagnostics", sources = { "nvim_diagnostic", "coc" } },
             diff_component,
         },
         lualine_y = {},

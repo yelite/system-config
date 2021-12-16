@@ -44,6 +44,10 @@ in
       session-lens
       neoclip
 
+      neorg
+      neorg-telescope
+      neorg-trouble
+
       nvim-lspconfig
       lsp-status-nvim
       lspsaga-nvim

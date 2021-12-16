@@ -81,17 +81,27 @@ local project_keymap = {
     name = "project",
     t = { "<cmd>TodoTelescope<cr>", "Todo Items" },
 }
+-- n -> notes
+local notes_keymap = {
+    name = "notes",
+    t = { "GTD" },
+    n = { "New Note" },
+    f = { "Search Headings" },
+    h = { "Show Headings" },
+    l = { "Find Linkable" },
+}
 
 wk.register({
+    b = buffer_keymap,
     e = edit_keymap,
     f = file_keymap,
-    b = buffer_keymap,
     i = code_keymap,
-    t = toggle_feature_keymap,
-    s = search_keymap,
-    v = vcs_keymap,
-    q = session_keymap,
+    n = notes_keymap,
     p = project_keymap,
+    q = session_keymap,
+    s = search_keymap,
+    t = toggle_feature_keymap,
+    v = vcs_keymap,
     ["j"] = buffer_keymap.b, -- Switch Buffer
     ["k"] = file_keymap.f, -- Find Files
     ["l"] = code_keymap.s, -- Workspace Symbols
@@ -133,7 +143,8 @@ m.cnoremap("<C-e>", "<End>")
 m.cnoremap("<C-l>", "<cmd>noh<cr><C-l>")
 
 -- Quickly paste in insert and visual modes
-m.inoremap("<C-y>", "<C-r>+")
+-- TODO: Identify the register type, call :put if it's linewise
+m.inoremap("<C-y>", "<C-r><C-r>+")
 m.vnoremap("<C-y>", [["+p]])
 
 -- Substitue

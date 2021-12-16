@@ -22,6 +22,11 @@ o.expandtab = true
 o.foldmethod = "expr"
 o.foldexpr = "nvim_treesitter#foldexpr()"
 o.foldlevel = 99 -- Unfold everything by default
+o.foldtext =
+    [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
+o.fillchars = "fold: "
+o.foldnestmax = 3
+o.foldminlines = 1
 
 o.backup = false
 o.writebackup = false
@@ -113,6 +118,9 @@ require("todo-comments").setup {
         TODO = { icon = " ", color = "info" },
     },
     merge_keywords = false,
+    highlight = {
+        after = "",
+    },
 }
 
 require("Comment").setup {
@@ -152,6 +160,7 @@ require "my-config.keymap"
 require "my-config.terminal"
 require "my-config.treesitter"
 require "my-config.languages"
+require "my-config.neorg"
 require "my-config.statusline"
 require "my-config.colors"
 

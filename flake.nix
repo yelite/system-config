@@ -94,6 +94,17 @@
       url = "github:yelite/trouble.nvim";
       flake = false;
     };
+    neovim-neorg = {
+      url = "github:nvim-neorg/neorg";
+      flake = false;
+    };
+    neovim-neorg-telescope = {
+      url = "github:nvim-neorg/neorg-telescope";
+      flake = false;
+    };
+    neovim-neorg-trouble = {
+      url = "github:quantum-booty/neorg-trouble";
+      flake = false;
+    };
   };
-
 }
