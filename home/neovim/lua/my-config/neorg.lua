@@ -15,6 +15,7 @@ require("neorg").setup {
                 },
             },
         },
+        ["core.gtd.base"] = {},
         ["core.integrations.telescope"] = {},
         ["myconfig.foldtext"] = {},
     },
@@ -116,6 +117,10 @@ require("neorg").setup {
                 n = {
                     { neorg_leader .. "m", ":Neorg mode norg<CR>" },
                     { neorg_leader .. "h", "<cmd>Trouble neorg<cr>" },
+                },
+                i = {
+                    -- TODO: This is a quick hack for smart enter. Replace this with a real one
+                    { "<C-CR>", "<C-o>o- [ ] " },
                 },
             }, {
                 silent = true,
