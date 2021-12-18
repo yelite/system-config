@@ -75,9 +75,10 @@ require("nvim-autopairs").setup {
     map_c_w = false,
 }
 
+o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 require("auto-session").setup {
-    auto_session_enable_last_session = true,
     auto_session_suppress_dirs = { "/etc" },
+    post_restore_cmds = { [[normal `"]] }, -- restore the last cursor position
 }
 require("session-lens").setup {}
 
