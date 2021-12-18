@@ -127,12 +127,16 @@ wk.register({
 
 -- Text object labels
 wk.register({
+    -- tree-sitter
     ["af"] = "function",
     ["if"] = "inner function",
     ["ac"] = "class",
     ["ic"] = "inner class",
     ["aa"] = "parameter",
     ["ia"] = "inner parameter",
+    -- textobj-entire
+    ["ae"] = "entire buffer",
+    ["ie"] = "entire buffer (without surrounding empty lines)",
 }, { mode = "o", prefix = "" })
 
 local m = require "mapx"

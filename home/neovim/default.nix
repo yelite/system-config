@@ -31,6 +31,7 @@ in
       vim-repeat
       vim-surround
       vim-subversive
+      vim-textobj-entire
 
       lualine-nvim
       nvim-gps
