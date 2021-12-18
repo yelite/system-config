@@ -125,6 +125,16 @@ wk.register({
     prefix = "<leader>",
 })
 
+-- Text object labels
+wk.register({
+    ["af"] = "function",
+    ["if"] = "inner function",
+    ["ac"] = "class",
+    ["ic"] = "inner class",
+    ["aa"] = "parameter",
+    ["ia"] = "inner parameter",
+}, { mode = "o", prefix = "" })
+
 local m = require "mapx"
 m.setup { whichkey = true }
 
