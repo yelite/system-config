@@ -13,6 +13,19 @@ wk.setup {
     },
 }
 
+local function toggle_line_number()
+    vim.o.number = not vim.o.number
+end
+
+local function toggle_auto_save()
+    vim.cmd [[ASToggle]]
+    if vim.g.autosave_state then
+        print "AutoSave on"
+    else
+        print "AutoSave off"
+    end
+end
+
 -- e -> edit
 local edit_keymap = {
     name = "edit",
@@ -63,6 +76,8 @@ local toggle_feature_keymap = {
     t = { [[<cmd>exe v:count1 . "ToggleTerm direction=float"<cr>]], "Open Floating Terminal" },
     d = { [[<cmd>TroubleToggle<cr>]], "Trouble Window" },
     p = { [[<cmd>TSPlaygroundToggle<cr>]], "Treesitter Playground" },
+    n = { toggle_line_number, "Line Number" },
+    s = { toggle_auto_save, "Auto Save" },
 }
 -- v -> version control
 local vcs_keymap = {

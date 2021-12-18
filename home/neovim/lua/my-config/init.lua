@@ -92,7 +92,7 @@ require("autosave").setup {
         modifiable = true,
     },
     write_all_buffers = false,
-    on_off_commands = false,
+    on_off_commands = true,
     clean_command_line_interval = 0,
     debounce_delay = 150,
 }
