@@ -16,6 +16,7 @@ in
       nvim-treesitter
       nvim-treesitter-textobjects
       nvim-treesitter-refactor
+      playground # treesitter-playground
 
       nord-nvim
       nvim-web-devicons

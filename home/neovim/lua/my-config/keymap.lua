@@ -62,6 +62,7 @@ local toggle_feature_keymap = {
     f = { [[<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<cr>]], "Open Terminal" },
     t = { [[<cmd>exe v:count1 . "ToggleTerm direction=float"<cr>]], "Open Floating Terminal" },
     d = { [[<cmd>TroubleToggle<cr>]], "Trouble Window" },
+    p = { [[<cmd>TSPlaygroundToggle<cr>]], "Treesitter Playground" },
 }
 -- v -> version control
 local vcs_keymap = {
