@@ -14,6 +14,7 @@
           ./hosts/moonshot
           ./modules/desktop.nix
           ./modules/keyboard-remap
+          ./modules/logitech
           {
             home-manager.users.liteye.imports = [
               ./home/gui.nix
