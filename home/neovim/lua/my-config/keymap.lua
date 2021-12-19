@@ -174,12 +174,14 @@ m.cnoremap("<C-l>", "<cmd>noh<cr><C-l>")
 
 -- Quickly paste in insert and visual modes
 -- TODO: Identify the register type, call :put if it's linewise
-m.inoremap("<C-y>", "<C-r><C-r>+")
+m.inoremap("<C-y>", "<C-r><C-o>+")
+m.cnoremap("<C-y>", "<C-r><C-o>+")
 m.vnoremap("<C-y>", [["+p]])
 
 -- Substitue
 m.nmap("R", "<plug>(SubversiveSubstitute)")
 m.nmap("RR", "<plug>(SubversiveSubstituteLine)")
+m.xmap("r", "<plug>(SubversiveSubstituteLine)")
 -- c without putting deleted text into register
 m.nnoremap("c", [["_c]])
 m.xnoremap("c", [["_c]])
