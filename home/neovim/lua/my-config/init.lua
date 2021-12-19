@@ -78,7 +78,9 @@ require("nvim-autopairs").setup {
     map_cr = false,
     map_c_w = false,
 }
-require("hop").setup()
+require("hop").setup {
+    jump_on_sole_occurrence = false,
+}
 
 o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 require("auto-session").setup {

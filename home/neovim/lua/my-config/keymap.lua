@@ -146,10 +146,16 @@ wk.register({
 -- Hop
 wk.register({
     l = { "<cmd>HopLineStart<cr>", "Hop Line" },
-    h = { "other hops" },
-    ho = { [[<cmd>lua require"hop-extensions".hint_locals()<cr>]], "Hop Locals" },
-    hk = { [[<cmd>lua require"hop-extensions".hint_scopes()<cr>]], "Hop Scopes" },
-    hi = { [[<cmd>lua require"hop-extensions".hint_definitions()<cr>]], "Hop Definitions" },
+    h = {
+        name = "other hops",
+        w = { [[<cmd>lua require"hop-extensions".hint_cword()<cr>]], "Hop Current Word" },
+        W = { [[<cmd>lua require"hop-extensions".hint_cWORD()<cr>]], "Hop Current WORD" },
+        l = { [[<cmd>lua require"hop-extensions".hint_locals()<cr>]], "Hop Locals" },
+        s = { [[<cmd>lua require"hop-extensions".hint_scopes()<cr>]], "Hop Scopes" },
+        d = { [[<cmd>lua require"hop-extensions".hint_definitions()<cr>]], "Hop Definitions" },
+        k = { [[<cmd>lua require"hop-extensions".hint_textobjects('function')<cr>]], "Hop Functions" },
+        a = { [[<cmd>lua require"hop-extensions".hint_textobjects('parameter')<cr>]], "Hop Parameter" },
+    },
 }, { mode = "n", prefix = "g" })
 
 -- Text object labels
