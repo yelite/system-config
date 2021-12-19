@@ -23,7 +23,8 @@ local coq = require "coq"
 local function lsp_on_attach(client, bufnr)
     keymap.bind_lsp_keys(client, bufnr)
     lsp_status.on_attach(client)
-    require("illuminate").on_attach(client)
+    -- TODO: Enable after it respects global enabled flag and current word highlight
+    -- require("illuminate").on_attach(client)
 end
 
 lspsaga.init_lsp_saga {
