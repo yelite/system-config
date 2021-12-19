@@ -45,6 +45,10 @@ g.Illuminate_ftblacklist = {
     "help",
     "man",
 }
+-- TODO: Remove this after the highlight on current word can be disabled in LSP
+vim.defer_fn(function()
+    vim.cmd [[IlluminationDisable]]
+end, 2000)
 
 g.neovide_remember_window_size = true
 g.neovide_input_use_logo = true

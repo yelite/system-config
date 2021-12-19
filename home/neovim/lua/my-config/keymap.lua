@@ -72,13 +72,14 @@ local search_keymap = {
 -- t -> toggle mode
 local toggle_feature_keymap = {
     name = "toggle features",
-    f = { [[<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<cr>]], "Open Terminal" },
-    t = { [[<cmd>exe v:count1 . "ToggleTerm direction=float"<cr>]], "Open Floating Terminal" },
-    d = { [[<cmd>TroubleToggle<cr>]], "Trouble Window" },
-    p = { [[<cmd>TSPlaygroundToggle<cr>]], "Treesitter Playground" },
     b = { [[<cmd>Gitsigns toggle_current_line_blame<cr>]], "Toggle Blame Line" },
+    d = { [[<cmd>TroubleToggle<cr>]], "Trouble Window" },
+    f = { [[<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<cr>]], "Open Terminal" },
+    i = { [[<cmd>IlluminationToggle<cr>]], "Illuminate Variable" },
     n = { toggle_line_number, "Line Number" },
+    p = { [[<cmd>TSPlaygroundToggle<cr>]], "Treesitter Playground" },
     s = { toggle_auto_save, "Auto Save" },
+    t = { [[<cmd>exe v:count1 . "ToggleTerm direction=float"<cr>]], "Open Floating Terminal" },
 }
 -- v -> version control
 local vcs_keymap = {
