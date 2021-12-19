@@ -76,6 +76,7 @@ local toggle_feature_keymap = {
     t = { [[<cmd>exe v:count1 . "ToggleTerm direction=float"<cr>]], "Open Floating Terminal" },
     d = { [[<cmd>TroubleToggle<cr>]], "Trouble Window" },
     p = { [[<cmd>TSPlaygroundToggle<cr>]], "Treesitter Playground" },
+    b = { [[<cmd>Gitsigns toggle_current_line_blame<cr>]], "Toggle Blame Line" },
     n = { toggle_line_number, "Line Number" },
     s = { toggle_auto_save, "Auto Save" },
 }
@@ -83,6 +84,17 @@ local toggle_feature_keymap = {
 local vcs_keymap = {
     name = "version control",
     v = { [[<cmd>lua require("my-config.terminal").toggle_lazygit()<cr>]], "Open lazygit" },
+    s = { [[<cmd>Gitsigns stage_hunk<cr>]], "Stage Hunk" },
+    u = { [[<cmd>Gitsigns undo_stage_hunk<cr>]], "Undo Stage Hunk" },
+    l = { [[<cmd>Gitsigns setqflist all<cr>]], "List All Hunks" },
+    L = { [[<cmd>Gitsigns setqflist<cr>]], "List Buffer Hunks" },
+    r = { [[<cmd>Gitsigns reset_hunk<cr>]], "Reset Hunk" },
+    R = { [[<cmd>Gitsigns reset_buffer<cr>]], "Reset Buffer" },
+    p = { [[<cmd>Gitsigns preview_hunk<cr>]], "Preview Hunk" },
+    b = { [[<cmd>lua require"gitsigns".blame_line{}<cr>]], "Blame" },
+    B = { [[<cmd>lua require"gitsigns".blame_line{full=true}<cr>]], "Blame Full Hunk" },
+    S = { [[<cmd>Gitsigns stage_buffer<cr>]], "Stage Buffer" },
+    U = { [[<cmd>Gitsigns reset_buffer_index<cr>]], "Reset Buffer Index" },
 }
 -- q -> session
 local session_keymap = {
@@ -125,8 +137,13 @@ wk.register({
     prefix = "<leader>",
 })
 
--- Text object labels
 wk.register({
+    ["]c"] = { "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", "Next Hunk", expr = true },
+    ["[c"] = { "&diff ? '[c' : '<cmd>Gitsigns previous_hunk<CR>'", "Previous Hunk", expr = true },
+}, { mode = "n", prefix = "" })
+
+-- Text object labels
+local text_objects = {
     -- tree-sitter
     ["af"] = "function",
     ["if"] = "inner function",
@@ -137,7 +154,11 @@ wk.register({
     -- textobj-entire
     ["ae"] = "entire buffer",
     ["ie"] = "entire buffer (without surrounding empty lines)",
-}, { mode = "o", prefix = "" })
+    -- gitsign
+    ["ih"] = { ":<C-U>Gitsigns select_hunk<CR>", "Git Hunk" },
+}
+wk.register(text_objects, { mode = "o", prefix = "" })
+wk.register(text_objects, { mode = "x", prefix = "" })
 
 local m = require "mapx"
 m.setup { whichkey = true }
