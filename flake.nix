@@ -88,7 +88,7 @@
       flake = false;
     };
     neovim-bufdelete-nvim = {
-      url = "github:yelite/bufdelete.nvim";
+      url = "github:famiu/bufdelete.nvim";
       flake = false;
     };
     neovim-trouble-nvim = {
