@@ -143,6 +143,15 @@ wk.register({
     ["[c"] = { "&diff ? '[c' : '<cmd>Gitsigns previous_hunk<CR>'", "Previous Hunk", expr = true },
 }, { mode = "n", prefix = "" })
 
+-- Hop
+wk.register({
+    l = { "<cmd>HopLineStart<cr>", "Hop Line" },
+    h = { "other hops" },
+    ho = { [[<cmd>lua require"hop-extensions".hint_locals()<cr>]], "Hop Locals" },
+    hk = { [[<cmd>lua require"hop-extensions".hint_scopes()<cr>]], "Hop Scopes" },
+    hi = { [[<cmd>lua require"hop-extensions".hint_definitions()<cr>]], "Hop Definitions" },
+}, { mode = "n", prefix = "g" })
+
 -- Text object labels
 local text_objects = {
     -- tree-sitter

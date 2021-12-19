@@ -26,6 +26,8 @@ in
       bufdelete-nvim
 
       lightspeed-nvim
+      hop-nvim
+      hop-extensions
       tabout
       nvim-autopairs
       vim-repeat

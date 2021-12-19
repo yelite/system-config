@@ -107,5 +107,9 @@
       url = "github:quantum-booty/neorg-trouble";
       flake = false;
     };
+    neovim-hop-extensions = {
+      url = "github:IndianBoy42/hop-extensions";
+      flake = false;
+    };
   };
 }

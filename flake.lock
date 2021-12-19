@@ -83,6 +83,22 @@
         "type": "github"
       }
     },
+    "neovim-hop-extensions": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1638515312,
+        "narHash": "sha256-mQYt8J5XkXdtBTsQ6KeI1INV8RWXjKPoscJq7SAMUtA=",
+        "owner": "IndianBoy42",
+        "repo": "hop-extensions",
+        "rev": "86892e99219fab0ca7584c7352ec0aef4329625f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "IndianBoy42",
+        "repo": "hop-extensions",
+        "type": "github"
+      }
+    },
     "neovim-lspsaga-nvim": {
       "flake": false,
       "locked": {
@@ -264,6 +280,7 @@
         "neovim-autosave": "neovim-autosave",
         "neovim-bufdelete-nvim": "neovim-bufdelete-nvim",
         "neovim-coq-nvim": "neovim-coq-nvim",
+        "neovim-hop-extensions": "neovim-hop-extensions",
         "neovim-lspsaga-nvim": "neovim-lspsaga-nvim",
         "neovim-lua-dev": "neovim-lua-dev",
         "neovim-mapx": "neovim-mapx",
