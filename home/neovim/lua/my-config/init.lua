@@ -139,12 +139,12 @@ require("Comment").setup {
 }
 
 require("neoclip").setup {
-    history = 200,
+    history = 30,
     enable_persistant_history = true,
     db_path = vim.fn.stdpath "data" .. "/databases/neoclip.sqlite3",
     filter = nil,
     preview = true,
-    default_register = '"',
+    default_register = "+",
     content_spec_column = false,
     on_paste = {
         set_reg = false,
@@ -152,7 +152,7 @@ require("neoclip").setup {
     keys = {
         i = {
             select = "<cr>",
-            paste = "<c-j>",
+            paste = "<C-CR>",
             paste_behind = "<c-k>",
             custom = {},
         },

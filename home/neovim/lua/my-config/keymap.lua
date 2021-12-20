@@ -31,13 +31,14 @@ local edit_keymap = {
     name = "edit",
     s = { "<plug>(SubversiveSubstituteWordRange)", "Substitute Word in Range" },
     S = { "<plug>(SubversiveSubstituteRange)", "Substitue Range" },
+    t = { "<cmd>Telescope spell_suggest<cr>", "Spell Suggests" },
     p = { "<cmd>Telescope neoclip<cr>", "Clipboard History" },
 }
 -- f -> file
 local file_keymap = {
     name = "file",
-    f = { "<cmd>Telescope find_files<cr>", "Find File" },
-    F = { "<cmd>Telescope file_browser<cr>", "File Browser" },
+    f = { "<cmd>Telescope find_files cwd=%:h<cr>", "Find Files" },
+    F = { "<cmd>Telescope find_files<cr>", "Find All Files" },
     r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
     s = { "<cmd>w<cr>", "Save File" },
 }
@@ -67,6 +68,7 @@ local search_keymap = {
     name = "search",
     s = { "<cmd>Telescope grep_string<cr>", "Search Current Symbol" },
     f = { "<cmd>Telescope live_grep<cr>", "Search File" },
+    h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
     i = { "<cmd>Telescope treesitter<cr>", "Search Syntax Node" },
 }
 -- t -> toggle mode
@@ -104,11 +106,14 @@ local session_keymap = {
     Q = { "<cmd>wa<cr><cmd>qa<cr>", "Save and Quit" },
     l = { "<cmd>SearchSession<cr>", "Search Sessions" },
     s = { "<cmd>SaveSession<cr>", "Save Session" },
+    t = { "<cmd>Telescope resume<cr>", "Resume Last Telescope Pickers" },
+    T = { "<cmd>Telescope pickers<cr>", "Previous Telescope Pickers" },
 }
 -- p -> project
 local project_keymap = {
     name = "project",
     t = { "<cmd>TodoTelescope<cr>", "Todo Items" },
+    f = { "<cmd>Telescope git_files<cr>", "Project Files" },
 }
 -- n -> notes
 local notes_keymap = {
@@ -132,8 +137,10 @@ wk.register({
     t = toggle_feature_keymap,
     v = vcs_keymap,
     ["j"] = buffer_keymap.b, -- Switch Buffer
-    ["k"] = file_keymap.f, -- Find Files
+    ["k"] = file_keymap.F, -- Find Files
+    ["K"] = file_keymap.f, -- Find files in the same directory
     ["l"] = code_keymap.s, -- Workspace Symbols
+    ["x"] = { "<cmd>Telescope commands<cr>", "Commands" },
 }, {
     prefix = "<leader>",
 })
