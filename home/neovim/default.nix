@@ -39,6 +39,7 @@ in
       nvim-gps
       telescope-nvim
       telescope-fzf-native-nvim
+      telescope-file-browser
       toggleterm-nvim
       which-key-nvim
       mapx

@@ -1,3 +1,5 @@
+local window_util = require "my-config.window"
+
 local M = {}
 
 vim.g.mapleader = " "
@@ -37,7 +39,15 @@ local edit_keymap = {
 -- f -> file
 local file_keymap = {
     name = "file",
-    f = { "<cmd>Telescope find_files cwd=%:h<cr>", "Find Files" },
+    e = { "<cmd>lua require'telescope'.extensions.file_browser.file_browser()<cr>", "Browser" },
+    E = {
+        "<cmd>lua require'telescope'.extensions.file_browser.file_browser{cwd='%:h', path='%:h'}<cr>",
+        "Browser in current directory",
+    },
+    f = {
+        [[<cmd>lua require('telescope.builtin').find_files({cwd="%:h", results_title=vim.fn.expand("%:h")})<cr>]],
+        "Find Files",
+    },
     F = { "<cmd>Telescope find_files<cr>", "Find All Files" },
     r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
     s = { "<cmd>w<cr>", "Save File" },
@@ -50,6 +60,16 @@ local buffer_keymap = {
     D = { "<cmd>Bdelete!<cr>", "Force Close Buffer" },
     n = { "<cmd>bn<cr>", "Next Buffer" },
     p = { "<cmd>bp<cr>", "Previous Buffer" },
+}
+-- w -> window
+local window_keymap = {
+    name = "window",
+    o = { window_util.move_to_next_window, "Move Buffer to Next Window" },
+    O = { window_util.open_in_next_window, "Open Buffer in Next Window" },
+    p = {
+        "<cmd>lua require'my-config.window'.move_to_next_window(true)<cr>",
+        "Move Buffer to Next Window And Enter",
+    },
 }
 -- i -> code intelligence
 local code_keymap = {
@@ -136,9 +156,10 @@ wk.register({
     s = search_keymap,
     t = toggle_feature_keymap,
     v = vcs_keymap,
+    w = window_keymap,
     ["j"] = buffer_keymap.b, -- Switch Buffer
     ["k"] = file_keymap.F, -- Find Files
-    ["K"] = file_keymap.f, -- Find files in the same directory
+    ["K"] = file_keymap.E, -- Start broswer in the same directory
     ["l"] = code_keymap.s, -- Workspace Symbols
     ["x"] = { "<cmd>Telescope commands<cr>", "Commands" },
 }, {
@@ -212,6 +233,9 @@ m.cnoremap("<C-p>", "<Up>")
 m.cnoremap("<C-n>", "<Down>")
 m.cnoremap("<C-a>", "<Home>")
 m.cnoremap("<C-e>", "<End>")
+
+-- Manually add mapping for vim-surround
+m.imap("<C-S>", "<Plug>Isurround")
 
 --  to clear search highlight in addition to redraw
 m.cnoremap("<C-l>", "<cmd>noh<cr><C-l>")

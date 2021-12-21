@@ -111,5 +111,9 @@
       url = "github:IndianBoy42/hop-extensions";
       flake = false;
     };
+    neovim-telescope-file-browser = {
+      url = "github:nvim-telescope/telescope-file-browser.nvim";
+      flake = false;
+    };
   };
 }

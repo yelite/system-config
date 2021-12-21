@@ -243,6 +243,22 @@
         "type": "github"
       }
     },
+    "neovim-telescope-file-browser": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1639749900,
+        "narHash": "sha256-o08yKjgSNf8vrJBZbdm2wfYSKFy7MFstIwm2dRpPHcI=",
+        "owner": "nvim-telescope",
+        "repo": "telescope-file-browser.nvim",
+        "rev": "d785694a9482afa77bbff34107b5d01b1b5957c6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-telescope",
+        "repo": "telescope-file-browser.nvim",
+        "type": "github"
+      }
+    },
     "neovim-trouble-nvim": {
       "flake": false,
       "locked": {
@@ -290,6 +306,7 @@
         "neovim-neorg-trouble": "neovim-neorg-trouble",
         "neovim-session-lens": "neovim-session-lens",
         "neovim-tabout": "neovim-tabout",
+        "neovim-telescope-file-browser": "neovim-telescope-file-browser",
         "neovim-trouble-nvim": "neovim-trouble-nvim",
         "nixpkgs": "nixpkgs",
         "utils": "utils"

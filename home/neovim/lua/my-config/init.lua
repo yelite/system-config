@@ -38,6 +38,9 @@ o.number = true
 
 o.completeopt = "menu,preview,noinsert"
 
+-- vim-surround
+g.surround_no_insert_mappings = true
+
 -- vim-illuminate
 g.Illuminate_delay = 250
 g.Illuminate_ftblacklist = {
