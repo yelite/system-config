@@ -26,7 +26,9 @@
   hardware = {
     pulseaudio.enable = true;
     cpu.amd.updateMicrocode = true;
-    nvidia.modesetting.enable = true;
+    nvidia = {
+      modesetting.enable = true;
+    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -51,4 +53,3 @@
     };
   };
 }
-
