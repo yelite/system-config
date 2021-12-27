@@ -32,17 +32,6 @@
     xserver = {
       enable = true;
 
-      displayManager.sddm.enable = true;
-      displayManager.session = [
-        {
-          manage = "window";
-          name = "home-manager";
-          start = "exec $HOME/.xsession-hm";
-        }
-      ];
-
-      desktopManager.plasma5.enable = true;
-
       libinput = {
         enable = true;
         # disable mouse acceleration

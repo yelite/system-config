@@ -1,8 +1,8 @@
 { pkgs, inputs, ... }:
-
 {
   imports = [
     ./cli.nix
+    ./modules/i3.nix
   ];
 
   home.packages = with pkgs; [
@@ -15,8 +15,6 @@
     xdragon
   ];
 
-  programs.alacritty.enable = true;
-
   services = {
     redshift = {
       enable = true;
@@ -27,24 +25,6 @@
         day = 6500;
       };
     };
-  };
 
-  xsession = {
-    enable = true;
-    # to be able to use system-configured sessions alongside HM ones
-    scriptPath = ".xsession-hm";
-
-    pointerCursor = {
-      package = pkgs.quintom-cursor-theme;
-      name = "Quintom_Ink";
-      size = 24;
-    };
-
-    preferStatusNotifierItems = true;
-
-    windowManager.i3 = {
-      enable = true;
-      package = pkgs.i3-gaps;
-    };
   };
 }

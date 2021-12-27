@@ -18,11 +18,13 @@
         moonshot.modules = [
           ./hosts/moonshot
           ./modules/desktop.nix
+          ./modules/hm-xsession
           ./modules/keyboard-remap
           ./modules/logitech
           {
             home-manager.users.liteye.imports = [
               ./home/gui.nix
+              ./hosts/moonshot/home.nix
               ./modules/keyboard-remap/user.nix
             ];
           }
