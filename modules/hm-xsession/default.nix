@@ -3,19 +3,15 @@ let
   theme-packages = pkgs.callPackage ./theme-packages.nix { };
   theme-config = pkgs.writeTextFile {
     name = "sddm-theme-user-config";
-    destination = "/share/sddm/themes/slice/theme.conf.user";
+    destination = "/share/sddm/themes/breeze514/theme.conf.user";
     text = ''
       [General]
-      font=Roboto
-      color_bg=#e5e5e5
-      color_main=#345470
-      color_dimmed=#7592a3
-      color_contrast=#f9f9f9
-      color_text=#345470
-      color_text_bg=#aad0dfe8
-      color_icon_bg=#aad0dfe8
-      color_error_text=#a34c4e
-      color_error_bg=#11a34c4e
+      type=image
+      background=${./lockscreen_wallpaper.jpg}
+      Font="Overpass"
+      FontSize=14
+      ClockSize=48
+      DateSize=24
     '';
   };
 in
@@ -23,9 +19,14 @@ in
   environment.systemPackages = [
     theme-config
 
-    theme-packages.sddm-slice
+    theme-packages.sddm-breeze514
 
     pkgs.libsForQt5.qt5.qtgraphicaleffects
+    pkgs.libsForQt5.breeze-qt5
+    pkgs.libsForQt5.breeze-icons
+    pkgs.libsForQt5.plasma-framework
+    pkgs.libsForQt5.plasma-workspace
+    pkgs.libsForQt5.kdeclarative
   ];
 
   fonts =
@@ -38,11 +39,12 @@ in
   services.xserver.displayManager = {
     sddm = {
       enable = true;
-      theme = "slice";
+      theme = "breeze514";
 
       settings = {
         X11 = {
           EnableHiDPI = true;
+          ServerArguments = "-nolisten tcp -dpi 192";
         };
       };
     };

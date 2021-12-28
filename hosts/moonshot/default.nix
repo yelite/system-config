@@ -8,7 +8,7 @@
     ];
 
   boot.loader.systemd-boot.enable = true;
-  boot.loader.grub.useOSProber = true;
+  boot.loader.systemd-boot.editor = false;
   boot.loader.efi.canTouchEfiVariables = true;
 
   time.timeZone = "US/Eastern";

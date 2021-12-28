@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 {
   fonts = {
     fonts = with pkgs; [
@@ -12,8 +11,9 @@
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
+      overpass
 
-      (nerdfonts.override { fonts = [ "FiraCode" "Inconsolata" ]; })
+      (nerdfonts.override { fonts = [ "Hack" ]; })
     ];
 
     enableDefaultFonts = false;
@@ -21,7 +21,7 @@
     fontconfig.defaultFonts = {
       serif = [ "Noto Serif" "Noto Sans CJK SC" "Noto Sans Symbols" "Noto Color Emoji" ];
       sansSerif = [ "Noto Sans" "Noto Sans CJK SC" "Noto Sans Symbols" "Noto Color Emoji" ];
-      monospace = [ "FiraCode Nerd Font Mono" "Noto Sans Symbols" "Noto Color Emoji" ];
+      monospace = [ "Hack Nerd Font Mono" "Noto Sans Symbols" "Noto Color Emoji" ];
       emoji = [ "Noto Color Emoji" ];
     };
   };
@@ -34,9 +34,7 @@
 
       libinput = {
         enable = true;
-        # disable mouse acceleration
         mouse.accelProfile = "flat";
-        mouse.accelSpeed = "0";
         mouse.middleEmulation = false;
       };
     };
