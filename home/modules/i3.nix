@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  config = {
+  i3Config = {
     modifier = "Mod1";
 
     terminal = "${pkgs.kitty}/bin/kitty";
@@ -22,7 +22,12 @@ let
       smartBorders = "no_gaps";
       smartGaps = true;
     };
-  }; in
+  };
+  i3ExtraConfig = ''
+    focus_follows_mouse no
+    mouse_warping none
+  '';
+in
 {
   xsession = {
     enable = true;
@@ -31,7 +36,8 @@ let
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
-      config = config;
+      config = i3Config;
+      extraConfig = i3ExtraConfig;
     };
   };
 }
