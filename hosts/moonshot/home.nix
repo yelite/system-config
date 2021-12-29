@@ -42,7 +42,13 @@ in
   };
   xresources.properties = {
     "Xft.dpi" = 192;
-    "Xcursor.size" = 96;
+  };
+  xsession = {
+    pointerCursor = {
+      package = pkgs.apple-cursor;
+      name = "macOSMonterey";
+      size = 40;
+    };
   };
   home.sessionVariables = {
     GDK_SCALE = "2";

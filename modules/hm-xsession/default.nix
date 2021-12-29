@@ -9,8 +9,8 @@ let
       type=image
       background=${./lockscreen_wallpaper.jpg}
       Font="Overpass"
-      FontSize=14
-      ClockSize=48
+      FontSize=12
+      ClockSize=52
       DateSize=24
     '';
   };

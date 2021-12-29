@@ -10,9 +10,10 @@
       channelsConfig.allowUnfree = true;
 
       # TODO: Reevaluate the wayland on Nvidia to see if the flickering problem is solved
-      # channels.nixpkgs.overlaysBuilder = channels: [
-      #   inputs.nixpkgs-wayland.overlay
-      # ];
+      channels.nixpkgs.overlaysBuilder = channels: [
+        self.overlay
+        # inputs.nixpkgs-wayland.overlay
+      ];
 
       hosts = {
         moonshot.modules = [
@@ -43,11 +44,17 @@
         }
       ];
 
+      overlay = import ./pkgs { inherit inputs; };
+      overlays = utils.lib.exportOverlays {
+        inherit (self) pkgs inputs;
+      };
+
       outputsBuilder = channels:
         let
           pkgs = channels.nixpkgs;
         in
         {
+          packages = utils.lib.exportPackages self.overlays channels;
           devShells.nvim-config = import ./home/neovim/dev-shell.nix pkgs;
         };
     };
