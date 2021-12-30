@@ -19,14 +19,14 @@ let
         enable = true;
         mode = "3840x2160";
         primary = true;
-        position = "0x0";
+        position = "0x820";
         rate = "60.00";
         crtc = 1;
       };
       "${display2.name}" = {
         enable = true;
         mode = "3840x2160";
-        position = "1920x320";
+        position = "3840x0";
         rate = "60.00";
         crtc = 0;
       };

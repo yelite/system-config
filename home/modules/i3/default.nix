@@ -8,7 +8,7 @@ let
       position = "top";
       statusCommand = "${pkgs.i3status}/bin/i3status";
     }];
-    menu = "${pkgs.rofi}/bin/rofi";
+    menu = "${pkgs.rofi}/bin/rofi -show run";
 
     gaps = {
       bottom = 5;
