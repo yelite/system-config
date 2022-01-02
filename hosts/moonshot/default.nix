@@ -19,6 +19,24 @@
   networking.useDHCP = false;
   networking.interfaces.eno1.useDHCP = true;
 
+  myConfig = {
+    xserver = {
+      enable = true;
+      highDPI = true;
+      displayProfiles = import ./display-profiles.nix;
+    };
+
+    logitech.enable = true;
+    keyboardRemap.enable = true;
+
+    homeManagerModules = [{
+      myHomeConfig = {
+        neovim.enable = true;
+        i3.enable = true;
+      };
+    }];
+  };
+
   services.xserver.videoDrivers = [ "nvidia" ];
 
   services.printing.enable = true;
@@ -31,15 +49,7 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    vivaldi
-    vivaldi-widevine
-    vivaldi-ffmpeg-codecs
-    wget
-    git
-    standardnotes
-    nixpkgs-fmt
-  ];
+  system.stateVersion = "21.05"; # Did you read the comment?
 
   systemd.services.disable-wakeup-from-GPP0 = {
     # Fix the system sleep issue (wake up immediately after sleep)

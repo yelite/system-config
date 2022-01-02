@@ -1,15 +1,15 @@
 { pkgs, inputs, ... }:
-
 {
-  imports = [
-    ./modules/neovim
-  ];
-
   home.packages = with pkgs; [
+    wget
+    git
+    unzip
+
     nix-index
     nix-tree
+    nixpkgs-fmt
     cachix
-    unzip
+
     lazygit
     steam-run
   ];

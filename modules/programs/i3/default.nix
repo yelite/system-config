@@ -1,5 +1,7 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, inputs, ... }:
 let
+  cfg = config.myHomeConfig.i3;
+  inherit (lib) mkIf mkEnableOption;
   i3Config = {
     modifier = "Mod1";
 
@@ -29,11 +31,14 @@ let
   '';
 in
 {
-  xsession = {
-    enable = true;
-    scriptPath = ".xsession-hm";
+  options = {
+    myHomeConfig.i3 = {
+      enable = mkEnableOption "i3";
+    };
+  };
 
-    windowManager.i3 = {
+  config = mkIf cfg.enable {
+    xsession.windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
       config = i3Config;

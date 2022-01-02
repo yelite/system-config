@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
-
+let myConfig = config.myConfig;
+in
 {
   nix = {
     autoOptimiseStore = true;
@@ -15,6 +16,10 @@
     generateRegistryFromInputs = true;
     linkInputs = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    git
+  ];
 
   networking.networkmanager.enable = true;
 
@@ -63,16 +68,13 @@
   environment.etc = {
     # Link the flake.nix so that nixos-rebuild works without extra arg
     "nixos/flake.nix" = {
-      source = "/home/liteye/.nixos-config/flake.nix";
+      source = "/home/${myConfig.username}/.nixos-config/flake.nix";
     };
   };
 
-  system.stateVersion = "21.05"; # Did you read the comment?
-
-  users.users.liteye = {
+  users.users.${myConfig.username} = {
     isNormalUser = true;
     shell = pkgs.fish;
     extraGroups = [ "wheel" "networkmanager" ];
   };
 }
-

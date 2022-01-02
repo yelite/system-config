@@ -18,23 +18,10 @@
       hosts = {
         moonshot.modules = [
           ./hosts/moonshot
-          ./modules/desktop.nix
-          ./modules/hm-xsession
-          ./modules/keyboard-remap
-          ./modules/logitech
-          {
-            home-manager.users.liteye.imports = [
-              ./home/gui.nix
-              ./hosts/moonshot/home.nix
-              ./modules/keyboard-remap/user.nix
-            ];
-          }
         ];
       };
 
-      hostDefaults.modules = [
-        ./modules/basic.nix
-        ./modules/binary_caches.nix
+      hostDefaults.modules = (import ./modules).systemModules ++ [
         inputs.hm.nixosModule
         {
           home-manager = {
@@ -55,7 +42,7 @@
         in
         {
           packages = utils.lib.exportPackages self.overlays channels;
-          devShells.nvim-config = import ./home/modules/neovim/dev-shell.nix pkgs;
+          devShells.nvim-config = import ./modules/programs/neovim/dev-shell.nix pkgs;
         };
     };
 

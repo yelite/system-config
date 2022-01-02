@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 let
   display1 = {
     name = "HDMI-2";
@@ -34,27 +33,5 @@ let
   };
 in
 {
-  programs.autorandr = {
-    enable = true;
-    profiles = {
-      both = base_profile;
-    };
-  };
-  xresources.properties = {
-    "Xft.dpi" = 192;
-  };
-  xsession = {
-    pointerCursor = {
-      package = pkgs.apple-cursor;
-      name = "macOSMonterey";
-      size = 40;
-    };
-  };
-  home.sessionVariables = {
-    GDK_SCALE = "2";
-    GDK_DPI_SCALE = "0.5";
-    QT_AUTO_SCREEN_SET_FACTOR = "0";
-    QT_SCALE_FACTOR = "2";
-    QT_FONT_DPI = "96";
-  };
+  both = base_profile;
 }

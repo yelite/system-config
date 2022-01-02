@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
   theme-packages = pkgs.callPackage ./theme-packages.nix { };
   theme-config = pkgs.writeTextFile {
@@ -15,7 +15,7 @@ let
     '';
   };
 in
-{
+lib.mkIf config.myConfig.xserver.enable {
   environment.systemPackages = [
     theme-config
 
@@ -28,13 +28,6 @@ in
     pkgs.libsForQt5.plasma-workspace
     pkgs.libsForQt5.kdeclarative
   ];
-
-  fonts =
-    {
-      fonts = with pkgs; [
-        roboto
-      ];
-    };
 
   services.xserver.displayManager = {
     sddm = {
