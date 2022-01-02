@@ -41,11 +41,11 @@ local file_keymap = {
     name = "file",
     e = { "<cmd>lua require'telescope'.extensions.file_browser.file_browser()<cr>", "Browser" },
     E = {
-        "<cmd>lua require'telescope'.extensions.file_browser.file_browser{cwd='%:h', path='%:h'}<cr>",
+        "<cmd>lua require'telescope'.extensions.file_browser.file_browser{cwd='%:p:h', path='%:p:h'}<cr>",
         "Browser in current directory",
     },
     f = {
-        [[<cmd>lua require('telescope.builtin').find_files({cwd="%:h", results_title=vim.fn.expand("%:h")})<cr>]],
+        [[<cmd>lua require('telescope.builtin').find_files({cwd="%:h:p", results_title=vim.fn.expand("%:h")})<cr>]],
         "Find Files",
     },
     F = { "<cmd>Telescope find_files<cr>", "Find All Files" },
