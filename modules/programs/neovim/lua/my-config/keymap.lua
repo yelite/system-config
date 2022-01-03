@@ -45,7 +45,7 @@ local file_keymap = {
         "Browser in current directory",
     },
     f = {
-        [[<cmd>lua require('telescope.builtin').find_files({cwd="%:h:p", results_title=vim.fn.expand("%:h")})<cr>]],
+        [[<cmd>lua require('telescope.builtin').find_files({cwd="%:p:h", results_title=vim.fn.expand("%:h")})<cr>]],
         "Find Files",
     },
     F = { "<cmd>Telescope find_files<cr>", "Find All Files" },
