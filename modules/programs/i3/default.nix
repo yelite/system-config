@@ -12,6 +12,14 @@ let
     }];
     menu = "${pkgs.rofi}/bin/rofi -show run";
 
+    startup = [
+      {
+        command = "autorandr --change";
+        always = true;
+        notification = false;
+      }
+    ];
+
     gaps = {
       bottom = 5;
       horizontal = 5;
