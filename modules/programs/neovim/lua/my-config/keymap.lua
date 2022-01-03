@@ -249,12 +249,13 @@ m.vnoremap("<C-y>", [["+p]])
 -- Substitue
 m.nmap("R", "<plug>(SubversiveSubstitute)")
 m.nmap("RR", "<plug>(SubversiveSubstituteLine)")
-m.xmap("r", "<plug>(SubversiveSubstituteLine)")
--- c without putting deleted text into register
+-- c should not put deleted text into register
 m.nnoremap("c", [["_c]])
 m.xnoremap("c", [["_c]])
 m.nnoremap("C", [["_C]])
 m.xnoremap("C", [["_C]])
+-- p in visual should not replace register
+m.xmap("p", "<plug>(SubversiveSubstitute)")
 -- zp/P to force linewise put
 m.nnoremap("zp", "<cmd>put<cr>")
 m.nnoremap("zP", "<cmd>put!<cr>")
