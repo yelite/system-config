@@ -17,4 +17,14 @@
   home.sessionVariables = {
     EDITOR = "nvim";
   };
+
+  programs = {
+    keychain = {
+      enable = true;
+      enableFishIntegration = true;
+      enableXsessionIntegration = true;
+
+      keys = [ "id_ed25519" ];
+    };
+  };
 }
