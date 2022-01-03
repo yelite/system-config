@@ -21,6 +21,7 @@
   programs = {
     keychain = {
       enable = true;
+      enableBashIntegration = true;
       enableFishIntegration = true;
       enableXsessionIntegration = true;
 
