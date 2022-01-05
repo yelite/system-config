@@ -32,7 +32,10 @@
     homeManagerModules = [{
       myHomeConfig = {
         neovim.enable = true;
-        i3.enable = true;
+        i3 = {
+          enable = true;
+          secondaryMonitorName = "HDMI-0";
+        };
       };
     }];
   };

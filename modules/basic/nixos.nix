@@ -19,6 +19,7 @@ in
 
   environment.systemPackages = with pkgs; [
     git
+    killall
   ];
 
   networking.networkmanager.enable = true;
