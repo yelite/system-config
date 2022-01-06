@@ -20,10 +20,10 @@
 
   programs = {
     keychain = {
-      enable = true;
+      # TODO: Investigate the compatibility with sddm and re-enable this
+      enable = false;
       enableBashIntegration = true;
       enableFishIntegration = true;
-      enableXsessionIntegration = true;
 
       keys = [ "id_ed25519" ];
     };

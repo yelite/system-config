@@ -25,47 +25,53 @@ rec {
       always = true;
       notification = false;
     }
+    {
+      command = ''neovide ~/neorg -- -c "set title titlestring=NoteScratchpad"'';
+      always = false;
+      notification = false;
+    }
   ];
 
   workspaceOutputAssign = let inherit (cfg) secondaryMonitorName; in
     [
       {
-        workspace = "1: Web 2";
-        output = secondaryMonitorName;
-      }
-      {
-        workspace = "2: Terminal";
-        output = secondaryMonitorName;
-      }
-      {
-        workspace = "3: Communication";
-        output = secondaryMonitorName;
-      }
-      {
-        workspace = "4: Others";
-        output = secondaryMonitorName;
-      }
-      {
-        workspace = "6: Web 1";
+        workspace = "web2";
         output = "primary";
       }
       {
-        workspace = "7: Code 1";
+        workspace = "code";
         output = "primary";
       }
       {
-        workspace = "8: Code 2";
+        workspace = "code2";
         output = "primary";
       }
       {
-        workspace = "10: Others";
-        output = "primary";
+        workspace = "web";
+        output = secondaryMonitorName;
+      }
+      {
+        workspace = "terminal";
+        output = secondaryMonitorName;
+      }
+      {
+        workspace = "comm";
+        output = secondaryMonitorName;
+      }
+      {
+        workspace = "others";
+        output = secondaryMonitorName;
       }
     ];
 
   assigns = { };
 
-  window.commands = [ ];
+  window.commands = [
+    {
+      command = "move scratchpad; resize set width 62 ppt height 62 ppt";
+      criteria = { class = "neovide"; title = "NoteScratchpad"; };
+    }
+  ];
   floating.criteria = [ ];
 
   focus = {
@@ -93,34 +99,37 @@ rec {
       "${mod}+Shift+j" = "move down";
       "${mod}+Shift+k" = "move up";
       "${mod}+Shift+l" = "move right";
+      "${mod}+Shift+m" = ''exec --no-startup-id "i3-input -F 'move container to workspace \\"%s\\"; workspace \\"%s\\"'"'';
       "${mod}+Shift+o" = "move container to output next";
       "${mod}+Shift+p" = "move workspace to output next";
 
       "${mod}+Shift+Return" = "exec ${terminal}";
       "${mod}+Shift+g" = "fullscreen toggle";
-      "${mod}+Shift+`" = "floating toggle";
+      "${mod}+Shift+/" = "floating toggle";
       "${mod}+Shift+x" = "kill";
+      "${mod}+x" = ''exec --no-startup-id i3-input -f "pango:Hack Nerd Font Mono 13"'';
 
-      "${mod}+a" = "workspace Web 1";
-      "${mod}+s" = "workspace Code 2";
-      "${mod}+d" = "workspace Code 1";
-      "${mod}+f" = "workspace Web 2";
-      "${mod}+q" = "workspace \"4: Others\"";
-      "${mod}+w" = "workspace Terminal";
-      "${mod}+e" = "workspace Communication";
-      "${mod}+r" = "workspace \"10: Others\"";
+      "${mod}+a" = "workspace code2";
+      "${mod}+s" = "workspace web2";
+      "${mod}+d" = "workspace code";
+      "${mod}+f" = "workspace web";
+      "${mod}+q" = "workspace others";
+      "${mod}+w" = "workspace terminal";
+      "${mod}+e" = "workspace comm";
+      "${mod}+1" = "scratchpad show";
+      "${mod}+3" = ''[title="NoteScratchpad" class="neovide"] scratchpad show'';
 
-      "${mod}+Shift+a" = "move container to workspace Web 1";
-      "${mod}+Shift+s" = "move container to workspace Code 2";
-      "${mod}+Shift+d" = "move container to workspace Code 1";
-      "${mod}+Shift+f" = "move container to workspace Web 2";
-      "${mod}+Shift+q" = "move container to workspace \"4: Others\"";
-      "${mod}+Shift+w" = "move container to workspace Terminal";
-      "${mod}+Shift+e" = "move container to workspace Communication";
-      "${mod}+Shift+r" = "move container to workspace \"10: Others\"";
+      "${mod}+Shift+a" = "move container to workspace code2; workspace code2";
+      "${mod}+Shift+s" = "move container to workspace web2; workspace web2";
+      "${mod}+Shift+d" = "move container to workspace code; workspace code";
+      "${mod}+Shift+f" = "move container to workspace web; workspace web";
+      "${mod}+Shift+q" = "move container to workspace others; workspace others";
+      "${mod}+Shift+w" = "move container to workspace terminal; workspace terminal";
+      "${mod}+Shift+e" = "move container to workspace comm; workspace comm";
+      "${mod}+Shift+1" = "move scratchpad; resize set width 62 ppt height 62 ppt";
 
       "${mod}+Shift+z" = "restart";
-      "${mod}+Shift+Esc" =
+      "${mod}+Shift+esc" =
         "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
       "${mod}+Shift+c" = "reload";
     };
