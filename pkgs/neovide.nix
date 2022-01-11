@@ -6,8 +6,8 @@ pkgs.neovide.overrideAttrs (prev: rec {
   src = pkgs.fetchFromGitHub {
     owner = "yelite";
     repo = "neovide";
-    rev = "f545a1ef389e8766f94dd84697a54ab68002832f";
-    sha256 = "sha256-h4Eu6Xf15ootpYmaJy+MkIrjdHJiS/sCsT32S0Jag90=";
+    rev = "f14891ccb5e3e13ba2a4b42b3a83eead6ecf0f7b";
+    sha256 = "sha256-xdhvza+yB3f0z+Gk7Ezm50NmDCz729IbOaJYcRY8J5Q=";
   };
   SKIA_SOURCE_DIR =
     let
@@ -32,6 +32,6 @@ pkgs.neovide.overrideAttrs (prev: rec {
   cargoDeps = prev.cargoDeps.overrideAttrs (lib.const {
     name = "neovide-vendor.tar.gz";
     inherit src;
-    outputHash = "sha256-ndCsA9cPu0TutG7Aq44GT7Tynk208fN0gI546Cn912Q=";
+    outputHash = "sha256-LeqNdizPLUPd/Cviu/9+9weitqlM45aUL7ARPFEQoKs=";
   });
 })
