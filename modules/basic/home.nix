@@ -1,5 +1,9 @@
 { pkgs, inputs, ... }:
 {
+  imports = [
+    ./rust.nix
+  ];
+
   home.packages = with pkgs; [
     wget
     git

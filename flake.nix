@@ -1,7 +1,7 @@
 {
   description = "Config for my home computers";
 
-  outputs = { self, utils, ... }@inputs: utils.lib.mkFlake
+  outputs = { self, utils, fenix, ... }@inputs: utils.lib.mkFlake
     {
       inherit self inputs;
 
@@ -12,6 +12,7 @@
       # TODO: Reevaluate the wayland on Nvidia to see if the flickering problem is solved
       channels.nixpkgs.overlaysBuilder = channels: [
         self.overlay
+        fenix.overlay
         # inputs.nixpkgs-wayland.overlay
       ];
 
@@ -55,6 +56,10 @@
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     hm = {
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    fenix = {
+      url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
