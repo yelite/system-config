@@ -6,7 +6,12 @@ lib.mkIf useGUI {
     zeal
     neovide
     realvnc-vnc-viewer
-    vivaldi
+    (vivaldi.override {
+      commandLineArgs = [
+        "--use-gl=desktop"
+        "--enable-features=VaapiVideoDecoder"
+      ];
+    })
     vivaldi-widevine
     vivaldi-ffmpeg-codecs
     standardnotes

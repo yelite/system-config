@@ -50,6 +50,14 @@
     nvidia = {
       modesetting.enable = true;
     };
+    opengl = {
+      enable = true;
+      extraPackages = with pkgs; [
+        libva
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
+    };
   };
 
   system.stateVersion = "21.05"; # Did you read the comment?
