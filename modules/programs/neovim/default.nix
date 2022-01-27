@@ -95,12 +95,24 @@ in
         fd
         ripgrep
         stylua
-        rust-analyzer
-        rustfmt
-        sumneko-lua-language-server
         graphviz # For rust crate graph visualization
         sqlite # For sqlite.lua
-      ];
+
+        ccls
+
+        rust-analyzer
+        rustfmt
+
+        cmake-language-server
+        sumneko-lua-language-server
+      ] ++ (
+        with pkgs.python310Packages; [
+          python-lsp-server
+          rope
+          python-lsp-black
+          pyls-isort
+        ]
+      );
 
       viAlias = true;
       vimAlias = true;

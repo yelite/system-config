@@ -27,6 +27,11 @@ local function lsp_on_attach(client, bufnr)
     -- require("illuminate").on_attach(client)
 end
 
+local standard_lsp_config = coq.lsp_ensure_capabilities {
+    on_attach = lsp_on_attach,
+    capabilities = lsp_status.capabilities,
+}
+
 lspsaga.init_lsp_saga {
     use_saga_diagnostic_sign = false,
     code_action_prompt = {
@@ -40,11 +45,21 @@ rust_tools.setup {
             auto_focus = false,
         },
     },
-    server = coq.lsp_ensure_capabilities {
-        on_attach = lsp_on_attach,
-        capabilities = lsp_status.capabilities,
-    },
+    server = standard_lsp_config,
 }
+
+nvim_lsp.ccls.setup(coq.lsp_ensure_capabilities {
+    init_options = {
+        compilationDatabaseDirectory = "build",
+        cache = {
+            directory = "build/.ccls-cache",
+        },
+    },
+    on_attach = lsp_on_attach,
+    capabilities = lsp_status.capabilities,
+})
+nvim_lsp.pylsp.setup(standard_lsp_config)
+nvim_lsp.cmake.setup(standard_lsp_config)
 
 -- TODO move this into project-specific settings because
 -- lua-dev should only be used with init.lua development

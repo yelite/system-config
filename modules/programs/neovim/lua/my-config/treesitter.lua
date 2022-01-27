@@ -27,6 +27,9 @@ parser_configs.norg_table = {
 require("nvim-treesitter.configs").setup {
     -- Note: installing nix grammer requires treesitter installed as command line too
     ensure_installed = {
+        "c",
+        "cpp",
+        "cmake",
         "rust",
         "python",
         "html",
