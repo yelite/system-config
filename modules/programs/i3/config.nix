@@ -71,8 +71,14 @@ rec {
       command = "move scratchpad; resize set width 62 ppt height 62 ppt";
       criteria = { class = "neovide"; title = "NoteScratchpad"; };
     }
+    {
+      command = "move position center";
+      criteria = { window_role = "pop-up"; class = "Vivaldi-stable"; };
+    }
   ];
-  floating.criteria = [ ];
+  floating.criteria = [
+    { window_role = "pop-up"; }
+  ];
 
   focus = {
     followMouse = false;
@@ -100,8 +106,8 @@ rec {
       "${mod}+Shift+k" = "move up";
       "${mod}+Shift+l" = "move right";
       "${mod}+Shift+m" = ''exec --no-startup-id "i3-input -F 'move container to workspace \\"%s\\"; workspace \\"%s\\"'"'';
-      "${mod}+Shift+o" = "move container to output next";
-      "${mod}+Shift+p" = "move workspace to output next";
+      "${mod}+Shift+o" = "move container to output right; focus output right";
+      "${mod}+Shift+p" = "move workspace to output right";
 
       "${mod}+Shift+Return" = "exec ${terminal}";
       "${mod}+Shift+g" = "fullscreen toggle";
@@ -163,5 +169,6 @@ rec {
         "Escape" = "mode default";
       };
       quick_focus = { };
+      passthrough = { "${mod}+F12" = "mode default"; };
     };
 }
