@@ -5,6 +5,8 @@ lib.mkIf useGUI {
   home.packages = with pkgs; [
     zeal
     neovide
+    slack
+    notion-app-enhanced
     realvnc-vnc-viewer
     (vivaldi.override {
       commandLineArgs = [
