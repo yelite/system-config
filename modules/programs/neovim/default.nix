@@ -49,6 +49,7 @@ in
         telescope-nvim
         telescope-fzf-native-nvim
         telescope-file-browser-nvim
+        harpoon
         toggleterm-nvim
         which-key-nvim
         mapx

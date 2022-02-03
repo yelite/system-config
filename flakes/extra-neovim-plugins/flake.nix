@@ -56,5 +56,9 @@
       url = "github:IndianBoy42/hop-extensions";
       flake = false;
     };
+    harpoon = {
+      url = "github:ThePrimeagen/harpoon";
+      flake = false;
+    };
   };
 }

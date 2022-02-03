@@ -1,4 +1,6 @@
 local window_util = require "my-config.window"
+local harpoon_ui = require "harpoon.ui"
+local harpoon_mark = require "harpoon.mark"
 
 local M = {}
 
@@ -51,6 +53,7 @@ local file_keymap = {
     F = { "<cmd>Telescope find_files no_ignore=true<cr>", "Find All Files" },
     r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
     s = { "<cmd>w<cr>", "Save File" },
+    m = { harpoon_mark.add_file, "Mark File" },
 }
 -- b -> buffer
 local buffer_keymap = {
@@ -157,7 +160,8 @@ wk.register({
     t = toggle_feature_keymap,
     v = vcs_keymap,
     w = window_keymap,
-    ["j"] = buffer_keymap.b, -- Switch Buffer
+    ["j"] = { harpoon_ui.toggle_quick_menu, "Marked Files" },
+    ["J"] = buffer_keymap.b, -- Switch buffer
     ["k"] = { require("my-config.telescope").quick_find_files, "Quick Find Files" },
     ["K"] = file_keymap.E, -- Start broswer in the same directory
     ["l"] = code_keymap.s, -- Workspace Symbols
