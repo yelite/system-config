@@ -2,7 +2,6 @@
 with lib;
 let
   cfg = config.myHomeConfig.neovim;
-  extraPlugins = (import ./extract-extra-plugins.nix) pkgs inputs;
 in
 {
   options = {
@@ -19,7 +18,7 @@ in
     programs.neovim = {
       enable = true;
 
-      plugins = with pkgs.vimPlugins; with extraPlugins;[
+      plugins = with pkgs.vimPlugins; [
         plenary-nvim
         popup-nvim
 
@@ -49,7 +48,7 @@ in
         nvim-gps
         telescope-nvim
         telescope-fzf-native-nvim
-        telescope-file-browser
+        telescope-file-browser-nvim
         toggleterm-nvim
         which-key-nvim
         mapx
@@ -57,7 +56,7 @@ in
         autosave
         auto-session
         session-lens
-        neoclip
+        nvim-neoclip-lua
 
         neorg
         neorg-telescope
@@ -73,7 +72,7 @@ in
         todo-comments-nvim
         comment-nvim
         neoformat
-        lua-dev
+        lua-dev-nvim
         rust-tools-nvim
         vim-nix
 

@@ -13,6 +13,7 @@
       channels.nixpkgs.overlaysBuilder = channels: [
         self.overlay
         fenix.overlay
+        inputs.extra-neovim-plugins.overlay
         # inputs.nixpkgs-wayland.overlay
       ];
 
@@ -62,68 +63,9 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # neovim plugins
-    neovim-mapx = {
-      url = "github:b0o/mapx.nvim";
-      flake = false;
-    };
-    neovim-session-lens = {
-      url = "github:rmagatti/session-lens";
-      flake = false;
-    };
-    neovim-lspsaga-nvim = {
-      # Use tami5's fork
-      url = "github:tami5/lspsaga.nvim";
-      flake = false;
-    };
-    neovim-coq-nvim = {
-      url = "github:ms-jpq/coq_nvim";
-      flake = false;
-    };
-    neovim-autosave = {
-      url = "github:Pocco81/AutoSave.nvim";
-      flake = false;
-    };
-    neovim-tabout = {
-      url = "github:abecodes/tabout.nvim";
-      flake = false;
-    };
-    neovim-neoclip = {
-      url = "github:AckslD/nvim-neoclip.lua";
-      flake = false;
-    };
-    neovim-lua-dev = {
-      url = "github:folke/lua-dev.nvim";
-      flake = false;
-    };
-    neovim-bufdelete-nvim = {
-      url = "github:famiu/bufdelete.nvim";
-      flake = false;
-    };
-    neovim-trouble-nvim = {
-      url = "github:yelite/trouble.nvim";
-      flake = false;
-    };
-    neovim-neorg = {
-      url = "github:nvim-neorg/neorg";
-      flake = false;
-    };
-    neovim-neorg-telescope = {
-      url = "github:nvim-neorg/neorg-telescope";
-      flake = false;
-    };
-    neovim-neorg-trouble = {
-      url = "github:quantum-booty/neorg-trouble";
-      flake = false;
-    };
-    neovim-hop-extensions = {
-      url = "github:IndianBoy42/hop-extensions";
-      flake = false;
-    };
-    neovim-telescope-file-browser = {
-      url = "github:nvim-telescope/telescope-file-browser.nvim";
-      flake = false;
+    extra-neovim-plugins = {
+      url = "path:./flakes/extra-neovim-plugins";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }
