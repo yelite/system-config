@@ -85,6 +85,7 @@ require("telescope").setup {
                     ["<C-f>"] = { "<Right>", type = "command" },
                     ["<C-h>"] = "which_key",
                     ["<C-CR>"] = "select_horizontal",
+                    ["<C-d>"] = fb_action "remove",
                     ["<C-e>"] = fb_action "create",
                     ["<C-r>"] = fb_action "rename",
                     ["<C-y>"] = fb_action "copy",
