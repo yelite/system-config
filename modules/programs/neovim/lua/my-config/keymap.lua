@@ -48,7 +48,7 @@ local file_keymap = {
         [[<cmd>lua require('telescope.builtin').find_files({cwd="%:p:h", results_title=vim.fn.expand("%:h")})<cr>]],
         "Find Files",
     },
-    F = { "<cmd>Telescope find_files<cr>", "Find All Files" },
+    F = { "<cmd>Telescope find_files no_ignore=true<cr>", "Find All Files" },
     r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
     s = { "<cmd>w<cr>", "Save File" },
 }
@@ -126,7 +126,7 @@ local session_keymap = {
     Q = { "<cmd>wa<cr><cmd>qa<cr>", "Save and Quit" },
     l = { "<cmd>SearchSession<cr>", "Search Sessions" },
     s = { "<cmd>SaveSession<cr>", "Save Session" },
-    t = { "<cmd>Telescope resume<cr>", "Resume Last Telescope Pickers" },
+    t = { "<cmd>Telescope resume<cr>", "Resume Last Telescope Picker" },
     T = { "<cmd>Telescope pickers<cr>", "Previous Telescope Pickers" },
 }
 -- p -> project
@@ -158,10 +158,11 @@ wk.register({
     v = vcs_keymap,
     w = window_keymap,
     ["j"] = buffer_keymap.b, -- Switch Buffer
-    ["k"] = file_keymap.F, -- Find Files
+    ["k"] = { require("my-config.telescope").quick_find_files, "Quick Find Files" },
     ["K"] = file_keymap.E, -- Start broswer in the same directory
     ["l"] = code_keymap.s, -- Workspace Symbols
     ["x"] = { "<cmd>Telescope commands<cr>", "Commands" },
+    ["."] = session_keymap.t, -- Resume last telescope picker
 }, {
     prefix = "<leader>",
 })

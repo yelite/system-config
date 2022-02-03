@@ -1,6 +1,15 @@
 local bufdelete = require "bufdelete"
 local action_state = require "telescope.actions.state"
 local trouble = require "trouble.providers.telescope"
+local ts_themes = require "telescope.themes"
+local ts_actions = require "telescope.actions"
+local ts_layout_actions = require "telescope.actions.layout"
+
+local M = {}
+
+function M.quick_find_files()
+    require("telescope.builtin").find_files(ts_themes.get_dropdown { previewer = false })
+end
 
 local function delete_buffer(prompt_bufnr)
     local current_picker = action_state.get_current_picker(prompt_bufnr)
@@ -8,8 +17,6 @@ local function delete_buffer(prompt_bufnr)
         bufdelete.bufdelete(selection.bufnr, false)
     end)
 end
-
-local ts_actions = require "telescope.actions"
 
 -- TODO: remove this once nvim-telescope/telescope.nvim#1473 is merged
 -- Snippet copied from https://github.com/nvim-telescope/telescope-file-browser.nvim/pull/6
@@ -24,10 +31,29 @@ require("telescope").setup {
         mappings = {
             i = {
                 ["<esc>"] = ts_actions.close,
+                ["<C-s>"] = ts_layout_actions.toggle_preview,
                 ["<C-t>"] = trouble.open_with_trouble,
                 ["<C-h>"] = "which_key",
                 ["<C-/>"] = "which_key",
             },
+        },
+        prompt_prefix = "  ",
+        layout_strategy = "horizontal",
+        sorting_strategy = "ascending",
+        layout_config = {
+            horizontal = {
+                prompt_position = "top",
+                height = 0.55,
+                width = 0.75,
+                preview_width = 0.618,
+            },
+            vertical = {
+
+                mirror = false,
+            },
+            width = 0.87,
+            height = 0.80,
+            preview_cutoff = 120,
         },
     },
     pickers = {
@@ -42,6 +68,15 @@ require("telescope").setup {
                 },
             },
         },
+        lsp_workspace_symbols = {
+            layout_strategy = "vertical",
+        },
+        lsp_document_symbols = {
+            layout_strategy = "vertical",
+        },
+        commands = {
+            theme = "ivy",
+        },
     },
     extensions = {
         file_browser = {
@@ -50,7 +85,10 @@ require("telescope").setup {
                     ["<C-f>"] = { "<Right>", type = "command" },
                     ["<C-h>"] = "which_key",
                     ["<C-CR>"] = "select_horizontal",
-                    ["<C-x>"] = fb_action "move_file",
+                    ["<C-e>"] = fb_action "create",
+                    ["<C-r>"] = fb_action "rename",
+                    ["<C-y>"] = fb_action "copy",
+                    ["<C-x>"] = fb_action "move",
                     ["<C-v>"] = fb_action "toggle_browser",
                     ["<C-t>"] = fb_action "toggle_hidden",
                 },
@@ -61,3 +99,5 @@ require("telescope").setup {
 require("telescope").load_extension "fzf"
 require("telescope").load_extension "neoclip"
 require("telescope").load_extension "file_browser"
+
+return M
