@@ -2,6 +2,6 @@
 
 final: prev: {
   apple-cursor = prev.callPackage ./apple-cursor.nix { };
-  neovide = import ./neovide.nix { pkgs = prev; };
+  neovide = prev.callPackage ./neovide.nix { inherit (prev) neovide; };
   xremap = prev.callPackage ./xremap.nix { };
 }

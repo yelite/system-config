@@ -1,17 +1,15 @@
-{ pkgs, ... }:
-let lib = pkgs.lib;
-in
-pkgs.neovide.overrideAttrs (prev: rec {
+{ lib, neovide, fetchFromGitHub, fetchgit, runCommand, python310 }:
+neovide.overrideAttrs (prev: rec {
   version = "git";
-  src = pkgs.fetchFromGitHub {
-    owner = "yelite";
+  src = fetchFromGitHub {
+    owner = "neovide";
     repo = "neovide";
-    rev = "f14891ccb5e3e13ba2a4b42b3a83eead6ecf0f7b";
-    sha256 = "sha256-xdhvza+yB3f0z+Gk7Ezm50NmDCz729IbOaJYcRY8J5Q=";
+    rev = "6b45dca45332e1e46e48be225417525a7e258730";
+    sha256 = "sha256-ZV5Ko35iVKePebSg6AAOL6b9ywgWgyeazLNsf7PCWog=";
   };
   SKIA_SOURCE_DIR =
     let
-      repo = pkgs.fetchFromGitHub {
+      repo = fetchFromGitHub {
         owner = "rust-skia";
         repo = "skia";
         # see rust-skia:skia-bindings/Cargo.toml#package.metadata skia
@@ -19,9 +17,9 @@ pkgs.neovide.overrideAttrs (prev: rec {
         sha256 = "sha256-F1DWLm7bdKnuCu5tMMekxSyaGq8gPRNtZwcRVXJxjZQ=";
       };
       # The externals for skia are taken from skia/DEPS
-      externals = lib.mapAttrs (n: v: pkgs.fetchgit v) (lib.importJSON ./skia-externals.json);
+      externals = lib.mapAttrs (n: v: fetchgit v) (lib.importJSON ./skia-externals.json);
     in
-    pkgs.runCommand "source" { } (
+    runCommand "source" { } (
       ''
         cp -R ${repo} $out
         chmod -R +w $out
@@ -29,9 +27,12 @@ pkgs.neovide.overrideAttrs (prev: rec {
         cd $out/third_party/externals
       '' + (builtins.concatStringsSep "\n" (lib.mapAttrsToList (name: value: "cp -ra ${value} ${name}") externals))
     );
+
+  nativeBuildInputs = prev.nativeBuildInputs ++ [ python310 ];
+
   cargoDeps = prev.cargoDeps.overrideAttrs (lib.const {
     name = "neovide-vendor.tar.gz";
     inherit src;
-    outputHash = "sha256-LeqNdizPLUPd/Cviu/9+9weitqlM45aUL7ARPFEQoKs=";
+    outputHash = "sha256-tEQEfjig0HF0N3hi8tftBEURn1RksIFnFHjnKbBBRLs=";
   });
 })
