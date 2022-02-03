@@ -8,6 +8,7 @@
     wget
     git
     unzip
+    ripgrep
 
     nix-index
     nix-tree

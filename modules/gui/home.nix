@@ -5,6 +5,7 @@ lib.mkIf useGUI {
   home.packages = with pkgs; [
     zeal
     neovide
+    flameshot
     slack
     notion-app-enhanced
     realvnc-vnc-viewer
