@@ -1,4 +1,4 @@
-{ lib, neovide, fetchFromGitHub, fetchgit, runCommand, python310 }:
+{ lib, neovide, fetchFromGitHub, fetchgit, runCommand, python310, makeWrapper }:
 neovide.overrideAttrs (prev: rec {
   version = "git";
   src = fetchFromGitHub {
@@ -28,7 +28,11 @@ neovide.overrideAttrs (prev: rec {
       '' + (builtins.concatStringsSep "\n" (lib.mapAttrsToList (name: value: "cp -ra ${value} ${name}") externals))
     );
 
-  nativeBuildInputs = prev.nativeBuildInputs ++ [ python310 ];
+  nativeBuildInputs = prev.nativeBuildInputs ++ [ python310 makeWrapper ];
+
+  postInstall = prev.postInstall + ''
+    wrapProgram $out/bin/neovide --add-flags "--multigrid"
+  '';
 
   cargoDeps = prev.cargoDeps.overrideAttrs (lib.const {
     name = "neovide-vendor.tar.gz";
