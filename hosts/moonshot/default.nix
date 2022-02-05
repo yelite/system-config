@@ -28,6 +28,8 @@
 
     logitech.enable = true;
     keyboardRemap.enable = true;
+    # TODO: Enable this after implementing the hysteresis
+    nvfancontrol.enable = false;
 
     homeManagerModules = [{
       myHomeConfig = {

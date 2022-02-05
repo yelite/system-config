@@ -11,6 +11,7 @@ in
   ./xserver
   ./keyboard-remap
   ./logitech
+  ./nvfancontrol
   # TODO: think about how to integrate overlay into hybrid module system
   # ./sway-nvidia
 
