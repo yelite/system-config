@@ -53,13 +53,13 @@ vim.defer_fn(function()
     vim.cmd [[IlluminationDisable]]
 end, 1000)
 
-g.neovide_remember_window_size = true
-g.neovide_input_use_logo = true
-
 if g.neovide then
+    g.neovide_remember_window_size = true
+    g.neovide_input_use_logo = true
     g.neovide_cursor_animation_length = 0
     g.neovide_cursor_trail_size = 0
     g.neovide_remember_window_size = true
+    g.neovide_floating_opacity = 0.9
 end
 
 require "my-config.telescope"
