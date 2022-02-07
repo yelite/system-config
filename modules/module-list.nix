@@ -8,6 +8,7 @@ in
   ])
   ./binary-caches.nix
   ./home-manager-adapter.nix
+  ./uinput.nix
   ./xserver
   ./keyboard-remap
   ./logitech

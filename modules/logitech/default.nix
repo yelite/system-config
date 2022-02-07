@@ -19,16 +19,15 @@ in
     users.users.logiops = {
       isSystemUser = true;
       group = "logiops";
-      extraGroups = [ "hidraw" ];
+      extraGroups = [ "uinput" ];
     };
     users.groups.logiops = { };
-    users.groups.hidraw = { };
+    myConfig.uinput.enableGroup = lib.mkForce true;
 
     # Taken from https://github.com/NixOS/nixpkgs/pull/124158#discussion_r716201439
     services.udev.extraRules = '' 
-    KERNEL=="uinput", GROUP="hidraw", MODE:="0660", OPTIONS+="static_node=uinput" 
-    SUBSYSTEM=="hidraw", ATTRS{idVendor}=="046d", MODE="0660", GROUP="hidraw" 
-  '';
+      SUBSYSTEM=="hidraw", ATTRS{idVendor}=="046d", MODE="0660", GROUP="logiops" 
+    '';
 
     systemd.services.logiops = {
       description = "Logitech Configuration Daemon";

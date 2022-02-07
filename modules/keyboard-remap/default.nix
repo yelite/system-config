@@ -1,17 +1,17 @@
+{ config, pkgs, lib, ... }:
 let
+  cfg = config.myConfig.keyboardRemap;
+  inherit (lib) mkIf mkEnableOption;
   homeModule = { pkgs, ... }:
     {
-      home.packages = with pkgs; [
-        xkeysnail
-      ];
-
-      systemd.user.services.xkeysnail = {
+      systemd.user.services.xremap = {
         Unit = {
-          Description = "xkeysnail-mac-remap";
+          Description = "xremap-mac-remap";
         };
         Service = {
           Type = "simple";
-          ExecStart = "/run/wrappers/bin/doas -n ${pkgs.xkeysnail}/bin/xkeysnail --watch -q ${./config.py}";
+          ExecStartPre = "${pkgs.xorg.xhost}/bin/xhost +SI:localuser:xremap";
+          ExecStart = "/run/wrappers/bin/doas -u xremap -n ${pkgs.xremap}/bin/xremap --watch ${./config.yml}";
           Restart = "on-failure";
           RestartSec = 4;
         };
@@ -20,35 +20,40 @@ let
         };
       };
     };
-  nixosModule = { config, pkgs, lib, ... }:
-    let
-      cfg = config.myConfig.keyboardRemap;
-      inherit (lib) mkIf mkEnableOption;
-    in
-    {
-      options = {
-        myConfig.keyboardRemap = {
-          enable = mkEnableOption "keyboardRemap";
-        };
-      };
-
-      config = mkIf cfg.enable {
-        security.doas.extraRules = pkgs.lib.mkAfter [
-          {
-            users = [ config.myConfig.username ];
-            noPass = true;
-            keepEnv = true;
-            cmd = "${pkgs.xkeysnail}/bin/xkeysnail";
-            args = [
-              "--watch"
-              "-q"
-              "${./config.py}"
-            ];
-          }
-        ];
-
-        myConfig.homeManagerModules = [ homeModule ];
-      };
-    };
 in
-nixosModule
+{
+  options = {
+    myConfig.keyboardRemap = {
+      enable = mkEnableOption "keyboardRemap";
+    };
+  };
+
+  config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      xremap
+    ];
+
+    users.users.xremap = {
+      isSystemUser = true;
+      group = "xremap";
+      extraGroups = [ "uinput" "input" ];
+    };
+    users.groups.xremap = { };
+    myConfig.uinput.enableGroup = lib.mkForce true;
+
+    security.doas.extraRules = lib.mkAfter [
+      {
+        users = [ config.myConfig.username ];
+        runAs = "xremap";
+        noPass = true;
+        keepEnv = true;
+        cmd = "${pkgs.xremap}/bin/xremap";
+        args = [
+          "--watch"
+          "${./config.yml}"
+        ];
+      }
+    ];
+    myConfig.homeManagerModules = [ homeModule ];
+  };
+}

@@ -1,0 +1,38 @@
+# Credit: https://github.com/mooz/xkeysnail/blob/bf3c93b4fe6efd42893db4e6588e5ef1c4909cfb/example/config.py#L62-L125
+keymap:
+  - name: Mac Emacs
+    remap:
+      # Cursor
+      C-b: left
+      C-f: right
+      C-p: up
+      C-n: down
+      C-Shift-b: Shift-left
+      C-Shift-f: Shift-right
+      C-Shift-p: Shift-up
+      C-Shift-n: Shift-down
+      C-a: home
+      C-e: end
+      # Forward/Backward word
+      M-b: C-left
+      M-f: C-right
+      M-Shift-b: C-Shift-left
+      M-Shift-f: C-Shift-right
+      # Delete
+      Super-backspace: C-Shift-backspace
+      C-u: [Shift-home, backspace]
+      C-k: [Shift-end, backspace]
+      # Common macos keys
+      Super-z: C-z
+      Super-Shift-z: C-Shift-z
+      Super-x: C-x
+      Super-c: C-c
+      Super-v: C-v
+      Super-a: C-a
+      Super-s: C-s
+      Super-f: C-f
+    application:
+      not: 
+        - kitty
+        - alacritty
+        - neovide
