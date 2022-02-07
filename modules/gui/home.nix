@@ -7,6 +7,7 @@ lib.mkIf useGUI {
     neovide
     flameshot
     slack
+    zoom-us
     notion-app-enhanced
     realvnc-vnc-viewer
     (vivaldi.override {
