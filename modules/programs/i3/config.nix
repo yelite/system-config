@@ -35,10 +35,6 @@ rec {
   workspaceOutputAssign = let inherit (cfg) secondaryMonitorName; in
     [
       {
-        workspace = "web2";
-        output = "primary";
-      }
-      {
         workspace = "code";
         output = "primary";
       }
@@ -78,6 +74,7 @@ rec {
   ];
   floating.criteria = [
     { window_role = "pop-up"; }
+    { class = "zoom"; title = "Settings"; }
   ];
 
   focus = {
@@ -116,9 +113,8 @@ rec {
       "${mod}+x" = ''exec --no-startup-id i3-input -f "pango:Hack Nerd Font Mono 13"'';
 
       "${mod}+a" = "workspace code2";
-      "${mod}+s" = "workspace web2";
+      "${mod}+s" = "workspace web";
       "${mod}+d" = "workspace code";
-      "${mod}+f" = "workspace web";
       "${mod}+q" = "workspace others";
       "${mod}+w" = "workspace terminal";
       "${mod}+e" = "workspace comm";
@@ -126,9 +122,8 @@ rec {
       "${mod}+3" = ''[title="NoteScratchpad" class="neovide"] scratchpad show'';
 
       "${mod}+Shift+a" = "move container to workspace code2; workspace code2";
-      "${mod}+Shift+s" = "move container to workspace web2; workspace web2";
+      "${mod}+Shift+s" = "move container to workspace web; workspace web";
       "${mod}+Shift+d" = "move container to workspace code; workspace code";
-      "${mod}+Shift+f" = "move container to workspace web; workspace web";
       "${mod}+Shift+q" = "move container to workspace others; workspace others";
       "${mod}+Shift+w" = "move container to workspace terminal; workspace terminal";
       "${mod}+Shift+e" = "move container to workspace comm; workspace comm";
