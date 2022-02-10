@@ -19,6 +19,7 @@ in
   (homeManagerModules [
     ./programs/neovim
     ./programs/i3
+    ./programs/kitty
     ./programs/sway.nix
   ])
 ]
