@@ -76,11 +76,6 @@ augroup MyIndentBlankline
 augroup END
 ]]
 
-require("nvim-autopairs").setup {
-    disable_filetype = { "TelescopePrompt", "spectre_panel" },
-    map_cr = false,
-    map_c_w = false,
-}
 require("hop").setup {
     jump_on_sole_occurrence = false,
 }
@@ -173,6 +168,7 @@ require("neoclip").setup {
 require "my-config.keymap"
 require "my-config.terminal"
 require "my-config.treesitter"
+require "my-config.autopairs"
 require "my-config.languages"
 require "my-config.neorg"
 require "my-config.statusline"

@@ -253,6 +253,7 @@ m.vnoremap("<C-y>", [["+p]])
 
 -- Substitue
 m.nmap("R", "<plug>(SubversiveSubstitute)")
+m.xmap("R", "<plug>(SubversiveSubstitute)")
 m.nmap("RR", "<plug>(SubversiveSubstituteLine)")
 -- c should not put deleted text into register
 m.nnoremap("c", [["_c]])
