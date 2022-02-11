@@ -60,5 +60,13 @@
       url = "github:ThePrimeagen/harpoon";
       flake = false;
     };
+    telescope-rg-nvim = {
+      url = "github:nvim-telescope/telescope-rg.nvim";
+      flake = false;
+    };
+    clangd-extensions-nvim = {
+      url = "github:p00f/clangd_extensions.nvim";
+      flake = false;
+    };
   };
 }

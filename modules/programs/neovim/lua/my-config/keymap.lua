@@ -90,7 +90,11 @@ local code_keymap = {
 local search_keymap = {
     name = "search",
     s = { "<cmd>Telescope grep_string<cr>", "Search Current Symbol" },
-    f = { "<cmd>Telescope live_grep<cr>", "Search File" },
+    f = { "<cmd>Telescope live_grep_raw<cr>", "Search Text" },
+    F = {
+        [[<cmd>lua require('telescope.builtin').live_grep({cwd="%:p:h", results_title=vim.fn.expand("%:h")})<cr>]],
+        "Search Text in Current File Directory",
+    },
     h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
     i = { "<cmd>Telescope treesitter<cr>", "Search Syntax Node" },
 }
@@ -110,6 +114,7 @@ local toggle_feature_keymap = {
 local vcs_keymap = {
     name = "version control",
     v = { [[<cmd>lua require("my-config.terminal").toggle_lazygit()<cr>]], "Open lazygit" },
+    f = { [[<cmd>Telescope git_status<cr>]], "Git Status" },
     s = { [[<cmd>Gitsigns stage_hunk<cr>]], "Stage Hunk" },
     u = { [[<cmd>Gitsigns undo_stage_hunk<cr>]], "Undo Stage Hunk" },
     l = { [[<cmd>Gitsigns setqflist all<cr>]], "List All Hunks" },
@@ -166,6 +171,7 @@ wk.register({
     ["K"] = file_keymap.E, -- Start broswer in the same directory
     ["l"] = code_keymap.s, -- Workspace Symbols
     ["x"] = { "<cmd>Telescope commands<cr>", "Commands" },
+    ["X"] = { "<cmd>Telescope command_history<cr>", "Commands" },
     ["."] = session_keymap.t, -- Resume last telescope picker
 }, {
     prefix = "<leader>",

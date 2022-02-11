@@ -2,6 +2,7 @@ local nvim_lsp = require "lspconfig"
 local lsp_status = require "lsp-status"
 local lspsaga = require "lspsaga"
 local rust_tools = require "rust-tools"
+local clangd_extensions = require "clangd_extensions"
 local keymap = require "my-config.keymap"
 
 vim.g.coq_settings = {
@@ -48,16 +49,21 @@ rust_tools.setup {
     server = standard_lsp_config,
 }
 
-nvim_lsp.ccls.setup(coq.lsp_ensure_capabilities {
-    init_options = {
-        compilationDatabaseDirectory = "build",
-        cache = {
-            directory = "build/.ccls-cache",
+clangd_extensions.setup {
+    server = {
+        cmd = {
+            "clangd",
+            "--background-index",
+            "--all-scopes-completion",
+            "--inlay-hints",
+            "--clang-tidy",
+            "--header-insertion=iwyu",
         },
+        on_attach = lsp_on_attach,
+        capabilities = lsp_status.capabilities,
     },
-    on_attach = lsp_on_attach,
-    capabilities = lsp_status.capabilities,
-})
+}
+
 nvim_lsp.pylsp.setup(standard_lsp_config)
 nvim_lsp.cmake.setup(standard_lsp_config)
 

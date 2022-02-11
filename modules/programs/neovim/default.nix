@@ -49,6 +49,7 @@ in
         telescope-nvim
         telescope-fzf-native-nvim
         telescope-file-browser-nvim
+        telescope-rg-nvim
         harpoon
         toggleterm-nvim
         which-key-nvim
@@ -75,6 +76,7 @@ in
         neoformat
         lua-dev-nvim
         rust-tools-nvim
+        clangd-extensions-nvim
         vim-nix
 
         {
@@ -98,7 +100,7 @@ in
         graphviz # For rust crate graph visualization
         sqlite # For sqlite.lua
 
-        ccls
+        clang-tools
 
         rust-analyzer
         rustfmt
