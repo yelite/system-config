@@ -19,14 +19,21 @@ in
       };
       settings = {
         cursor_blink_interval = 0;
+        enabled_layouts = "tall:bias=50;full_size=1;mirrored=false, horizontal";
+        "mouse_map left click ungrabbed" = "mouse_handle_click selection prompt";
+        enable_audio_bell = false;
+        visual_bell_duration = "0.3";
+        placement_strategy = "top-left";
       };
+      theme = "Tomorrow Night Eighties";
       keybindings = {
         "super+c" = "copy_to_clipboard";
         "super+v" = "paste_from_clipboard";
-        "super+n" = "new_window";
         "super+t" = "new_tab";
         "super+w" = "close_tab";
+        "super+shift+s" = "new_window";
         "super+shift+w" = "close_window";
+        "super+shift+a" = "next_layout";
         "super+1" = "goto_tab 1";
         "super+2" = "goto_tab 2";
         "super+3" = "goto_tab 3";
