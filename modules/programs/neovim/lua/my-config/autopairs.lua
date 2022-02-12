@@ -19,10 +19,14 @@ local function setup()
         Rule("=", ";", "nix")
             :with_pair(cond.not_inside_quote())
             :with_pair(cond.not_after_regex(string.gsub([[ [%w%%%'%[%"%.] ]], "%s+", "")))
-            :with_pair(ts_cond.is_not_ts_node { "comment", "formals" })
+            :with_pair(ts_cond.is_not_ts_node { "comment", "indented_string" })
             :with_pair(cond.before_regex(".*%w+%s*$", -1))
             :use_undo(true)
             :with_move(cond.none()), -- copied from nvim-autopairs.lua:22
+        Rule("{ ", "}", "nix"):only_cr(),
+        Rule("{", " }", "nix"):only_cr(),
+        Rule("[ ", "]", "nix"):only_cr(),
+        Rule("[", " ]", "nix"):only_cr(),
     }
 end
 
