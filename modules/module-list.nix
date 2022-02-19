@@ -17,9 +17,10 @@ in
   # ./sway-nvidia
 
   (homeManagerModules [
-    ./programs/neovim
+    ./programs/dunst
     ./programs/i3
     ./programs/kitty
+    ./programs/neovim
     ./programs/sway.nix
   ])
 ]
