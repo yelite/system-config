@@ -14,6 +14,7 @@ lib.mkIf useGUI {
       commandLineArgs = [
         "--use-gl=desktop"
         "--enable-features=VaapiVideoDecoder"
+        "--force-dark-mode" # Make prefers-color-scheme selector to choose dark theme
       ];
     })
     vivaldi-widevine
