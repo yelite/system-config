@@ -43,6 +43,7 @@ in
         vim-surround
         vim-subversive
         vim-textobj-entire
+        nvim-spectre
 
         lualine-nvim
         nvim-gps
@@ -68,6 +69,7 @@ in
         lsp-status-nvim
         lspsaga-nvim
         trouble-nvim
+        aerial-nvim
         vim-illuminate
         nvim-dap
         coq-nvim

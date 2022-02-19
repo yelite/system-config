@@ -1,6 +1,7 @@
 local nvim_lsp = require "lspconfig"
 local lsp_status = require "lsp-status"
 local lspsaga = require "lspsaga"
+local aerial = require "aerial"
 local rust_tools = require "rust-tools"
 local clangd_extensions = require "clangd_extensions"
 local keymap = require "my-config.keymap"
@@ -24,6 +25,7 @@ local coq = require "coq"
 local function lsp_on_attach(client, bufnr)
     keymap.bind_lsp_keys(client, bufnr)
     lsp_status.on_attach(client)
+    aerial.on_attach(client, bufnr)
     -- TODO: Enable after it respects global enabled flag and current word highlight
     -- require("illuminate").on_attach(client)
 end

@@ -79,6 +79,7 @@ local code_keymap = {
     name = "code actions",
     f = { "<cmd>Neoformat<cr>", "Format Code" },
 
+    -- TODO: Move to lsp on_attach
     s = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace Symbols" },
     S = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
     d = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
@@ -89,7 +90,8 @@ local code_keymap = {
 -- s -> search
 local search_keymap = {
     name = "search",
-    s = { "<cmd>Telescope grep_string<cr>", "Search Current Symbol" },
+    s = { "viw:lua require('spectre').open_file_search()<CR>", "Search Current Symbol" },
+    S = { "<cmd>lua require('spectre').open()<CR>", "Search" },
     f = { "<cmd>Telescope live_grep_raw<cr>", "Search Text" },
     F = {
         [[<cmd>lua require('telescope.builtin').live_grep({cwd="%:p:h", results_title=vim.fn.expand("%:h")})<cr>]],
@@ -106,6 +108,8 @@ local toggle_feature_keymap = {
     f = { [[<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<cr>]], "Open Terminal" },
     i = { [[<cmd>IlluminationToggle<cr>]], "Illuminate Variable" },
     n = { toggle_line_number, "Line Number" },
+    o = { "<cmd>AerialToggle<cr>", "Symbol Outline" },
+    O = { "<cmd>AerialTreeToggle<cr>", "Symbol Outline at Current Location" },
     p = { [[<cmd>TSPlaygroundToggle<cr>]], "Treesitter Playground" },
     s = { toggle_auto_save, "Auto Save" },
     t = { [[<cmd>exe v:count1 . "ToggleTerm direction=float"<cr>]], "Open Floating Terminal" },
@@ -235,7 +239,7 @@ m.inoremap("<C-b>", "<Left>")
 m.inoremap("<C-f>", "<Right>")
 m.inoremap("<C-p>", "<Up>")
 m.inoremap("<C-n>", "<Down>")
-m.inoremap("<C-a>", "<C-o>^")
+m.inoremap("<C-a>", "<cmd>normal! ^<cr>")
 m.inoremap("<C-e>", "<End>")
 
 m.cnoremap("<C-b>", "<Left>")
@@ -287,17 +291,18 @@ function M.bind_lsp_keys(client, bufnr)
     m.nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opt, "Definition")
     m.nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opt, "Declaration")
     m.nnoremap("gt", "<cmd>Telescope lsp_type_definitions<cr>", opt, "Type Definition")
-    m.nnoremap("gr", "<cmd>Trouble lsp_references<cr>", opt, "References")
+    m.nnoremap("gr", "<cmd>Lspsaga lsp_finder<cr>", opt, "Lsp Finder")
+    m.nnoremap("gR", "<cmd>Trouble lsp_references<cr>", opt, "References")
     m.nnoremap("gs", "<cmd>Telescope lsp_workspace_symbols<cr>", opt, "Workspace Symbols")
     m.nnoremap("gS", "<cmd>Telescope lsp_document_symbols<cr>", opt, "Document Symbols")
     m.nnoremap("go", "<cmd>Lspsaga show_line_diagnostics<cr>", opt, "Show Line Diagnostics")
     m.nnoremap("ga", "<cmd>Lspsaga code_action<cr>", opt, "Code Actions")
-    m.nnoremap("K", "<cmd>lua vim.lsp.buf.hover()<cr>", opt, "LSP Hover")
+    m.nnoremap("K", "<cmd>Lspsaga hover_doc<cr>", opt, "LSP Hover")
     m.nnoremap("[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", opt, "Prevous Diagnostic")
     m.nnoremap("]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", opt, "Next Diagnostic")
 
     m.inoremap("<C-h>", "<cmd>Lspsaga signature_help<cr>", opt)
-    m.inoremap("<C-k>", "<cmd>lua vim.lsp.buf.hover()<cr>", opt)
+    m.inoremap("<C-k>", "<cmd>Lspsaga hover_doc<cr>", opt)
     m.inoremap("<C-o>", "<cmd>Lspsaga code_action<cr>", opt)
 
     if client.name == "rust_analyzer" then
