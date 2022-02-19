@@ -78,6 +78,7 @@ rec {
   ];
 
   focus = {
+    newWindow = "focus";
     followMouse = false;
     forceWrapping = false;
     mouseWarping = false;

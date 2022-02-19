@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, ... }:
 let
   cfg = config.myHomeConfig.i3;
   inherit (lib) types mkIf mkEnableOption mkOption;
