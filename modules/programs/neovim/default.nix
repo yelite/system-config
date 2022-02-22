@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, systemInfo, ... }:
 with lib;
 let
   cfg = config.myHomeConfig.neovim;
@@ -11,9 +11,14 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
+    home.packages = with pkgs; lib.optionals systemInfo.isLinux [
+      # TODO: Enable this for darwin after https://github.com/NixOS/nixpkgs/pull/146052 
       neovide
     ];
+
+    home.sessionVariables = {
+      EDITOR = "nvim";
+    };
 
     programs.neovim = {
       enable = true;
@@ -107,10 +112,17 @@ in
         rust-analyzer
         rustfmt
 
-        cmake-language-server
+        rnix-lsp
         sumneko-lua-language-server
-      ] ++ (
-        with pkgs.python310Packages; [
+      ] ++
+      (
+        # TODO: fix the ssl error. 
+        # Probably just need to point to the right certificate store when building
+        lib.optional (!systemInfo.isDarwin)
+          cmake-language-server
+      ) ++ (
+        with pkgs.python310Packages;
+        [
           python-lsp-server
           rope
           python-lsp-black

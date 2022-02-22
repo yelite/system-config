@@ -1,3 +1,0 @@
-{
-  homeModule = import ./home.nix;
-}

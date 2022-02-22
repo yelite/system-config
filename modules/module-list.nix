@@ -1,26 +1,27 @@
-let
-  inherit (import ./util.nix) hybridModule hybridModules homeManagerModule homeManagerModules;
-in
-[
-  (hybridModules [
+{
+  univeralSystemModules = [
     ./basic
-    ./gui
-  ])
-  ./binary-caches.nix
-  ./home-manager-adapter.nix
-  ./uinput.nix
-  ./xserver
-  ./keyboard-remap
-  ./logitech
-  ./nvfancontrol
-  # TODO: think about how to integrate overlay into hybrid module system
-  # ./sway-nvidia
-
-  (homeManagerModules [
-    ./programs/dunst
+    ./binary-caches.nix
+    ./home-manager.nix
+  ];
+  linuxOnlyModules = [
+    ./uinput.nix
+    ./xserver
+    ./keyboard-remap
+    ./logitech
+    ./nvfancontrol
+    # TODO: reenable this after wayland on nvidia is stable
+    # ./sway-nvidia
+  ];
+  darwinOnlyModules = [ ];
+  homeManagerModules = [
+    ./programs/basic.nix
+    ./programs/dev.nix
+    ./programs/neovim
     ./programs/i3
     ./programs/kitty
     ./programs/neovim
+    ./programs/dunst
     ./programs/sway.nix
-  ])
-]
+  ];
+}

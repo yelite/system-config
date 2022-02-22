@@ -1,15 +1,19 @@
 let
-  util = import ./util.nix;
-  hybridModules = import ./module-list.nix;
-  moduleSplitResult = util.splitHybridModules hybridModules;
-  homeModules = moduleSplitResult.homeModules;
+  inherit (import ./module-list.nix)
+    univeralSystemModules
+    linuxOnlyModules
+    darwinOnlyModules
+    homeManagerModules;
+  optionals = pred: list: if pred then list else [ ];
 in
 {
-  inherit homeModules;
-
-  systemModules = moduleSplitResult.systemModules ++ [
-    {
-      myConfig.homeManagerModules = homeModules;
-    }
-  ];
+  getSystemModules = systemInfo:
+    univeralSystemModules ++
+    optionals systemInfo.isLinux linuxOnlyModules ++
+    optionals systemInfo.isDarwin darwinOnlyModules ++
+    [
+      {
+        myConfig.homeManagerModules = homeManagerModules;
+      }
+    ];
 }

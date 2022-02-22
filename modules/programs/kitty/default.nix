@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, systemInfo, ... }:
 let
   cfg = config.myHomeConfig.kitty;
   inherit (lib) types mkIf mkEnableOption mkOption;
@@ -16,6 +16,11 @@ in
       font = {
         name = "Hack Nerd Font";
         size = 12;
+      } // lib.optionalAttrs systemInfo.isDarwin {
+        package = (pkgs.nerdfonts.override {
+          fonts = [ "Hack" ];
+        });
+        size = 14;
       };
       settings = {
         cursor_blink_interval = 0;

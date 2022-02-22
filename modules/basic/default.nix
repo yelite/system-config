@@ -1,4 +1,9 @@
+{ config, pkgs, ... }:
+let myConfig = config.myConfig;
+in
 {
-  nixosModule = import ./nixos.nix;
-  homeModule = import ./home.nix;
+  imports = [
+    ./darwin.nix
+    ./nixos.nix
+  ];
 }

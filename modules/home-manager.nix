@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, systemInfo, inputs, ... }:
 let
   types = lib.types;
   cfg = config.myConfig;
@@ -22,7 +22,13 @@ in
   };
 
   config = {
-    home-manager.users.${cfg.username} = { };
-    home-manager.sharedModules = cfg.homeManagerModules;
+    home-manager = {
+      users.${cfg.username} = { };
+      sharedModules = cfg.homeManagerModules;
+      useGlobalPkgs = true;
+      extraSpecialArgs = {
+        inherit inputs systemInfo;
+      };
+    };
   };
 }

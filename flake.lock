@@ -35,11 +35,11 @@
     "clangd-extensions-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1644492426,
-        "narHash": "sha256-lvtoCaRTc/OQGnpkb9X/QIXPRwFwWomvivtWRlvqHJw=",
+        "lastModified": 1644686661,
+        "narHash": "sha256-ymaPlfkZi57ml2lL80s6RLYslip42yKXdzu1CeCghmM=",
         "owner": "p00f",
         "repo": "clangd_extensions.nvim",
-        "rev": "5973f5f23e2c01129bd4d88acd6554d9b1416cbb",
+        "rev": "c453c6bb1a502622291aeebc64b82af03f8fdef0",
         "type": "github"
       },
       "original": {
@@ -51,16 +51,37 @@
     "coq-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1644539920,
-        "narHash": "sha256-9mbA7zbr1JMGymVBxUDVrALIM1yVDgfiIqwxJUnY4XI=",
+        "lastModified": 1644712711,
+        "narHash": "sha256-A14XeSyu1MeyU6VpmXgnBmQNKxC5d4oVS95G7sMHRnU=",
         "owner": "ms-jpq",
         "repo": "coq_nvim",
-        "rev": "7d40125d3bae01cf0f9e67c7799f2d942cf8be58",
+        "rev": "ef645909d5bda165cc40f2a70bc89e3922a1c35b",
         "type": "github"
       },
       "original": {
         "owner": "ms-jpq",
         "repo": "coq_nvim",
+        "type": "github"
+      }
+    },
+    "darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1642495030,
+        "narHash": "sha256-u1ZlFbLWzkM6zOfuZ1tr0tzTuDWucOYwALPWDWLorkE=",
+        "owner": "lnl7",
+        "repo": "nix-darwin",
+        "rev": "bcdb6022b3a300abf59cb5d0106c158940f5120e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lnl7",
+        "ref": "master",
+        "repo": "nix-darwin",
         "type": "github"
       }
     },
@@ -84,7 +105,7 @@
         "trouble-nvim": "trouble-nvim"
       },
       "locked": {
-        "narHash": "sha256-vH162pC0kSvVQ1F8MHgzsX0YakfhOOCDNFG/F8cD6uw=",
+        "narHash": "sha256-0O/WxyjNdTAEN/v0OUbV1W+e5aXb637A3sqYfaPxjSY=",
         "path": "./flakes/extra-neovim-plugins",
         "type": "path"
       },
@@ -184,11 +205,11 @@
     "lspsaga-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1644281133,
-        "narHash": "sha256-uCz5FXZwY2vv6Ma8aQUm6x9kpvri84+jNl+AOVP8uDg=",
+        "lastModified": 1644740911,
+        "narHash": "sha256-/O3iZVd3jN+sJ8kOmn4yVzcy5kaun4oVDlMRYUjV/bQ=",
         "owner": "tami5",
         "repo": "lspsaga.nvim",
-        "rev": "d8073a0e4d19d71da900fb77dcc5f23d72bb8707",
+        "rev": "511a335b470aa32ceb6ba8d53d61f6b52362c6f4",
         "type": "github"
       },
       "original": {
@@ -216,11 +237,11 @@
     "neorg-telescope": {
       "flake": false,
       "locked": {
-        "lastModified": 1641047375,
-        "narHash": "sha256-BShWwaK4L49bI+x0wLfAsRCeD7C+lDoB90iu7VkWKeI=",
+        "lastModified": 1644606603,
+        "narHash": "sha256-KXlQg3BgAMlN6vfbhuoMUtfTHG4oPQX23+5/5P8DYQw=",
         "owner": "nvim-neorg",
         "repo": "neorg-telescope",
-        "rev": "75c2ad02d91c353069fdcb55418d4f6eb6aec74e",
+        "rev": "4e78fc6bc34fdb5af1291df1e83915d63db0795e",
         "type": "github"
       },
       "original": {
@@ -283,6 +304,7 @@
     },
     "root": {
       "inputs": {
+        "darwin": "darwin",
         "extra-neovim-plugins": "extra-neovim-plugins",
         "fenix": "fenix",
         "hm": "hm",
