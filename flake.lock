@@ -35,11 +35,11 @@
     "clangd-extensions-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1644686661,
-        "narHash": "sha256-ymaPlfkZi57ml2lL80s6RLYslip42yKXdzu1CeCghmM=",
+        "lastModified": 1644896252,
+        "narHash": "sha256-rwWc/lToWeJtFp+gnx8w9NAnwp25JXevaQSutbj2/LU=",
         "owner": "p00f",
         "repo": "clangd_extensions.nvim",
-        "rev": "c453c6bb1a502622291aeebc64b82af03f8fdef0",
+        "rev": "de694c4c6ecccbe5756c6a5f492c389e366e08e4",
         "type": "github"
       },
       "original": {
@@ -51,11 +51,11 @@
     "coq-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1644712711,
-        "narHash": "sha256-A14XeSyu1MeyU6VpmXgnBmQNKxC5d4oVS95G7sMHRnU=",
+        "lastModified": 1645576938,
+        "narHash": "sha256-L+f67hk++4ClleQ58softpvGQzSP2eTes0gFTfZQa4I=",
         "owner": "ms-jpq",
         "repo": "coq_nvim",
-        "rev": "ef645909d5bda165cc40f2a70bc89e3922a1c35b",
+        "rev": "76a4fa392b599903cb1edcd9b7d329b9ad30271f",
         "type": "github"
       },
       "original": {
@@ -105,7 +105,7 @@
         "trouble-nvim": "trouble-nvim"
       },
       "locked": {
-        "narHash": "sha256-0O/WxyjNdTAEN/v0OUbV1W+e5aXb637A3sqYfaPxjSY=",
+        "narHash": "sha256-vH162pC0kSvVQ1F8MHgzsX0YakfhOOCDNFG/F8cD6uw=",
         "path": "./flakes/extra-neovim-plugins",
         "type": "path"
       },
@@ -153,11 +153,11 @@
     "harpoon": {
       "flake": false,
       "locked": {
-        "lastModified": 1643948570,
-        "narHash": "sha256-59ln+915kPSlFodC7hzW6h5UEmOrOW2G77V1fdkiRH4=",
+        "lastModified": 1645040677,
+        "narHash": "sha256-J/7MXsqo6Squh9JETgpCeaVKOAY5q911vNRMRx/T+kc=",
         "owner": "ThePrimeagen",
         "repo": "harpoon",
-        "rev": "d035ef263a75029b0351f2be3708ec2829e2a3df",
+        "rev": "b2bb0d6f2b8a55895afda53f0ad04527998d3411",
         "type": "github"
       },
       "original": {
@@ -205,11 +205,11 @@
     "lspsaga-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1644740911,
-        "narHash": "sha256-/O3iZVd3jN+sJ8kOmn4yVzcy5kaun4oVDlMRYUjV/bQ=",
+        "lastModified": 1645468806,
+        "narHash": "sha256-tGceQAt8DosrbrDiKPNgopcFk+/69+NxQUedKgl+VeY=",
         "owner": "tami5",
         "repo": "lspsaga.nvim",
-        "rev": "511a335b470aa32ceb6ba8d53d61f6b52362c6f4",
+        "rev": "65e9ca7fb147668ce3f7321f8d734ae9b754241c",
         "type": "github"
       },
       "original": {
