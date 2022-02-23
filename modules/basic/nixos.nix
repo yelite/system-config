@@ -69,7 +69,7 @@ lib.optionalAttrs systemInfo.isLinux {
   environment.etc = {
     # Link the flake.nix so that nixos-rebuild works without extra arg
     "nixos/flake.nix" = {
-      source = "/home/${myConfig.username}/.nixos-config/flake.nix";
+      source = "/home/${myConfig.username}/.system-config/flake.nix";
     };
   };
 
