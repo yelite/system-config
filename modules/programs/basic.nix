@@ -33,6 +33,7 @@ in
     optionals (useGUI && systemInfo.isLinux) [
       zeal
       flameshot
+      playerctl
       slack
       zoom-us
       notion-app-enhanced

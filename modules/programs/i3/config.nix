@@ -86,7 +86,9 @@ rec {
 
   modifier = "Mod1";
   keybindings =
-    let mod = modifier;
+    let
+      mod = modifier;
+      playerctl = "${pkgs.playerctl}/bin/playerctl";
     in
     {
       "${mod}+space" = "exec ${menu}";
@@ -129,6 +131,11 @@ rec {
       "${mod}+Shift+w" = "move container to workspace terminal; workspace terminal";
       "${mod}+Shift+e" = "move container to workspace comm; workspace comm";
       "${mod}+Shift+1" = "move scratchpad; resize set width 62 ppt height 62 ppt";
+
+      "XF86AudioPlay" = "exec --no-startup-id ${playerctl} play-pause";
+      "XF86AudioForward" = "exec --no-startup-id ${playerctl} next";
+      "XF86AudioNext" = "exec --no-startup-id ${playerctl} next";
+      "XF86AudioPrev" = "exec --no-startup-id ${playerctl} previous";
 
       "${mod}+Shift+z" = "restart";
       "${mod}+Shift+esc" =
