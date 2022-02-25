@@ -92,6 +92,7 @@
         "coq-nvim": "coq-nvim",
         "harpoon": "harpoon",
         "hop-extensions": "hop-extensions",
+        "lightspeed-nvim": "lightspeed-nvim",
         "lspsaga-nvim": "lspsaga-nvim",
         "mapx": "mapx",
         "neorg-telescope": "neorg-telescope",
@@ -105,7 +106,7 @@
         "trouble-nvim": "trouble-nvim"
       },
       "locked": {
-        "narHash": "sha256-vH162pC0kSvVQ1F8MHgzsX0YakfhOOCDNFG/F8cD6uw=",
+        "narHash": "sha256-BeY4QVZdczrfXJPty7oAcmiSBKE0DsoLP+FhN/NmRkI=",
         "path": "./flakes/extra-neovim-plugins",
         "type": "path"
       },
@@ -215,6 +216,23 @@
       "original": {
         "owner": "IndianBoy42",
         "repo": "hop-extensions",
+        "type": "github"
+      }
+    },
+    "lightspeed-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1645185942,
+        "narHash": "sha256-jwf0FKg3TijFPsPaTnTL4Ko7hmm+oLuVXw2qikWwuEg=",
+        "owner": "ggandor",
+        "repo": "lightspeed.nvim",
+        "rev": "4d8359a30b26ee5316d0e7c79af08b10cb17a57b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ggandor",
+        "repo": "lightspeed.nvim",
+        "rev": "4d8359a30b26ee5316d0e7c79af08b10cb17a57b",
         "type": "github"
       }
     },

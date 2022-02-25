@@ -80,6 +80,7 @@ require("hop").setup {
     jump_on_sole_occurrence = false,
 }
 
+vim.g.lightspeed_no_default_keymaps = true
 require("lightspeed").setup {
     ignore_case = true,
 }
