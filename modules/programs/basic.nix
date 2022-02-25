@@ -62,5 +62,27 @@ in
 
       keys = [ "id_ed25519" ];
     };
+
+    ssh = {
+      enable = true;
+      matchBlocks = lib.mkMerge [
+        {
+          "*" = {
+            identityFile = "~/.ssh/id_ed25519";
+          };
+        }
+        (lib.mkIf systemInfo.isDarwin
+          {
+            "*" = {
+              extraOptions = {
+                UseKeychain = "yes";
+                AddKeysToAgent = "yes";
+              };
+            };
+          }
+        )
+      ];
+
+    };
   };
 }
