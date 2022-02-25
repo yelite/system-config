@@ -31,17 +31,15 @@
     # TODO: Enable this after implementing the hysteresis
     nvfancontrol.enable = false;
 
-    homeManagerModules = [{
-      myHomeConfig = {
-        neovim.enable = true;
-        kitty.enable = true;
-        dunst.enable = true;
-        i3 = {
-          enable = true;
-          secondaryMonitorName = "HDMI-0";
-        };
+    homeManagerConfig = {
+      neovim.enable = true;
+      kitty.enable = true;
+      dunst.enable = true;
+      i3 = {
+        enable = true;
+        secondaryMonitorName = "HDMI-0";
       };
-    }];
+    };
   };
 
   services.xserver = {
