@@ -307,6 +307,8 @@ function M.bind_lsp_keys(client, bufnr)
 
     if client.name == "rust_analyzer" then
         bind_rust_lsp_keys(bufnr)
+    elseif client.name == "clangd" then
+        m.nnoremap("gi", "<cmd>ClangdSwitchSourceHeader<cr>", opt, "Goto header/source")
     end
 end
 

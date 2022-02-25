@@ -80,6 +80,10 @@ require("hop").setup {
     jump_on_sole_occurrence = false,
 }
 
+require("lightspeed").setup {
+    ignore_case = true,
+}
+
 o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 require("auto-session").setup {
     auto_session_suppress_dirs = { "/etc" },
