@@ -137,7 +137,10 @@ rec {
       "XF86AudioNext" = "exec --no-startup-id ${playerctl} next";
       "XF86AudioPrev" = "exec --no-startup-id ${playerctl} previous";
 
-      "Mod1+Control+Shift+Escape" = ''exec --no-startup-id "sleep 0.5; xset dpms force off"'';
+      "${mod}+Control+Shift+1" = ''exec --no-startup-id "sleep 0.8; xset dpms force off"'';
+      "${mod}+Control+Shift+2" = ''exec --no-startup-id "systemctl suspend"'';
+      "${mod}+Control+Shift+3" = ''exec --no-startup-id "systemctl hibernate"'';
+
       "${mod}+Shift+z" = "restart";
       "${mod}+Shift+esc" =
         "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
