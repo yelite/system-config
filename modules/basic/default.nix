@@ -3,7 +3,8 @@ let myConfig = config.myConfig;
 in
 {
   imports = [
-    ./darwin.nix
     ./nixos.nix
+    ./darwin.nix
+    ./darwin-mouse.nix
   ];
 }
