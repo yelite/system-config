@@ -48,9 +48,6 @@ in
       vivaldi-widevine
       vivaldi-ffmpeg-codecs
       standardnotes
-
-      xorg.xev
-      xorg.xmodmap
     ];
 
   programs = {

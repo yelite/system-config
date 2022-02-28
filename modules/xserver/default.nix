@@ -5,7 +5,7 @@ let
 in
 {
   imports = [
-    ./sddm
+    ./greetd.nix
   ];
 
   options = {

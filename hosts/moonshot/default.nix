@@ -9,6 +9,7 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.editor = false;
+  boot.loader.systemd-boot.consoleMode = "max";
   boot.loader.efi.canTouchEfiVariables = true;
 
   time.timeZone = "US/Eastern";
@@ -41,6 +42,11 @@
       };
     };
   };
+
+  services.logind.extraConfig = ''
+    HandlePowerKey=ignore
+    HandleSuspendKey=lock
+  '';
 
   services.xserver = {
     videoDrivers = [ "nvidia" ];

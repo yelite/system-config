@@ -23,6 +23,8 @@ in
           xclip
           xdotool
           xdragon
+          xorg.xev
+          xorg.xmodmap
         ];
 
         programs.autorandr = {
