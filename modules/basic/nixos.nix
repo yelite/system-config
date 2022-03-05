@@ -25,8 +25,8 @@ lib.optionalAttrs systemInfo.isLinux {
   };
 
   environment.systemPackages = with pkgs; [
-    git
     killall
+    cifs-utils
   ];
 
   networking.networkmanager.enable = true;
@@ -49,6 +49,9 @@ lib.optionalAttrs systemInfo.isLinux {
       enable = true;
       useDns = true;
     };
+
+    # Hide the cursor when typing.
+    xbanish.enable = true;
   };
 
   security = {

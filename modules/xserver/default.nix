@@ -61,6 +61,7 @@ in
           mouse.accelProfile = "flat";
           mouse.middleEmulation = false;
         };
+        wacom.enable = true;
       };
     };
 

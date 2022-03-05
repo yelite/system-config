@@ -14,6 +14,7 @@ in
     [
       wget
       unzip
+      ranger
 
       ripgrep
       exa
@@ -22,7 +23,6 @@ in
       git
       lazygit
 
-      nix-index
       nix-tree
       nixpkgs-fmt
       cachix
@@ -32,11 +32,14 @@ in
     ] ++
     optionals (useGUI && systemInfo.isLinux) [
       zeal
+      libsForQt5.okular
+      mpv
       flameshot
       playerctl
       slack
       zoom-us
       notion-app-enhanced
+      write_stylus
       realvnc-vnc-viewer
       (vivaldi.override {
         commandLineArgs = [
