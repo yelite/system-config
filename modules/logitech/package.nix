@@ -5,7 +5,7 @@
 , cmake
 , pkg-config
 , libevdev
-, libudev
+, udev
 , libconfig
 }:
 
@@ -24,7 +24,7 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ cmake pkg-config ];
 
-  buildInputs = [ libevdev libudev libconfig ];
+  buildInputs = [ libevdev udev libconfig ];
 
   meta = with lib; {
     description = "An unofficial userspace driver for HID++ Logitech mice and keyboards";
