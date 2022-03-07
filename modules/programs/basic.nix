@@ -33,7 +33,6 @@ in
     optionals (useGUI && systemInfo.isLinux) [
       zeal
       libsForQt5.okular
-      mpv
       flameshot
       playerctl
       slack
@@ -82,7 +81,19 @@ in
           }
         )
       ];
+    };
 
+    mpv = {
+      enable = true;
+      defaultProfiles = [ "gpu-hq" ];
+      config = {
+        hwdec = "auto";
+        save-position-on-quit = true;
+      };
+      scripts = [
+        pkgs.mpvScripts.autoload
+        pkgs.mpvScripts.mpris
+      ];
     };
   };
 }
