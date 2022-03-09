@@ -80,6 +80,9 @@ local luadev = require("lua-dev").setup {
 }
 nvim_lsp.sumneko_lua.setup(luadev)
 
+-- C indent
+vim.o.cinoptions = "h1,l1,g1,t0,i4,+4,(0,w1,W4"
+
 -- auto format
 -- TODO: add a small delay and skip format if it's in insert mode, and add undojoin
 -- only if necessary. This should fix the problem with auto-save.
