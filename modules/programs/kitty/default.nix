@@ -11,6 +11,10 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.packages = lib.optionals systemInfo.isLinux (with pkgs; [
+      ueberzug
+    ]);
+
     programs.kitty = {
       enable = true;
       font = {

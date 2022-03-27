@@ -25,6 +25,7 @@ lib.optionalAttrs systemInfo.isLinux {
   };
 
   environment.systemPackages = with pkgs; [
+    git # used for nixos-rebuild
     killall
     cifs-utils
   ];

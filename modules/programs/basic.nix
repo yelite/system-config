@@ -23,6 +23,8 @@ in
       git
       lazygit
 
+      reaper
+
       nix-tree
       nixpkgs-fmt
       cachix
@@ -33,6 +35,7 @@ in
     optionals (useGUI && systemInfo.isLinux) [
       zeal
       libsForQt5.okular
+      feh
       flameshot
       playerctl
       slack

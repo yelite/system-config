@@ -14,6 +14,7 @@
 
   time.timeZone = "US/Eastern";
   time.hardwareClockInLocalTime = true;
+  networking.timeServers = [ "pool.ntp.org" ];
 
   networking.hostName = "moonshot";
   networking.wireless.enable = false;
@@ -54,6 +55,9 @@
       Option         "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
       Option         "AllowIndirectGLXProtocol" "off"
       Option         "TripleBuffer" "on"
+    '';
+    deviceSection = ''
+      Option    "RegistryDwords" "RMUseSwI2c=0x01; RMI2cSpeed=100"
     '';
   };
 

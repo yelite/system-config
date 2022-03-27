@@ -63,6 +63,7 @@ in
         };
         wacom.enable = true;
       };
+      ddccontrol.enable = true;
     };
 
     myConfig.homeManagerModules = [{
