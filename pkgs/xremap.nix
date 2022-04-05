@@ -12,11 +12,11 @@ rustPlatform.buildRustPackage rec {
   src = fetchFromGitHub {
     owner = "k0kubun";
     repo = pname;
-    rev = "9e4d5803a4afd7a1e0528904d450c42df0ad5d8c";
-    sha256 = "sha256-EDbKdNHfrQAnzMkFl9txCCIPwCxmTj3LEUTRC8xeDjU=";
+    rev = "015b06a4c9ee6a9ac1b885aa66b0655e5dc43739";
+    sha256 = "sha256-DPcoC1mNWVCJKFgP0vTd4yosUEE5UZzUDSS1z0+4gTI=";
   };
 
-  cargoSha256 = "sha256-osOrvbPlc1g6NJ8LgMcfrBkzX2fVS8XU9tjMQPd6nHU=";
+  cargoSha256 = "sha256-bVZy0noM42AZVAAejiyC1HCasGBd40PK+K11w6K7oiM=";
 
   buildFeatures = [ "x11" ];
 
