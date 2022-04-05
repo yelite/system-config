@@ -73,5 +73,9 @@
       url = "github:ggandor/lightspeed.nvim?rev=4d8359a30b26ee5316d0e7c79af08b10cb17a57b";
       flake = false;
     };
+    lualine-nvim = {
+      url = "github:nvim-lualine/lualine.nvim";
+      flake = false;
+    };
   };
 }

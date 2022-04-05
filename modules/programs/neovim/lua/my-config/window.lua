@@ -22,7 +22,7 @@ function M.move_current_buffer_to_window(from_window, to_window, enter)
     M.open_current_buffer_to_window(from_window, to_window, enter)
     vim.schedule(function()
         vim.api.nvim_win_call(from_window, function()
-            vim.cmd [[bprevious]]
+            vim.cmd [[e#]] --  Jump to previously edited file
         end)
     end)
 end
