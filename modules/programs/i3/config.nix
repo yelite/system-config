@@ -71,10 +71,19 @@ rec {
       command = "move position center";
       criteria = { window_role = "pop-up"; class = "Vivaldi-stable"; };
     }
+    {
+      command = "move position center";
+      criteria = { class = "zoom"; title = "Settings"; };
+    }
+    {
+      command = "move position center";
+      criteria = { class = "zoom"; title = "Chat"; };
+    }
   ];
   floating.criteria = [
     { window_role = "pop-up"; }
     { class = "zoom"; title = "Settings"; }
+    { class = "zoom"; title = "Chat"; }
   ];
 
   focus = {
