@@ -11,9 +11,6 @@ function M.patchNordColors()
     vim.cmd [[hi clear illuminatedCurWord]]
     nord_util.highlight("WhichKeyFloating", { bg = nord_colors.nord1_gui })
     nord_util.highlight("WhichKeyFloat", { bg = nord_colors.nord1_gui })
-    nord_util.highlight("LuaLineDiffAdd", { fg = nord_colors.nord14_gui, bg = nord_colors.nord1_gui })
-    nord_util.highlight("LuaLineDiffChange", { fg = nord_colors.nord13_gui, bg = nord_colors.nord1_gui })
-    nord_util.highlight("LuaLineDiffDelete", { fg = nord_colors.nord11_gui, bg = nord_colors.nord1_gui })
     nord_util.highlight("Folded", { style = "bold" })
 
     -- Remove bold style from TS

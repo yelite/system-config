@@ -176,8 +176,8 @@ require "my-config.treesitter"
 require "my-config.autopairs"
 require "my-config.languages"
 require "my-config.neorg"
-require "my-config.statusline"
 require "my-config.colors"
+require "my-config.statusline"
 
 -- This has to be loaded after treesitter
 require("tabout").setup {

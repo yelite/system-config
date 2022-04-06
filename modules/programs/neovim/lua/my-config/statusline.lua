@@ -19,11 +19,6 @@ augroup END
 
 local diff_component = {
     "diff",
-    diff_color = {
-        added = "LuaLineDiffAdd",
-        modified = "LuaLineDiffChange",
-        removed = "LuaLineDiffDelete",
-    },
     symbols = { added = " ", modified = "柳", removed = " " },
 }
 
