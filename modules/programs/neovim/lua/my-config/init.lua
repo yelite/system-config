@@ -82,7 +82,7 @@ require("hop").setup {
 
 vim.g.lightspeed_no_default_keymaps = true
 require("lightspeed").setup {
-    ignore_case = true,
+    ignore_case = false,
 }
 
 o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
