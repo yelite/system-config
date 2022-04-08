@@ -94,6 +94,7 @@ in
 
       extraConfig = ''
         lua << END🤞
+          vim.g._my_config_script_folder = "${./scripts}"
           require "my-config"
         END🤞
       '';

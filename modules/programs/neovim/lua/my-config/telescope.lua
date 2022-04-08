@@ -5,7 +5,25 @@ local ts_themes = require "telescope.themes"
 local ts_actions = require "telescope.actions"
 local ts_layout_actions = require "telescope.actions.layout"
 
+local util = require "my-config.util"
+
 local M = {}
+
+function M.git_changed_files()
+    -- Based on https://github.com/nvim-telescope/telescope.nvim/issues/758#issuecomment-844868644
+    local pickers = require "telescope.pickers"
+    local sorters = require "telescope.sorters"
+    local finders = require "telescope.finders"
+
+    pickers.new(require("telescope.themes").get_dropdown {}, {
+        prompt_title = "Git Branch Modified Files",
+        finder = finders.new_oneshot_job {
+            "bash",
+            util.my_script_path "git-branch-changed-files.sh",
+        },
+        sorter = sorters.get_fuzzy_file(),
+    }):find()
+end
 
 function M.quick_find_files()
     require("telescope.builtin").find_files(ts_themes.get_dropdown { previewer = false })
@@ -48,7 +66,6 @@ require("telescope").setup {
                 preview_width = 0.618,
             },
             vertical = {
-
                 mirror = false,
             },
             width = 0.87,

@@ -169,7 +169,7 @@ wk.register({
     t = toggle_feature_keymap,
     v = vcs_keymap,
     w = window_keymap,
-    ["j"] = { harpoon_ui.toggle_quick_menu, "Marked Files" },
+    ["j"] = { require("my-config.telescope").git_changed_files, "Changed Files in Git Branch" },
     ["J"] = buffer_keymap.b, -- Switch buffer
     ["k"] = { require("my-config.telescope").quick_find_files, "Quick Find Files" },
     ["K"] = file_keymap.E, -- Start broswer in the same directory
