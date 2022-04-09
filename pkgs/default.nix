@@ -9,6 +9,15 @@ final: prev:
     patches = prevAttrs.patches ++ [ ./cmake-language-server-dep-version.patch ];
   });
 
+  kitty = prev.kitty.overrideAttrs (prevAttrs: {
+    patches = prevAttrs.patches ++ prev.lib.optionals prev.stdenv.isDarwin [
+      (prev.fetchpatch {
+        name = "fix-build-with-non-framework-python-on-darwin.patch";
+        url = "https://github.com/kovidgoyal/kitty/commit/57cffc71b78244e6a9d49f4c9af24d1a88dbf537.patch";
+        sha256 = "sha256-1IGONSVCVo5SmLKw90eqxaI5Mwc764O1ur+aMsc7h94=";
+      })
+    ];
+  });
   python39 = prev.python39.override {
     packageOverrides = python-self: python-super:
       let

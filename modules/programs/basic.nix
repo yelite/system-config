@@ -23,8 +23,6 @@ in
       git
       lazygit
 
-      reaper
-
       nix-tree
       nixpkgs-fmt
       cachix
@@ -42,6 +40,7 @@ in
       zoom-us
       notion-app-enhanced
       write_stylus
+      reaper
       realvnc-vnc-viewer
       (vivaldi.override {
         commandLineArgs = [
@@ -95,6 +94,7 @@ in
       };
       scripts = [
         pkgs.mpvScripts.autoload
+      ] ++ optionals systemInfo.isLinux [
         pkgs.mpvScripts.mpris
       ];
     };
