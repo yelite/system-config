@@ -37,6 +37,7 @@
       neovim.enable = true;
       kitty.enable = true;
       dunst.enable = true;
+      fish.enable = true;
       i3 = {
         enable = true;
         secondaryMonitorName = "HDMI-0";

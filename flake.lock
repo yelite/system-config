@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "autopair": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1610912397,
+        "narHash": "sha256-l6WJ2kjDO/TnU9FSigjxk5xFp90xl68gDfggkE/wrlM=",
+        "owner": "jorgebucaran",
+        "repo": "autopair.fish",
+        "rev": "1222311994a0730e53d8e922a759eeda815fcb62",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jorgebucaran",
+        "repo": "autopair.fish",
+        "type": "github"
+      }
+    },
     "autosave": {
       "flake": false,
       "locked": {
@@ -85,6 +101,22 @@
         "type": "github"
       }
     },
+    "done": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1633849654,
+        "narHash": "sha256-6oeyN9ngXWvps1c5QAUjlyPDQwRWAoxBiVTNmZ4sG8E=",
+        "owner": "franciscolourenco",
+        "repo": "done",
+        "rev": "d6abb267bb3fb7e987a9352bc43dcdb67bac9f06",
+        "type": "github"
+      },
+      "original": {
+        "owner": "franciscolourenco",
+        "repo": "done",
+        "type": "github"
+      }
+    },
     "extra-neovim-plugins": {
       "inputs": {
         "autosave": "autosave",
@@ -136,6 +168,28 @@
         "type": "github"
       }
     },
+    "fish-plugins": {
+      "inputs": {
+        "autopair": "autopair",
+        "done": "done",
+        "forgit": "forgit",
+        "fzf-fish": "fzf-fish",
+        "replay": "replay",
+        "sponge": "sponge",
+        "tide": "tide",
+        "z": "z"
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-my7tpTK/20gwudLnYg87Ug/QDSUnDeAk82lg1yx6NwY=",
+        "path": "./flakes/fish-plugins",
+        "type": "path"
+      },
+      "original": {
+        "path": "./flakes/fish-plugins",
+        "type": "path"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -164,6 +218,38 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "forgit": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1649600616,
+        "narHash": "sha256-OBRqjXEMmazBZeEagdUylNaBIKzH4Z1Ro24C6e7CAcM=",
+        "owner": "wfxr",
+        "repo": "forgit",
+        "rev": "fa9fd624398643d53ea9cea61d66eca77ca7c46c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wfxr",
+        "repo": "forgit",
+        "type": "github"
+      }
+    },
+    "fzf-fish": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1647716223,
+        "narHash": "sha256-WRrPd/GuXHJ9uYvhwjwp9AEtvbfMlpV0xdgNyfx43ok=",
+        "owner": "PatrickF1",
+        "repo": "fzf.fish",
+        "rev": "17fcc74029bbd88445712752a5a71bc64aa3994c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PatrickF1",
+        "repo": "fzf.fish",
         "type": "github"
       }
     },
@@ -337,11 +423,28 @@
         "type": "github"
       }
     },
+    "replay": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1645710882,
+        "narHash": "sha256-ovxpzHC9coRtm/v3rQlPlX1NEe22+WLA7HpnfqtUJU8=",
+        "owner": "jorgebucaran",
+        "repo": "replay.fish",
+        "rev": "a2eef7319adb1c5cd00a4454bb29a9e072d51a53",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jorgebucaran",
+        "repo": "replay.fish",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "darwin": "darwin",
         "extra-neovim-plugins": "extra-neovim-plugins",
         "fenix": "fenix",
+        "fish-plugins": "fish-plugins",
         "hm": "hm",
         "nixpkgs": "nixpkgs",
         "nixpkgs-wayland": "nixpkgs-wayland",
@@ -381,6 +484,22 @@
         "type": "github"
       }
     },
+    "sponge": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1642631829,
+        "narHash": "sha256-EUT9Bf+OD+cCNLfJqVog4kSXSNfuT5Db/+ejwsRBUW8=",
+        "owner": "andreiborisov",
+        "repo": "sponge",
+        "rev": "0f3bf8f10b81b25d2b3bbb3d6ec86f77408c0908",
+        "type": "github"
+      },
+      "original": {
+        "owner": "andreiborisov",
+        "repo": "sponge",
+        "type": "github"
+      }
+    },
     "tabout": {
       "flake": false,
       "locked": {
@@ -410,6 +529,22 @@
       "original": {
         "owner": "nvim-telescope",
         "repo": "telescope-rg.nvim",
+        "type": "github"
+      }
+    },
+    "tide": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1649624675,
+        "narHash": "sha256-nbn1Ip9f+s+GdyAL2A8VdVo44fW/CGt00nLG2QacxiU=",
+        "owner": "IlanCosman",
+        "repo": "tide",
+        "rev": "ad875b27cd0d33f95bac44df42a9b196132885f5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "IlanCosman",
+        "repo": "tide",
         "type": "github"
       }
     },
@@ -445,6 +580,22 @@
         "owner": "gytis-ivaskevicius",
         "ref": "pull/117/head",
         "repo": "flake-utils-plus",
+        "type": "github"
+      }
+    },
+    "z": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1649439817,
+        "narHash": "sha256-+FUBM7CodtZrYKqU542fQD+ZDGrd2438trKM0tIESs0=",
+        "owner": "jethrokuan",
+        "repo": "z",
+        "rev": "85f863f20f24faf675827fb00f3a4e15c7838d76",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jethrokuan",
+        "repo": "z",
         "type": "github"
       }
     }

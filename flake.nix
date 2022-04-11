@@ -74,5 +74,9 @@
       url = "path:./flakes/extra-neovim-plugins";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    fish-plugins = {
+      url = "path:./flakes/fish-plugins";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

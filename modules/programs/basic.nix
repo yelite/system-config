@@ -17,11 +17,14 @@ in
       ranger
 
       ripgrep
+      bat
       exa
       fd
+      fzf
 
       git
       lazygit
+      delta
 
       nix-tree
       nixpkgs-fmt
@@ -52,6 +55,9 @@ in
       vivaldi-widevine
       vivaldi-ffmpeg-codecs
       standardnotes
+    ] ++
+    optionals systemInfo.isDarwin [
+      terminal-notifier
     ];
 
   programs = {

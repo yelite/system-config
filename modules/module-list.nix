@@ -22,6 +22,7 @@
     ./programs/kitty
     ./programs/neovim
     ./programs/dunst
+    ./programs/fish
     ./programs/sway.nix
   ];
 }
