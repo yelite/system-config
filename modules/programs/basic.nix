@@ -22,9 +22,7 @@ in
       fd
       fzf
 
-      git
-      lazygit
-      delta
+      difftastic
 
       nix-tree
       nixpkgs-fmt
@@ -68,6 +66,21 @@ in
       enableFishIntegration = true;
 
       keys = [ "id_ed25519" ];
+    };
+
+    git = {
+      enable = true;
+      delta.enable = true;
+    };
+
+    lazygit = {
+      enable = true;
+      settings = {
+        git.paging = {
+          colorArg = "always";
+          pager = "delta --dark --paging=never --syntax-theme=Nord";
+        };
+      };
     };
 
     ssh = {
