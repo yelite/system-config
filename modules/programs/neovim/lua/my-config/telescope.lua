@@ -4,6 +4,10 @@ local trouble = require "trouble.providers.telescope"
 local ts_themes = require "telescope.themes"
 local ts_actions = require "telescope.actions"
 local ts_layout_actions = require "telescope.actions.layout"
+local make_entry = require "telescope.make_entry"
+local pickers = require "telescope.pickers"
+local sorters = require "telescope.sorters"
+local finders = require "telescope.finders"
 
 local util = require "my-config.util"
 
@@ -11,16 +15,17 @@ local M = {}
 
 function M.git_changed_files()
     -- Based on https://github.com/nvim-telescope/telescope.nvim/issues/758#issuecomment-844868644
-    local pickers = require "telescope.pickers"
-    local sorters = require "telescope.sorters"
-    local finders = require "telescope.finders"
+    local cmd = {
+        "bash",
+        util.my_script_path "git-branch-changed-files.sh",
+    }
+    local opts = {
+        entry_maker = make_entry.gen_from_file(),
+    }
 
     pickers.new(require("telescope.themes").get_dropdown {}, {
         prompt_title = "Git Branch Modified Files",
-        finder = finders.new_oneshot_job {
-            "bash",
-            util.my_script_path "git-branch-changed-files.sh",
-        },
+        finder = finders.new_oneshot_job(cmd, opts),
         sorter = sorters.get_fuzzy_file(),
     }):find()
 end
