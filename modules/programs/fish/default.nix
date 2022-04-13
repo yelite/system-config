@@ -17,7 +17,7 @@ in
         "ls" = "exa";
       };
       plugins = inputs.fish-plugins.extraFishPlugins;
-      shellInit = builtins.readFile ./tide.fish;
+      shellInit = builtins.readFile ./config.fish;
     };
   };
 }
