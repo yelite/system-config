@@ -15,6 +15,9 @@ in
       enable = true;
       shellAliases = {
         "ls" = "exa";
+        # Steal the name from macOS
+        "pbcopy" = "xclip -i -rmlastnl -selection c";
+        "pbpaste" = "xclip -o -selection c";
       };
       plugins = inputs.fish-plugins.extraFishPlugins;
       shellInit = builtins.readFile ./config.fish;
