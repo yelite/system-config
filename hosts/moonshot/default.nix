@@ -34,6 +34,7 @@
     nvfancontrol.enable = false;
 
     homeManagerConfig = {
+      syncthing.enable = true;
       neovim.enable = true;
       kitty.enable = true;
       dunst.enable = true;

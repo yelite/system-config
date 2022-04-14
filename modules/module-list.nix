@@ -15,6 +15,7 @@
   ];
   darwinOnlyModules = [ ];
   homeManagerModules = [
+    ./syncthing
     ./programs/basic.nix
     ./programs/dev.nix
     ./programs/neovim
