@@ -77,6 +77,10 @@ rec {
     }
     {
       command = "move position center";
+      criteria = { class = "zoom"; title = "Participants.*"; };
+    }
+    {
+      command = "move position center";
       criteria = { class = "zoom"; title = "Chat"; };
     }
   ];
