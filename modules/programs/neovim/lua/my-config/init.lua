@@ -170,6 +170,8 @@ require("neoclip").setup {
     },
 }
 
+require("aerial").setup {}
+
 require "my-config.keymap"
 require "my-config.terminal"
 require "my-config.treesitter"
