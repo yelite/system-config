@@ -47,11 +47,13 @@ in
         xsession = {
           enable = true;
           scriptPath = ".xsession-hm";
-          pointerCursor = {
-            package = pkgs.apple-cursor;
-            name = "macOSMonterey";
-            size = 40;
-          };
+        };
+
+        home.pointerCursor = {
+          x11.enable = true;
+          package = pkgs.apple-cursor;
+          name = "macOSMonterey";
+          size = 40;
         };
       })
     (mkIf (cfg.enable && cfg.highDPI)
