@@ -346,9 +346,9 @@ end
 
 -- Keys for terminal mode
 function M.set_terminal_keymaps()
-    m.tnoremap([[<C-t>]], [[<cmd>ToggleTerm<cr>]], m.buffer)
-    m.inoremap([[<C-t>]], [[<cmd>ToggleTerm<cr>]], m.buffer)
-    m.nnoremap([[<C-t>]], [[<cmd>ToggleTerm<cr>]], m.buffer)
+    m.tnoremap([[<C-s>]], [[<cmd>ToggleTerm<cr>]], m.buffer)
+    m.inoremap([[<C-s>]], [[<cmd>ToggleTerm<cr>]], m.buffer)
+    m.nnoremap([[<C-s>]], [[<cmd>ToggleTerm<cr>]], m.buffer)
     m.tnoremap([[<C-w>h]], [[<C-\><C-n><C-W>h]], m.buffer)
     m.tnoremap([[<C-w>j]], [[<C-\><C-n><C-W>j]], m.buffer)
     m.tnoremap([[<C-w>k]], [[<C-\><C-n><C-W>k]], m.buffer)
