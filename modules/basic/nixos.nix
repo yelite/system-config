@@ -84,6 +84,12 @@ lib.optionalAttrs systemInfo.isLinux {
     };
   };
 
+  home-manager.users.root.programs.git = {
+    enable = true;
+    # Fix the git permission issue per https://github.com/NixOS/nixpkgs/issues/169193#issuecomment-1116090241
+    extraConfig.safe.directory = "/home/${myConfig.username}/.system-config";
+  };
+
   users.users.${myConfig.username} = {
     isNormalUser = true;
     shell = pkgs.fish;
