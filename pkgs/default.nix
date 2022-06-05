@@ -9,13 +9,6 @@ final: prev:
     patches = prevAttrs.patches ++ [ ./cmake-language-server-dep-version.patch ];
   });
 
-  vivaldi-widevine = prev.vivaldi-widevine.overrideAttrs (prevAttrs: {
-    src = prev.fetchurl {
-      url = "https://dl.google.com/widevine-cdm/${prevAttrs.version}-linux-x64.zip";
-      sha256 = "sha256-vsr6eymKqU2Y6HM4DPHnUfVkB2BQ1HSSWvk1tNhUA5Y=";
-    };
-  });
-
   kitty = prev.kitty.overrideAttrs (prevAttrs: {
     patches = prevAttrs.patches ++ prev.lib.optionals prev.stdenv.isDarwin [
       (prev.fetchpatch {
