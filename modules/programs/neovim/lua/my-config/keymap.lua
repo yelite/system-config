@@ -92,7 +92,7 @@ local search_keymap = {
     name = "search",
     s = { "viw:lua require('spectre').open_file_search()<CR>", "Search Current Symbol" },
     S = { "<cmd>lua require('spectre').open()<CR>", "Search" },
-    f = { "<cmd>Telescope live_grep_raw<cr>", "Search Text" },
+    f = { "<cmd>Telescope live_grep_args<cr>", "Search Text" },
     F = {
         [[<cmd>lua require('telescope.builtin').live_grep({cwd="%:p:h", results_title=vim.fn.expand("%:h")})<cr>]],
         "Search Text in Current File Directory",
