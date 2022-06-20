@@ -26,6 +26,11 @@ lib.optionalAttrs systemInfo.isDarwin {
     generateNixPathFromInputs = true;
     generateRegistryFromInputs = true;
     linkInputs = true;
+
+    extraOptions = ''
+      keep-outputs = true
+      keep-derivations = true
+    '';
   };
 
   programs = {

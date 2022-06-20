@@ -68,6 +68,11 @@ in
       keys = [ "id_ed25519" ];
     };
 
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+
     git = {
       enable = true;
       delta = {
@@ -129,6 +134,13 @@ in
       ] ++ optionals systemInfo.isLinux [
         pkgs.mpvScripts.mpris
       ];
+    };
+  };
+
+  services = {
+    kdeconnect = lib.mkIf systemInfo.isLinux {
+      enable = true;
+      indicator = true;
     };
   };
 }

@@ -15,6 +15,10 @@ lib.optionalAttrs systemInfo.isLinux {
     generateNixPathFromInputs = true;
     generateRegistryFromInputs = true;
     linkInputs = true;
+    extraOptions = ''
+      keep-outputs = true
+      keep-derivations = true
+    '';
   };
 
   console = {
