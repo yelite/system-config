@@ -35,6 +35,8 @@ in
       users.${cfg.username} = { };
       sharedModules = cfg.homeManagerModules ++ [{
         myHomeConfig = cfg.homeManagerConfig;
+        # https://github.com/nix-community/home-manager/issues/3047
+        home.stateVersion = "18.09";
       }];
       useGlobalPkgs = true;
       extraSpecialArgs = {
