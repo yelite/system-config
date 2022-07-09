@@ -103,6 +103,7 @@ in
 
     ssh = {
       enable = true;
+      includes = [ "~/.ssh/config.d/*" ];
       matchBlocks = lib.mkMerge [
         {
           "*" = {
