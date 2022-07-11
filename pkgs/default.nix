@@ -1,5 +1,15 @@
 { inputs }:
 
+let
+  unbreakPyOpenssl = python: {
+    pyopenssl = python.pyopenssl.overrideAttrs (old: {
+      # Unbreak pyopenssl
+      # https://github.com/NixOS/nixpkgs/pull/172397,
+      # https://github.com/pyca/pyopenssl/issues/87
+      meta = old.meta // { broken = false; };
+    });
+  };
+in
 final: prev:
 {
   apple-cursor = prev.callPackage ./apple-cursor.nix { };
@@ -9,14 +19,9 @@ final: prev:
     patches = prevAttrs.patches ++ [ ./cmake-language-server-dep-version.patch ];
   });
 
-  kitty = prev.kitty.overrideAttrs (prevAttrs: {
-    patches = prevAttrs.patches ++ prev.lib.optionals prev.stdenv.isDarwin [
-      (prev.fetchpatch {
-        name = "fix-build-with-non-framework-python-on-darwin.patch";
-        url = "https://github.com/kovidgoyal/kitty/commit/57cffc71b78244e6a9d49f4c9af24d1a88dbf537.patch";
-        sha256 = "sha256-1IGONSVCVo5SmLKw90eqxaI5Mwc764O1ur+aMsc7h94=";
-      })
-    ];
+  kitty = prev.kitty.overridePythonAttrs (prevAttrs: {
+    # Remove fish from checkInputs to skip a failed test
+    checkInputs = builtins.filter (d: d.pname or "" != "fish") prevAttrs.checkInputs;
   });
   python39 = prev.python39.override {
     packageOverrides = python-self: python-super:
@@ -24,24 +29,22 @@ final: prev:
         inherit (prev.lib) optionalString optionals;
         inherit (prev.stdenv) isDarwin;
       in
+      { } // unbreakPyOpenssl python-super;
+  };
+
+  python310 = prev.python310.override {
+    packageOverrides = python-self: python-super:
       {
-        # TODO: Remove after https://github.com/NixOS/nixpkgs/issues/160133 is fixed
-        ipython = python-super.ipython.overridePythonAttrs (old: {
-          preCheck = old.preCheck + optionalString isDarwin ''
-            echo '#!${prev.stdenv.shell}' > pbcopy
-            chmod a+x pbcopy
-            cp pbcopy pbpaste
-            export PATH="$(pwd)''${PATH:+":$PATH"}"
-          '';
-        });
-        # TODO: Remove after https://github.com/NixOS/nixpkgs/issues/160904 is fixed
-        uvloop = python-super.uvloop.overridePythonAttrs
+        fonttools = python-super.fonttools.overridePythonAttrs
           (old: {
-            pytestFlagsArray = old.pytestFlagsArray ++ optionals isDarwin [
-              "--deselect"
-              "tests/test_context.py::Test_UV_Context::test_create_ssl_server_manual_connection_lost"
-            ];
+            checkInputs = builtins.filter (d: builtins.isNull (builtins.match ".*-pathops-.*" d.name)) old.checkInputs;
           });
-      };
+        # Skip the tornado dependency due to pyopenssl issue
+        matplotlib = python-super.matplotlib.overridePythonAttrs
+          (old: {
+            propagatedBuildInputs = builtins.filter (d: builtins.isNull (builtins.match ".*-tornado-.*" d.name)) old.propagatedBuildInputs;
+          });
+      } // unbreakPyOpenssl python-super
+    ;
   };
 }
