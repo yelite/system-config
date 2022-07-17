@@ -27,6 +27,8 @@ in
       nix-tree
       nixpkgs-fmt
       cachix
+
+      fup-repl
     ] ++
     optionals systemInfo.isLinux [
       steam-run
@@ -124,7 +126,7 @@ in
     };
 
     mpv = {
-      enable = true;
+      enable = systemInfo.isLinux;
       defaultProfiles = [ "gpu-hq" ];
       config = {
         hwdec = "auto";
