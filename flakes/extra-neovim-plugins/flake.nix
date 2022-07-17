@@ -77,5 +77,9 @@
       url = "github:nvim-lualine/lualine.nvim";
       flake = false;
     };
+    nvim-termfinder = {
+      url = "github:tknightz/telescope-termfinder.nvim";
+      flake = false;
+    };
   };
 }

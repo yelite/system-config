@@ -99,6 +99,7 @@ local search_keymap = {
     },
     h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
     i = { "<cmd>Telescope treesitter<cr>", "Search Syntax Node" },
+    t = { "<cmd>Telescope termfinder find<cr>", "Search Terminals" },
 }
 -- t -> toggle mode
 local toggle_feature_keymap = {

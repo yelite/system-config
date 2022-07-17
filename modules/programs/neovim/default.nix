@@ -56,6 +56,7 @@ in
         telescope-fzf-native-nvim
         telescope-file-browser-nvim
         telescope-rg-nvim
+        nvim-termfinder
         harpoon
         toggleterm-nvim
         which-key-nvim
