@@ -3,7 +3,7 @@ let myConfig = config.myConfig;
 in
 lib.optionalAttrs systemInfo.isLinux {
   nix = {
-    autoOptimiseStore = true;
+    settings.auto-optimise-store = true;
 
     gc = {
       automatic = true;
