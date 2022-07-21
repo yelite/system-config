@@ -36,11 +36,13 @@ lsp_status.config {
 }
 
 require("lualine").setup {
-    options = { theme = "nord" },
+    options = { theme = "nord", globalstatus = true },
     sections = {
         lualine_a = { { "mode", fmt = pad_mode } },
-        lualine_b = {},
-        lualine_c = { "filename" },
+        lualine_b = { "filename" },
+        lualine_c = {
+            { gps.get_location, cond = gps.is_available },
+        },
         lualine_x = {
             lsp_status_component,
             { "diagnostics", sources = { "nvim_diagnostic", "coc" } },
@@ -50,26 +52,13 @@ require("lualine").setup {
         lualine_y = {},
         lualine_z = { "location" },
     },
-    inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = { "filename" },
-        lualine_x = {
-            { "diagnostics", sources = { "nvim_diagnostic", "coc" } },
-            diff_component,
-        },
-        lualine_y = {},
-        lualine_z = {},
-    },
     tabline = {
         lualine_a = {},
-        lualine_b = {
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {
             { "filename", path = 1, file_status = false, shorting_target = 0 },
         },
-        lualine_c = {
-            { gps.get_location, cond = gps.is_available },
-        },
-        lualine_x = {},
         lualine_y = { "branch" },
         lualine_z = {},
     },
