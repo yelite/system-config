@@ -106,7 +106,6 @@ local toggle_feature_keymap = {
     name = "toggle features",
     b = { [[<cmd>Gitsigns toggle_current_line_blame<cr>]], "Toggle Blame Line" },
     d = { [[<cmd>TroubleToggle<cr>]], "Trouble Window" },
-    f = { [[<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<cr>]], "Open Terminal" },
     i = { [[<cmd>IlluminationToggle<cr>]], "Illuminate Variable" },
     n = { toggle_line_number, "Line Number" },
     o = { "<cmd>AerialToggle!<cr>", "Symbol Outline" },
@@ -114,6 +113,7 @@ local toggle_feature_keymap = {
     p = { [[<cmd>TSPlaygroundToggle<cr>]], "Treesitter Playground" },
     s = { toggle_auto_save, "Auto Save" },
     t = { [[<cmd>exe v:count1 . "ToggleTerm direction=float"<cr>]], "Open Floating Terminal" },
+    T = { [[<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<cr>]], "Open Terminal" },
 }
 -- v -> version control
 local vcs_keymap = {
@@ -348,7 +348,6 @@ end
 -- Keys for terminal mode
 function M.set_terminal_keymaps()
     m.tnoremap([[<C-s>]], [[<cmd>ToggleTerm<cr>]], m.buffer)
-    m.inoremap([[<C-s>]], [[<cmd>ToggleTerm<cr>]], m.buffer)
     m.nnoremap([[<C-s>]], [[<cmd>ToggleTerm<cr>]], m.buffer)
     m.tnoremap([[<C-w>h]], [[<C-\><C-n><C-W>h]], m.buffer)
     m.tnoremap([[<C-w>j]], [[<C-\><C-n><C-W>j]], m.buffer)

@@ -2,6 +2,7 @@ local M = {}
 
 require("toggleterm").setup {
     start_in_insert = true,
+    persist_mode = false,
 }
 
 local Terminal = require("toggleterm.terminal").Terminal

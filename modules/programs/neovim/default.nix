@@ -100,8 +100,8 @@ in
         END🤞
       '';
 
-      # for treesitter
       extraPackages = with pkgs; [
+        # for treesitter
         gcc
         fd
         ripgrep
