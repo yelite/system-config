@@ -1,5 +1,3 @@
-{ inputs }:
-
 let
   unbreakPyOpenssl = python: {
     pyopenssl = python.pyopenssl.overrideAttrs (old: {
@@ -12,9 +10,6 @@ let
 in
 final: prev:
 {
-  apple-cursor = prev.callPackage ./apple-cursor.nix { };
-  xremap = prev.callPackage ./xremap.nix { };
-
   cmake-language-server = prev.cmake-language-server.overrideAttrs (prevAttrs: {
     patches = prevAttrs.patches ++ [ ./cmake-language-server-dep-version.patch ];
   });
@@ -23,12 +18,9 @@ final: prev:
     # Remove fish from checkInputs to skip a failed test
     checkInputs = builtins.filter (d: d.pname or "" != "fish") prevAttrs.checkInputs;
   });
+
   python39 = prev.python39.override {
     packageOverrides = python-self: python-super:
-      let
-        inherit (prev.lib) optionalString optionals;
-        inherit (prev.stdenv) isDarwin;
-      in
       { } // unbreakPyOpenssl python-super;
   };
 

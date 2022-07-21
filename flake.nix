@@ -18,12 +18,19 @@
         channelsConfig.allowUnfree = true;
 
         # TODO: Reevaluate the wayland on Nvidia to see if the flickering problem is solved
-        channels.nixpkgs.overlaysBuilder = channels: [
+        sharedOverlays = [
           self.overlay
           fenix.overlay
           inputs.extra-neovim-plugins.overlay
           # inputs.nixpkgs-wayland.overlay
         ];
+
+        channels.nixpkgs-darwin = {
+          input = inputs.nixpkgs;
+          overlaysBuilder = channels: [
+            (import ./overlays/darwin-patches)
+          ];
+        };
 
         hosts = {
           moonshot = { };
@@ -32,11 +39,12 @@
             system = "aarch64-darwin";
             output = "darwinConfigurations";
             builder = darwin.lib.darwinSystem;
+            channelName = "nixpkgs-darwin";
           };
         };
 
 
-        overlay = import ./pkgs { inherit inputs; };
+        overlay = import ./overlays/extra-pkgs;
         overlays = utils.lib.exportOverlays {
           inherit (self) pkgs inputs;
         };
