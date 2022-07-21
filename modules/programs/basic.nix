@@ -61,15 +61,6 @@ in
     ];
 
   programs = {
-    keychain = lib.mkIf systemInfo.isLinux {
-      # TODO: Investigate the compatibility with sddm and re-enable this
-      enable = false;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-
-      keys = [ "id_ed25519" ];
-    };
-
     direnv = {
       enable = true;
       nix-direnv.enable = true;
@@ -123,6 +114,9 @@ in
           }
         )
       ];
+      extraConfig = ''
+        AddKeysToAgent yes
+      '';
     };
 
     mpv = {

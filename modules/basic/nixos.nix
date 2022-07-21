@@ -79,6 +79,10 @@ lib.optionalAttrs systemInfo.isLinux {
   programs = {
     fish.enable = true;
     less.enable = true;
+    ssh = {
+      startAgent = true;
+      enableAskPassword = false;
+    };
   };
 
   environment.etc = {
