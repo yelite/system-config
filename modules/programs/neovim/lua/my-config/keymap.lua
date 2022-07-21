@@ -184,7 +184,7 @@ wk.register({
 
 wk.register({
     ["]c"] = { "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", "Next Hunk", expr = true },
-    ["[c"] = { "&diff ? '[c' : '<cmd>Gitsigns previous_hunk<CR>'", "Previous Hunk", expr = true },
+    ["[c"] = { "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", "Previous Hunk", expr = true },
 }, { mode = "n", prefix = "" })
 
 -- Hop
