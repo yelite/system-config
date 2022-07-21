@@ -23,6 +23,14 @@
           fenix.overlay
           inputs.extra-neovim-plugins.overlay
           # inputs.nixpkgs-wayland.overlay
+          (final: prev: {
+            # rename the script of fup-repl from flake-utils-plus 
+            my-fup-repl = final.fup-repl.overrideAttrs (old: {
+              buildCommand = old.buildCommand + ''
+                mv $out/bin/repl $out/bin/fup-repl
+              '';
+            });
+          })
         ];
 
         channels.nixpkgs-darwin = {

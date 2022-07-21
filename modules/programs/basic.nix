@@ -28,7 +28,7 @@ in
       nixpkgs-fmt
       cachix
 
-      fup-repl
+      my-fup-repl
     ] ++
     optionals systemInfo.isLinux [
       steam-run
