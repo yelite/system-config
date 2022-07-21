@@ -114,8 +114,7 @@ in
         rust-analyzer
         rustfmt
 
-        # TODO: enable this after the lua side is finished
-        # rnix-lsp
+        rnix-lsp
         sumneko-lua-language-server
       ] ++
       (

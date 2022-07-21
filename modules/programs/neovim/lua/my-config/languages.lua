@@ -68,6 +68,7 @@ clangd_extensions.setup {
 
 nvim_lsp.pylsp.setup(standard_lsp_config)
 nvim_lsp.cmake.setup(standard_lsp_config)
+nvim_lsp.rnix.setup(standard_lsp_config)
 
 -- TODO move this into project-specific settings because
 -- lua-dev should only be used with init.lua development
