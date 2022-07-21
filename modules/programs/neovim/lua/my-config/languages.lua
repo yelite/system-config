@@ -89,7 +89,7 @@ vim.o.cinoptions = "h1,l1,g1,t0,i4,+4,(0,w1,W4"
 vim.cmd [[
 augroup MyNeoformat
   autocmd!
-  autocmd BufWritePre *.lua undojoin | Neoformat
-  autocmd BufWritePre *.nix undojoin | Neoformat
+  autocmd BufWritePre *.lua silent! undojoin | Neoformat
+  autocmd BufWritePre *.nix silent! undojoin | Neoformat
 augroup END
 ]]

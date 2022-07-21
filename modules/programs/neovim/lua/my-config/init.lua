@@ -95,7 +95,7 @@ require("session-lens").setup {}
 require("autosave").setup {
     enabled = true,
     execution_message = "",
-    events = { "BufLeave", "FocusLost", "CursorHold" },
+    events = { "InsertLeave", "FocusLost" },
     conditions = {
         exists = true,
         filename_is_not = {},
@@ -105,8 +105,21 @@ require("autosave").setup {
     write_all_buffers = false,
     on_off_commands = true,
     clean_command_line_interval = 0,
-    debounce_delay = 150,
+    debounce_delay = 140,
 }
+vim.api.nvim_create_augroup("MyAutoSave", { clear = true })
+vim.api.nvim_create_autocmd("BufLeave", {
+    group = "MyAutoSave",
+    callback = function(data)
+        if vim.fn.filereadable(vim.fn.expand "%:p") == 0 then
+            return
+        end
+        if vim.api.nvim_eval [[&modifiable]] == 0 then
+            return
+        end
+        vim.cmd [[ update ]]
+    end,
+})
 
 require("gitsigns").setup {
     signcolumn = false,
