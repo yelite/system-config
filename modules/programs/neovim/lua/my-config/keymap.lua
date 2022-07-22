@@ -316,7 +316,7 @@ vim.keymap.set({ "n", "t" }, "<C-3>", function()
     toggleterm.toggle(3, nil, nil, "float")
 end)
 vim.keymap.set({ "n", "t" }, "<C-4>", function()
-    toggleterm.toggle(4, nil, nil, "tab")
+    toggleterm.toggle(4, nil, nil, "horizontal")
 end)
 
 -- LSP

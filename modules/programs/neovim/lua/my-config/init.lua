@@ -14,6 +14,7 @@ vim.wo.colorcolumn = "99999"
 o.splitbelow = true
 o.splitright = true
 o.hidden = true
+o.showtabline = 0
 
 o.tabstop = 4
 o.shiftwidth = 4

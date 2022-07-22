@@ -1,6 +1,7 @@
 local lsp_status = require "lsp-status"
 local gps = require "nvim-gps"
 local terms = require "toggleterm.terminal"
+local nord_colors = require "nord.colors"
 
 gps.setup()
 
@@ -16,8 +17,7 @@ end
 
 local function get_term_name()
     local id, term = terms.identify()
-    -- return string.format("Terminal %d: %s", id, term:_display_name())
-    if term.display_name ~= nil then
+    if term ~= nil and term.display_name ~= nil then
         return "Terminal: " .. term.display_name
     else
         return "Terminal " .. id
@@ -32,7 +32,7 @@ local diff_component = {
 local lsp_status_component = {
     require("lsp-status").status_progress,
     cond = function()
-        return #vim.lsp.buf_get_clients() > 0
+        return #vim.lsp.get_active_clients() > 0
     end,
 }
 
@@ -43,7 +43,11 @@ lsp_status.config {
 }
 
 require("lualine").setup {
-    options = { theme = "nord", globalstatus = true },
+    options = {
+        theme = "nord",
+        globalstatus = true,
+        disabled_filetypes = { winbar = { "toggleterm" } },
+    },
     sections = {
         lualine_a = { { "mode", fmt = pad_mode } },
         lualine_b = {
@@ -59,26 +63,33 @@ require("lualine").setup {
                 get_term_name,
             },
         },
-        lualine_c = {
-            { gps.get_location, cond = gps.is_available },
-        },
+        lualine_c = { { gps.get_location, cond = gps.is_available } },
         lualine_x = {
             lsp_status_component,
             { "diagnostics", sources = { "nvim_diagnostic", "coc" } },
             diff_component,
             "filetype",
         },
-        lualine_y = { "location", "branch" },
+        lualine_y = { "branch" },
         lualine_z = { "tabs" },
     },
-    winbar = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = {},
-    },
+    -- TODO: reenable winbar after https://github.com/neovim/neovim/issues/19458
+    -- winbar = {
+    --     lualine_a = {},
+    --     lualine_b = { { "filename", color = { fg = nord_colors.nord5_gui } } },
+    --     lualine_c = { { gps.get_location, cond = gps.is_available } },
+    --     lualine_x = {},
+    --     lualine_y = { "location", "progress" },
+    --     lualine_z = {},
+    -- },
+    -- inactive_winbar = {
+    --     lualine_a = {},
+    --     lualine_b = { { "filename", color = { fg = nord_colors.nord3_gui_bright } } },
+    --     lualine_c = {},
+    --     lualine_x = {},
+    --     lualine_y = {},
+    --     lualine_z = {},
+    -- },
 }
 
 require("incline").setup {
