@@ -1,5 +1,6 @@
 local bufdelete = require "bufdelete"
 local action_state = require "telescope.actions.state"
+local action_generate = require "telescope.actions.generate"
 local trouble = require "trouble.providers.telescope"
 local ts_themes = require "telescope.themes"
 local ts_actions = require "telescope.actions"
@@ -58,6 +59,8 @@ require("telescope").setup {
                 ["<C-t>"] = trouble.open_with_trouble,
                 ["<C-h>"] = "which_key",
                 ["<C-/>"] = "which_key",
+                -- TODO: smart open in opposite window
+                ["<C-Enter>"] = function() end,
             },
         },
         prompt_prefix = "  ",
@@ -108,15 +111,24 @@ require("telescope").setup {
             mappings = {
                 i = {
                     ["<C-f>"] = { "<Right>", type = "command" },
-                    ["<C-h>"] = "which_key",
-                    ["<C-CR>"] = "select_horizontal",
-                    ["<C-d>"] = fb_action "remove",
-                    ["<C-e>"] = fb_action "create",
-                    ["<C-r>"] = fb_action "rename",
-                    ["<C-y>"] = fb_action "copy",
-                    ["<C-x>"] = fb_action "move",
-                    ["<C-v>"] = fb_action "toggle_browser",
-                    ["<C-t>"] = fb_action "toggle_hidden",
+                    ["<C-h>"] = action_generate.which_key {
+                        keybind_width = 12,
+                        max_height = 0.5,
+                    },
+                    ["<S-CR>"] = fb_action "create_from_prompt",
+                    ["<C-g>"] = fb_action "goto_parent_dir",
+                    ["<C-w>"] = false,
+                    ["<C-w><Esc>"] = false,
+                    ["<C-w><C-d>"] = fb_action "remove",
+                    ["<C-w><C-n>"] = fb_action "create",
+                    ["<C-w><C-r>"] = fb_action "rename",
+                    ["<C-w><C-p>"] = fb_action "copy",
+                    ["<C-w><C-m>"] = fb_action "move",
+                    ["<C-w><C-f>"] = fb_action "toggle_browser",
+                    ["<C-w><C-t>"] = fb_action "toggle_hidden",
+                    ["<C-w><C-w>"] = fb_action "goto_cwd",
+                    ["<C-w><C-s>d"] = fb_action "sort_by_size",
+                    ["<C-w><C-s>s"] = fb_action "sort_by_date",
                 },
             },
         },
