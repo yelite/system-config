@@ -21,6 +21,7 @@
         sharedOverlays = [
           self.overlay
           fenix.overlay
+          inputs.neovim-nightly-overlay.overlay
           inputs.extra-neovim-plugins.overlay
           # inputs.nixpkgs-wayland.overlay
           (final: prev: {
@@ -84,6 +85,10 @@
     };
     fenix = {
       url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     extra-neovim-plugins = {

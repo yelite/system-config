@@ -22,6 +22,8 @@ in
 
     programs.neovim = {
       enable = true;
+      # TODO: Back to stable release after winbar is supported
+      package = pkgs.neovim-nightly;
 
       plugins = with pkgs.vimPlugins; [
         plenary-nvim
