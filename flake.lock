@@ -51,11 +51,11 @@
     "clangd-extensions-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1653965386,
-        "narHash": "sha256-DcBrpkZDvj2SqmXCdctt+0q8pt8TPqo2rYM2e5eNqo4=",
+        "lastModified": 1658226812,
+        "narHash": "sha256-H1xIrgtiWJzZMVex88uY4ux0hdUowpYl1/zX4r9iQEI=",
         "owner": "p00f",
         "repo": "clangd_extensions.nvim",
-        "rev": "81b56d41d8ab791509a8464b0afc54144be9f23d",
+        "rev": "2390bf75e25daf738d2cc04aac8f83f62b7f037d",
         "type": "github"
       },
       "original": {
@@ -67,11 +67,11 @@
     "coq-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1658019750,
-        "narHash": "sha256-taMe86ryOqOm5bv5pWOPujPQ7o72SPuPeYnKEDirPpM=",
+        "lastModified": 1658451766,
+        "narHash": "sha256-zLPks+d06XNSrhGQUn/tx2Oc2MGs4awfntF0MWI85Ak=",
         "owner": "ms-jpq",
         "repo": "coq_nvim",
-        "rev": "309e27d0cdbbfb1eb79e9e95baca2a746a657ca1",
+        "rev": "7c67424395016ee5990ae12c5156824c10bcb9cd",
         "type": "github"
       },
       "original": {
@@ -124,6 +124,7 @@
         "coq-nvim": "coq-nvim",
         "harpoon": "harpoon",
         "hop-extensions": "hop-extensions",
+        "incline-nvim": "incline-nvim",
         "lightspeed-nvim": "lightspeed-nvim",
         "lspsaga-nvim": "lspsaga-nvim",
         "lualine-nvim": "lualine-nvim",
@@ -141,7 +142,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-rDcMffyxznlqd09NunlEDBwcfY5FE3HNTOViCGmeVB4=",
+        "narHash": "sha256-AP/LRhrmVBRI3FKLP3pdUH/Sb+hIILCzDWuzbhngxn8=",
         "path": "./flakes/extra-neovim-plugins",
         "type": "path"
       },
@@ -355,6 +356,23 @@
         "type": "github"
       }
     },
+    "incline-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1658461799,
+        "narHash": "sha256-oXmZK4cVyuSqmDUwJK0v7YL2g3Kr7zbMgk178D+zzys=",
+        "owner": "yelite",
+        "repo": "incline.nvim",
+        "rev": "8cc23abf8ad44b23bc1964827619b0e9460ac6ea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yelite",
+        "ref": "patch-1",
+        "repo": "incline.nvim",
+        "type": "github"
+      }
+    },
     "lib-aggregate": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -410,11 +428,11 @@
     "lualine-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1657886009,
-        "narHash": "sha256-RFvYEbBMby326blaG7BHWmddU3YmsSoFJgEBtbo4Qo0=",
+        "lastModified": 1658323761,
+        "narHash": "sha256-9hzEv5mHxYmNeyE4UQct106fC53zcMcWiyjIblP5FKw=",
         "owner": "nvim-lualine",
         "repo": "lualine.nvim",
-        "rev": "655411fb7aa3cf4d46094132d684d815453f5043",
+        "rev": "8d956c18258bb128ecf42f95411bb26efd3a5d23",
         "type": "github"
       },
       "original": {

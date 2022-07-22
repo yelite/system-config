@@ -8,15 +8,6 @@ local function pad_mode(mode)
     return mode .. string.rep(" ", 7 - #mode)
 end
 
--- We need to redraw tabline if cursor moves to update nvim-gps
-vim.cmd [[  
-augroup MyTablineUpdate
-    au!
-    au CursorMoved * redrawtabline
-    au CursorMovedI * redrawtabline
-augroup END
-]]
-
 local diff_component = {
     "diff",
     symbols = { added = " ", modified = "柳", removed = " " },
@@ -39,27 +30,60 @@ require("lualine").setup {
     options = { theme = "nord", globalstatus = true },
     sections = {
         lualine_a = { { "mode", fmt = pad_mode } },
-        lualine_b = { "filename" },
+        lualine_b = { { "filename", path = 1, file_status = false } },
         lualine_c = {
             { gps.get_location, cond = gps.is_available },
         },
         lualine_x = {
-            lsp_status_component,
             { "diagnostics", sources = { "nvim_diagnostic", "coc" } },
             diff_component,
             "filetype",
         },
-        lualine_y = {},
-        lualine_z = { "location" },
+        lualine_y = { "location" },
+        lualine_z = { "branch" },
     },
     tabline = {
         lualine_a = {},
-        lualine_b = {},
+        lualine_b = { lsp_status_component },
         lualine_c = {},
-        lualine_x = {
-            { "filename", path = 1, file_status = false, shorting_target = 0 },
-        },
-        lualine_y = { "branch" },
+        lualine_x = {},
+        lualine_y = { { "tabs" } },
         lualine_z = {},
+    },
+}
+
+require("incline").setup {
+    debounce_threshold = {
+        falling = 50,
+        rising = 10,
+    },
+    render = "basic",
+    window = {
+        margin = {
+            horizontal = 0,
+            vertical = 0,
+        },
+        options = {
+            signcolumn = "no",
+            wrap = false,
+        },
+        padding = 1,
+        padding_char = " ",
+        placement = {
+            horizontal = "right",
+            vertical = "top",
+        },
+        width = "fit",
+        winhighlight = {
+            active = {
+                Normal = "InclineNormal",
+            },
+            inactive = {
+                EndOfBuffer = "None",
+                Normal = "InclineNormalNC",
+                Search = "None",
+            },
+        },
+        zindex = 50,
     },
 }
