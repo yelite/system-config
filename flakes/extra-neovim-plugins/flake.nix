@@ -69,8 +69,7 @@
       flake = false;
     };
     lightspeed-nvim = {
-      # TODO: Pin revision until https://github.com/ggandor/lightspeed.nvim/pull/129
-      url = "github:ggandor/lightspeed.nvim?rev=4d8359a30b26ee5316d0e7c79af08b10cb17a57b";
+      url = "github:ggandor/lightspeed.nvim";
       flake = false;
     };
     lualine-nvim = {

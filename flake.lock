@@ -143,7 +143,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-wkqCrKe8BmjDunsJpZaEZZjAaY2x+cxH1nUHNdK05Oo=",
+        "narHash": "sha256-Rnf5+g+zKzCZqVBHGd3Fpq5v2h1GeN7s8U4e+1sKdYU=",
         "path": "./flakes/extra-neovim-plugins",
         "type": "path"
       },
@@ -396,17 +396,16 @@
     "lightspeed-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1645185942,
-        "narHash": "sha256-jwf0FKg3TijFPsPaTnTL4Ko7hmm+oLuVXw2qikWwuEg=",
+        "lastModified": 1656952533,
+        "narHash": "sha256-ooGtrjEA8D/VFhQEAKCm5OrXz0LknTKvaulVqRClmgo=",
         "owner": "ggandor",
         "repo": "lightspeed.nvim",
-        "rev": "4d8359a30b26ee5316d0e7c79af08b10cb17a57b",
+        "rev": "a4b4277d143270c6a7d85ef2e1574a1bbeab6677",
         "type": "github"
       },
       "original": {
         "owner": "ggandor",
         "repo": "lightspeed.nvim",
-        "rev": "4d8359a30b26ee5316d0e7c79af08b10cb17a57b",
         "type": "github"
       }
     },

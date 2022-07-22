@@ -263,10 +263,8 @@ m.vnoremap("<C-y>", [["+p]])
 -- Lighspeed
 m.nmap("s", "<Plug>Lightspeed_omni_s")
 m.xmap("s", "<Plug>Lightspeed_omni_s")
-m.omap("z", "<Plug>Lightspeed_s")
-m.omap("Z", "<Plug>Lightspeed_S")
-m.omap("x", "<Plug>Lightspeed_omni_x")
-m.omap("X", "<Plug>Lightspeed_omni_X")
+m.omap("x", "<Plug>Lightspeed_s")
+m.omap("X", "<Plug>Lightspeed_S")
 
 m.nmap("f", "<Plug>Lightspeed_f")
 m.xmap("f", "<Plug>Lightspeed_f")
