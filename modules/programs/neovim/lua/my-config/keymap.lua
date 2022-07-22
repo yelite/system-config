@@ -1,6 +1,6 @@
 local window_util = require "my-config.window"
-local harpoon_ui = require "harpoon.ui"
 local harpoon_mark = require "harpoon.mark"
+local toggleterm = require "toggleterm"
 
 local M = {}
 
@@ -112,8 +112,6 @@ local toggle_feature_keymap = {
     O = { "<cmd>AerialTreeToggle!<cr>", "Symbol Outline at Current Location" },
     p = { [[<cmd>TSPlaygroundToggle<cr>]], "Treesitter Playground" },
     s = { toggle_auto_save, "Auto Save" },
-    t = { [[<cmd>exe v:count1 . "ToggleTerm direction=float"<cr>]], "Open Floating Terminal" },
-    T = { [[<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<cr>]], "Open Terminal" },
 }
 -- v -> version control
 local vcs_keymap = {
@@ -308,6 +306,18 @@ m.xmap("p", "<plug>(SubversiveSubstitute)")
 -- zp/P to force linewise put
 m.nnoremap("zp", "<cmd>put<cr>")
 m.nnoremap("zP", "<cmd>put!<cr>")
+
+-- Tool windows
+vim.keymap.set({ "n", "t" }, "<C-1>", "<cmd>TroubleToggle<cr>")
+vim.keymap.set({ "n", "t" }, "<C-2>", function()
+    toggleterm.toggle(2, nil, nil, "horizontal")
+end)
+vim.keymap.set({ "n", "t" }, "<C-3>", function()
+    toggleterm.toggle(3, nil, nil, "float")
+end)
+vim.keymap.set({ "n", "t" }, "<C-4>", function()
+    toggleterm.toggle(4, nil, nil, "tab")
+end)
 
 -- LSP
 local function bind_rust_lsp_keys(bufnr)
