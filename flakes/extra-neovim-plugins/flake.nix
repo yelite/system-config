@@ -85,5 +85,9 @@
       url = "github:yelite/incline.nvim?ref=patch-1";
       flake = false;
     };
+    toggleterm-nvim = {
+      url = "github:akinsho/toggleterm.nvim";
+      flake = false;
+    };
   };
 }

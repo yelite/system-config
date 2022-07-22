@@ -1,11 +1,27 @@
 local lsp_status = require "lsp-status"
 local gps = require "nvim-gps"
+local terms = require "toggleterm.terminal"
+
 gps.setup()
 
 -- Pad the mode string so that switching between common
 -- modes will not cause width change in mode component
 local function pad_mode(mode)
     return mode .. string.rep(" ", 7 - #mode)
+end
+
+local function is_toggleterm()
+    return vim.bo.filetype == "toggleterm"
+end
+
+local function get_term_name()
+    local id, term = terms.identify()
+    -- return string.format("Terminal %d: %s", id, term:_display_name())
+    if term.display_name ~= nil then
+        return "Terminal: " .. term.display_name
+    else
+        return "Terminal " .. id
+    end
 end
 
 local diff_component = {
@@ -30,24 +46,37 @@ require("lualine").setup {
     options = { theme = "nord", globalstatus = true },
     sections = {
         lualine_a = { { "mode", fmt = pad_mode } },
-        lualine_b = { { "filename", path = 1, file_status = false } },
+        lualine_b = {
+            {
+                "filename",
+                path = 1,
+                file_status = false,
+                cond = function()
+                    return not is_toggleterm()
+                end,
+            },
+            {
+                get_term_name,
+            },
+        },
         lualine_c = {
             { gps.get_location, cond = gps.is_available },
         },
         lualine_x = {
+            lsp_status_component,
             { "diagnostics", sources = { "nvim_diagnostic", "coc" } },
             diff_component,
             "filetype",
         },
-        lualine_y = { "location" },
-        lualine_z = { "branch" },
+        lualine_y = { "location", "branch" },
+        lualine_z = { "tabs" },
     },
-    tabline = {
+    winbar = {
         lualine_a = {},
-        lualine_b = { lsp_status_component },
+        lualine_b = {},
         lualine_c = {},
         lualine_x = {},
-        lualine_y = { { "tabs" } },
+        lualine_y = {},
         lualine_z = {},
     },
 }

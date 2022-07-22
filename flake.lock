@@ -138,11 +138,12 @@
         "session-lens": "session-lens",
         "tabout": "tabout",
         "telescope-rg-nvim": "telescope-rg-nvim",
+        "toggleterm-nvim": "toggleterm-nvim",
         "trouble-nvim": "trouble-nvim"
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-AP/LRhrmVBRI3FKLP3pdUH/Sb+hIILCzDWuzbhngxn8=",
+        "narHash": "sha256-wkqCrKe8BmjDunsJpZaEZZjAaY2x+cxH1nUHNdK05Oo=",
         "path": "./flakes/extra-neovim-plugins",
         "type": "path"
       },
@@ -428,11 +429,11 @@
     "lualine-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1658323761,
-        "narHash": "sha256-9hzEv5mHxYmNeyE4UQct106fC53zcMcWiyjIblP5FKw=",
+        "lastModified": 1658499422,
+        "narHash": "sha256-q8CEED4yNJM7UNpvIM1ZC2uTMUXzOlX03Uq/ZO+b6/g=",
         "owner": "nvim-lualine",
         "repo": "lualine.nvim",
-        "rev": "8d956c18258bb128ecf42f95411bb26efd3a5d23",
+        "rev": "bf7dfb5dabd623518adc0067f797afc85da535b5",
         "type": "github"
       },
       "original": {
@@ -727,6 +728,22 @@
       "original": {
         "owner": "IlanCosman",
         "repo": "tide",
+        "type": "github"
+      }
+    },
+    "toggleterm-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1658219687,
+        "narHash": "sha256-pkFMgbSbD716N3JT33QaZRodOb9vb1fov8cA2A40Uzc=",
+        "owner": "akinsho",
+        "repo": "toggleterm.nvim",
+        "rev": "9db6f98af4f700945cff0f4f34b92ec80ab67a2b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "akinsho",
+        "repo": "toggleterm.nvim",
         "type": "github"
       }
     },

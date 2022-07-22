@@ -8,7 +8,7 @@ require("toggleterm").setup {
 }
 
 local Terminal = require("toggleterm.terminal").Terminal
-local lazygit = Terminal:new { cmd = "lazygit", count = 8, direction = "float" }
+local lazygit = Terminal:new { cmd = "lazygit", display_name = "lazygit", count = 8, direction = "float" }
 
 function M.toggle_lazygit()
     lazygit:toggle()
