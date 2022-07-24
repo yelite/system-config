@@ -26,8 +26,6 @@ local function lsp_on_attach(client, bufnr)
     keymap.bind_lsp_keys(client, bufnr)
     lsp_status.on_attach(client)
     aerial.on_attach(client, bufnr)
-    -- TODO: Enable after it respects global enabled flag and current word highlight
-    -- require("illuminate").on_attach(client)
 end
 
 local standard_lsp_config = coq.lsp_ensure_capabilities {

@@ -79,7 +79,6 @@ in
         lspsaga-nvim
         trouble-nvim
         aerial-nvim
-        vim-illuminate
         nvim-dap
         coq-nvim
         todo-comments-nvim

@@ -106,7 +106,6 @@ local toggle_feature_keymap = {
     name = "toggle features",
     b = { [[<cmd>Gitsigns toggle_current_line_blame<cr>]], "Toggle Blame Line" },
     d = { [[<cmd>TroubleToggle<cr>]], "Trouble Window" },
-    i = { [[<cmd>IlluminationToggle<cr>]], "Illuminate Variable" },
     n = { toggle_line_number, "Line Number" },
     o = { "<cmd>AerialToggle!<cr>", "Symbol Outline" },
     O = { "<cmd>AerialTreeToggle!<cr>", "Symbol Outline at Current Location" },

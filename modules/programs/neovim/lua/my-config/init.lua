@@ -42,18 +42,6 @@ o.completeopt = "menu,preview,noinsert"
 -- vim-surround
 g.surround_no_insert_mappings = true
 
--- vim-illuminate
-g.Illuminate_delay = 250
-g.Illuminate_ftblacklist = {
-    "TelescopePrompt",
-    "help",
-    "man",
-}
--- Only use the lsp highlight by default
-vim.defer_fn(function()
-    vim.cmd [[IlluminationDisable]]
-end, 1000)
-
 if g.neovide then
     g.neovide_remember_window_size = true
     g.neovide_input_use_logo = true
