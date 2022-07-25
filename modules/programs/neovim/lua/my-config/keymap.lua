@@ -77,8 +77,6 @@ local window_keymap = {
 -- i -> code intelligence
 local code_keymap = {
     name = "code actions",
-    f = { "<cmd>Neoformat<cr>", "Format Code" },
-
     -- TODO: Move to lsp on_attach
     s = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
     S = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },

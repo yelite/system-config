@@ -28,12 +28,7 @@
       flake = false;
     };
     lspsaga-nvim = {
-      # Use tami5's fork
-      url = "github:tami5/lspsaga.nvim";
-      flake = false;
-    };
-    coq-nvim = {
-      url = "github:ms-jpq/coq_nvim";
+      url = "github:kkharji/lspsaga.nvim";
       flake = false;
     };
     autosave = {
@@ -60,20 +55,8 @@
       url = "github:ThePrimeagen/harpoon";
       flake = false;
     };
-    telescope-rg-nvim = {
-      url = "github:nvim-telescope/telescope-rg.nvim";
-      flake = false;
-    };
-    clangd-extensions-nvim = {
-      url = "github:p00f/clangd_extensions.nvim";
-      flake = false;
-    };
-    lightspeed-nvim = {
-      url = "github:ggandor/lightspeed.nvim";
-      flake = false;
-    };
-    lualine-nvim = {
-      url = "github:nvim-lualine/lualine.nvim";
+    telescope-live-grep-args-nvim = {
+      url = "github:nvim-telescope/telescope-live-grep-args.nvim";
       flake = false;
     };
     nvim-termfinder = {

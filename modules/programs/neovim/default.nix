@@ -58,7 +58,7 @@ in
         telescope-nvim
         telescope-fzf-native-nvim
         telescope-file-browser-nvim
-        telescope-rg-nvim
+        telescope-live-grep-args-nvim
         nvim-termfinder
         harpoon
         toggleterm-nvim
@@ -83,11 +83,10 @@ in
         coq-nvim
         todo-comments-nvim
         comment-nvim
-        neoformat
         null-ls-nvim
         lua-dev-nvim
         rust-tools-nvim
-        clangd-extensions-nvim
+        clangd_extensions-nvim
         vim-nix
 
         {
