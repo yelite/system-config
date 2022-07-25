@@ -50,7 +50,7 @@ rust_tools.setup {
 }
 
 clangd_extensions.setup {
-    server = {
+    server = coq.lsp_ensure_capabilities {
         cmd = {
             "clangd",
             "--background-index",
@@ -64,7 +64,20 @@ clangd_extensions.setup {
     },
 }
 
-nvim_lsp.pylsp.setup(standard_lsp_config)
+nvim_lsp.jedi_language_server.setup {
+    settings = {
+        jedi = {
+            workspace = {
+                symbols = {
+                    maxSymbols = 100,
+                },
+            },
+        },
+    },
+    on_attach = lsp_on_attach,
+    capabilities = lsp_status.capabilities,
+}
+
 nvim_lsp.cmake.setup(standard_lsp_config)
 nvim_lsp.rnix.setup(standard_lsp_config)
 
@@ -79,14 +92,34 @@ local luadev = require("lua-dev").setup {
 }
 nvim_lsp.sumneko_lua.setup(luadev)
 
+require("null-ls").setup {
+    diagnostics_format = "#{m} (#{c} #{s})",
+    sources = {
+        require("null-ls").builtins.formatting.black,
+        require("null-ls").builtins.formatting.isort,
+        require("null-ls").builtins.formatting.clang_format,
+        require("null-ls").builtins.diagnostics.pylint.with({
+            -- TODO: read project config
+            extra_args = {
+                "--disable",
+                "typecheck",
+                "--disable",
+                "protected-access"
+            }
+        }),
+        require("null-ls").builtins.diagnostics.pyproject_flake8,
+        require("null-ls").builtins.diagnostics.mypy,
+    },
+}
+
 -- C indent
 vim.o.cinoptions = "h1,l1,g1,t0,i4,+4,(0,w1,W4"
 
 -- auto format
 vim.cmd [[
-augroup MyNeoformat
+augroup MyAutoFormat
   autocmd!
-  autocmd BufWritePre *.lua silent! undojoin | Neoformat
-  autocmd BufWritePre *.nix silent! undojoin | Neoformat
+  autocmd BufWritePre *.lua silent! undojoin | lua vim.lsp.buf.format()
+  autocmd BufWritePre *.nix silent! undojoin | lua vim.lsp.buf.format()
 augroup END
 ]]

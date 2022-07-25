@@ -80,7 +80,7 @@ local code_keymap = {
     f = { "<cmd>Neoformat<cr>", "Format Code" },
 
     -- TODO: Move to lsp on_attach
-    s = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace Symbols" },
+    s = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
     S = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
     d = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
     D = { "<cmd>Trouble document_diagnostics<cr>", "Document Diagnostics" },
@@ -328,6 +328,10 @@ end
 
 function M.bind_lsp_keys(client, bufnr)
     local opt = { buffer = bufnr, silent = true }
+    m.nnoremap("<leader>if", "<cmd>lua vim.lsp.buf.format()<cr>", opt, "Format")
+    -- TODO: only bind if client supports it
+    m.xnoremap("<leader>if", "<cmd>lua vim.lsp.buf.range_formatting()<cr>", opt, "Range Format")
+
     m.nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opt, "Definition")
     m.nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opt, "Declaration")
     m.nnoremap("gt", "<cmd>Telescope lsp_type_definitions<cr>", opt, "Type Definition")
@@ -338,8 +342,8 @@ function M.bind_lsp_keys(client, bufnr)
     m.nnoremap("go", "<cmd>Lspsaga show_line_diagnostics<cr>", opt, "Show Line Diagnostics")
     m.nnoremap("ga", "<cmd>Lspsaga code_action<cr>", opt, "Code Actions")
     m.nnoremap("K", "<cmd>Lspsaga hover_doc<cr>", opt, "LSP Hover")
-    m.nnoremap("[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", opt, "Prevous Diagnostic")
-    m.nnoremap("]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", opt, "Next Diagnostic")
+    m.nnoremap("[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opt, "Prevous Diagnostic")
+    m.nnoremap("]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", opt, "Next Diagnostic")
 
     m.inoremap("<C-h>", "<cmd>Lspsaga signature_help<cr>", opt)
     m.inoremap("<C-k>", "<cmd>Lspsaga hover_doc<cr>", opt)
@@ -361,6 +365,7 @@ function M.set_terminal_keymaps()
     m.tnoremap([[<C-w>k]], [[<C-\><C-n><C-W>k]], m.buffer)
     m.tnoremap([[<C-w>l]], [[<C-\><C-n><C-W>l]], m.buffer)
 end
+
 vim.cmd [[
 augroup MyToggleTerm
     au!

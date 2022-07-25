@@ -84,6 +84,7 @@ in
         todo-comments-nvim
         comment-nvim
         neoformat
+        null-ls-nvim
         lua-dev-nvim
         rust-tools-nvim
         clangd-extensions-nvim
@@ -117,6 +118,7 @@ in
         rustfmt
 
         rnix-lsp
+
         sumneko-lua-language-server
       ] ++
       (
@@ -127,10 +129,7 @@ in
       ) ++ (
         with pkgs.python310Packages;
         [
-          python-lsp-server
-          rope
-          python-lsp-black
-          pyls-isort
+          jedi-language-server
         ]
       );
 
