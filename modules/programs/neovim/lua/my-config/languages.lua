@@ -14,6 +14,13 @@ vim.g.coq_settings = {
     ["display.pum.fast_close"] = false,
     ["display.ghost_text.enabled"] = false,
     clients = {
+        lsp = {
+            weight_adjust = 2,
+            resolve_timeout = 0.12,
+        },
+        buffer = {
+            weight_adjust = -0.5,
+        },
         ["third_party.enabled"] = false,
         ["tmux.enabled"] = false,
         ["snippets.enabled"] = false,
