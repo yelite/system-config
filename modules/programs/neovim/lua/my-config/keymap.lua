@@ -1,6 +1,8 @@
 local window_util = require "my-config.window"
 local harpoon_mark = require "harpoon.mark"
 local toggleterm = require "toggleterm"
+local lspsaga_action = require("lspsaga.action")
+local aerial = require "aerial"
 
 local M = {}
 
@@ -105,8 +107,6 @@ local toggle_feature_keymap = {
     b = { [[<cmd>Gitsigns toggle_current_line_blame<cr>]], "Toggle Blame Line" },
     d = { [[<cmd>TroubleToggle<cr>]], "Trouble Window" },
     n = { toggle_line_number, "Line Number" },
-    o = { "<cmd>AerialToggle!<cr>", "Symbol Outline" },
-    O = { "<cmd>AerialTreeToggle!<cr>", "Symbol Outline at Current Location" },
     p = { [[<cmd>TSPlaygroundToggle<cr>]], "Treesitter Playground" },
     s = { toggle_auto_save, "Auto Save" },
 }
@@ -313,6 +313,9 @@ end)
 vim.keymap.set({ "n", "t" }, "<C-4>", function()
     toggleterm.toggle(4, nil, nil, "horizontal")
 end)
+vim.keymap.set({ "n", "t" }, "<C-5>", function()
+    aerial.toggle(true, "right")
+end)
 
 -- LSP
 local function bind_rust_lsp_keys(bufnr)
@@ -326,26 +329,47 @@ end
 
 function M.bind_lsp_keys(client, bufnr)
     local opt = { buffer = bufnr, silent = true }
-    m.nnoremap("<leader>if", "<cmd>lua vim.lsp.buf.format()<cr>", opt, "Format")
+    m.nnoremap("<leader>if", "<cmd>lua vim.lsp.buf.format({timeout_ms = 2000})<cr>", opt, "Format")
     -- TODO: only bind if client supports it
     m.xnoremap("<leader>if", "<cmd>lua vim.lsp.buf.range_formatting()<cr>", opt, "Range Format")
 
-    m.nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opt, "Definition")
+    m.nnoremap("gd", "<cmd>Telescope lsp_definitions<cr>", opt, "Definition")
     m.nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opt, "Declaration")
     m.nnoremap("gt", "<cmd>Telescope lsp_type_definitions<cr>", opt, "Type Definition")
-    m.nnoremap("gr", "<cmd>Lspsaga lsp_finder<cr>", opt, "Lsp Finder")
-    m.nnoremap("gR", "<cmd>Trouble lsp_references<cr>", opt, "References")
+    m.nnoremap("gr", "<cmd>Telescope lsp_references<cr>", opt, "References")
+    m.nnoremap("gR", "<cmd>Lspsaga lsp_finder<cr>", opt, "Lsp Finder")
     m.nnoremap("gs", "<cmd>Telescope lsp_document_symbols<cr>", opt, "Document Symbols")
     m.nnoremap("gS", "<cmd>Telescope lsp_workspace_symbols<cr>", opt, "Workspace Symbols")
-    m.nnoremap("go", "<cmd>Lspsaga show_line_diagnostics<cr>", opt, "Show Line Diagnostics")
+    m.nnoremap("goo", "<cmd>Lspsaga show_line_diagnostics<cr>", opt, "Show Line Diagnostics")
+    m.nnoremap("god", "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", opt, "Preview Definition")
+    m.nnoremap("gor", "<cmd>lua require('goto-preview').goto_preview_references()<cr>", opt, "Preview Reference")
+    m.nnoremap("got", "<cmd>lua require('goto-preview').goto_preview_type_definition()<cr>", opt, "Preview Type Definition")
+    m.nnoremap("goi", "<cmd>lua require('goto-preview').goto_preview_implementation()<cr>", opt, "Preview Implementation")
+    -- TODO: Smart close all tool windows
+    m.nnoremap("<Esc>", "<cmd>lua require('goto-preview').close_all_win()<cr>", opt, "Close all preview windows")
     m.nnoremap("ga", "<cmd>Lspsaga code_action<cr>", opt, "Code Actions")
     m.nnoremap("K", "<cmd>Lspsaga hover_doc<cr>", opt, "LSP Hover")
-    m.nnoremap("[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opt, "Prevous Diagnostic")
-    m.nnoremap("]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", opt, "Next Diagnostic")
+
+    vim.keymap.set("n", "[e", require("lspsaga.diagnostic").goto_prev, { silent = true, noremap = true, desc = "Next diagnostic" })
+    vim.keymap.set("n", "]e", require("lspsaga.diagnostic").goto_next, { silent = true, noremap = true, desc = "Previous diagnostic" })
+    vim.keymap.set("n", "[E", function()
+        require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
+    end, { silent = true, noremap = true, desc = "Next error" })
+    vim.keymap.set("n", "]E", function()
+        require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
+    end, { silent = true, noremap = true, desc = "Previous error" })
 
     m.inoremap("<C-h>", "<cmd>Lspsaga signature_help<cr>", opt)
     m.inoremap("<C-k>", "<cmd>Lspsaga hover_doc<cr>", opt)
     m.inoremap("<C-o>", "<cmd>Lspsaga code_action<cr>", opt)
+
+    vim.keymap.set("n", "<C-f>", function()
+        lspsaga_action.smart_scroll_with_saga(1)
+    end, { silent = true })
+    -- scroll up hover doc
+    vim.keymap.set("n", "<C-b>", function()
+        lspsaga_action.smart_scroll_with_saga(-1)
+    end, { silent = true })
 
     if client.name == "rust_analyzer" then
         bind_rust_lsp_keys(bufnr)

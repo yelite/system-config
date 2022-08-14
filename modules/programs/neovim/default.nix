@@ -75,12 +75,14 @@ in
         neorg-trouble
 
         nvim-lspconfig
+        nvim-lsp-basic
         lsp-status-nvim
         lspsaga-nvim
+        goto-preview
         trouble-nvim
         aerial-nvim
         nvim-dap
-        coq-nvim
+        coq_nvim
         todo-comments-nvim
         comment-nvim
         null-ls-nvim

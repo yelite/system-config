@@ -68,6 +68,7 @@ require("lualine").setup {
             lsp_status_component,
             { "diagnostics", sources = { "nvim_diagnostic", "coc" } },
             diff_component,
+            "location",
             "filetype",
         },
         lualine_y = { "branch" },
@@ -100,7 +101,7 @@ require("incline").setup {
     render = "basic",
     window = {
         margin = {
-            horizontal = 0,
+            horizontal = 2,
             vertical = 0,
         },
         options = {

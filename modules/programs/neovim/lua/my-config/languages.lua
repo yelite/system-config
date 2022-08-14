@@ -18,7 +18,7 @@ vim.g.coq_settings = {
             weight_adjust = 2,
             resolve_timeout = 0.12,
         },
-        buffer = {
+        buffers = {
             weight_adjust = -0.5,
         },
         ["third_party.enabled"] = false,
@@ -33,6 +33,7 @@ local function lsp_on_attach(client, bufnr)
     keymap.bind_lsp_keys(client, bufnr)
     lsp_status.on_attach(client)
     aerial.on_attach(client, bufnr)
+    require('lsp_basics').make_lsp_commands(client, bufnr)
 end
 
 local standard_lsp_config = coq.lsp_ensure_capabilities {
@@ -41,11 +42,24 @@ local standard_lsp_config = coq.lsp_ensure_capabilities {
 }
 
 lspsaga.init_lsp_saga {
-    use_saga_diagnostic_sign = false,
-    code_action_prompt = {
+    show_diagnostic_source = false,
+    max_preview_lines = 20,
+    rename_action_quit = "<Esc>",
+    code_action_lightbulb = {
         enable = false,
     },
 }
+vim.api.nvim_create_augroup("MyLspSaga", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "sagarename",
+    group = "MyLspSaga",
+    callback = function()
+        vim.keymap.set({ "s" }, "<C-f>", "<Esc>i<Right>")
+        vim.keymap.set({ "s" }, "<C-b>", "<Esc>i<Left>")
+        vim.keymap.set({ "s" }, "<C-a>", "<Esc>^i")
+        vim.keymap.set({ "s" }, "<C-e>", "<Esc>$i")
+    end,
+})
 
 rust_tools.setup {
     tools = {
@@ -102,8 +116,8 @@ nvim_lsp.sumneko_lua.setup(luadev)
 require("null-ls").setup {
     diagnostics_format = "#{m} (#{c} #{s})",
     sources = {
-        require("null-ls").builtins.formatting.black,
         require("null-ls").builtins.formatting.isort,
+        require("null-ls").builtins.formatting.black,
         require("null-ls").builtins.formatting.clang_format,
         require("null-ls").builtins.diagnostics.pylint.with({
             -- TODO: read project config
@@ -115,7 +129,6 @@ require("null-ls").setup {
             }
         }),
         require("null-ls").builtins.diagnostics.pyproject_flake8,
-        require("null-ls").builtins.diagnostics.mypy,
     },
 }
 

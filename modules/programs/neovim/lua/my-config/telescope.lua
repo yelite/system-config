@@ -111,6 +111,7 @@ require("telescope").setup {
             mappings = {
                 i = {
                     ["<C-f>"] = { "<Right>", type = "command" },
+                    ["<C-e>"] = { "<End>", type = "command" },
                     ["<C-h>"] = action_generate.which_key {
                         keybind_width = 12,
                         max_height = 0.5,
