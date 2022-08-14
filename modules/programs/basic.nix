@@ -87,9 +87,14 @@ in
     lazygit = {
       enable = true;
       settings = {
-        git.paging = {
-          colorArg = "always";
-          pager = "delta --dark --paging=never --syntax-theme=Nord";
+        git = {
+          paging = {
+            colorArg = "always";
+            pager = "delta --dark --paging=never --syntax-theme=Nord";
+          };
+          log = {
+            showGraph = "always";
+          };
         };
       };
     };
