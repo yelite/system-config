@@ -35,9 +35,17 @@ local function get_next_window()
         vim.cmd [[wincmd p]]
         all_windows = vim.api.nvim_tabpage_list_wins(0)
     end
+
     local current_window_number = vim.api.nvim_win_get_number(0)
-    local next_window_number = (current_window_number % #all_windows) + 1
-    return vim.fn.win_getid(next_window_number)
+    local window_number_to_try = (current_window_number % #all_windows) + 1
+
+    while window_number_to_try ~= current_window_number do
+        local target_window_id = vim.fn.win_getid(window_number_to_try)
+        if vim.api.nvim_win_get_config(target_window_id).focusable then
+            return target_window_id
+        end
+        window_number_to_try = (window_number_to_try % #all_windows) + 1
+    end
 end
 
 local function get_current_window()
