@@ -28,7 +28,7 @@
       flake = false;
     };
     lspsaga-nvim = {
-      url = "github:kkharji/lspsaga.nvim";
+      url = "github:glepnir/lspsaga.nvim";
       flake = false;
     };
     autosave = {
@@ -69,6 +69,10 @@
     };
     toggleterm-nvim = {
       url = "github:akinsho/toggleterm.nvim";
+      flake = false;
+    };
+    nvim-lsp-basic = {
+      url = "github:nanotee/nvim-lsp-basics";
       flake = false;
     };
   };

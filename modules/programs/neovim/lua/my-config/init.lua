@@ -23,8 +23,7 @@ o.expandtab = true
 o.foldmethod = "expr"
 o.foldexpr = "nvim_treesitter#foldexpr()"
 o.foldlevel = 99 -- Unfold everything by default
-o.foldtext =
-    [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
+o.foldtext = [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
 o.fillchars = "fold: "
 o.foldnestmax = 3
 o.foldminlines = 1
@@ -81,20 +80,13 @@ require("auto-session").setup {
 }
 require("session-lens").setup {}
 
-require("autosave").setup {
+require("auto-save").setup {
     enabled = true,
-    execution_message = "",
     events = { "InsertLeave", "FocusLost" },
-    conditions = {
-        exists = true,
-        filename_is_not = {},
-        filetype_is_not = {},
-        modifiable = true,
-    },
     write_all_buffers = false,
     on_off_commands = true,
     clean_command_line_interval = 0,
-    debounce_delay = 140,
+    debounce_delay = 150,
 }
 vim.api.nvim_create_augroup("MyAutoSave", { clear = true })
 vim.api.nvim_create_autocmd("BufLeave", {
@@ -173,6 +165,22 @@ require("neoclip").setup {
 }
 
 require("aerial").setup {}
+
+require('goto-preview').setup {
+    width = 135; -- Width of the floating window
+    height = 20; -- Height of the floating window
+    border = { "↖", "─", "┐", "│", "┘", "─", "└", "│" }; -- Border characters of the floating window
+    default_mappings = false; -- Bind default mappings
+    resizing_mappings = false; -- Binds arrow keys to resizing the floating window.
+    references = { -- Configure the telescope UI for slowing the references cycling window.
+        telescope = require("telescope.themes").get_dropdown({ hide_preview = false })
+    };
+    -- These two configs can also be passed down to the goto-preview definition and implementation calls for one off "peak" functionality.
+    focus_on_open = true; -- Focus the floating window when opening it.
+    dismiss_on_move = false; -- Dismiss the floating window when moving the cursor.
+    force_close = true, -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
+    bufhidden = "wipe", -- the bufhidden option to set on the floating window. See :h bufhidden
+}
 
 require "my-config.keymap"
 require "my-config.terminal"
