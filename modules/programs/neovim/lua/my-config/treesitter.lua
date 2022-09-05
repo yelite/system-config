@@ -49,6 +49,7 @@ require("nvim-treesitter.configs").setup {
         -- "norg",
         -- "norg_meta",
         -- "norg_table",
+        "markdown",
         "query",
         "tsx",
         "typescript",
