@@ -25,6 +25,9 @@ parser_configs.norg_table = {
 }
 
 require("nvim-treesitter.configs").setup {
+    -- The parser install dir no longer defaults to site dir
+    -- after https://github.com/nvim-treesitter/nvim-treesitter/pull/3250
+    parser_install_dir = vim.fn.stdpath("data") .. "/site",
     -- Note: installing nix grammer requires treesitter installed as command line too
     ensure_installed = {
         "c",
@@ -42,9 +45,10 @@ require("nvim-treesitter.configs").setup {
         "jsonc",
         "lua",
         "nix",
-        "norg",
-        "norg_meta",
-        "norg_table",
+        -- Wait for https://github.com/nvim-neorg/tree-sitter-norg to catch up
+        -- "norg",
+        -- "norg_meta",
+        -- "norg_table",
         "query",
         "tsx",
         "typescript",

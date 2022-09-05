@@ -1,7 +1,7 @@
 local window_util = require "my-config.window"
 local harpoon_mark = require "harpoon.mark"
 local toggleterm = require "toggleterm"
-local lspsaga_action = require("lspsaga.action")
+-- local lspsaga_action = require("lspsaga.action")
 local aerial = require "aerial"
 
 local M = {}
@@ -343,15 +343,18 @@ function M.bind_lsp_keys(client, bufnr)
     m.nnoremap("goo", "<cmd>Lspsaga show_line_diagnostics<cr>", opt, "Show Line Diagnostics")
     m.nnoremap("god", "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", opt, "Preview Definition")
     m.nnoremap("gor", "<cmd>lua require('goto-preview').goto_preview_references()<cr>", opt, "Preview Reference")
-    m.nnoremap("got", "<cmd>lua require('goto-preview').goto_preview_type_definition()<cr>", opt, "Preview Type Definition")
+    m.nnoremap("got", "<cmd>lua require('goto-preview').goto_preview_type_definition()<cr>", opt,
+        "Preview Type Definition")
     m.nnoremap("goi", "<cmd>lua require('goto-preview').goto_preview_implementation()<cr>", opt, "Preview Implementation")
     -- TODO: Smart close all tool windows
     m.nnoremap("<Esc>", "<cmd>lua require('goto-preview').close_all_win()<cr>", opt, "Close all preview windows")
     m.nnoremap("ga", "<cmd>Lspsaga code_action<cr>", opt, "Code Actions")
     m.nnoremap("K", "<cmd>Lspsaga hover_doc<cr>", opt, "LSP Hover")
 
-    vim.keymap.set("n", "[e", require("lspsaga.diagnostic").goto_prev, { silent = true, noremap = true, desc = "Next diagnostic" })
-    vim.keymap.set("n", "]e", require("lspsaga.diagnostic").goto_next, { silent = true, noremap = true, desc = "Previous diagnostic" })
+    vim.keymap.set("n", "[e", require("lspsaga.diagnostic").goto_prev,
+        { silent = true, noremap = true, desc = "Next diagnostic" })
+    vim.keymap.set("n", "]e", require("lspsaga.diagnostic").goto_next,
+        { silent = true, noremap = true, desc = "Previous diagnostic" })
     vim.keymap.set("n", "[E", function()
         require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
     end, { silent = true, noremap = true, desc = "Next error" })
@@ -362,14 +365,6 @@ function M.bind_lsp_keys(client, bufnr)
     m.inoremap("<C-h>", "<cmd>Lspsaga signature_help<cr>", opt)
     m.inoremap("<C-k>", "<cmd>Lspsaga hover_doc<cr>", opt)
     m.inoremap("<C-o>", "<cmd>Lspsaga code_action<cr>", opt)
-
-    vim.keymap.set("n", "<C-f>", function()
-        lspsaga_action.smart_scroll_with_saga(1)
-    end, { silent = true })
-    -- scroll up hover doc
-    vim.keymap.set("n", "<C-b>", function()
-        lspsaga_action.smart_scroll_with_saga(-1)
-    end, { silent = true })
 
     if client.name == "rust_analyzer" then
         bind_rust_lsp_keys(bufnr)
