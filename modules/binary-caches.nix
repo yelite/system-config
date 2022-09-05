@@ -1,6 +1,6 @@
 { lib, systemInfo, ... }:
-let
-  caches = {
+{
+  nix.settings = {
     # add binary caches
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
@@ -12,16 +12,5 @@ let
       "https://nix-community.cachix.org"
       "https://nixpkgs-wayland.cachix.org"
     ];
-  };
-in
-if systemInfo.isLinux then
-  {
-    nix.settings = caches;
-  }
-else {
-  # nix-darwin
-  nix = {
-    binaryCachePublicKeys = caches.trusted-public-keys;
-    binaryCaches = caches.substituters;
   };
 }
