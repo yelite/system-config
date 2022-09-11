@@ -248,6 +248,9 @@ m.cnoremap("<C-e>", "<End>")
 -- Manually add mapping for vim-surround
 m.imap("<C-S>", "<Plug>Isurround")
 
+-- Join line above
+m.imap("<C-j>", "<cmd>normal! kJ<cr>")
+
 --  to clear search highlight in addition to redraw
 m.cnoremap("<C-l>", "<cmd>noh<cr><C-l>")
 
@@ -348,7 +351,7 @@ function M.bind_lsp_keys(client, bufnr)
     m.nnoremap("goi", "<cmd>lua require('goto-preview').goto_preview_implementation()<cr>", opt, "Preview Implementation")
     -- TODO: Smart close all tool windows
     m.nnoremap("<Esc>", "<cmd>lua require('goto-preview').close_all_win()<cr>", opt, "Close all preview windows")
-    m.nnoremap("ga", "<cmd>Lspsaga code_action<cr>", opt, "Code Actions")
+    m.nnoremap("ga", "<cmd>CodeActionMenu<cr>", opt, "Code Actions")
     m.nnoremap("K", "<cmd>Lspsaga hover_doc<cr>", opt, "LSP Hover")
 
     vim.keymap.set("n", "[e", require("lspsaga.diagnostic").goto_prev,
@@ -362,9 +365,9 @@ function M.bind_lsp_keys(client, bufnr)
         require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
     end, { silent = true, noremap = true, desc = "Previous error" })
 
-    m.inoremap("<C-h>", "<cmd>Lspsaga signature_help<cr>", opt)
+    m.inoremap("<C-h>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opt)
     m.inoremap("<C-k>", "<cmd>Lspsaga hover_doc<cr>", opt)
-    m.inoremap("<C-o>", "<cmd>Lspsaga code_action<cr>", opt)
+    m.inoremap("<C-o>", "<cmd>CodeActionMenu<cr>", opt)
 
     if client.name == "rust_analyzer" then
         bind_rust_lsp_keys(bufnr)

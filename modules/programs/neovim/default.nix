@@ -78,6 +78,7 @@ in
         nvim-lsp-basic
         lsp-status-nvim
         lspsaga-nvim
+        nvim-code-action-menu
         goto-preview
         trouble-nvim
         aerial-nvim

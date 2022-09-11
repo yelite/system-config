@@ -6,11 +6,32 @@ local rust_tools = require "rust-tools"
 local clangd_extensions = require "clangd_extensions"
 local keymap = require "my-config.keymap"
 
+-- Override lsp floating preview border globally
+local border = {
+    { "🭽", "FloatBorder" },
+    { "▔", "FloatBorder" },
+    { "🭾", "FloatBorder" },
+    { "▕", "FloatBorder" },
+    { "🭿", "FloatBorder" },
+    { "▁", "FloatBorder" },
+    { "🭼", "FloatBorder" },
+    { "▏", "FloatBorder" },
+}
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+    opts = opts or {}
+    opts.border = opts.border or border
+    return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+
 vim.g.coq_settings = {
     auto_start = "shut-up",
     xdg = true,
-    ["keymap.recommended"] = false,
-    ["keymap.pre_select"] = false,
+    keymap = {
+        recommended = false,
+        pre_select = false,
+        jump_to_mark = "C-j",
+    },
     ["display.pum.fast_close"] = false,
     ["display.ghost_text.enabled"] = false,
     clients = {

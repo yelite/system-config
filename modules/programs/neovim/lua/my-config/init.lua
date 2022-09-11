@@ -182,6 +182,8 @@ require('goto-preview').setup {
     bufhidden = "wipe", -- the bufhidden option to set on the floating window. See :h bufhidden
 }
 
+vim.g.code_action_menu_show_diff = false
+
 require "my-config.keymap"
 require "my-config.terminal"
 require "my-config.treesitter"
