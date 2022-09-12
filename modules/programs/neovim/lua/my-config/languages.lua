@@ -30,7 +30,7 @@ vim.g.coq_settings = {
     keymap = {
         recommended = false,
         pre_select = false,
-        jump_to_mark = "C-j",
+        jump_to_mark = "C-h",
     },
     ["display.pum.fast_close"] = false,
     ["display.ghost_text.enabled"] = false,
