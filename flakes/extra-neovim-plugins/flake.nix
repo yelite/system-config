@@ -39,6 +39,10 @@
       url = "github:abecodes/tabout.nvim";
       flake = false;
     };
+    neorg = {
+      url = "github:nvim-neorg/neorg";
+      flake = false;
+    };
     neorg-telescope = {
       url = "github:nvim-neorg/neorg-telescope";
       flake = false;

@@ -63,7 +63,6 @@ local standard_lsp_config = coq.lsp_ensure_capabilities {
 }
 
 lspsaga.init_lsp_saga {
-    show_diagnostic_source = false,
     max_preview_lines = 20,
     rename_action_quit = "<Esc>",
     code_action_lightbulb = {
@@ -125,14 +124,18 @@ nvim_lsp.rnix.setup(standard_lsp_config)
 
 -- TODO move this into project-specific settings because
 -- lua-dev should only be used with init.lua development
-local luadev = require("lua-dev").setup {
-    lspconfig = {
-        cmd = { "lua-language-server" },
-        on_attach = lsp_on_attach,
-        capabilities = lsp_status.capabilities,
+require("neodev").setup({})
+nvim_lsp.sumneko_lua.setup({
+    settings = {
+        Lua = {
+            completion = {
+                callSnippet = "Replace"
+            }
+        }
     },
-}
-nvim_lsp.sumneko_lua.setup(luadev)
+    on_attach = lsp_on_attach,
+    capabilities = lsp_status.capabilities,
+})
 
 require("null-ls").setup {
     diagnostics_format = "#{m} (#{c} #{s})",
@@ -149,7 +152,8 @@ require("null-ls").setup {
                 "protected-access"
             }
         }),
-        require("null-ls").builtins.diagnostics.pyproject_flake8,
+        -- TODO: install pyproject-flake8
+        -- require("null-ls").builtins.diagnostics.pyproject_flake8,
     },
 }
 

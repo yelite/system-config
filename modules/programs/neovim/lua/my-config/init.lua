@@ -130,9 +130,6 @@ require("todo-comments").setup {
 }
 
 require("Comment").setup {
-    mappings = {
-        extended = true,
-    },
 }
 
 require("neoclip").setup {
@@ -183,6 +180,10 @@ require('goto-preview').setup {
 }
 
 vim.g.code_action_menu_show_diff = false
+
+require('gitlinker').setup({
+    mappings = nil
+})
 
 require "my-config.keymap"
 require "my-config.terminal"

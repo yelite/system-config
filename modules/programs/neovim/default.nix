@@ -41,6 +41,7 @@ in
         stabilize-nvim
         incline-nvim
         bufdelete-nvim
+        gitlinker-nvim
 
         lightspeed-nvim
         hop-nvim
@@ -87,7 +88,7 @@ in
         todo-comments-nvim
         comment-nvim
         null-ls-nvim
-        lua-dev-nvim
+        neodev-nvim
         rust-tools-nvim
         clangd_extensions-nvim
         vim-nix

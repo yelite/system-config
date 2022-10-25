@@ -142,3 +142,4 @@ require("nvim-treesitter.configs").setup {
         },
     },
 }
+vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/site")

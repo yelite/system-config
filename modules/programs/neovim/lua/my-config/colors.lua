@@ -16,6 +16,9 @@ function M.patchNordColors()
     nord_util.highlight("TSVariable", { fg = nord_colors.nord4_gui, style = nil })
     nord_util.highlight("TSVariableBuiltin", { fg = nord_colors.nord4_gui, style = nil })
     nord_util.highlight("TSBoolean", { fg = nord_colors.nord9_gui, style = nil })
+    nord_util.highlight("@variable", { fg = nord_colors.nord4_gui, style = nil })
+    nord_util.highlight("@variable.builtin", { fg = nord_colors.nord4_gui, style = nil })
+    nord_util.highlight("@boolean", { fg = nord_colors.nord9_gui, style = nil })
     -- Add italic to comment only
     nord_util.highlight("TSComment", { fg = nord_colors.nord3_gui_bright, style = "italic" })
     -- incline.nvim

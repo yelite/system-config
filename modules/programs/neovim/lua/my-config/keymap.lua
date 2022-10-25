@@ -117,6 +117,7 @@ local vcs_keymap = {
     f = { [[<cmd>Telescope git_status<cr>]], "Git Status" },
     s = { [[<cmd>Gitsigns stage_hunk<cr>]], "Stage Hunk" },
     u = { [[<cmd>Gitsigns undo_stage_hunk<cr>]], "Undo Stage Hunk" },
+    g = { [[<cmd>lua require"gitlinker".get_buf_range_url("n", {})<cr>]], "Copy github link" },
     l = { [[<cmd>Gitsigns setqflist all<cr>]], "List All Hunks" },
     L = { [[<cmd>Gitsigns setqflist<cr>]], "List Buffer Hunks" },
     r = { [[<cmd>Gitsigns reset_hunk<cr>]], "Reset Hunk" },

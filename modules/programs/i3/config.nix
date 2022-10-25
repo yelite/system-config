@@ -83,6 +83,10 @@ rec {
       command = "move position center";
       criteria = { class = "zoom"; title = "Chat"; };
     }
+    {
+      command = "border pixel 0";
+      criteria = { class = "^.*"; };
+    }
   ];
   floating.criteria = [
     { window_role = "pop-up"; }
