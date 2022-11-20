@@ -366,9 +366,9 @@ function M.bind_lsp_keys(client, bufnr)
         require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
     end, { silent = true, noremap = true, desc = "Previous error" })
 
-    m.inoremap("<C-i>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opt)
+    m.inoremap("<C-o>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opt)
     m.inoremap("<C-k>", "<cmd>Lspsaga hover_doc<cr>", opt)
-    m.inoremap("<C-o>", "<cmd>CodeActionMenu<cr>", opt)
+    m.inoremap("<C-g>", "<cmd>CodeActionMenu<cr>", opt)
 
     if client.name == "rust_analyzer" then
         bind_rust_lsp_keys(bufnr)
