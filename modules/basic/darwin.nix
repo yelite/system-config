@@ -3,10 +3,6 @@ let myConfig = config.myConfig;
 in
 lib.optionalAttrs systemInfo.isDarwin {
   environment = {
-    variables = {
-      TERMINFO_DIRS = "${pkgs.kitty.terminfo.outPath}/share/terminfo";
-    };
-
     shells = [ pkgs.fish ];
     shellAliases = {
       system-rebuild = "darwin-rebuild --flake ~/.system-config#lite-octo-macbook";
