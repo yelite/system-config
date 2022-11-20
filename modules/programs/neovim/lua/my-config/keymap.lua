@@ -32,6 +32,12 @@ local function toggle_auto_save()
     end
 end
 
+local function copy_rel_path()
+    local path = vim.fn.expand("%")
+    vim.fn.setreg("+", path)
+    vim.notify('Copied "' .. path .. '" to the clipboard!')
+end
+
 -- e -> edit
 local edit_keymap = {
     name = "edit",
@@ -56,6 +62,7 @@ local file_keymap = {
     r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
     s = { "<cmd>w<cr>", "Save File" },
     m = { harpoon_mark.add_file, "Mark File" },
+    p = { copy_rel_path, "Copy Relative Path" }
 }
 -- b -> buffer
 local buffer_keymap = {
