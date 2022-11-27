@@ -26,7 +26,7 @@ rec {
       notification = false;
     }
     {
-      command = ''neovide ~/neorg -- -c "set title titlestring=NoteScratchpad"'';
+      command = "neovide --x11-wm-class-instance=neorg_float ~/neorg";
       always = false;
       notification = false;
     }
@@ -65,7 +65,7 @@ rec {
   window.commands = [
     {
       command = "move scratchpad; resize set width 62 ppt height 62 ppt";
-      criteria = { class = "neovide"; title = "NoteScratchpad"; };
+      criteria = { class = "neovide"; instance = "neorg_float"; };
     }
     {
       command = "move position center";
@@ -92,6 +92,7 @@ rec {
     { window_role = "pop-up"; }
     { class = "zoom"; title = "Settings"; }
     { class = "zoom"; title = "Chat"; }
+    { class = "zoom"; title = "Participants.*"; }
   ];
 
   focus = {
