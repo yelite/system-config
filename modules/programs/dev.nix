@@ -13,6 +13,7 @@
     python39
   ] ++ (with python39Packages; [
     ipython
+    black
   ]);
 
   programs.git = {
