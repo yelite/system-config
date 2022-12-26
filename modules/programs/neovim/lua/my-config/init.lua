@@ -82,10 +82,8 @@ require("session-lens").setup {}
 
 require("auto-save").setup {
     enabled = true,
-    events = { "InsertLeave", "FocusLost" },
+    trigger_events = { "InsertLeave", "FocusLost" },
     write_all_buffers = false,
-    on_off_commands = true,
-    clean_command_line_interval = 0,
     debounce_delay = 150,
 }
 vim.api.nvim_create_augroup("MyAutoSave", { clear = true })
