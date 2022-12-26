@@ -64,7 +64,7 @@ rec {
 
   window.commands = [
     {
-      command = "move scratchpad; resize set width 62 ppt height 62 ppt";
+      command = "move scratchpad; resize set width 62 ppt height 62 ppt; border pixel 2";
       criteria = { class = "neovide"; instance = "neorg_float"; };
     }
     {
@@ -82,10 +82,6 @@ rec {
     {
       command = "move position center";
       criteria = { class = "zoom"; title = "Chat"; };
-    }
-    {
-      command = "border pixel 0";
-      criteria = { class = "^.*"; };
     }
   ];
   floating.criteria = [
@@ -141,7 +137,7 @@ rec {
       "${mod}+w" = "workspace terminal";
       "${mod}+e" = "workspace comm";
       "${mod}+1" = "scratchpad show";
-      "${mod}+3" = ''[title="NoteScratchpad" class="neovide"] scratchpad show'';
+      "${mod}+3" = ''[instance="neorg_float" class="neovide"] scratchpad show'';
 
       "${mod}+Shift+a" = "move container to workspace code2; workspace code2";
       "${mod}+Shift+s" = "move container to workspace web; workspace web";
