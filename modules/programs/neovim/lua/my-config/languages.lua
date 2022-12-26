@@ -53,7 +53,6 @@ local coq = require "coq"
 local function lsp_on_attach(client, bufnr)
     keymap.bind_lsp_keys(client, bufnr)
     lsp_status.on_attach(client)
-    aerial.on_attach(client, bufnr)
     require('lsp_basics').make_lsp_commands(client, bufnr)
 end
 

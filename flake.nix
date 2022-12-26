@@ -20,7 +20,7 @@
         # TODO: Reevaluate the wayland on Nvidia to see if the flickering problem is solved
         sharedOverlays = [
           self.overlay
-          fenix.overlay
+          fenix.overlays.default
           inputs.neovim-nightly-overlay.overlay
           inputs.extra-neovim-plugins.overlay
           # inputs.nixpkgs-wayland.overlay
