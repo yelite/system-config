@@ -1,15 +1,8 @@
+{ lib, ... }:
 let
   inherit (builtins) mapAttrs remoteAttrs;
   inherit (import ./attrset.nix) deepMergeAttrs;
   inherit (import ../modules) getSystemModules;
-  isMatch = pattern: s: builtins.isList (builtins.match pattern s);
-  getSystemInfo = system: {
-    _name = system;
-    isDarwin = isMatch ".*-darwin$" system;
-    isLinux = isMatch ".*-linux$" system;
-    isX86 = isMatch "^x86.*" system;
-    isArm = isMatch "^aarch64.*" system;
-  };
 in
 {
   # This wraps mkFlake from flake-utils-plus to:
@@ -34,7 +27,7 @@ in
         extraModules;
       mkHost = name: host:
         let
-          systemInfo = getSystemInfo (host.system or defaultSystem);
+          systemInfo = lib.systems.elaborate (host.system or defaultSystem);
           modules = getModulesForHost name systemInfo (host.modules or [ ]);
         in
         (deepMergeAttrs host {

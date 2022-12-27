@@ -1,9 +1,11 @@
 {
   description = "Config for my home computers";
 
-  outputs = { self, utils, fenix, darwin, ... }@inputs:
+  outputs = { self, nixpkgs, utils, fenix, darwin, ... }@inputs:
     let
-      myLib = import ./lib;
+      myLib = import ./lib {
+        inherit (nixpkgs) lib;
+      };
       mkFlake = myLib.wrapMkFlake {
         inherit (utils.lib) mkFlake;
         homeManager = inputs.hm;
