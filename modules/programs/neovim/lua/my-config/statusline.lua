@@ -54,7 +54,7 @@ require("lualine").setup {
             {
                 "filename",
                 path = 1,
-                file_status = false,
+                file_status = true,
                 cond = function()
                     return not is_toggleterm()
                 end,
@@ -63,68 +63,30 @@ require("lualine").setup {
                 get_term_name,
             },
         },
-        lualine_c = { { gps.get_location, cond = gps.is_available } },
+        lualine_c = {},
         lualine_x = {
             lsp_status_component,
             { "diagnostics", sources = { "nvim_diagnostic", "coc" } },
-            diff_component,
-            "location",
             "filetype",
+            diff_component,
         },
         lualine_y = { "branch" },
         lualine_z = { "tabs" },
     },
-    -- TODO: reenable winbar after https://github.com/neovim/neovim/issues/19458
-    -- winbar = {
-    --     lualine_a = {},
-    --     lualine_b = { { "filename", color = { fg = nord_colors.nord5_gui } } },
-    --     lualine_c = { { gps.get_location, cond = gps.is_available } },
-    --     lualine_x = {},
-    --     lualine_y = { "location", "progress" },
-    --     lualine_z = {},
-    -- },
-    -- inactive_winbar = {
-    --     lualine_a = {},
-    --     lualine_b = { { "filename", color = { fg = nord_colors.nord3_gui_bright } } },
-    --     lualine_c = {},
-    --     lualine_x = {},
-    --     lualine_y = {},
-    --     lualine_z = {},
-    -- },
-}
-
-require("incline").setup {
-    debounce_threshold = {
-        falling = 50,
-        rising = 10,
+    winbar = {
+        lualine_a = {},
+        lualine_b = { { "filename", color = { fg = nord_colors.nord5_gui } } },
+        lualine_c = { { gps.get_location, cond = gps.is_available } },
+        lualine_x = {},
+        lualine_y = { "location", "progress" },
+        lualine_z = {},
     },
-    render = "basic",
-    window = {
-        margin = {
-            horizontal = 2,
-            vertical = 0,
-        },
-        options = {
-            signcolumn = "no",
-            wrap = false,
-        },
-        padding = 1,
-        padding_char = " ",
-        placement = {
-            horizontal = "right",
-            vertical = "top",
-        },
-        width = "fit",
-        winhighlight = {
-            active = {
-                Normal = "InclineNormal",
-            },
-            inactive = {
-                EndOfBuffer = "None",
-                Normal = "InclineNormalNC",
-                Search = "None",
-            },
-        },
-        zindex = 50,
+    inactive_winbar = {
+        lualine_a = {},
+        lualine_b = { { "filename", color = { fg = nord_colors.nord3_gui_bright } } },
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {},
     },
 }

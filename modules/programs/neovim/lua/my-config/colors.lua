@@ -21,9 +21,6 @@ function M.patchNordColors()
     nord_util.highlight("@boolean", { fg = nord_colors.nord9_gui, style = nil })
     -- Add italic to comment only
     nord_util.highlight("TSComment", { fg = nord_colors.nord3_gui_bright, style = "italic" })
-    -- incline.nvim
-    nord_util.highlight("InclineNormal", { fg = nord_colors.nord4_gui, bg = nord_colors.nord2_gui })
-    nord_util.highlight("InclineNormalNC", { fg = nord_colors.nord3_gui_bright, bg = nord_colors.nord1_gui })
 end
 
 vim.cmd [[colorscheme nord]]

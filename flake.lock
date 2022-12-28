@@ -75,7 +75,6 @@
         "gitsigns-nvim": "gitsigns-nvim",
         "harpoon": "harpoon",
         "hop-extensions": "hop-extensions",
-        "incline-nvim": "incline-nvim",
         "lspsaga-nvim": "lspsaga-nvim",
         "mapx": "mapx",
         "neorg": "neorg",
@@ -95,7 +94,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-ZocY/r+bHn4yUU9b+0+Vd9C6101huyMUe1lUP+eewrA=",
+        "narHash": "sha256-DrqE39hNS0nLtXc1GqM4oQ+v9L9R/5VtbWBRvZcHon0=",
         "path": "./flakes/extra-neovim-plugins",
         "type": "path"
       },
@@ -337,23 +336,6 @@
       "original": {
         "owner": "IndianBoy42",
         "repo": "hop-extensions",
-        "type": "github"
-      }
-    },
-    "incline-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1658461799,
-        "narHash": "sha256-oXmZK4cVyuSqmDUwJK0v7YL2g3Kr7zbMgk178D+zzys=",
-        "owner": "yelite",
-        "repo": "incline.nvim",
-        "rev": "8cc23abf8ad44b23bc1964827619b0e9460ac6ea",
-        "type": "github"
-      },
-      "original": {
-        "owner": "yelite",
-        "ref": "patch-1",
-        "repo": "incline.nvim",
         "type": "github"
       }
     },

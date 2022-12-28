@@ -37,7 +37,6 @@ in
         indent-blankline-nvim
         gitsigns-nvim
         stabilize-nvim
-        incline-nvim
         bufdelete-nvim
         gitlinker-nvim
 

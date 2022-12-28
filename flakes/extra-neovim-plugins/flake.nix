@@ -67,10 +67,6 @@
       url = "github:tknightz/telescope-termfinder.nvim";
       flake = false;
     };
-    incline-nvim = {
-      url = "github:yelite/incline.nvim?ref=patch-1";
-      flake = false;
-    };
     toggleterm-nvim = {
       url = "github:akinsho/toggleterm.nvim";
       flake = false;
