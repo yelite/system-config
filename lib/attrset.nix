@@ -1,3 +1,4 @@
+{ lib }:
 let
   inherit (builtins) isAttrs zipAttrsWith length head elemAt;
 in

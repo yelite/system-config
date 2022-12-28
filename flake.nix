@@ -4,8 +4,8 @@
   outputs = { self, nixpkgs, utils, fenix, darwin, ... }@inputs:
     let
       libOverride = import ./lib;
-      myLib = nixpkgs.lib.extend libOverride;
-      mkFlake = myLib.wrapMkFlake {
+      lib = nixpkgs.lib.extend libOverride;
+      mkFlake = lib.wrapMkFlake {
         inherit (utils.lib) mkFlake;
         homeManager = inputs.hm;
       };
@@ -32,6 +32,8 @@
                 mv $out/bin/repl $out/bin/fup-repl
               '';
             });
+
+            lib = prev.lib.extend libOverride;
           })
         ];
 
@@ -55,9 +57,12 @@
 
 
         overlay = import ./overlays/extra-pkgs;
-        overlays = utils.lib.exportOverlays {
-          inherit (self) pkgs inputs;
-        };
+        overlays = utils.lib.exportOverlays
+          {
+            pkgs = self.pkgs;
+            # Avoid the fenix.overlay deprecation message
+            inputs = nixpkgs.lib.filterAttrs (name: value: name != "fenix") self.inputs;
+          };
 
         outputsBuilder = channels:
           let

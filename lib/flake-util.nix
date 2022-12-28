@@ -1,7 +1,6 @@
-{ lib, ... }:
+{ lib }:
 let
   inherit (builtins) mapAttrs remoteAttrs;
-  inherit (import ./attrset.nix) deepMergeAttrs;
   inherit (import ../modules) getSystemModules;
 in
 {
@@ -30,7 +29,7 @@ in
           systemInfo = lib.systems.elaborate (host.system or defaultSystem);
           modules = getModulesForHost name systemInfo (host.modules or [ ]);
         in
-        (deepMergeAttrs host {
+        (lib.deepMergeAttrs host {
           specialArgs.systemInfo = systemInfo;
         }) // {
           inherit modules;
