@@ -3,9 +3,8 @@
 
   outputs = { self, nixpkgs, utils, fenix, darwin, ... }@inputs:
     let
-      myLib = import ./lib {
-        inherit (nixpkgs) lib;
-      };
+      libOverride = import ./lib;
+      myLib = nixpkgs.lib.extend libOverride;
       mkFlake = myLib.wrapMkFlake {
         inherit (utils.lib) mkFlake;
         homeManager = inputs.hm;
