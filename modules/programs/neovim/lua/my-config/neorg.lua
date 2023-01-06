@@ -15,11 +15,6 @@ require("neorg").setup {
                 },
             },
         },
-        ["core.gtd.base"] = {
-            config = {
-                workspace = "main"
-            }
-        },
         ["core.integrations.telescope"] = {},
         ["myconfig.foldtext"] = {},
     },
@@ -43,9 +38,10 @@ require("neorg").setup {
                     { "<C-Space>", "core.norg.qol.todo_items.todo.task_cycle" },
 
                     -- Keys for managing GTD
-                    { neorg_leader .. "tc", "core.gtd.base.capture" },
-                    { neorg_leader .. "tv", "core.gtd.base.views" },
-                    { neorg_leader .. "te", "core.gtd.base.edit" },
+                    -- TODO: wait for 1.0 GTD support
+                    -- { neorg_leader .. "tc", "core.gtd.base.capture" },
+                    -- { neorg_leader .. "tv", "core.gtd.base.views" },
+                    -- { neorg_leader .. "te", "core.gtd.base.edit" },
 
                     -- Keys for managing notes
                     { neorg_leader .. "n", "core.norg.dirman.new.note" },
@@ -84,21 +80,22 @@ require("neorg").setup {
             })
 
             -- Map the below keys on gtd displays
-            keybinds.map_event_to_mode("gtd-displays", {
-                n = {
-                    { "<CR>", "core.gtd.ui.goto_task" },
-
-                    { "q", "core.gtd.ui.close" },
-                    { "<Esc>", "core.gtd.ui.close" },
-
-                    { "e", "core.gtd.ui.edit_task" },
-                    { "<Tab>", "core.gtd.ui.details" },
-                },
-            }, {
-                silent = true,
-                noremap = true,
-                nowait = true,
-            })
+            -- TODO: wait for 1.0 GTD support
+            -- keybinds.map_event_to_mode("gtd-displays", {
+            --     n = {
+            --         { "<CR>", "core.gtd.ui.goto_task" },
+            --
+            --         { "q", "core.gtd.ui.close" },
+            --         { "<Esc>", "core.gtd.ui.close" },
+            --
+            --         { "e", "core.gtd.ui.edit_task" },
+            --         { "<Tab>", "core.gtd.ui.details" },
+            --     },
+            -- }, {
+            --     silent = true,
+            --     noremap = true,
+            --     nowait = true,
+            -- })
 
             -- Map the below keys on presenter mode
             keybinds.map_event_to_mode("presenter", {
