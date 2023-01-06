@@ -68,9 +68,9 @@ require("hop").setup {
     jump_on_sole_occurrence = false,
 }
 
-vim.g.lightspeed_no_default_keymaps = true
-require("lightspeed").setup {
-    ignore_case = false,
+require('flit').setup {}
+require('leap-spooky').setup {
+    paste_on_remote_yank = true,
 }
 
 o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"

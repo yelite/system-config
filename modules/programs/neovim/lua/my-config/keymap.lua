@@ -1,6 +1,8 @@
 local window_util = require "my-config.window"
 local harpoon_mark = require "harpoon.mark"
 local toggleterm = require "toggleterm"
+local leap = require "leap"
+local leap_util = require "leap.util"
 -- local lspsaga_action = require("lspsaga.action")
 local aerial = require "aerial"
 
@@ -36,6 +38,25 @@ local function copy_rel_path()
     local path = vim.fn.expand("%")
     vim.fn.setreg("+", path)
     vim.notify('Copied "' .. path .. '" to the clipboard!')
+end
+
+-- TODO: generalize this to a window selector so that the open/move in other window function can use it.
+local function leap_to_window()
+  target_windows = leap_util.get_enterable_windows()
+  local targets = {}
+  for _, win in ipairs(target_windows) do
+    local wininfo = vim.fn.getwininfo(win)[1]
+    local pos = { wininfo.topline, 1 }  -- top/left corner
+    table.insert(targets, { pos = pos, wininfo = wininfo })
+  end
+
+  leap.leap {
+    target_windows = target_windows,
+    targets = targets,
+    action = function (target)
+      vim.api.nvim_set_current_win(target.wininfo.winid)
+    end
+  }
 end
 
 -- e -> edit
@@ -76,6 +97,7 @@ local buffer_keymap = {
 -- w -> window
 local window_keymap = {
     name = "window",
+    w = { leap_to_window, "Jump to Window"},
     o = { window_util.move_to_next_window, "Move Buffer to Next Window" },
     O = { window_util.open_in_next_window, "Open Buffer in Next Window" },
     p = {
@@ -268,33 +290,16 @@ m.inoremap("<C-y>", "<C-r><C-o>+")
 m.cnoremap("<C-y>", "<C-r><C-o>+")
 m.vnoremap("<C-y>", [["+p]])
 
--- Lighspeed
-m.nmap("s", "<Plug>Lightspeed_omni_s")
-m.xmap("s", "<Plug>Lightspeed_omni_s")
-m.omap("x", "<Plug>Lightspeed_s")
-m.omap("X", "<Plug>Lightspeed_S")
+-- leap
+local function leap_both_direction()
+    leap.leap { target_windows = { vim.fn.win_getid() } }
+end
 
-m.nmap("f", "<Plug>Lightspeed_f")
-m.xmap("f", "<Plug>Lightspeed_f")
-m.omap("f", "<Plug>Lightspeed_f")
-m.nmap("F", "<Plug>Lightspeed_F")
-m.xmap("F", "<Plug>Lightspeed_F")
-m.omap("F", "<Plug>Lightspeed_F")
+vim.keymap.set({ "n" }, "s", leap_both_direction)
+vim.keymap.set({ "o", "x" }, "x", "<Plug>(leap-forward-till)")
+vim.keymap.set({ "o", "x" }, "X", "<Plug>(leap-backward-till)")
+vim.keymap.set({ "n" }, "gs", "<Plug>(leap-cross-window)")
 
-m.nmap("t", "<Plug>Lightspeed_t")
-m.xmap("t", "<Plug>Lightspeed_t")
-m.omap("t", "<Plug>Lightspeed_t")
-m.nmap("T", "<Plug>Lightspeed_T")
-m.xmap("T", "<Plug>Lightspeed_T")
-m.omap("T", "<Plug>Lightspeed_T")
-
-m.nmap(";", "<Plug>Lightspeed_;_ft")
-m.xmap(";", "<Plug>Lightspeed_;_ft")
-m.omap(";", "<Plug>Lightspeed_;_ft")
-
-m.nmap(",", "<Plug>Lightspeed_,_ft")
-m.xmap(",", "<Plug>Lightspeed_,_ft")
-m.omap(",", "<Plug>Lightspeed_,_ft")
 -- Substitue
 m.nmap("S", "<plug>(SubversiveSubstitute)")
 m.nmap("SS", "<plug>(SubversiveSubstituteLine)")
@@ -349,8 +354,7 @@ function M.bind_lsp_keys(client, bufnr)
     m.nnoremap("gt", "<cmd>Telescope lsp_type_definitions<cr>", opt, "Type Definition")
     m.nnoremap("gr", "<cmd>Telescope lsp_references<cr>", opt, "References")
     m.nnoremap("gR", "<cmd>Lspsaga lsp_finder<cr>", opt, "Lsp Finder")
-    m.nnoremap("gs", "<cmd>Telescope lsp_document_symbols<cr>", opt, "Document Symbols")
-    m.nnoremap("gS", "<cmd>Telescope lsp_workspace_symbols<cr>", opt, "Workspace Symbols")
+    m.nnoremap("gS", "<cmd>Telescope lsp_document_symbols<cr>", opt, "Document Symbols")
     m.nnoremap("goo", "<cmd>Lspsaga show_line_diagnostics<cr>", opt, "Show Line Diagnostics")
     m.nnoremap("god", "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", opt, "Preview Definition")
     m.nnoremap("gor", "<cmd>lua require('goto-preview').goto_preview_references()<cr>", opt, "Preview Reference")

@@ -83,5 +83,21 @@
       url = "github:lewis6991/gitsigns.nvim";
       flake = false;
     };
+    telescope-alternate = {
+      url = "github:otavioschwanck/telescope-alternate";
+      flake = false;
+    };
+    leap-nvim = {
+      url = "github:ggandor/leap.nvim";
+      flake = false;
+    };
+    flit-nvim = {
+      url = "github:ggandor/flit.nvim";
+      flake = false;
+    };
+    leap-spooky-nvim = {
+      url = "github:ggandor/leap-spooky.nvim";
+      flake = false;
+    };
   };
 }

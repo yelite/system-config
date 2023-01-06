@@ -72,9 +72,12 @@
     "extra-neovim-plugins": {
       "inputs": {
         "autosave": "autosave",
+        "flit-nvim": "flit-nvim",
         "gitsigns-nvim": "gitsigns-nvim",
         "harpoon": "harpoon",
         "hop-extensions": "hop-extensions",
+        "leap-nvim": "leap-nvim",
+        "leap-spooky-nvim": "leap-spooky-nvim",
         "lspsaga-nvim": "lspsaga-nvim",
         "mapx": "mapx",
         "neorg": "neorg",
@@ -88,13 +91,14 @@
         "nvim-treesitter": "nvim-treesitter",
         "session-lens": "session-lens",
         "tabout": "tabout",
+        "telescope-alternate": "telescope-alternate",
         "telescope-live-grep-args-nvim": "telescope-live-grep-args-nvim",
         "toggleterm-nvim": "toggleterm-nvim",
         "trouble-nvim": "trouble-nvim"
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-DrqE39hNS0nLtXc1GqM4oQ+v9L9R/5VtbWBRvZcHon0=",
+        "narHash": "sha256-GmcOjlThGqsOUsbF1PgD//yEfio1MBwy5B2x0RtkRq0=",
         "path": "./flakes/extra-neovim-plugins",
         "type": "path"
       },
@@ -238,6 +242,22 @@
         "type": "github"
       }
     },
+    "flit-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1665756443,
+        "narHash": "sha256-1uOpSC6HGfqmxrRi7voH/h+Ahz7dXIgPF5z9KDyH1sY=",
+        "owner": "ggandor",
+        "repo": "flit.nvim",
+        "rev": "be110f9814a45788d10537fd59b3c76d956bb7ad",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ggandor",
+        "repo": "flit.nvim",
+        "type": "github"
+      }
+    },
     "forgit": {
       "flake": false,
       "locked": {
@@ -336,6 +356,38 @@
       "original": {
         "owner": "IndianBoy42",
         "repo": "hop-extensions",
+        "type": "github"
+      }
+    },
+    "leap-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1672742441,
+        "narHash": "sha256-TcNjuFFRiBLT6oxOPqSl06oUS2NOCnBlldf65b2GOfo=",
+        "owner": "ggandor",
+        "repo": "leap.nvim",
+        "rev": "a968ab4250840dc879e805f918b4f3b892310a12",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ggandor",
+        "repo": "leap.nvim",
+        "type": "github"
+      }
+    },
+    "leap-spooky-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1669116931,
+        "narHash": "sha256-edIIKODuPy9OoHWLutEfjtpLS7kKizdmIsToVHavF2Y=",
+        "owner": "ggandor",
+        "repo": "leap-spooky.nvim",
+        "rev": "748b2614e859704d8004e86be97401c9f3e28e80",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ggandor",
+        "repo": "leap-spooky.nvim",
         "type": "github"
       }
     },
@@ -698,6 +750,22 @@
       "original": {
         "owner": "abecodes",
         "repo": "tabout.nvim",
+        "type": "github"
+      }
+    },
+    "telescope-alternate": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1672351476,
+        "narHash": "sha256-brUgpDuW8010/le7FTPiIUykXI7Wp5U3iIIaZ1c3s2o=",
+        "owner": "otavioschwanck",
+        "repo": "telescope-alternate",
+        "rev": "9e23e7946ed09217cb4d61613ce24164a37235e8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "otavioschwanck",
+        "repo": "telescope-alternate",
         "type": "github"
       }
     },

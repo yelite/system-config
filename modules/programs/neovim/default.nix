@@ -40,7 +40,9 @@ in
         bufdelete-nvim
         gitlinker-nvim
 
-        lightspeed-nvim
+        leap-nvim
+        flit-nvim
+        leap-spooky-nvim
         hop-nvim
         hop-extensions
         tabout
@@ -57,6 +59,7 @@ in
         telescope-fzf-native-nvim
         telescope-file-browser-nvim
         telescope-live-grep-args-nvim
+        telescope-alternate
         nvim-termfinder
         harpoon
         toggleterm-nvim
