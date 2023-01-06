@@ -35,10 +35,6 @@
       url = "github:Pocco81/AutoSave.nvim";
       flake = false;
     };
-    tabout = {
-      url = "github:abecodes/tabout.nvim";
-      flake = false;
-    };
     neorg = {
       url = "github:nvim-neorg/neorg";
       flake = false;

@@ -90,7 +90,6 @@
         "nvim-termfinder": "nvim-termfinder",
         "nvim-treesitter": "nvim-treesitter",
         "session-lens": "session-lens",
-        "tabout": "tabout",
         "telescope-alternate": "telescope-alternate",
         "telescope-live-grep-args-nvim": "telescope-live-grep-args-nvim",
         "toggleterm-nvim": "toggleterm-nvim",
@@ -98,7 +97,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-GmcOjlThGqsOUsbF1PgD//yEfio1MBwy5B2x0RtkRq0=",
+        "narHash": "sha256-0dDya7ZtrE5UcByOACz3ypFr6NqdPuZIjzcenbPwSsw=",
         "path": "./flakes/extra-neovim-plugins",
         "type": "path"
       },
@@ -734,22 +733,6 @@
       "original": {
         "owner": "andreiborisov",
         "repo": "sponge",
-        "type": "github"
-      }
-    },
-    "tabout": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1665147867,
-        "narHash": "sha256-4arOTQxCtdMpzJuMcDjZU0l4T5pjQKuPj4Yvot3yozc=",
-        "owner": "abecodes",
-        "repo": "tabout.nvim",
-        "rev": "c37ce26f316a2df693140450b8def41e89c0f57e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "abecodes",
-        "repo": "tabout.nvim",
         "type": "github"
       }
     },
