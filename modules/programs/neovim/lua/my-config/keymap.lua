@@ -1,5 +1,4 @@
 local window_util = require "my-config.window"
-local harpoon_mark = require "harpoon.mark"
 local toggleterm = require "toggleterm"
 local leap = require "leap"
 local leap_util = require "leap.util"
@@ -42,21 +41,21 @@ end
 
 -- TODO: generalize this to a window selector so that the open/move in other window function can use it.
 local function leap_to_window()
-  target_windows = leap_util.get_enterable_windows()
-  local targets = {}
-  for _, win in ipairs(target_windows) do
-    local wininfo = vim.fn.getwininfo(win)[1]
-    local pos = { wininfo.topline, 1 }  -- top/left corner
-    table.insert(targets, { pos = pos, wininfo = wininfo })
-  end
-
-  leap.leap {
-    target_windows = target_windows,
-    targets = targets,
-    action = function (target)
-      vim.api.nvim_set_current_win(target.wininfo.winid)
+    target_windows = leap_util.get_enterable_windows()
+    local targets = {}
+    for _, win in ipairs(target_windows) do
+        local wininfo = vim.fn.getwininfo(win)[1]
+        local pos = { wininfo.topline, 1 } -- top/left corner
+        table.insert(targets, { pos = pos, wininfo = wininfo })
     end
-  }
+
+    leap.leap {
+        target_windows = target_windows,
+        targets = targets,
+        action = function(target)
+            vim.api.nvim_set_current_win(target.wininfo.winid)
+        end
+    }
 end
 
 -- e -> edit
@@ -82,7 +81,6 @@ local file_keymap = {
     F = { "<cmd>Telescope find_files no_ignore=true<cr>", "Find All Files" },
     r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
     s = { "<cmd>w<cr>", "Save File" },
-    m = { harpoon_mark.add_file, "Mark File" },
     p = { copy_rel_path, "Copy Relative Path" }
 }
 -- b -> buffer
@@ -97,7 +95,7 @@ local buffer_keymap = {
 -- w -> window
 local window_keymap = {
     name = "window",
-    w = { leap_to_window, "Jump to Window"},
+    w = { leap_to_window, "Jump to Window" },
     o = { window_util.move_to_next_window, "Move Buffer to Next Window" },
     O = { window_util.open_in_next_window, "Open Buffer in Next Window" },
     p = {

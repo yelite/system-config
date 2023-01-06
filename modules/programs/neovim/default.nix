@@ -60,7 +60,6 @@ in
         telescope-live-grep-args-nvim
         telescope-alternate
         nvim-termfinder
-        harpoon
         toggleterm-nvim
         which-key-nvim
         mapx

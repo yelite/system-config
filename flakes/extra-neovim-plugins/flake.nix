@@ -51,10 +51,6 @@
       url = "github:IndianBoy42/hop-extensions";
       flake = false;
     };
-    harpoon = {
-      url = "github:ThePrimeagen/harpoon";
-      flake = false;
-    };
     telescope-live-grep-args-nvim = {
       url = "github:nvim-telescope/telescope-live-grep-args.nvim";
       flake = false;
