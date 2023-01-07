@@ -8,11 +8,10 @@ o.clipboard = "unnamedplus"
 o.cursorline = true
 o.cursorlineopt = "number"
 o.wrap = false
--- Until https://github.com/neovim/neovim/issues/14209 is fixed
-vim.wo.colorcolumn = "99999"
 
 o.splitbelow = true
 o.splitright = true
+o.splitkeep = "screen"
 o.hidden = true
 o.showtabline = 0
 
@@ -51,10 +50,6 @@ if g.neovide then
 end
 
 require "my-config.telescope"
-
-require("stabilize").setup {
-    force = true,
-}
 
 require("indent_blankline").setup()
 vim.cmd [[

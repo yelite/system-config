@@ -36,7 +36,6 @@ in
         nvim-web-devicons
         indent-blankline-nvim
         gitsigns-nvim
-        stabilize-nvim
         bufdelete-nvim
         gitlinker-nvim
 
@@ -89,7 +88,6 @@ in
         neodev-nvim
         rust-tools-nvim
         clangd_extensions-nvim
-        vim-nix
 
         {
           plugin = sqlite-lua;
