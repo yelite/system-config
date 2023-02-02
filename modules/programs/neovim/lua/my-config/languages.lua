@@ -61,7 +61,7 @@ local standard_lsp_config = coq.lsp_ensure_capabilities {
     capabilities = lsp_status.capabilities,
 }
 
-lspsaga.init_lsp_saga {
+lspsaga.setup {
     max_preview_lines = 20,
     rename_action_quit = "<Esc>",
     code_action_lightbulb = {
@@ -159,11 +159,3 @@ require("null-ls").setup {
 -- C indent
 vim.o.cinoptions = "h1,l1,g1,t0,i4,+4,(0,w1,W4"
 
--- auto format
-vim.cmd [[
-augroup MyAutoFormat
-  autocmd!
-  autocmd BufWritePre *.lua silent! undojoin | lua vim.lsp.buf.format()
-  autocmd BufWritePre *.nix silent! undojoin | lua vim.lsp.buf.format()
-augroup END
-]]
