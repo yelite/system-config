@@ -22,7 +22,6 @@
         sharedOverlays = [
           self.overlay
           fenix.overlays.default
-          inputs.neovim-nightly-overlay.overlay
           inputs.extra-neovim-plugins.overlay
           # inputs.nixpkgs-wayland.overlay
           (final: prev: {
@@ -93,17 +92,12 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     extra-neovim-plugins = {
       url = "path:./flakes/extra-neovim-plugins";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     fish-plugins = {
       url = "path:./flakes/fish-plugins";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }

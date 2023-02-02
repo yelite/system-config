@@ -345,7 +345,7 @@ function M.bind_lsp_keys(client, bufnr)
     local opt = { buffer = bufnr, silent = true }
     m.nnoremap("<leader>if", "<cmd>lua vim.lsp.buf.format({timeout_ms = 2000})<cr>", opt, "Format")
     -- TODO: only bind if client supports it
-    m.xnoremap("<leader>if", "<cmd>lua vim.lsp.buf.range_formatting()<cr>", opt, "Range Format")
+    m.xnoremap("<leader>if", "<cmd>lua vim.lsp.buf.format({timeout_ms = 2000})<cr>", opt, "Range Format")
 
     m.nnoremap("gd", "<cmd>Telescope lsp_definitions<cr>", opt, "Definition")
     m.nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opt, "Declaration")

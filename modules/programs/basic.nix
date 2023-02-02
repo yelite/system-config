@@ -47,12 +47,11 @@ in
       realvnc-vnc-viewer
       (vivaldi.override {
         commandLineArgs = [
-          "--use-gl=desktop"
           "--enable-features=VaapiVideoDecoder"
           "--force-dark-mode" # Make prefers-color-scheme selector to choose dark theme
         ];
       })
-      vivaldi-widevine
+      widevine-cdm
       vivaldi-ffmpeg-codecs
       standardnotes
     ] ++

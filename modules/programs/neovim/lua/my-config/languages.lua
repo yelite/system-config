@@ -9,13 +9,13 @@ local keymap = require "my-config.keymap"
 -- Override lsp floating preview border globally
 local border = {
     { "🭽", "FloatBorder" },
-    { "▔", "FloatBorder" },
+    { "▔",  "FloatBorder" },
     { "🭾", "FloatBorder" },
-    { "▕", "FloatBorder" },
+    { "▕",  "FloatBorder" },
     { "🭿", "FloatBorder" },
-    { "▁", "FloatBorder" },
+    { "▁",  "FloatBorder" },
     { "🭼", "FloatBorder" },
-    { "▏", "FloatBorder" },
+    { "▏",  "FloatBorder" },
 }
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
@@ -32,8 +32,8 @@ vim.g.coq_settings = {
         pre_select = false,
         jump_to_mark = "<C-h>",
     },
-    ["display.pum.fast_close"] = false,
-    ["display.ghost_text.enabled"] = false,
+        ["display.pum.fast_close"] = false,
+        ["display.ghost_text.enabled"] = false,
     clients = {
         lsp = {
             weight_adjust = 2,
@@ -42,10 +42,10 @@ vim.g.coq_settings = {
         buffers = {
             weight_adjust = -0.5,
         },
-        ["third_party.enabled"] = false,
-        ["tmux.enabled"] = false,
-        ["snippets.enabled"] = false,
-        ["tags.enabled"] = false,
+            ["third_party.enabled"] = false,
+            ["tmux.enabled"] = false,
+            ["snippets.enabled"] = false,
+            ["tags.enabled"] = false,
     },
 }
 local coq = require "coq"
@@ -126,12 +126,28 @@ nvim_lsp.rnix.setup(standard_lsp_config)
 -- TODO move this into project-specific settings because
 -- lua-dev should only be used with init.lua development
 require("neodev").setup({})
-nvim_lsp.sumneko_lua.setup({
+nvim_lsp.lua_ls.setup({
     settings = {
         Lua = {
+            runtime = {
+                version = 'LuaJIT',
+            },
             completion = {
-                callSnippet = "Replace"
-            }
+                enable = true,
+                -- TODO: Fix this. It seems it doesn't work well with coq-nvim
+                -- callSnippet = "Both",
+                callSnippet = "Disable",
+                keywordSnippet = "Both"
+            },
+            diagnostics = {
+                globals = { 'vim' },
+            },
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+            telemetry = {
+                enable = false,
+            },
         }
     },
     on_attach = lsp_on_attach,
