@@ -64,8 +64,7 @@ in
         mapx
 
         autosave
-        auto-session
-        session-lens
+        possession-nvim
         nvim-neoclip-lua
 
         neorg

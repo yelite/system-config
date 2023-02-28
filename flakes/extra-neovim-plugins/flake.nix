@@ -91,5 +91,9 @@
       url = "github:ggandor/leap-spooky.nvim";
       flake = false;
     };
+    possession-nvim = {
+      url = "github:jedrzejboczar/possession.nvim";
+      flake = false;
+    };
   };
 }

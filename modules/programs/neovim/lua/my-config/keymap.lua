@@ -160,8 +160,8 @@ local session_keymap = {
     name = "state",
     q = { "<cmd>qa<cr>", "Quit" },
     Q = { "<cmd>wa<cr><cmd>qa<cr>", "Save and Quit" },
-    l = { "<cmd>SearchSession<cr>", "Search Sessions" },
-    s = { "<cmd>SaveSession<cr>", "Save Session" },
+    l = { "<cmd>Telescope possession list<cr>", "Search Sessions" },
+    s = { "<cmd>PossessionSave<cr>", "Save Session" },
     t = { "<cmd>Telescope resume<cr>", "Resume Last Telescope Picker" },
     T = { "<cmd>Telescope pickers<cr>", "Previous Telescope Pickers" },
 }

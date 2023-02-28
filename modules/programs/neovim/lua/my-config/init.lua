@@ -68,13 +68,6 @@ require('leap-spooky').setup {
     paste_on_remote_yank = true,
 }
 
-o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
-require("auto-session").setup {
-    auto_session_suppress_dirs = { "/etc" },
-    post_restore_cmds = { [[normal `"]] }, -- restore the last cursor position
-}
-require("session-lens").setup {}
-
 require("auto-save").setup {
     enabled = true,
     trigger_events = { "InsertLeave", "FocusLost" },
@@ -179,6 +172,7 @@ require('gitlinker').setup({
 })
 
 require "my-config.keymap"
+require "my-config.session"
 require "my-config.terminal"
 require "my-config.treesitter"
 require "my-config.autopairs"
