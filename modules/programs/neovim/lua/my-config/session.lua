@@ -1,7 +1,18 @@
-local possession = require('possession')
-local possession_paths = require('possession.paths')
+local action_state = require('telescope.actions.state')
+local actions = require('telescope.actions')
+local conf = require('telescope.config').values
+local finders = require('telescope.finders')
+local pickers = require('telescope.pickers')
+local themes = require('telescope.themes')
 
-vim.o.sessionoptions = "blank,curdir,folds,help,tabpages,winsize,winpos,terminal"
+local possession = require('possession')
+local possession_session = require('possession.session')
+local possession_paths = require('possession.paths')
+local possession_utils = require('possession.utils')
+
+local M = {}
+
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 
 possession.setup {
     autosave = {
@@ -22,22 +33,16 @@ possession.setup {
                 custom = false, -- or fun(win): boolean
             },
         },
-        delete_hidden_buffers = {
-            hooks = {
-                'before_load',
-                vim.o.sessionoptions:match('buffer') and 'before_save',
-            },
-            force = false, -- or fun(buf): boolean
-        },
-        nvim_tree = true,
-        tabby = true,
-        dap = true,
+        delete_hidden_buffers = false,
+        nvim_tree = false,
+        tabby = false,
+        dap = false,
         delete_buffers = false,
     },
 }
 
 local auto_session_disabled_dirs = {
-    "etc",
+    "/etc",
 }
 
 local function should_enter_auto_session(path)
@@ -50,7 +55,7 @@ local function should_enter_auto_session(path)
 end
 
 local function get_auto_session_name(path)
-    return path:gsub("/", "\\%%")
+    return path:gsub("/", "__")
 end
 
 vim.api.nvim_create_augroup("MyAutoSession", { clear = true })
@@ -64,12 +69,81 @@ vim.api.nvim_create_autocmd("VimEnter", {
         if vim.fn.argc(-1) == 0 and should_enter_auto_session(dir) then
             local session_name = get_auto_session_name(dir)
             local session_file_path = possession_paths.session(session_name)
+            -- unconditionally set the session name
+            require('possession.session').session_name = session_name
             if session_file_path:exists() then
-                possession.load(session_name)
-            else
-                possession.save(session_name)
+                -- There is a (uncomfirmed) bug in nvim_exec, which caused buffer
+                -- local options to be left in a weird state (ft is null, etc.) if
+                -- possession.load is called eagerly at VimEnter. So here it calls
+                -- it with defer_fn.
+                vim.defer_fn(function()
+                    possession.load(session_name)
+                end, 0)
             end
         end
     end,
 })
--- Auto save on quit is handled by possession itself
+
+-- Session Picker
+-- Provide some default "mappings"
+local default_actions = {
+    save = 'select_horizontal',
+    load = 'select_vertical',
+    delete = 'select_tab',
+}
+
+local load_session_action = function(prompt_bufnr)
+    local selection = action_state.get_selected_entry()
+    if not selection then
+        possession_utils.warn('Nothing currently selected')
+        return
+    end
+    actions.close(prompt_bufnr)
+    vim.defer_fn(function()
+        possession_session.load(selection.value.name)
+    end, 0)
+end
+
+local delete_session_action = function(prompt_bufnr)
+    local current_picker = action_state.get_current_picker(prompt_bufnr)
+    current_picker:delete_selection(function(selection)
+        possession_session.delete(selection.value.name, { no_confirm = true })
+    end)
+end
+
+function M.list_sessions(opts)
+    local sessions = {}
+    for file, data in pairs(possession_session.list()) do
+        data.file = file
+        table.insert(sessions, data)
+    end
+    -- TODO: Make current session on the top?
+    table.sort(sessions, function(a, b)
+        return a.name < b.name
+    end)
+
+    pickers
+        .new({
+            prompt_title = 'Sessions',
+            finder = finders.new_table {
+                results = sessions,
+                entry_maker = function(entry)
+                    return {
+                        value = entry,
+                        display = entry.name,
+                        ordinal = entry.name,
+                    }
+                end,
+            },
+            sorter = conf.generic_sorter(opts),
+            previewer = false,
+            attach_mappings = function(buf, map)
+                actions.select_default:replace(load_session_action)
+                map("i", "<c-d>", delete_session_action)
+                return true
+            end,
+        }, themes.get_dropdown())
+        :find()
+end
+
+return M

@@ -63,8 +63,10 @@ local standard_lsp_config = coq.lsp_ensure_capabilities {
 
 lspsaga.setup {
     max_preview_lines = 20,
-    rename_action_quit = "<Esc>",
-    code_action_lightbulb = {
+    rename = {
+        quit = "<Esc>",
+    },
+    lightbulb = {
         enable = false,
     },
 }
@@ -158,4 +160,3 @@ require("null-ls").setup {
 
 -- C indent
 vim.o.cinoptions = "h1,l1,g1,t0,i4,+4,(0,w1,W4"
-
