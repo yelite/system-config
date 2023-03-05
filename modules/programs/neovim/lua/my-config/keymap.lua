@@ -193,21 +193,21 @@ wk.register({
     t = toggle_feature_keymap,
     v = vcs_keymap,
     w = window_keymap,
-    ["j"] = { require("my-config.telescope").git_changed_files, "Changed Files in Git Branch" },
-    ["J"] = buffer_keymap.b, -- Switch buffer
-    ["k"] = { require("my-config.telescope").quick_find_files, "Quick Find Files" },
-    ["K"] = file_keymap.E, -- Start broswer in the same directory
-    ["l"] = code_keymap.s, -- Workspace Symbols
-    ["x"] = { "<cmd>Telescope commands<cr>", "Commands" },
-    ["X"] = { "<cmd>Telescope command_history<cr>", "Commands" },
-    ["."] = session_keymap.t, -- Resume last telescope picker
+        ["j"] = { require("my-config.telescope").git_changed_files, "Changed Files in Git Branch" },
+        ["J"] = buffer_keymap.b, -- Switch buffer
+        ["k"] = { require("my-config.telescope").quick_find_files, "Quick Find Files" },
+        ["K"] = file_keymap.E, -- Start broswer in the same directory
+        ["l"] = code_keymap.s, -- Workspace Symbols
+        ["x"] = { "<cmd>Telescope commands<cr>", "Commands" },
+        ["X"] = { "<cmd>Telescope command_history<cr>", "Commands" },
+        ["."] = session_keymap.t, -- Resume last telescope picker
 }, {
     prefix = "<leader>",
 })
 
 wk.register({
-    ["]c"] = { "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", "Next Hunk", expr = true },
-    ["[c"] = { "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", "Previous Hunk", expr = true },
+        ["]c"] = { "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", "Next Hunk", expr = true },
+        ["[c"] = { "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", "Previous Hunk", expr = true },
 }, { mode = "n", prefix = "" })
 
 -- Hop
@@ -228,17 +228,17 @@ wk.register({
 -- Text object labels
 local text_objects = {
     -- tree-sitter
-    ["af"] = "function",
-    ["if"] = "inner function",
-    ["ac"] = "class",
-    ["ic"] = "inner class",
-    ["aa"] = "parameter",
-    ["ia"] = "inner parameter",
+        ["af"] = "function",
+        ["if"] = "inner function",
+        ["ac"] = "class",
+        ["ic"] = "inner class",
+        ["aa"] = "parameter",
+        ["ia"] = "inner parameter",
     -- textobj-entire
-    ["ae"] = "entire buffer",
-    ["ie"] = "entire buffer (without surrounding empty lines)",
+        ["ae"] = "entire buffer",
+        ["ie"] = "entire buffer (without surrounding empty lines)",
     -- gitsign
-    ["ih"] = { ":<C-U>Gitsigns select_hunk<CR>", "Git Hunk" },
+        ["ih"] = { ":<C-U>Gitsigns select_hunk<CR>", "Git Hunk" },
 }
 wk.register(text_objects, { mode = "o", prefix = "" })
 wk.register(text_objects, { mode = "x", prefix = "" })
@@ -364,15 +364,15 @@ function M.bind_lsp_keys(client, bufnr)
     m.nnoremap("ga", "<cmd>CodeActionMenu<cr>", opt, "Code Actions")
     m.nnoremap("K", "<cmd>Lspsaga hover_doc<cr>", opt, "LSP Hover")
 
-    vim.keymap.set("n", "[e", require("lspsaga.diagnostic").goto_prev,
+    vim.keymap.set("n", "[e", function() require("lspsaga.diagnostic"):goto_prev() end,
         { silent = true, noremap = true, desc = "Next diagnostic" })
-    vim.keymap.set("n", "]e", require("lspsaga.diagnostic").goto_next,
+    vim.keymap.set("n", "]e", function() require("lspsaga.diagnostic"):goto_next() end,
         { silent = true, noremap = true, desc = "Previous diagnostic" })
     vim.keymap.set("n", "[E", function()
-        require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
+        require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
     end, { silent = true, noremap = true, desc = "Next error" })
     vim.keymap.set("n", "]E", function()
-        require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
+        require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
     end, { silent = true, noremap = true, desc = "Previous error" })
 
     m.inoremap("<C-o>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opt)
