@@ -1,9 +1,11 @@
-local window_util = require "my-config.window"
 local toggleterm = require "toggleterm"
 local leap = require "leap"
 local leap_util = require "leap.util"
 -- local lspsaga_action = require("lspsaga.action")
 local aerial = require "aerial"
+
+local my_window = require "my-config.window"
+local my_git = require "my-config.git"
 
 local M = {}
 
@@ -96,8 +98,8 @@ local buffer_keymap = {
 local window_keymap = {
     name = "window",
     w = { leap_to_window, "Jump to Window" },
-    o = { window_util.move_to_next_window, "Move Buffer to Next Window" },
-    O = { window_util.open_in_next_window, "Open Buffer in Next Window" },
+    o = { my_window.move_to_next_window, "Move Buffer to Next Window" },
+    O = { my_window.open_in_next_window, "Open Buffer in Next Window" },
     p = {
         "<cmd>lua require'my-config.window'.move_to_next_window(true)<cr>",
         "Move Buffer to Next Window And Enter",
@@ -162,6 +164,7 @@ local session_keymap = {
     Q = { "<cmd>wa<cr><cmd>qa<cr>", "Save and Quit" },
     l = { require("my-config.session").list_sessions, "Search Sessions" },
     s = { "<cmd>PossessionSave<cr>", "Save Session" },
+    g = { my_git.ask_for_base_branch, "Set Git Base Branch" },
     t = { "<cmd>Telescope resume<cr>", "Resume Last Telescope Picker" },
     T = { "<cmd>Telescope pickers<cr>", "Previous Telescope Pickers" },
 }
@@ -193,21 +196,21 @@ wk.register({
     t = toggle_feature_keymap,
     v = vcs_keymap,
     w = window_keymap,
-    ["j"] = { require("my-config.telescope").git_changed_files, "Changed Files in Git Branch" },
-    ["J"] = buffer_keymap.b, -- Switch buffer
-    ["k"] = { require("my-config.telescope").quick_find_files, "Quick Find Files" },
-    ["K"] = file_keymap.E, -- Start broswer in the same directory
-    ["l"] = code_keymap.s, -- Workspace Symbols
-    ["x"] = { "<cmd>Telescope commands<cr>", "Commands" },
-    ["X"] = { "<cmd>Telescope command_history<cr>", "Commands" },
-    ["."] = session_keymap.t, -- Resume last telescope picker
+        ["j"] = { require("my-config.telescope").git_changed_files, "Changed Files in Git Branch" },
+        ["J"] = buffer_keymap.b, -- Switch buffer
+        ["k"] = { require("my-config.telescope").quick_find_files, "Quick Find Files" },
+        ["K"] = file_keymap.E, -- Start broswer in the same directory
+        ["l"] = code_keymap.s, -- Workspace Symbols
+        ["x"] = { "<cmd>Telescope commands<cr>", "Commands" },
+        ["X"] = { "<cmd>Telescope command_history<cr>", "Commands" },
+        ["."] = session_keymap.t, -- Resume last telescope picker
 }, {
     prefix = "<leader>",
 })
 
 wk.register({
-    ["]c"] = { "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", "Next Hunk", expr = true },
-    ["[c"] = { "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", "Previous Hunk", expr = true },
+        ["]c"] = { "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", "Next Hunk", expr = true },
+        ["[c"] = { "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", "Previous Hunk", expr = true },
 }, { mode = "n", prefix = "" })
 
 -- Hop
@@ -228,17 +231,17 @@ wk.register({
 -- Text object labels
 local text_objects = {
     -- tree-sitter
-    ["af"] = "function",
-    ["if"] = "inner function",
-    ["ac"] = "class",
-    ["ic"] = "inner class",
-    ["aa"] = "parameter",
-    ["ia"] = "inner parameter",
+        ["af"] = "function",
+        ["if"] = "inner function",
+        ["ac"] = "class",
+        ["ic"] = "inner class",
+        ["aa"] = "parameter",
+        ["ia"] = "inner parameter",
     -- textobj-entire
-    ["ae"] = "entire buffer",
-    ["ie"] = "entire buffer (without surrounding empty lines)",
+        ["ae"] = "entire buffer",
+        ["ie"] = "entire buffer (without surrounding empty lines)",
     -- gitsign
-    ["ih"] = { ":<C-U>Gitsigns select_hunk<CR>", "Git Hunk" },
+        ["ih"] = { ":<C-U>Gitsigns select_hunk<CR>", "Git Hunk" },
 }
 wk.register(text_objects, { mode = "o", prefix = "" })
 wk.register(text_objects, { mode = "x", prefix = "" })

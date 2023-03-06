@@ -10,9 +10,21 @@ local possession_session = require "possession.session"
 local possession_paths = require "possession.paths"
 local possession_utils = require "possession.utils"
 
+local my_git = require "my-config.git"
+
 local M = {}
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
+
+local function save_user_data(name)
+    return {
+        git_main_branch = my_git.main_branch
+    }
+end
+
+local function load_user_data(name, user_data)
+    my_git.main_branch = user_data.git_main_branch
+end
 
 possession.setup {
     autosave = {
@@ -21,6 +33,10 @@ possession.setup {
         tmp_name = "temp session",
         on_load = true,
         on_quit = true,
+    },
+    hooks = {
+        before_save = save_user_data,
+        after_load = load_user_data
     },
     plugins = {
         close_windows = {
