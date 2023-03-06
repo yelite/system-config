@@ -52,7 +52,9 @@ lib.optionalAttrs systemInfo.isLinux {
 
     openssh = {
       enable = true;
-      useDns = true;
+      settings = {
+        useDns = true;
+      };
     };
 
     # Hide the cursor when typing.
