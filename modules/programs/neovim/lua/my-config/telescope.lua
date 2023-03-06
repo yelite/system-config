@@ -24,11 +24,13 @@ function M.git_changed_files()
         entry_maker = make_entry.gen_from_file(),
     }
 
-    pickers.new(require("telescope.themes").get_dropdown {}, {
-        prompt_title = "Git Branch Modified Files",
-        finder = finders.new_oneshot_job(cmd, opts),
-        sorter = sorters.get_fuzzy_file(),
-    }):find()
+    pickers
+        .new(require("telescope.themes").get_dropdown {}, {
+            prompt_title = "Git Branch Modified Files",
+            finder = finders.new_oneshot_job(cmd, opts),
+            sorter = sorters.get_fuzzy_file(),
+        })
+        :find()
 end
 
 function M.quick_find_files()
@@ -140,6 +142,6 @@ require("telescope").load_extension "neoclip"
 require("telescope").load_extension "file_browser"
 require("telescope").load_extension "live_grep_args"
 require("telescope").load_extension "termfinder"
-require('telescope').load_extension "telescope-alternate"
+require("telescope").load_extension "telescope-alternate"
 
 return M

@@ -1,14 +1,14 @@
-local action_state = require('telescope.actions.state')
-local actions = require('telescope.actions')
-local conf = require('telescope.config').values
-local finders = require('telescope.finders')
-local pickers = require('telescope.pickers')
-local themes = require('telescope.themes')
+local action_state = require "telescope.actions.state"
+local actions = require "telescope.actions"
+local conf = require("telescope.config").values
+local finders = require "telescope.finders"
+local pickers = require "telescope.pickers"
+local themes = require "telescope.themes"
 
-local possession = require('possession')
-local possession_session = require('possession.session')
-local possession_paths = require('possession.paths')
-local possession_utils = require('possession.utils')
+local possession = require "possession"
+local possession_session = require "possession.session"
+local possession_paths = require "possession.paths"
+local possession_utils = require "possession.utils"
 
 local M = {}
 
@@ -18,13 +18,13 @@ possession.setup {
     autosave = {
         current = true,
         tmp = true,
-        tmp_name = 'temp session',
+        tmp_name = "temp session",
         on_load = true,
         on_quit = true,
     },
     plugins = {
         close_windows = {
-            hooks = { 'before_save', 'before_load' },
+            hooks = { "before_save", "before_load" },
             preserve_layout = true, -- or fun(win): boolean
             match = {
                 floating = true,
@@ -70,7 +70,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
             local session_name = get_auto_session_name(dir)
             local session_file_path = possession_paths.session(session_name)
             -- unconditionally set the session name
-            require('possession.session').session_name = session_name
+            require("possession.session").session_name = session_name
             if session_file_path:exists() then
                 -- There is a (uncomfirmed) bug in nvim_exec, which caused buffer
                 -- local options to be left in a weird state (ft is null, etc.) if
@@ -85,17 +85,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 -- Session Picker
--- Provide some default "mappings"
-local default_actions = {
-    save = 'select_horizontal',
-    load = 'select_vertical',
-    delete = 'select_tab',
-}
 
 local load_session_action = function(prompt_bufnr)
     local selection = action_state.get_selected_entry()
     if not selection then
-        possession_utils.warn('Nothing currently selected')
+        possession_utils.warn "Nothing currently selected"
         return
     end
     actions.close(prompt_bufnr)
@@ -124,7 +118,7 @@ function M.list_sessions(opts)
 
     pickers
         .new({
-            prompt_title = 'Sessions',
+            prompt_title = "Sessions",
             finder = finders.new_table {
                 results = sessions,
                 entry_maker = function(entry)

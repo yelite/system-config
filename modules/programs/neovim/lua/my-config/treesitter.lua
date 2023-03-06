@@ -1,7 +1,7 @@
 require("nvim-treesitter.configs").setup {
     -- The parser install dir no longer defaults to site dir
     -- after https://github.com/nvim-treesitter/nvim-treesitter/pull/3250
-    parser_install_dir = vim.fn.stdpath("data") .. "/site",
+    parser_install_dir = vim.fn.stdpath "data" .. "/site",
     -- Note: installing nix grammer requires treesitter installed as command line too
     ensure_installed = {
         "c",
@@ -21,6 +21,7 @@ require("nvim-treesitter.configs").setup {
         "nix",
         "norg",
         "markdown",
+        "markdown_inline",
         "query",
         "tsx",
         "typescript",
@@ -113,4 +114,4 @@ require("nvim-treesitter.configs").setup {
         },
     },
 }
-vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/site")
+vim.opt.runtimepath:append(vim.fn.stdpath "data" .. "/site")
