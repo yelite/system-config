@@ -331,7 +331,7 @@ vim.keymap.set({ "n", "t" }, "<C-4>", function()
     toggleterm.toggle(4, nil, nil, "horizontal")
 end)
 vim.keymap.set({ "n", "t" }, "<C-5>", function()
-    aerial.toggle(true, "right")
+    aerial.toggle({ focus = true, direction = "right" })
 end)
 
 -- LSP
@@ -341,7 +341,7 @@ local function bind_rust_lsp_keys(bufnr)
     m.nnoremap("<leader>ih", "<cmd>RustToggleInlayHints<cr>", opt, "Toggle Rust Inlay Hints")
     m.nnoremap("<leader>im", "<cmd>RustExpandMacro<cr>", opt, "Rust Expand Macro")
     m.nnoremap("<leader>ip", "<cmd>RustParentModule<cr>", opt, "Parent Module")
-    m.nnoremap("<leader>ic", "<cmd>RustOpenCargo<cr>", opt, "Open Cargo")
+    m.nnoremap("<leader>ioc", "<cmd>RustOpenCargo<cr>", opt, "Open Cargo")
 end
 
 function M.bind_lsp_keys(client, bufnr)
@@ -350,12 +350,16 @@ function M.bind_lsp_keys(client, bufnr)
     -- TODO: only bind if client supports it
     m.xnoremap("<leader>if", "<cmd>lua vim.lsp.buf.format({timeout_ms = 2000})<cr>", opt, "Range Format")
 
+    m.nnoremap("<leader>ic", "<cmd>Lspsaga incoming_calls<cr>", opt, "Incoming Calls")
+    m.nnoremap("<leader>iC", "<cmd>Lspsaga outgoing_calls<cr>", opt, "Outgoing Calls")
+
     m.nnoremap("gd", "<cmd>Telescope lsp_definitions<cr>", opt, "Definition")
     m.nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opt, "Declaration")
     m.nnoremap("gt", "<cmd>Telescope lsp_type_definitions<cr>", opt, "Type Definition")
     m.nnoremap("gr", "<cmd>Telescope lsp_references<cr>", opt, "References")
     m.nnoremap("gR", "<cmd>Lspsaga lsp_finder<cr>", opt, "Lsp Finder")
     m.nnoremap("gS", "<cmd>Telescope lsp_document_symbols<cr>", opt, "Document Symbols")
+    m.nnoremap("gk", "<cmd>Lspsaga hover_doc ++keep<cr>", opt, "Pin LSP Hover Window")
     m.nnoremap("goo", "<cmd>Lspsaga show_line_diagnostics<cr>", opt, "Show Line Diagnostics")
     m.nnoremap("god", "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", opt, "Preview Definition")
     m.nnoremap("gor", "<cmd>lua require('goto-preview').goto_preview_references()<cr>", opt, "Preview Reference")
