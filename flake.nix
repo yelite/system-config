@@ -36,13 +36,6 @@
           })
         ];
 
-        channels.nixpkgs-darwin = {
-          input = inputs.nixpkgs;
-          overlaysBuilder = channels: [
-            (import ./overlays/darwin-patches)
-          ];
-        };
-
         hosts = {
           moonshot = { };
 
@@ -50,7 +43,6 @@
             system = "aarch64-darwin";
             output = "darwinConfigurations";
             builder = darwin.lib.darwinSystem;
-            channelName = "nixpkgs-darwin";
           };
         };
 
