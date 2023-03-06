@@ -1,4 +1,4 @@
-require("neorg").setup {
+require("neorg").setup({
     load = {
         ["core.defaults"] = {},
         ["core.norg.concealer"] = {
@@ -21,7 +21,7 @@ require("neorg").setup {
     hook = function()
         local neorg_leader = "<Leader>n"
 
-        local neorg_callbacks = require "neorg.callbacks"
+        local neorg_callbacks = require("neorg.callbacks")
 
         neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, keybinds)
             -- Map all the below keybinds only when the "norg" mode is active
@@ -129,4 +129,4 @@ require("neorg").setup {
             })
         end)
     end,
-}
+})

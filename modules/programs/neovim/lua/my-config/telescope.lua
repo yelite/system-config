@@ -1,17 +1,17 @@
-local bufdelete = require "bufdelete"
-local action_state = require "telescope.actions.state"
-local action_generate = require "telescope.actions.generate"
-local trouble = require "trouble.providers.telescope"
-local ts_themes = require "telescope.themes"
-local ts_actions = require "telescope.actions"
-local ts_layout_actions = require "telescope.actions.layout"
-local make_entry = require "telescope.make_entry"
-local pickers = require "telescope.pickers"
-local sorters = require "telescope.sorters"
-local finders = require "telescope.finders"
+local bufdelete = require("bufdelete")
+local action_state = require("telescope.actions.state")
+local action_generate = require("telescope.actions.generate")
+local trouble = require("trouble.providers.telescope")
+local ts_themes = require("telescope.themes")
+local ts_actions = require("telescope.actions")
+local ts_layout_actions = require("telescope.actions.layout")
+local make_entry = require("telescope.make_entry")
+local pickers = require("telescope.pickers")
+local sorters = require("telescope.sorters")
+local finders = require("telescope.finders")
 
-local util = require "my-config.util"
-local my_git = require "my-config.git"
+local util = require("my-config.util")
+local my_git = require("my-config.git")
 
 local M = {}
 
@@ -20,15 +20,15 @@ function M.git_changed_files()
     local base_branch = my_git.get_or_ask_base_branch()
     local cmd = {
         "bash",
-        util.my_script_path "git-branch-changed-files.sh",
-        base_branch
+        util.my_script_path("git-branch-changed-files.sh"),
+        base_branch,
     }
     local opts = {
         entry_maker = make_entry.gen_from_file(),
     }
 
     pickers
-        .new(require("telescope.themes").get_dropdown {}, {
+        .new(require("telescope.themes").get_dropdown({}), {
             prompt_title = string.format("Modified Files (base: %s)", base_branch),
             finder = finders.new_oneshot_job(cmd, opts),
             sorter = sorters.get_fuzzy_file(),
@@ -37,7 +37,7 @@ function M.git_changed_files()
 end
 
 function M.quick_find_files()
-    require("telescope.builtin").find_files(ts_themes.get_dropdown { previewer = false })
+    require("telescope.builtin").find_files(ts_themes.get_dropdown({ previewer = false }))
 end
 
 local function delete_buffer(prompt_bufnr)
@@ -55,18 +55,17 @@ local function fb_action(f)
     end
 end
 
-require("telescope").setup {
+require("telescope").setup({
     defaults = {
         mappings = {
             i = {
-                    ["<esc>"] = ts_actions.close,
-                    ["<C-s>"] = ts_layout_actions.toggle_preview,
-                    ["<C-t>"] = trouble.open_with_trouble,
-                    ["<C-h>"] = "which_key",
-                    ["<C-/>"] = "which_key",
+                ["<esc>"] = ts_actions.close,
+                ["<C-s>"] = ts_layout_actions.toggle_preview,
+                ["<C-t>"] = trouble.open_with_trouble,
+                ["<C-h>"] = "which_key",
+                ["<C-/>"] = "which_key",
                 -- TODO: smart open in opposite window
-                    ["<C-Enter>"] = function()
-                end,
+                ["<C-Enter>"] = function() end,
             },
         },
         prompt_prefix = "  ",
@@ -95,7 +94,7 @@ require("telescope").setup {
             previewer = false,
             mappings = {
                 i = {
-                        ["<c-d>"] = delete_buffer,
+                    ["<c-d>"] = delete_buffer,
                 },
             },
         },
@@ -116,36 +115,36 @@ require("telescope").setup {
         file_browser = {
             mappings = {
                 i = {
-                        ["<C-f>"] = { "<Right>", type = "command" },
-                        ["<C-e>"] = { "<End>", type = "command" },
-                        ["<C-h>"] = action_generate.which_key {
+                    ["<C-f>"] = { "<Right>", type = "command" },
+                    ["<C-e>"] = { "<End>", type = "command" },
+                    ["<C-h>"] = action_generate.which_key({
                         keybind_width = 12,
                         max_height = 0.5,
-                    },
-                        ["<S-CR>"] = fb_action "create_from_prompt",
-                        ["<C-g>"] = fb_action "goto_parent_dir",
-                        ["<C-w>"] = false,
-                        ["<C-w><Esc>"] = false,
-                        ["<C-w><C-d>"] = fb_action "remove",
-                        ["<C-w><C-n>"] = fb_action "create",
-                        ["<C-w><C-r>"] = fb_action "rename",
-                        ["<C-w><C-p>"] = fb_action "copy",
-                        ["<C-w><C-m>"] = fb_action "move",
-                        ["<C-w><C-f>"] = fb_action "toggle_browser",
-                        ["<C-w><C-t>"] = fb_action "toggle_hidden",
-                        ["<C-w><C-w>"] = fb_action "goto_cwd",
-                        ["<C-w><C-s>d"] = fb_action "sort_by_size",
-                        ["<C-w><C-s>s"] = fb_action "sort_by_date",
+                    }),
+                    ["<S-CR>"] = fb_action("create_from_prompt"),
+                    ["<C-g>"] = fb_action("goto_parent_dir"),
+                    ["<C-w>"] = false,
+                    ["<C-w><Esc>"] = false,
+                    ["<C-w><C-d>"] = fb_action("remove"),
+                    ["<C-w><C-n>"] = fb_action("create"),
+                    ["<C-w><C-r>"] = fb_action("rename"),
+                    ["<C-w><C-p>"] = fb_action("copy"),
+                    ["<C-w><C-m>"] = fb_action("move"),
+                    ["<C-w><C-f>"] = fb_action("toggle_browser"),
+                    ["<C-w><C-t>"] = fb_action("toggle_hidden"),
+                    ["<C-w><C-w>"] = fb_action("goto_cwd"),
+                    ["<C-w><C-s>d"] = fb_action("sort_by_size"),
+                    ["<C-w><C-s>s"] = fb_action("sort_by_date"),
                 },
             },
         },
     },
-}
-require("telescope").load_extension "fzf"
-require("telescope").load_extension "neoclip"
-require("telescope").load_extension "file_browser"
-require("telescope").load_extension "live_grep_args"
-require("telescope").load_extension "termfinder"
-require("telescope").load_extension "telescope-alternate"
+})
+require("telescope").load_extension("fzf")
+require("telescope").load_extension("neoclip")
+require("telescope").load_extension("file_browser")
+require("telescope").load_extension("live_grep_args")
+require("telescope").load_extension("termfinder")
+require("telescope").load_extension("telescope-alternate")
 
 return M

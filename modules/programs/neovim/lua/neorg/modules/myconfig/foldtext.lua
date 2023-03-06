@@ -1,10 +1,10 @@
 -- A module to do customized text folding, replacing the foldtext from core.norg.concealer
 -- The concealer module should get config `folds.enable = false` to avoid conflict
 
-require "neorg.modules.base"
+require("neorg.modules.base")
 
-local module = neorg.modules.create "myconfig.foldtext"
-local concealer = require "neorg.modules.core.norg.concealer.module"
+local module = neorg.modules.create("myconfig.foldtext")
+local concealer = require("neorg.modules.core.norg.concealer.module")
 
 module.setup = function()
     return { success = true }

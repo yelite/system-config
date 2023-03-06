@@ -1,7 +1,7 @@
-local lsp_status = require "lsp-status"
-local gps = require "nvim-gps"
-local terms = require "toggleterm.terminal"
-local nord_colors = require "nord.colors"
+local lsp_status = require("lsp-status")
+local gps = require("nvim-gps")
+local terms = require("toggleterm.terminal")
+local nord_colors = require("nord.colors")
 
 gps.setup()
 
@@ -37,12 +37,12 @@ local lsp_status_component = {
 }
 
 lsp_status.register_progress()
-lsp_status.config {
+lsp_status.config({
     diagnostics = false,
     current_function = false,
-}
+})
 
-require("lualine").setup {
+require("lualine").setup({
     options = {
         theme = "nord",
         globalstatus = true,
@@ -89,4 +89,4 @@ require("lualine").setup {
         lualine_y = {},
         lualine_z = {},
     },
-}
+})

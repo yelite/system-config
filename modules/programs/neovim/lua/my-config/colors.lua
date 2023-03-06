@@ -4,10 +4,10 @@ vim.g.nord_borders = true
 vim.g.nord_italic = false
 
 function M.patchNordColors()
-    local nord_colors = require "nord.colors"
-    local nord_util = require "nord.util"
+    local nord_colors = require("nord.colors")
+    local nord_util = require("nord.util")
 
-    vim.cmd [[hi clear LspReferenceText]]
+    vim.cmd([[hi clear LspReferenceText]])
     nord_util.highlight("WhichKeyFloating", { bg = nord_colors.nord1_gui })
     nord_util.highlight("WhichKeyFloat", { bg = nord_colors.nord1_gui })
     nord_util.highlight("Folded", { style = "bold" })
@@ -23,14 +23,14 @@ function M.patchNordColors()
     nord_util.highlight("TSComment", { fg = nord_colors.nord3_gui_bright, style = "italic" })
 end
 
-vim.cmd [[colorscheme nord]]
+vim.cmd([[colorscheme nord]])
 M.patchNordColors()
 
-vim.cmd [[
+vim.cmd([[
 augroup MyColors
     autocmd!
     autocmd ColorScheme nord lua require"my-config.colors".patchNordColors()
 augroup end
-]]
+]])
 
 return M

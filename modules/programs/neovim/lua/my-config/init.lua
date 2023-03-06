@@ -51,57 +51,57 @@ if g.neovide then
     g.neovide_floating_opacity = 0.9
 end
 
-require "my-config.telescope"
+require("my-config.telescope")
 
 require("indent_blankline").setup()
-vim.cmd [[
+vim.cmd([[
 augroup MyIndentBlankline
     au!
     au FileType help lua require'indent_blankline.commands'.disable()
 augroup END
-]]
+]])
 
-require("hop").setup {
+require("hop").setup({
     jump_on_sole_occurrence = false,
-}
+})
 
-require("flit").setup {}
-require("leap-spooky").setup {
+require("flit").setup({})
+require("leap-spooky").setup({
     paste_on_remote_yank = true,
-}
+})
 
-require("auto-save").setup {
+require("auto-save").setup({
     enabled = true,
     trigger_events = { "InsertLeave", "TextChanged" },
     write_all_buffers = false,
     debounce_delay = 250,
-}
+})
 vim.api.nvim_create_augroup("MyAutoSave", { clear = true })
 vim.api.nvim_create_autocmd("BufLeave", {
     group = "MyAutoSave",
     callback = function(data)
-        if vim.fn.filereadable(vim.fn.expand "%:p") == 0 then
+        if vim.fn.filereadable(vim.fn.expand("%:p")) == 0 then
             return
         end
-        if vim.api.nvim_eval [[&modifiable]] == 0 then
+        if vim.api.nvim_eval([[&modifiable]]) == 0 then
             return
         end
-        vim.cmd [[ update ]]
+        vim.cmd([[ update ]])
     end,
 })
 
-require("gitsigns").setup {
+require("gitsigns").setup({
     signcolumn = false,
     numhl = true,
     keymaps = {},
-}
+})
 
-require("trouble").setup {
+require("trouble").setup({
     indent_line = false,
     auto_preview = false,
-}
+})
 
-require("todo-comments").setup {
+require("todo-comments").setup({
     signs = false,
     keywords = {
         FIX = {
@@ -115,14 +115,14 @@ require("todo-comments").setup {
     highlight = {
         after = "",
     },
-}
+})
 
-require("Comment").setup {}
+require("Comment").setup({})
 
-require("neoclip").setup {
+require("neoclip").setup({
     history = 30,
     enable_persistent_history = true,
-    db_path = vim.fn.stdpath "data" .. "/databases/neoclip.sqlite3",
+    db_path = vim.fn.stdpath("data") .. "/databases/neoclip.sqlite3",
     filter = nil,
     preview = true,
     default_register = "+",
@@ -146,38 +146,38 @@ require("neoclip").setup {
             },
         },
     },
-}
+})
 
-require("aerial").setup {}
+require("aerial").setup({})
 
-require("goto-preview").setup {
+require("goto-preview").setup({
     width = 135, -- Width of the floating window
     height = 20, -- Height of the floating window
     border = { "↖", "─", "┐", "│", "┘", "─", "└", "│" }, -- Border characters of the floating window
     default_mappings = false, -- Bind default mappings
     resizing_mappings = false, -- Binds arrow keys to resizing the floating window.
     references = { -- Configure the telescope UI for slowing the references cycling window.
-        telescope = require("telescope.themes").get_dropdown { hide_preview = false },
+        telescope = require("telescope.themes").get_dropdown({ hide_preview = false }),
     },
     -- These two configs can also be passed down to the goto-preview definition and implementation calls for one off "peak" functionality.
     focus_on_open = true, -- Focus the floating window when opening it.
     dismiss_on_move = false, -- Dismiss the floating window when moving the cursor.
     force_close = true, -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
     bufhidden = "wipe", -- the bufhidden option to set on the floating window. See :h bufhidden
-}
+})
 
 vim.g.code_action_menu_show_diff = false
 
-require("gitlinker").setup {
+require("gitlinker").setup({
     mappings = nil,
-}
+})
 
-require "my-config.keymap"
-require "my-config.session"
-require "my-config.terminal"
-require "my-config.treesitter"
-require "my-config.autopairs"
-require "my-config.languages"
-require "my-config.neorg"
-require "my-config.colors"
-require "my-config.statusline"
+require("my-config.keymap")
+require("my-config.session")
+require("my-config.terminal")
+require("my-config.treesitter")
+require("my-config.autopairs")
+require("my-config.languages")
+require("my-config.neorg")
+require("my-config.colors")
+require("my-config.statusline")

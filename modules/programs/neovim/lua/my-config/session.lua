@@ -1,16 +1,16 @@
-local action_state = require "telescope.actions.state"
-local actions = require "telescope.actions"
+local action_state = require("telescope.actions.state")
+local actions = require("telescope.actions")
 local conf = require("telescope.config").values
-local finders = require "telescope.finders"
-local pickers = require "telescope.pickers"
-local themes = require "telescope.themes"
+local finders = require("telescope.finders")
+local pickers = require("telescope.pickers")
+local themes = require("telescope.themes")
 
-local possession = require "possession"
-local possession_session = require "possession.session"
-local possession_paths = require "possession.paths"
-local possession_utils = require "possession.utils"
+local possession = require("possession")
+local possession_session = require("possession.session")
+local possession_paths = require("possession.paths")
+local possession_utils = require("possession.utils")
 
-local my_git = require "my-config.git"
+local my_git = require("my-config.git")
 
 local M = {}
 
@@ -18,7 +18,7 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 
 local function save_user_data(name)
     return {
-        git_main_branch = my_git.main_branch
+        git_main_branch = my_git.main_branch,
     }
 end
 
@@ -26,7 +26,7 @@ local function load_user_data(name, user_data)
     my_git.main_branch = user_data.git_main_branch
 end
 
-possession.setup {
+possession.setup({
     autosave = {
         current = true,
         tmp = true,
@@ -36,7 +36,7 @@ possession.setup {
     },
     hooks = {
         before_save = save_user_data,
-        after_load = load_user_data
+        after_load = load_user_data,
     },
     plugins = {
         close_windows = {
@@ -55,7 +55,7 @@ possession.setup {
         dap = false,
         delete_buffers = false,
     },
-}
+})
 
 local auto_session_disabled_dirs = {
     "/etc",
@@ -105,7 +105,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 local load_session_action = function(prompt_bufnr)
     local selection = action_state.get_selected_entry()
     if not selection then
-        possession_utils.warn "Nothing currently selected"
+        possession_utils.warn("Nothing currently selected")
         return
     end
     actions.close(prompt_bufnr)
@@ -135,7 +135,7 @@ function M.list_sessions(opts)
     pickers
         .new({
             prompt_title = "Sessions",
-            finder = finders.new_table {
+            finder = finders.new_table({
                 results = sessions,
                 entry_maker = function(entry)
                     return {
@@ -144,7 +144,7 @@ function M.list_sessions(opts)
                         ordinal = entry.name,
                     }
                 end,
-            },
+            }),
             sorter = conf.generic_sorter(opts),
             previewer = false,
             attach_mappings = function(buf, map)

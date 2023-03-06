@@ -3,14 +3,14 @@ local M = {}
 function M.open_current_buffer_to_window(from_window, to_window, enter)
     local bufnr = vim.api.nvim_win_get_buf(from_window)
     local topline = vim.api.nvim_win_call(from_window, function()
-        return vim.fn.line "w0"
+        return vim.fn.line("w0")
     end)
     local pos = vim.api.nvim_win_get_cursor(from_window)
 
     vim.api.nvim_win_set_buf(to_window, bufnr)
     vim.api.nvim_win_set_cursor(to_window, pos)
     vim.api.nvim_win_call(to_window, function()
-        vim.fn.winrestview { topline = topline }
+        vim.fn.winrestview({ topline = topline })
     end)
 
     if enter then
@@ -22,7 +22,7 @@ function M.move_current_buffer_to_window(from_window, to_window, enter)
     M.open_current_buffer_to_window(from_window, to_window, enter)
     vim.schedule(function()
         vim.api.nvim_win_call(from_window, function()
-            vim.cmd [[e#]] --  Jump to previously edited file
+            vim.cmd([[e#]]) --  Jump to previously edited file
         end)
     end)
 end
@@ -31,8 +31,8 @@ local function get_next_window()
     local all_windows = vim.api.nvim_tabpage_list_wins(0)
     if #all_windows == 1 then
         -- Create vertical split if there is only one window
-        vim.cmd [[wincmd v]]
-        vim.cmd [[wincmd p]]
+        vim.cmd([[wincmd v]])
+        vim.cmd([[wincmd p]])
         all_windows = vim.api.nvim_tabpage_list_wins(0)
     end
 

@@ -1,42 +1,42 @@
-local toggleterm = require "toggleterm"
-local leap = require "leap"
-local leap_util = require "leap.util"
+local toggleterm = require("toggleterm")
+local leap = require("leap")
+local leap_util = require("leap.util")
 -- local lspsaga_action = require("lspsaga.action")
-local aerial = require "aerial"
+local aerial = require("aerial")
 
-local my_window = require "my-config.window"
-local my_git = require "my-config.git"
+local my_window = require("my-config.window")
+local my_git = require("my-config.git")
 
 local M = {}
 
 vim.g.mapleader = " "
 vim.o.timeoutlen = 1200
 
-local wk = require "which-key"
-wk.setup {
+local wk = require("which-key")
+wk.setup({
     window = { border = "single" },
     icons = { separator = " " },
     layout = {
         height = { max = 18 },
         width = { max = 36 },
     },
-}
+})
 
 local function toggle_line_number()
     vim.o.number = not vim.o.number
 end
 
 local function toggle_auto_save()
-    vim.cmd [[ASToggle]]
+    vim.cmd([[ASToggle]])
     if vim.g.autosave_state then
-        print "AutoSave on"
+        print("AutoSave on")
     else
-        print "AutoSave off"
+        print("AutoSave off")
     end
 end
 
 local function copy_rel_path()
-    local path = vim.fn.expand "%"
+    local path = vim.fn.expand("%")
     vim.fn.setreg("+", path)
     vim.notify('Copied "' .. path .. '" to the clipboard!')
 end
@@ -51,13 +51,13 @@ local function leap_to_window()
         table.insert(targets, { pos = pos, wininfo = wininfo })
     end
 
-    leap.leap {
+    leap.leap({
         target_windows = target_windows,
         targets = targets,
         action = function(target)
             vim.api.nvim_set_current_win(target.wininfo.winid)
         end,
-    }
+    })
 end
 
 -- e -> edit
@@ -196,21 +196,21 @@ wk.register({
     t = toggle_feature_keymap,
     v = vcs_keymap,
     w = window_keymap,
-        ["j"] = { require("my-config.telescope").git_changed_files, "Changed Files in Git Branch" },
-        ["J"] = buffer_keymap.b, -- Switch buffer
-        ["k"] = { require("my-config.telescope").quick_find_files, "Quick Find Files" },
-        ["K"] = file_keymap.E, -- Start broswer in the same directory
-        ["l"] = code_keymap.s, -- Workspace Symbols
-        ["x"] = { "<cmd>Telescope commands<cr>", "Commands" },
-        ["X"] = { "<cmd>Telescope command_history<cr>", "Commands" },
-        ["."] = session_keymap.t, -- Resume last telescope picker
+    ["j"] = { require("my-config.telescope").git_changed_files, "Changed Files in Git Branch" },
+    ["J"] = buffer_keymap.b, -- Switch buffer
+    ["k"] = { require("my-config.telescope").quick_find_files, "Quick Find Files" },
+    ["K"] = file_keymap.E, -- Start broswer in the same directory
+    ["l"] = code_keymap.s, -- Workspace Symbols
+    ["x"] = { "<cmd>Telescope commands<cr>", "Commands" },
+    ["X"] = { "<cmd>Telescope command_history<cr>", "Commands" },
+    ["."] = session_keymap.t, -- Resume last telescope picker
 }, {
     prefix = "<leader>",
 })
 
 wk.register({
-        ["]c"] = { "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", "Next Hunk", expr = true },
-        ["[c"] = { "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", "Previous Hunk", expr = true },
+    ["]c"] = { "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", "Next Hunk", expr = true },
+    ["[c"] = { "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", "Previous Hunk", expr = true },
 }, { mode = "n", prefix = "" })
 
 -- Hop
@@ -231,30 +231,30 @@ wk.register({
 -- Text object labels
 local text_objects = {
     -- tree-sitter
-        ["af"] = "function",
-        ["if"] = "inner function",
-        ["ac"] = "class",
-        ["ic"] = "inner class",
-        ["aa"] = "parameter",
-        ["ia"] = "inner parameter",
+    ["af"] = "function",
+    ["if"] = "inner function",
+    ["ac"] = "class",
+    ["ic"] = "inner class",
+    ["aa"] = "parameter",
+    ["ia"] = "inner parameter",
     -- textobj-entire
-        ["ae"] = "entire buffer",
-        ["ie"] = "entire buffer (without surrounding empty lines)",
+    ["ae"] = "entire buffer",
+    ["ie"] = "entire buffer (without surrounding empty lines)",
     -- gitsign
-        ["ih"] = { ":<C-U>Gitsigns select_hunk<CR>", "Git Hunk" },
+    ["ih"] = { ":<C-U>Gitsigns select_hunk<CR>", "Git Hunk" },
 }
 wk.register(text_objects, { mode = "o", prefix = "" })
 wk.register(text_objects, { mode = "x", prefix = "" })
 
-local m = require "mapx"
-m.setup { whichkey = true }
+local m = require("mapx")
+m.setup({ whichkey = true })
 
 local function goto_start_of_line()
     local current_col = vim.api.nvim_win_get_cursor(0)[2]
-    vim.api.nvim_command [[normal! ^]]
+    vim.api.nvim_command([[normal! ^]])
     local new_col = vim.api.nvim_win_get_cursor(0)[2]
     if new_col == current_col then
-        vim.api.nvim_command [[normal! 0]]
+        vim.api.nvim_command([[normal! 0]])
     end
 end
 
@@ -293,7 +293,7 @@ m.vnoremap("<C-y>", [["+p]])
 
 -- leap
 local function leap_both_direction()
-    leap.leap { target_windows = { vim.fn.win_getid() } }
+    leap.leap({ target_windows = { vim.fn.win_getid() } })
 end
 
 vim.keymap.set({ "n" }, "s", leap_both_direction)
@@ -383,10 +383,10 @@ function M.bind_lsp_keys(client, bufnr)
         require("lspsaga.diagnostic"):goto_next()
     end, { silent = true, noremap = true, desc = "Previous diagnostic" })
     vim.keymap.set("n", "[E", function()
-        require("lspsaga.diagnostic"):goto_prev { severity = vim.diagnostic.severity.ERROR }
+        require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
     end, { silent = true, noremap = true, desc = "Next error" })
     vim.keymap.set("n", "]E", function()
-        require("lspsaga.diagnostic"):goto_next { severity = vim.diagnostic.severity.ERROR }
+        require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
     end, { silent = true, noremap = true, desc = "Previous error" })
 
     m.inoremap("<C-o>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opt)
@@ -410,22 +410,22 @@ function M.set_terminal_keymaps()
     m.tnoremap([[<C-w>l]], [[<C-\><C-n><C-W>l]], m.buffer)
 end
 
-vim.cmd [[
+vim.cmd([[
 augroup MyToggleTerm
     au!
     au TermOpen term://* lua require("my-config.keymap").set_terminal_keymaps()
 augroup END
-]]
+]])
 
 -- Keys for coq and auto-pairs
-local npairs = require "nvim-autopairs"
+local npairs = require("nvim-autopairs")
 
 local function combined_cr()
     if vim.fn.pumvisible() ~= 0 then
         if vim.fn.complete_info({ "selected" }).selected ~= -1 then
-            return npairs.esc "<c-y>"
+            return npairs.esc("<c-y>")
         else
-            return npairs.esc "<c-e>" .. npairs.autopairs_cr()
+            return npairs.esc("<c-e>") .. npairs.autopairs_cr()
         end
     else
         return npairs.autopairs_cr()
@@ -434,7 +434,7 @@ end
 
 local function combined_bs()
     if vim.fn.pumvisible() ~= 0 and vim.fn.complete_info({ "mode" }).mode == "eval" then
-        return npairs.esc "<c-e>" .. npairs.autopairs_bs()
+        return npairs.esc("<c-e>") .. npairs.autopairs_bs()
     else
         return npairs.autopairs_bs()
     end
