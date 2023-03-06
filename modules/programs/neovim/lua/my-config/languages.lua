@@ -139,11 +139,16 @@ nvim_lsp.lua_ls.setup({
                 callSnippet = "Disable",
                 keywordSnippet = "Both",
             },
+            format = {
+                enable = false, -- Use stylua
+            },
             diagnostics = {
                 globals = { "vim" },
             },
             workspace = {
+                checkThirdParty = false,
                 library = vim.api.nvim_get_runtime_file("", true),
+                maxPreload = 50000,
             },
             telemetry = {
                 enable = false,
@@ -160,6 +165,7 @@ require("null-ls").setup({
         require("null-ls").builtins.formatting.isort,
         require("null-ls").builtins.formatting.black,
         require("null-ls").builtins.formatting.clang_format,
+        require("null-ls").builtins.formatting.stylua,
         require("null-ls").builtins.diagnostics.pylint.with({
             -- TODO: read project config
             extra_args = {
