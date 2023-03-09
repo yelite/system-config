@@ -23,7 +23,7 @@ local function save_user_data(name)
     }
 end
 
-local function load_user_data(name, user_data)
+local function load_user_data(user_data)
     my_git.base_branch = user_data.git_base_branch
     my_git.alternative_remote = user_data.git_alternative_remote
 end
@@ -38,7 +38,10 @@ possession.setup({
     },
     hooks = {
         before_save = save_user_data,
-        after_load = load_user_data,
+        after_load = function(name, user_data)
+            load_user_data(user_data)
+            vim.api.nvim_command("clearjumps")
+        end,
     },
     plugins = {
         close_windows = {
