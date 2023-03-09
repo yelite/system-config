@@ -18,12 +18,14 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 
 local function save_user_data(name)
     return {
-        git_main_branch = my_git.main_branch,
+        git_base_branch = my_git.base_branch,
+        git_alternative_remote = my_git.alternative_remote,
     }
 end
 
 local function load_user_data(name, user_data)
-    my_git.main_branch = user_data.git_main_branch
+    my_git.base_branch = user_data.git_base_branch
+    my_git.alternative_remote = user_data.git_alternative_remote
 end
 
 possession.setup({

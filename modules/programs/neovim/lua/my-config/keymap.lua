@@ -130,7 +130,7 @@ local search_keymap = {
     i = { "<cmd>Telescope treesitter<cr>", "Search Syntax Node" },
     t = { "<cmd>Telescope termfinder find<cr>", "Search Terminals" },
 }
--- t -> toggle mode
+-- t -> toggle / settings
 local toggle_feature_keymap = {
     name = "toggle features",
     b = { [[<cmd>Gitsigns toggle_current_line_blame<cr>]], "Toggle Blame Line" },
@@ -138,6 +138,11 @@ local toggle_feature_keymap = {
     n = { toggle_line_number, "Line Number" },
     p = { [[<cmd>TSPlaygroundToggle<cr>]], "Treesitter Playground" },
     s = { toggle_auto_save, "Auto Save" },
+    g = {
+        name = "git",
+        b = { my_git.ask_for_base_branch, "Set Git Base Branch" },
+        r = { my_git.ask_for_alternative_remote, "Set Git Alternative Remote" },
+    },
 }
 -- v -> version control
 local vcs_keymap = {
@@ -146,9 +151,10 @@ local vcs_keymap = {
     f = { [[<cmd>Telescope git_status<cr>]], "Git Status" },
     s = { [[<cmd>Gitsigns stage_hunk<cr>]], "Stage Hunk" },
     u = { [[<cmd>Gitsigns undo_stage_hunk<cr>]], "Undo Stage Hunk" },
-    g = { [[<cmd>lua require"gitlinker".get_buf_range_url("n", {})<cr>]], "Copy github link" },
-    l = { [[<cmd>Gitsigns setqflist all<cr>]], "List All Hunks" },
-    L = { [[<cmd>Gitsigns setqflist<cr>]], "List Buffer Hunks" },
+    l = { my_git.copy_link_to_remote, "Copy link to repo remote" },
+    L = { my_git.copy_link_to_alternative_remote, "Copy link to alternative remote" },
+    h = { [[<cmd>Gitsigns setqflist all<cr>]], "List All Hunks" },
+    H = { [[<cmd>Gitsigns setqflist<cr>]], "List Buffer Hunks" },
     r = { [[<cmd>Gitsigns reset_hunk<cr>]], "Reset Hunk" },
     R = { [[<cmd>Gitsigns reset_buffer<cr>]], "Reset Buffer" },
     p = { [[<cmd>Gitsigns preview_hunk<cr>]], "Preview Hunk" },
@@ -164,7 +170,6 @@ local session_keymap = {
     Q = { "<cmd>wa<cr><cmd>qa<cr>", "Save and Quit" },
     l = { require("my-config.session").list_sessions, "Search Sessions" },
     s = { "<cmd>PossessionSave<cr>", "Save Session" },
-    g = { my_git.ask_for_base_branch, "Set Git Base Branch" },
     t = { "<cmd>Telescope resume<cr>", "Resume Last Telescope Picker" },
     T = { "<cmd>Telescope pickers<cr>", "Previous Telescope Pickers" },
 }

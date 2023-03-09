@@ -95,5 +95,11 @@
       url = "github:jedrzejboczar/possession.nvim";
       flake = false;
     };
+    # Fork of gitlinker, making the user_opt.remote override branch remote
+    # TODO: remove this fork after the change is upstreamed
+    gitlinker-nvim = {
+      url = "github:yelite/gitlinker.nvim";
+      flake = false;
+    };
   };
 }
