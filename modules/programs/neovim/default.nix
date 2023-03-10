@@ -34,6 +34,7 @@ in
 
         nord-nvim
         nvim-web-devicons
+        dressing-nvim
         indent-blankline-nvim
         gitsigns-nvim
         bufdelete-nvim

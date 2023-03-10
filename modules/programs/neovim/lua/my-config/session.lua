@@ -10,22 +10,24 @@ local possession_session = require("possession.session")
 local possession_paths = require("possession.paths")
 local possession_utils = require("possession.utils")
 
-local my_git = require("my-config.git")
+local my_settings = require("my-config.settings")
 
 local M = {}
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 
 local function save_user_data(name)
-    return {
-        git_base_branch = my_git.base_branch,
-        git_alternative_remote = my_git.alternative_remote,
-    }
+    local data = {}
+    for k, v in pairs(my_settings.settings) do
+        data[k] = v
+    end
+    return data
 end
 
 local function load_user_data(user_data)
-    my_git.base_branch = user_data.git_base_branch
-    my_git.alternative_remote = user_data.git_alternative_remote
+    for k, v in pairs(user_data) do
+        my_settings.settings[k] = v
+    end
 end
 
 possession.setup({

@@ -1,11 +1,14 @@
 local toggleterm = require("toggleterm")
 local leap = require("leap")
 local leap_util = require("leap.util")
+local async = require("plenary.async")
 -- local lspsaga_action = require("lspsaga.action")
 local aerial = require("aerial")
 
 local my_window = require("my-config.window")
+local my_settings = require("my-config.settings")
 local my_git = require("my-config.git")
+local my_util = require("my-config.util")
 
 local M = {}
 
@@ -140,8 +143,8 @@ local toggle_feature_keymap = {
     s = { toggle_auto_save, "Auto Save" },
     g = {
         name = "git",
-        b = { my_git.ask_for_base_branch, "Set Git Base Branch" },
-        r = { my_git.ask_for_alternative_remote, "Set Git Alternative Remote" },
+        b = { my_util.make_async_func(my_settings.prompt_setting, "git_base_branch"), "Set Git Base Branch" },
+        r = { my_util.make_async_func(my_settings.prompt_setting, "git_alternative_remote"), "Set Git Alternative Remote" },
     },
 }
 -- v -> version control

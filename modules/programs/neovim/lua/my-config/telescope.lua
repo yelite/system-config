@@ -1,3 +1,4 @@
+local async = require("plenary.async")
 local bufdelete = require("bufdelete")
 local action_state = require("telescope.actions.state")
 local action_generate = require("telescope.actions.generate")
@@ -10,17 +11,17 @@ local pickers = require("telescope.pickers")
 local sorters = require("telescope.sorters")
 local finders = require("telescope.finders")
 
-local util = require("my-config.util")
-local my_git = require("my-config.git")
+local my_util = require("my-config.util")
+local my_settings = require("my-config.settings")
 
 local M = {}
 
-function M.git_changed_files()
+M.git_changed_files = my_util.make_async_func(function()
     -- Based on https://github.com/nvim-telescope/telescope.nvim/issues/758#issuecomment-844868644
-    local base_branch = my_git.get_or_ask_base_branch()
+    local base_branch = my_settings.get_or_prompt_setting("git_base_branch", "")
     local cmd = {
         "bash",
-        util.my_script_path("git-branch-changed-files.sh"),
+        my_util.my_script_path("git-branch-changed-files.sh"),
         base_branch,
     }
     local opts = {
@@ -34,7 +35,7 @@ function M.git_changed_files()
             sorter = sorters.get_fuzzy_file(),
         })
         :find()
-end
+end)
 
 function M.quick_find_files()
     require("telescope.builtin").find_files(ts_themes.get_dropdown({ previewer = false }))

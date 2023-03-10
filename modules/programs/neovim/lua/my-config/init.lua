@@ -61,6 +61,18 @@ augroup MyIndentBlankline
 augroup END
 ]])
 
+require("dressing").setup({
+    input = {
+        get_config = function(opts)
+            if opts.kind == "my_setting" then
+                return {
+                    relative = "editor",
+                }
+            end
+        end,
+    },
+})
+
 require("hop").setup({
     jump_on_sole_occurrence = false,
 })
