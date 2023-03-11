@@ -62,7 +62,6 @@ in
         nvim-termfinder
         toggleterm-nvim
         which-key-nvim
-        mapx
 
         autosave
         possession-nvim

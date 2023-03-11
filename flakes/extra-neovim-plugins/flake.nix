@@ -19,10 +19,6 @@
       url = "github:yelite/trouble.nvim";
       flake = false;
     };
-    mapx = {
-      url = "github:b0o/mapx.nvim";
-      flake = false;
-    };
     session-lens = {
       url = "github:rmagatti/session-lens";
       flake = false;

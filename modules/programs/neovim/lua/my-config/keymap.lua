@@ -1,7 +1,6 @@
 local toggleterm = require("toggleterm")
 local leap = require("leap")
 local leap_util = require("leap.util")
-local async = require("plenary.async")
 -- local lspsaga_action = require("lspsaga.action")
 local aerial = require("aerial")
 
@@ -46,7 +45,7 @@ end
 
 -- TODO: generalize this to a window selector so that the open/move in other window function can use it.
 local function leap_to_window()
-    target_windows = leap_util.get_enterable_windows()
+    local target_windows = leap_util.get_enterable_windows()
     local targets = {}
     for _, win in ipairs(target_windows) do
         local wininfo = vim.fn.getwininfo(win)[1]
@@ -126,7 +125,7 @@ local search_keymap = {
     S = { "<cmd>lua require('spectre').open()<CR>", "Search" },
     f = { "<cmd>Telescope live_grep_args<cr>", "Search Text" },
     F = {
-        [[<cmd>lua require('telescope.builtin').live_grep({cwd="%:p:h", results_title=vim.fn.expand("%:h")})<cr>]],
+        [[<cmd>lua require('telescope.builtin').live_grep({cwd="%:p:h", results_title=vim.fn.fnamemodify(vim.fn.expand("%:h"), ":~:.")})<cr>]],
         "Search Text in Current File Directory",
     },
     h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
@@ -144,7 +143,10 @@ local toggle_feature_keymap = {
     g = {
         name = "git",
         b = { my_util.make_async_func(my_settings.prompt_setting, "git_base_branch"), "Set Git Base Branch" },
-        r = { my_util.make_async_func(my_settings.prompt_setting, "git_alternative_remote"), "Set Git Alternative Remote" },
+        r = {
+            my_util.make_async_func(my_settings.prompt_setting, "git_alternative_remote"),
+            "Set Git Alternative Remote",
+        },
     },
 }
 -- v -> version control
@@ -254,8 +256,14 @@ local text_objects = {
 wk.register(text_objects, { mode = "o", prefix = "" })
 wk.register(text_objects, { mode = "x", prefix = "" })
 
-local m = require("mapx")
-m.setup({ whichkey = true })
+local function mapkey(lhs, modes, rhs, opts, desc)
+    -- shortcut for vim.keymap.set so that lhs will be
+    -- aligned vertically in a series of key bindings
+    if desc ~= nil then
+        opts.desc = desc
+    end
+    vim.keymap.set(modes, lhs, rhs, opts)
+end
 
 local function goto_start_of_line()
     local current_col = vim.api.nvim_win_get_cursor(0)[2]
@@ -266,160 +274,165 @@ local function goto_start_of_line()
     end
 end
 
-m.nnoremap("0", goto_start_of_line)
-m.nnoremap("^", "0")
+mapkey("0", { "n", "x" }, goto_start_of_line)
+mapkey("^", { "n", "x" }, "0")
 
 -- Emacs-like movement keybindings
-m.inoremap("<C-b>", "<Left>")
-m.inoremap("<C-f>", "<Right>")
-m.inoremap("<C-p>", "<Up>")
-m.inoremap("<C-n>", "<Down>")
-m.inoremap("<C-a>", "<cmd>normal! ^<cr>")
-m.inoremap("<C-e>", "<End>")
+mapkey("<C-p>", { "i", "c" }, "<Up>")
+mapkey("<C-n>", { "i", "c" }, "<Down>")
 
-m.cnoremap("<C-b>", "<Left>")
-m.cnoremap("<C-f>", "<Right>")
-m.cnoremap("<C-p>", "<Up>")
-m.cnoremap("<C-n>", "<Down>")
-m.cnoremap("<C-a>", "<Home>")
-m.cnoremap("<C-e>", "<End>")
+mapkey("<C-b>", { "i", "c" }, "<Left>")
+mapkey("<C-f>", { "i", "c" }, "<Right>")
+mapkey("<C-a>", { "i" }, "<cmd>normal! ^<cr>")
+mapkey("<C-a>", { "c" }, "<Home>")
+mapkey("<C-e>", { "i", "c" }, "<End>")
 
--- Manually add mapping for vim-surround
-m.imap("<C-S>", "<Plug>Isurround")
+mapkey("<C-f>", "s", "<Esc>`>a")
+mapkey("<C-e>", "s", "<Esc>`>a")
+mapkey("<C-b>", "s", "<Esc>`<i")
+mapkey("<C-a>", "s", "<Esc>`<i")
 
 -- Join line above
-m.imap("<C-j>", "<cmd>normal! kJ<cr>")
-
---  to clear search highlight in addition to redraw
-m.cnoremap("<C-l>", "<cmd>noh<cr><C-l>")
+mapkey("<C-j>", "i", "<cmd>normal! kJ<cr>")
 
 -- Quickly paste in insert and visual modes
--- TODO: Identify the register type, call :put if it's linewise
-m.inoremap("<C-y>", "<C-r><C-o>+")
-m.cnoremap("<C-y>", "<C-r><C-o>+")
-m.vnoremap("<C-y>", [["+p]])
+local function paste_in_insert_mode()
+    local reg_type = vim.fn.getregtype("+")
+    if reg_type == "V" then
+        -- For linewise register, break the line at cursor and paste content
+        -- in between the broken parts.
+        return "<Enter><Up><cmd>put<cr>"
+    else
+        return "<C-r><C-o>+"
+    end
+end
+mapkey("<C-y>", "i", paste_in_insert_mode, { expr = true })
+mapkey("<C-y>", "c", "<C-r><C-o>+")
 
 -- leap
 local function leap_both_direction()
     leap.leap({ target_windows = { vim.fn.win_getid() } })
 end
 
-vim.keymap.set({ "n" }, "s", leap_both_direction)
-vim.keymap.set({ "o", "x" }, "x", "<Plug>(leap-forward-till)")
-vim.keymap.set({ "o", "x" }, "X", "<Plug>(leap-backward-till)")
-vim.keymap.set({ "n" }, "gs", "<Plug>(leap-cross-window)")
+mapkey("s", { "n" }, leap_both_direction)
+mapkey("x", { "o", "x" }, "<Plug>(leap-forward-till)")
+mapkey("X", { "o", "x" }, "<Plug>(leap-backward-till)")
+mapkey("gs", { "n" }, "<Plug>(leap-cross-window)")
 
 -- Substitue
-m.nmap("S", "<plug>(SubversiveSubstitute)")
-m.nmap("SS", "<plug>(SubversiveSubstituteLine)")
-m.xmap("S", "<plug>(SubversiveSubstitute)")
-m.nmap("R", "<plug>(SubversiveSubstituteRange)")
-m.nmap("RR", "<plug>(SubversiveSubstituteWordRange)")
-m.xmap("R", "<plug>(SubversiveSubstituteRange)")
--- c should not put deleted text into register
-m.nnoremap("c", [["_c]])
-m.xnoremap("c", [["_c]])
-m.nnoremap("C", [["_C]])
-m.xnoremap("C", [["_C]])
+mapkey("S", { "n", "x" }, "<Plug>(SubversiveSubstitute)")
+mapkey("R", { "n", "x" }, "<Plug>(SubversiveSubstituteRange)")
+mapkey("SS", { "n" }, "<Plug>(SubversiveSubstituteLine)")
+mapkey("RR", { "n" }, "<Plug>(SubversiveSubstituteWordRange)")
+
 -- p in visual should not replace register
-m.xmap("p", "<plug>(SubversiveSubstitute)")
+mapkey("p", "x", "<Plug>(SubversiveSubstitute)")
+
+-- c should not put deleted text into register
+mapkey("c", { "n", "x" }, [["_c]])
+mapkey("C", { "n", "x" }, [["_C]])
+
+-- TODO: leap to func arg, call arg
+
 -- zp/P to force linewise put
-m.nnoremap("zp", "<cmd>put<cr>")
-m.nnoremap("zP", "<cmd>put!<cr>")
+mapkey("zp", "n", "<cmd>put<cr>")
+mapkey("zP", "n", "<cmd>put!<cr>")
 
 -- Tool windows
-vim.keymap.set({ "n", "t" }, "<C-1>", "<cmd>TroubleToggle<cr>")
-vim.keymap.set({ "n", "t" }, "<C-2>", function()
-    toggleterm.toggle(2, nil, nil, "horizontal")
+mapkey("<C-1>", { "n", "t" }, "<cmd>TroubleToggle<cr>")
+mapkey("<C-2>", { "n", "t" }, function()
+    aerial.toggle({ focus = true, direction = "right" })
 end)
-vim.keymap.set({ "n", "t" }, "<C-3>", function()
+mapkey("<C-3>", { "n", "t" }, function()
     toggleterm.toggle(3, nil, nil, "float")
 end)
-vim.keymap.set({ "n", "t" }, "<C-4>", function()
+mapkey("<C-4>", { "n", "t" }, function()
     toggleterm.toggle(4, nil, nil, "horizontal")
 end)
-vim.keymap.set({ "n", "t" }, "<C-5>", function()
-    aerial.toggle({ focus = true, direction = "right" })
+mapkey("<C-5>", { "n", "t" }, function()
+    toggleterm.toggle(2, nil, nil, "horizontal")
 end)
 
 -- LSP
 local function bind_rust_lsp_keys(bufnr)
     local opt = { buffer = bufnr, silent = true }
-    m.nnoremap("<leader>ie", "<cmd>RustRunnables<cr>", opt, "Rust Runnables")
-    m.nnoremap("<leader>ih", "<cmd>RustToggleInlayHints<cr>", opt, "Toggle Rust Inlay Hints")
-    m.nnoremap("<leader>im", "<cmd>RustExpandMacro<cr>", opt, "Rust Expand Macro")
-    m.nnoremap("<leader>ip", "<cmd>RustParentModule<cr>", opt, "Parent Module")
-    m.nnoremap("<leader>ioc", "<cmd>RustOpenCargo<cr>", opt, "Open Cargo")
+    mapkey("<leader>ie", "n", "<cmd>RustRunnables<cr>", opt, "Rust Runnables")
+    mapkey("<leader>ih", "n", "<cmd>RustToggleInlayHints<cr>", opt, "Toggle Rust Inlay Hints")
+    mapkey("<leader>im", "n", "<cmd>RustExpandMacro<cr>", opt, "Rust Expand Macro")
+    mapkey("<leader>ip", "n", "<cmd>RustParentModule<cr>", opt, "Parent Module")
+    mapkey("<leader>ioc", "n", "<cmd>RustOpenCargo<cr>", opt, "Open Cargo")
 end
 
 function M.bind_lsp_keys(client, bufnr)
-    local opt = { buffer = bufnr, silent = true }
-    m.nnoremap("<leader>if", "<cmd>lua vim.lsp.buf.format({timeout_ms = 2000})<cr>", opt, "Format")
+    local opts = { buffer = bufnr, silent = true }
+    mapkey("<leader>if", "n", "<cmd>lua vim.lsp.buf.format({timeout_ms = 2000})<cr>", opts, "Format")
     -- TODO: only bind if client supports it
-    m.xnoremap("<leader>if", "<cmd>lua vim.lsp.buf.format({timeout_ms = 2000})<cr>", opt, "Range Format")
+    mapkey("<leader>if", "x", "<cmd>lua vim.lsp.buf.format({timeout_ms = 2000})<cr>", opts, "Range Format")
 
-    m.nnoremap("<leader>ic", "<cmd>Lspsaga incoming_calls<cr>", opt, "Incoming Calls")
-    m.nnoremap("<leader>iC", "<cmd>Lspsaga outgoing_calls<cr>", opt, "Outgoing Calls")
+    mapkey("<leader>ic", "n", "<cmd>Lspsaga incoming_calls<cr>", opts, "Incoming Calls")
+    mapkey("<leader>iC", "n", "<cmd>Lspsaga outgoing_calls<cr>", opts, "Outgoing Calls")
 
-    m.nnoremap("gd", "<cmd>Telescope lsp_definitions<cr>", opt, "Definition")
-    m.nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opt, "Declaration")
-    m.nnoremap("gt", "<cmd>Telescope lsp_type_definitions<cr>", opt, "Type Definition")
-    m.nnoremap("gr", "<cmd>Telescope lsp_references<cr>", opt, "References")
-    m.nnoremap("gR", "<cmd>Lspsaga lsp_finder<cr>", opt, "Lsp Finder")
-    m.nnoremap("gS", "<cmd>Telescope lsp_document_symbols<cr>", opt, "Document Symbols")
-    m.nnoremap("gk", "<cmd>Lspsaga hover_doc ++keep<cr>", opt, "Pin LSP Hover Window")
-    m.nnoremap("goo", "<cmd>Lspsaga show_line_diagnostics<cr>", opt, "Show Line Diagnostics")
-    m.nnoremap("god", "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", opt, "Preview Definition")
-    m.nnoremap("gor", "<cmd>lua require('goto-preview').goto_preview_references()<cr>", opt, "Preview Reference")
-    m.nnoremap(
+    mapkey("gd", "n", "<cmd>Telescope lsp_definitions<cr>", opts, "Definition")
+    mapkey("gD", "n", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts, "Declaration")
+    mapkey("gt", "n", "<cmd>Telescope lsp_type_definitions<cr>", opts, "Type Definition")
+    mapkey("gr", "n", "<cmd>Telescope lsp_references<cr>", opts, "References")
+    mapkey("gR", "n", "<cmd>Lspsaga lsp_finder<cr>", opts, "Lsp Finder")
+    mapkey("gS", "n", "<cmd>Telescope lsp_document_symbols<cr>", opts, "Document Symbols")
+    mapkey("gk", "n", "<cmd>Lspsaga hover_doc ++keep<cr>", opts, "Pin LSP Hover Window")
+    mapkey("goo", "n", "<cmd>Lspsaga show_line_diagnostics<cr>", opts, "Show Line Diagnostics")
+    mapkey("god", "n", "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", opts, "Preview Definition")
+    mapkey("gor", "n", "<cmd>lua require('goto-preview').goto_preview_references()<cr>", opts, "Preview Reference")
+    mapkey(
         "got",
+        "n",
         "<cmd>lua require('goto-preview').goto_preview_type_definition()<cr>",
-        opt,
+        opts,
         "Preview Type Definition"
     )
-    m.nnoremap(
+    mapkey(
         "goi",
+        "n",
         "<cmd>lua require('goto-preview').goto_preview_implementation()<cr>",
-        opt,
+        opts,
         "Preview Implementation"
     )
     -- TODO: Smart close all tool windows
-    m.nnoremap("<Esc>", "<cmd>lua require('goto-preview').close_all_win()<cr>", opt, "Close all preview windows")
-    m.nnoremap("ga", "<cmd>CodeActionMenu<cr>", opt, "Code Actions")
-    m.nnoremap("K", "<cmd>Lspsaga hover_doc<cr>", opt, "LSP Hover")
+    mapkey("<Esc>", "n", "<cmd>lua require('goto-preview').close_all_win()<cr>", opts, "Close all preview windows")
+    mapkey("ga", "n", "<cmd>CodeActionMenu<cr>", opts, "Code Actions")
+    mapkey("K", "n", "<cmd>Lspsaga hover_doc<cr>", opts, "LSP Hover")
 
-    vim.keymap.set("n", "[e", function()
+    mapkey("[e", "n", function()
         require("lspsaga.diagnostic"):goto_prev()
-    end, { silent = true, noremap = true, desc = "Next diagnostic" })
-    vim.keymap.set("n", "]e", function()
+    end, opts, "Next diagnostic")
+    mapkey("]e", "n", function()
         require("lspsaga.diagnostic"):goto_next()
-    end, { silent = true, noremap = true, desc = "Previous diagnostic" })
-    vim.keymap.set("n", "[E", function()
+    end, opts, "Previous diagnostic")
+    mapkey("[E", "n", function()
         require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
-    end, { silent = true, noremap = true, desc = "Next error" })
-    vim.keymap.set("n", "]E", function()
+    end, opts, "Next error")
+    mapkey("]E", "n", function()
         require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
-    end, { silent = true, noremap = true, desc = "Previous error" })
+    end, opts, "Previous error")
 
-    m.inoremap("<C-o>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opt)
-    m.inoremap("<C-k>", "<cmd>Lspsaga hover_doc<cr>", opt)
-    m.inoremap("<C-g>", "<cmd>CodeActionMenu<cr>", opt)
+    mapkey("<C-o>", "i", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+    mapkey("<C-k>", "i", "<cmd>Lspsaga hover_doc<cr>", opts)
+    mapkey("<C-g>", "i", "<cmd>CodeActionMenu<cr>", opts)
 
     if client.name == "rust_analyzer" then
         bind_rust_lsp_keys(bufnr)
     elseif client.name == "clangd" then
-        m.nnoremap("gi", "<cmd>ClangdSwitchSourceHeader<cr>", opt, "Goto header/source")
+        mapkey("gi", "n", "<cmd>ClangdSwitchSourceHeader<cr>", opts, "Goto header/source")
     end
 end
 
 -- Keys for terminal mode
 function M.set_terminal_keymaps()
-    m.tnoremap([[<C-s>]], [[<cmd>ToggleTerm<cr>]], m.buffer)
-    m.nnoremap([[<C-s>]], [[<cmd>ToggleTerm<cr>]], m.buffer)
-    m.tnoremap([[<C-w>h]], [[<C-\><C-n><C-W>h]], m.buffer)
-    m.tnoremap([[<C-w>j]], [[<C-\><C-n><C-W>j]], m.buffer)
-    m.tnoremap([[<C-w>k]], [[<C-\><C-n><C-W>k]], m.buffer)
-    m.tnoremap([[<C-w>l]], [[<C-\><C-n><C-W>l]], m.buffer)
+    local opts = { buffer = vim.fn.bufnr(), silent = true }
+    mapkey("<C-s>", { "t", "n" }, "<cmd>ToggleTerm<cr>", opts)
+    mapkey("<C-w>h", "t", [[<C-\><C-n><C-W>h]], opts)
+    mapkey("<C-w>j", "t", [[<C-\><C-n><C-W>j]], opts)
+    mapkey("<C-w>k", "t", [[<C-\><C-n><C-W>k]], opts)
+    mapkey("<C-w>l", "t", [[<C-\><C-n><C-W>l]], opts)
 end
 
 vim.cmd([[
@@ -452,9 +465,9 @@ local function combined_bs()
     end
 end
 
-m.inoremap("<esc>", [[pumvisible() ? "<c-e><esc>" : "<esc>"]], m.expr)
-m.inoremap("<c-c>", [[pumvisible() ? "<c-e>" : "<c-c>"]], m.expr)
-m.inoremap("<cr>", combined_cr, m.expr)
-m.inoremap("<bs>", combined_bs, m.expr)
+mapkey("<esc>", "i", [[pumvisible() ? "<c-e><esc>" : "<esc>"]], { expr = true })
+mapkey("<c-c>", "i", [[pumvisible() ? "<c-e>" : "<c-c>"]], { expr = true })
+mapkey("<cr>", "i", combined_cr, { expr = true })
+mapkey("<bs>", "i", combined_bs, { expr = true, replace_keycodes = false })
 
 return M

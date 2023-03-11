@@ -70,17 +70,6 @@ lspsaga.setup({
         enable = false,
     },
 })
-vim.api.nvim_create_augroup("MyLspSaga", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "sagarename",
-    group = "MyLspSaga",
-    callback = function()
-        vim.keymap.set({ "s" }, "<C-f>", "<Esc>i<Right>")
-        vim.keymap.set({ "s" }, "<C-b>", "<Esc>i<Left>")
-        vim.keymap.set({ "s" }, "<C-a>", "<Esc>^i")
-        vim.keymap.set({ "s" }, "<C-e>", "<Esc>$i")
-    end,
-})
 
 rust_tools.setup({
     tools = {
