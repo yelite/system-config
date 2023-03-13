@@ -77,9 +77,10 @@ require("hop").setup({
     jump_on_sole_occurrence = false,
 })
 
-require("flit").setup({})
-require("leap-spooky").setup({
-    paste_on_remote_yank = true,
+require("my-config.leap").setup({
+    remote = {
+        yank_paste = true,
+    },
 })
 
 require("auto-save").setup({

@@ -332,8 +332,6 @@ mapkey("p", "x", "<Plug>(SubversiveSubstitute)")
 mapkey("c", { "n", "x" }, [["_c]])
 mapkey("C", { "n", "x" }, [["_C]])
 
--- TODO: leap to func arg, call arg
-
 -- zp/P to force linewise put
 mapkey("zp", "n", "<cmd>put<cr>")
 mapkey("zP", "n", "<cmd>put!<cr>")
