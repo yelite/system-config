@@ -54,13 +54,22 @@ local function spooky_action(action, kwargs)
         -- (The operation itself will be executed after exiting.)
 
         -- Follow-up.
+        -- Trigger on any mode change, including returning to Insert
+        -- (possible i_CTRL-O), except for change operations (then
+        -- we first enter Insert mode for doing the change itself, and
+        -- should wait for returning to Normal).
+        -- For vim-subversive, we need to look for i:n only.
+        local pattern
+        if operator == "c" then
+            pattern = "*:n"
+        elseif operator == "g@" and vim.startswith(vim.o.operatorfunc, "subversive#") then
+            pattern = "i:n"
+        else
+            pattern = "*:*"
+        end
         if (keeppos or on_return) and op_mode then -- op_mode: sanity check
             api.nvim_create_autocmd("ModeChanged", {
-                -- Trigger on any mode change, including returning to Insert
-                -- (possible i_CTRL-O), except for change operations (then
-                -- we first enter Insert mode for doing the change itself, and
-                -- should wait for returning to Normal).
-                pattern = operator == "c" and "*:n" or "*:*",
+                pattern = pattern,
                 callback = after,
                 once = true,
             })
