@@ -46,7 +46,7 @@ in
       polybar = {
         enable = false;
         package = pkgs.polybar.override {
-          i3GapsSupport = true;
+          i3Support = true;
           nlSupport = true;
           iwSupport = true;
           alsaSupport = true;
