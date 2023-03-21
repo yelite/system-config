@@ -28,6 +28,8 @@ in
       nixpkgs-fmt
       cachix
 
+      obsidian
+
       my-fup-repl
     ] ++
     optionals systemInfo.isLinux [
