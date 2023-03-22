@@ -8,6 +8,7 @@ local my_window = require("my-config.window")
 local my_settings = require("my-config.settings")
 local my_git = require("my-config.git")
 local my_util = require("my-config.util")
+local my_note = require("my-config.note")
 
 local M = {}
 
@@ -149,7 +150,7 @@ local toggle_feature_keymap = {
             "Set Git Alternative Remote",
         },
     },
-    f = { require("zen-mode").toggle, "Focus Mode"}
+    f = { require("zen-mode").toggle, "Focus Mode" },
 }
 -- v -> version control
 local vcs_keymap = {
@@ -189,11 +190,9 @@ local project_keymap = {
 -- n -> notes
 local notes_keymap = {
     name = "notes",
-    t = { "GTD" },
-    n = { "New Note" },
-    f = { "Search Headings" },
-    h = { "Show Headings" },
-    l = { "Find Linkable" },
+    f = { "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", "Find Note"},
+    t = { "<Cmd>ZkTags<CR>", "Find Tags"},
+    n = { my_note.new_note, "New Note" },
 }
 
 wk.register({
@@ -262,7 +261,7 @@ local function mapkey(lhs, modes, rhs, opts, desc)
     -- shortcut for vim.keymap.set so that lhs will be
     -- aligned vertically in a series of key bindings
     if desc ~= nil then
-        opts.desc = desc
+        opts = vim.tbl_extend("force", opts, { desc = desc })
     end
     vim.keymap.set(modes, lhs, rhs, opts)
 end

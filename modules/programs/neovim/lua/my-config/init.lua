@@ -87,7 +87,7 @@ pets.toggle_hide()
 require("dressing").setup({
     input = {
         get_config = function(opts)
-            if opts.kind == "my_setting" then
+            if opts.kind == "my_setting" or opts.kind == "note_prompt" then
                 return {
                     relative = "editor",
                 }
