@@ -34,6 +34,9 @@ in
 
         nord-nvim
         nvim-web-devicons
+        hologram-nvim
+        nui-nvim
+        pets-nvim
         dressing-nvim
         indent-blankline-nvim
         gitsigns-nvim

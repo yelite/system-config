@@ -139,6 +139,7 @@ local toggle_feature_keymap = {
     d = { [[<cmd>TroubleToggle<cr>]], "Trouble Window" },
     n = { toggle_line_number, "Line Number" },
     p = { [[<cmd>TSPlaygroundToggle<cr>]], "Treesitter Playground" },
+    P = { require("pets").toggle_hide, "Pet" },
     s = { toggle_auto_save, "Auto Save" },
     g = {
         name = "git",

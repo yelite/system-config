@@ -64,6 +64,18 @@ augroup MyIndentBlankline
 augroup END
 ]])
 
+local pets = require("pets")
+pets.setup({
+    default_pet = "rubber-duck",
+    default_style = "yellow",
+    random = false,
+    row = 6,
+    col = 25,
+    speed_multiplier = 0.3,
+})
+pets.create_pet("duckling", "rubber-duck", "yellow")
+pets.toggle_hide()
+
 require("dressing").setup({
     input = {
         get_config = function(opts)

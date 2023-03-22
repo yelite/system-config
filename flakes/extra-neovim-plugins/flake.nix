@@ -97,5 +97,17 @@
       url = "github:yelite/gitlinker.nvim";
       flake = false;
     };
+    pets-nvim = {
+      url = "github:giusgad/pets.nvim";
+      flake = false;
+    };
+    hologram-nvim = {
+      url = "github:edluffy/hologram.nvim";
+      flake = false;
+    };
+    nui-nvim = {
+      url = "github:MunifTanjim/nui.nvim";
+      flake = false;
+    };
   };
 }
