@@ -31,18 +31,6 @@
       url = "github:Pocco81/AutoSave.nvim";
       flake = false;
     };
-    neorg = {
-      url = "github:nvim-neorg/neorg";
-      flake = false;
-    };
-    neorg-telescope = {
-      url = "github:nvim-neorg/neorg-telescope";
-      flake = false;
-    };
-    neorg-trouble = {
-      url = "github:quantum-booty/neorg-trouble";
-      flake = false;
-    };
     hop-extensions = {
       url = "github:IndianBoy42/hop-extensions";
       flake = false;
@@ -107,6 +95,14 @@
     };
     nui-nvim = {
       url = "github:MunifTanjim/nui.nvim";
+      flake = false;
+    };
+    zk-nvim = {
+      url = "github:mickael-menu/zk-nvim";
+      flake = false;
+    };
+    zen-mode-nvim = {
+      url = "github:folke/zen-mode.nvim";
       flake = false;
     };
   };

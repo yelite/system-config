@@ -64,6 +64,14 @@ augroup MyIndentBlankline
 augroup END
 ]])
 
+require("zen-mode").setup({
+    window = {
+        backdrop = 0.8,
+        width = 105, -- width of the Zen window
+        height = 1, -- height of the Zen window
+    },
+})
+
 local pets = require("pets")
 pets.setup({
     default_pet = "rubber-duck",
@@ -205,7 +213,8 @@ require("my-config.session")
 require("my-config.terminal")
 require("my-config.treesitter")
 require("my-config.autopairs")
+require("my-config.note")
 require("my-config.languages")
-require("my-config.neorg")
-require("my-config.colors")
 require("my-config.statusline")
+-- Put color the last to make it obvious if something goes wrong in previous config
+require("my-config.colors")

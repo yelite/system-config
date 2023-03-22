@@ -149,6 +149,7 @@ local toggle_feature_keymap = {
             "Set Git Alternative Remote",
         },
     },
+    f = { require("zen-mode").toggle, "Focus Mode"}
 }
 -- v -> version control
 local vcs_keymap = {

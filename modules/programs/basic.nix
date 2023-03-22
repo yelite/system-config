@@ -28,7 +28,7 @@ in
       nixpkgs-fmt
       cachix
 
-      obsidian
+      zk
 
       my-fup-repl
     ] ++

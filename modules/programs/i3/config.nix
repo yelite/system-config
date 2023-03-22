@@ -25,11 +25,12 @@ rec {
       always = true;
       notification = false;
     }
-    {
-      command = "neovide --x11-wm-class-instance=neorg_float ~/neorg";
-      always = false;
-      notification = false;
-    }
+    # TODO: add the zk neovim instance
+    # {
+    #   command = "neovide --x11-wm-class-instance=neorg_float ~/neorg";
+    #   always = false;
+    #   notification = false;
+    # }
   ];
 
   workspaceOutputAssign = let inherit (cfg) secondaryMonitorName; in

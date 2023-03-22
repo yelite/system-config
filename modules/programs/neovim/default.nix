@@ -70,9 +70,8 @@ in
         possession-nvim
         nvim-neoclip-lua
 
-        neorg
-        neorg-telescope
-        neorg-trouble
+        zk-nvim
+        zen-mode-nvim
 
         nvim-lspconfig
         nvim-lsp-basic
@@ -112,6 +111,8 @@ in
         stylua
         graphviz # For rust crate graph visualization
         sqlite # For sqlite.lua
+
+        zk
 
         clang-tools
 

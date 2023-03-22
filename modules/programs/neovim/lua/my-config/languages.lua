@@ -6,6 +6,8 @@ local rust_tools = require("rust-tools")
 local clangd_extensions = require("clangd_extensions")
 local keymap = require("my-config.keymap")
 
+local M = {}
+
 -- Override lsp floating preview border globally
 local border = {
     { "🭽", "FloatBorder" },
@@ -50,14 +52,14 @@ vim.g.coq_settings = {
 }
 local coq = require("coq")
 
-local function lsp_on_attach(client, bufnr)
+function M.standard_lsp_on_attach(client, bufnr)
     keymap.bind_lsp_keys(client, bufnr)
     lsp_status.on_attach(client)
     require("lsp_basics").make_lsp_commands(client, bufnr)
 end
 
 local standard_lsp_config = coq.lsp_ensure_capabilities({
-    on_attach = lsp_on_attach,
+    on_attach = M.standard_lsp_on_attach,
     capabilities = lsp_status.capabilities,
 })
 
@@ -90,7 +92,7 @@ clangd_extensions.setup({
             "--clang-tidy",
             "--header-insertion=iwyu",
         },
-        on_attach = lsp_on_attach,
+        on_attach = M.standard_lsp_on_attach,
         capabilities = lsp_status.capabilities,
     }),
 })
@@ -105,7 +107,7 @@ nvim_lsp.jedi_language_server.setup({
             },
         },
     },
-    on_attach = lsp_on_attach,
+    on_attach = M.standard_lsp_on_attach,
     capabilities = lsp_status.capabilities,
 })
 
@@ -144,7 +146,7 @@ nvim_lsp.lua_ls.setup({
             },
         },
     },
-    on_attach = lsp_on_attach,
+    on_attach = M.standard_lsp_on_attach,
     capabilities = lsp_status.capabilities,
 })
 
@@ -171,3 +173,5 @@ require("null-ls").setup({
 
 -- C indent
 vim.o.cinoptions = "h1,l1,g1,t0,i4,+4,(0,w1,W4"
+
+return M
