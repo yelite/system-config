@@ -34,7 +34,7 @@ end
 
 local buffer_source = {
     name = "buffer",
-    keyword_length = 3,
+    keyword_length = 2,
     option = {
         get_bufnrs = get_visible_buffers,
     },
@@ -98,9 +98,9 @@ cmp.setup({
     }),
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
-        { name = "luasnip", max_item_count = 4 },
+        { name = "luasnip", max_item_count = 5 },
         buffer_source,
-        { name = "path", keyword_length = 3 },
+        { name = "path", keyword_length = 2 },
     }),
     formatting = {
         format = lspkind.cmp_format({
