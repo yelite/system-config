@@ -214,6 +214,7 @@ require("my-config.terminal")
 require("my-config.treesitter")
 require("my-config.autopairs")
 require("my-config.note")
+require("my-config.cmp")
 require("my-config.languages")
 require("my-config.statusline")
 -- Put color the last to make it obvious if something goes wrong in previous config

@@ -105,5 +105,38 @@
       url = "github:folke/zen-mode.nvim";
       flake = false;
     };
+    luasnip = {
+      url = "github:L3MON4D3/LuaSnip";
+      flake = false;
+    };
+    nvim-cmp = {
+      url = "github:hrsh7th/nvim-cmp";
+      flake = false;
+    };
+    cmp-buffer = {
+      url = "github:hrsh7th/cmp-buffer";
+      flake = false;
+    };
+    cmp-nvim-lsp = {
+      url = "github:hrsh7th/cmp-nvim-lsp";
+      flake = false;
+    };
+    cmp_luasnip = {
+      url = "github:saadparwaiz1/cmp_luasnip";
+      flake = false;
+    };
+    cmp-path = {
+      url = "github:hrsh7th/cmp-path";
+      flake = false;
+    };
+    cmp-cmdline = {
+      url = "github:hrsh7th/cmp-cmdline";
+      flake = false;
+    };
+    friendly-snippets = {
+      url = "github:rafamadriz/friendly-snippets";
+      flake = false;
+    };
+
   };
 }

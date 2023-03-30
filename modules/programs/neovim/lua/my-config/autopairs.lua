@@ -11,8 +11,6 @@ local function setup()
         disable_filetype = { "TelescopePrompt", "spectre_panel" },
         disable_in_macro = true,
         disable_in_visualblock = true,
-        map_cr = false,
-        map_c_w = false,
     })
 
     npairs.add_rules({

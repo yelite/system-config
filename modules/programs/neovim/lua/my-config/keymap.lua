@@ -190,8 +190,8 @@ local project_keymap = {
 -- n -> notes
 local notes_keymap = {
     name = "notes",
-    f = { "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", "Find Note"},
-    t = { "<Cmd>ZkTags<CR>", "Find Tags"},
+    f = { "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", "Find Note" },
+    t = { "<Cmd>ZkTags<CR>", "Find Tags" },
     n = { my_note.new_note, "New Note" },
 }
 
@@ -440,33 +440,5 @@ augroup MyToggleTerm
     au TermOpen term://* lua require("my-config.keymap").set_terminal_keymaps()
 augroup END
 ]])
-
--- Keys for coq and auto-pairs
-local npairs = require("nvim-autopairs")
-
-local function combined_cr()
-    if vim.fn.pumvisible() ~= 0 then
-        if vim.fn.complete_info({ "selected" }).selected ~= -1 then
-            return npairs.esc("<c-y>")
-        else
-            return npairs.esc("<c-e>") .. npairs.autopairs_cr()
-        end
-    else
-        return npairs.autopairs_cr()
-    end
-end
-
-local function combined_bs()
-    if vim.fn.pumvisible() ~= 0 and vim.fn.complete_info({ "mode" }).mode == "eval" then
-        return npairs.esc("<c-e>") .. npairs.autopairs_bs()
-    else
-        return npairs.autopairs_bs()
-    end
-end
-
-mapkey("<esc>", "i", [[pumvisible() ? "<c-e><esc>" : "<esc>"]], { expr = true })
-mapkey("<c-c>", "i", [[pumvisible() ? "<c-e>" : "<c-c>"]], { expr = true })
-mapkey("<cr>", "i", combined_cr, { expr = true })
-mapkey("<bs>", "i", combined_bs, { expr = true, replace_keycodes = false })
 
 return M

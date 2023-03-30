@@ -82,7 +82,15 @@ in
         trouble-nvim
         aerial-nvim
         nvim-dap
-        coq_nvim
+        nvim-cmp
+        cmp-buffer
+        cmp-nvim-lsp
+        cmp-path
+        cmp-cmdline
+        cmp_luasnip
+        luasnip
+        lspkind-nvim
+
         todo-comments-nvim
         comment-nvim
         null-ls-nvim
@@ -99,6 +107,7 @@ in
       extraConfig = ''
         lua << END🤞
           vim.g._my_config_script_folder = "${./scripts}"
+          vim.g._friendly_snippets_path = "${pkgs.vimPlugins.friendly-snippets}"
           require "my-config"
         END🤞
       '';

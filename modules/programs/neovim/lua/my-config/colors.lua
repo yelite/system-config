@@ -12,6 +12,8 @@ function M.patchNordColors()
     nord_util.highlight("WhichKeyFloat", { bg = nord_colors.nord1_gui })
     nord_util.highlight("Folded", { style = "bold" })
 
+    nord_util.highlight("CmpGhostText", { fg = nord_colors.nord3_gui, style = nil })
+
     -- Remove bold style from TS
     nord_util.highlight("TSVariable", { fg = nord_colors.nord4_gui, style = nil })
     nord_util.highlight("TSVariableBuiltin", { fg = nord_colors.nord4_gui, style = nil })
@@ -19,8 +21,9 @@ function M.patchNordColors()
     nord_util.highlight("@variable", { fg = nord_colors.nord4_gui, style = nil })
     nord_util.highlight("@variable.builtin", { fg = nord_colors.nord4_gui, style = nil })
     nord_util.highlight("@boolean", { fg = nord_colors.nord9_gui, style = nil })
-    -- Add italic to comment only
-    nord_util.highlight("TSComment", { fg = nord_colors.nord3_gui_bright, style = "italic" })
+    -- luasnip
+    nord_util.highlight("LuasnipInsertNodeUnvisited", { bg = nord_colors.nord2_gui, style = "bold" })
+    nord_util.highlight("LuasnipChoiceNodeUnvisited", { bg = nord_colors.nord2_gui, style = "bold" })
 end
 
 vim.cmd([[colorscheme nord]])
