@@ -7,9 +7,11 @@
       pluginSources = inputs;
       pluginNames = attrNames pluginSources;
     in
-    ({
-      extraFishPlugins = map (name: { inherit name; src = pluginSources.${name}; }) pluginNames;
-    });
+    {
+      overlay = (final: prev: {
+        myFishPlugins = map (name: { inherit name; src = pluginSources.${name}; }) pluginNames;
+      });
+    };
 
   inputs = {
     z = {

@@ -1,0 +1,146 @@
+{
+  "nodes": {
+    "autopair": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1656950411,
+        "narHash": "sha256-qt3t1iKRRNuiLWiVoiAYOu+9E7jsyECyIqZJ/oRIT1A=",
+        "owner": "jorgebucaran",
+        "repo": "autopair.fish",
+        "rev": "4d1752ff5b39819ab58d7337c69220342e9de0e2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jorgebucaran",
+        "repo": "autopair.fish",
+        "type": "github"
+      }
+    },
+    "done": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1633849654,
+        "narHash": "sha256-6oeyN9ngXWvps1c5QAUjlyPDQwRWAoxBiVTNmZ4sG8E=",
+        "owner": "franciscolourenco",
+        "repo": "done",
+        "rev": "d6abb267bb3fb7e987a9352bc43dcdb67bac9f06",
+        "type": "github"
+      },
+      "original": {
+        "owner": "franciscolourenco",
+        "repo": "done",
+        "type": "github"
+      }
+    },
+    "forgit": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1679153718,
+        "narHash": "sha256-3lvYIuzuJw0CQlaAQG6hAyfUgSXM+3BOmKRVDNFUN/U=",
+        "owner": "wfxr",
+        "repo": "forgit",
+        "rev": "3f00348d5c712e1a0013bf64a08dd2ce8c8539e3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wfxr",
+        "repo": "forgit",
+        "type": "github"
+      }
+    },
+    "fzf-fish": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1674674469,
+        "narHash": "sha256-i9FcuQdmNlJnMWQp7myF3N0tMD/2I0CaMs/PlD8o1gw=",
+        "owner": "PatrickF1",
+        "repo": "fzf.fish",
+        "rev": "63c8f8e65761295da51029c5b6c9e601571837a1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PatrickF1",
+        "repo": "fzf.fish",
+        "type": "github"
+      }
+    },
+    "replay": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1655689996,
+        "narHash": "sha256-bM6+oAd/HXaVgpJMut8bwqO54Le33hwO9qet9paK1kY=",
+        "owner": "jorgebucaran",
+        "repo": "replay.fish",
+        "rev": "bd8e5b89ec78313538e747f0292fcaf631e87bd2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jorgebucaran",
+        "repo": "replay.fish",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "autopair": "autopair",
+        "done": "done",
+        "forgit": "forgit",
+        "fzf-fish": "fzf-fish",
+        "replay": "replay",
+        "sponge": "sponge",
+        "tide": "tide",
+        "z": "z"
+      }
+    },
+    "sponge": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1664918422,
+        "narHash": "sha256-MdcZUDRtNJdiyo2l9o5ma7nAX84xEJbGFhAVhK+Zm1w=",
+        "owner": "andreiborisov",
+        "repo": "sponge",
+        "rev": "384299545104d5256648cee9d8b117aaa9a6d7be",
+        "type": "github"
+      },
+      "original": {
+        "owner": "andreiborisov",
+        "repo": "sponge",
+        "type": "github"
+      }
+    },
+    "tide": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1680048966,
+        "narHash": "sha256-gqR7wuAVoNRymxaEr1KSa3Yy7GiNgHKEyJDSUVJeI2Q=",
+        "owner": "IlanCosman",
+        "repo": "tide",
+        "rev": "7f11fcbe90af995772d6df1516b67ec9521f2ba1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "IlanCosman",
+        "repo": "tide",
+        "type": "github"
+      }
+    },
+    "z": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1649439817,
+        "narHash": "sha256-+FUBM7CodtZrYKqU542fQD+ZDGrd2438trKM0tIESs0=",
+        "owner": "jethrokuan",
+        "repo": "z",
+        "rev": "85f863f20f24faf675827fb00f3a4e15c7838d76",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jethrokuan",
+        "repo": "z",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

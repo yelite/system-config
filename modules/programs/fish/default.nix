@@ -19,7 +19,7 @@ in
         "pbcopy" = "xclip -i -rmlastnl -selection c";
         "pbpaste" = "xclip -o -selection c";
       };
-      plugins = inputs.fish-plugins.extraFishPlugins;
+      plugins = pkgs.myFishPlugins;
       shellInit = builtins.readFile ./config.fish;
     };
   };
