@@ -78,7 +78,7 @@ local file_keymap = {
         "Find Files",
     },
     F = { "<cmd>Telescope find_files no_ignore=true<cr>", "Find All Files" },
-    r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
+    r = { [[<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>]], "Recent Files" },
     s = { "<cmd>w<cr>", "Save File" },
     p = { copy_rel_path, "Copy Relative Path" },
 }
