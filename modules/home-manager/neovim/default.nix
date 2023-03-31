@@ -158,5 +158,6 @@ in
     };
 
     xdg.configFile."nvim/lua".source = ./lua;
+    xdg.configFile."zk/config.toml".source = ./zk_config.toml;
   };
 }
