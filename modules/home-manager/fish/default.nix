@@ -15,6 +15,7 @@ in
       enable = true;
       shellAliases = {
         "ls" = "exa";
+        "cat" = "bat";
         # Steal the name from macOS
         "pbcopy" = "xclip -i -rmlastnl -selection c";
         "pbpaste" = "xclip -o -selection c";
@@ -22,5 +23,10 @@ in
       plugins = pkgs.myFishPlugins;
       shellInit = builtins.readFile ./config.fish;
     };
+
+    xdg.configFile."bat/config".source = pkgs.writeText "bat_config"
+      ''
+        --theme="ansi"
+      '';
   };
 }
