@@ -24,6 +24,7 @@ function M.patchNordColors()
     -- luasnip
     nord_util.highlight("LuasnipInsertNodeUnvisited", { bg = nord_colors.nord2_gui, style = "bold" })
     nord_util.highlight("LuasnipChoiceNodeUnvisited", { bg = nord_colors.nord2_gui, style = "bold" })
+    nord_util.highlight("LuasnipInsertNode", { fg = nord_colors.nord3_gui })
 end
 
 vim.cmd([[colorscheme nord]])

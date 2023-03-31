@@ -10,8 +10,10 @@ luasnip.config.set_config({
         -- color scheme in the end of the config.
         -- https://sourcegraph.com/github.com/L3MON4D3/LuaSnip@bc8ec05022743d3f08bda7a76c6bb5e9a9024581/-/blob/lua/luasnip/config.lua?L196
         [luasnip_types.insertNode] = {
-            -- TODO: add virtual text so that insert node with zero width can be displayed correctly
-            unvisited = { hl_group = "LuasnipInsertNodeUnvisited" },
+            unvisited = {
+                hl_group = "LuasnipInsertNodeUnvisited",
+                virt_text = { { "  Snippet Edit Region", "LuasnipInsertNode" } },
+            },
         },
         [luasnip_types.choiceNode] = {
             unvisited = { hl_group = "LuasnipChoiceNodeUnvisited" },
