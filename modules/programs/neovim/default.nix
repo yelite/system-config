@@ -90,6 +90,7 @@ in
         cmp_luasnip
         luasnip
         lspkind-nvim
+        lsp_signature-nvim
 
         todo-comments-nvim
         comment-nvim

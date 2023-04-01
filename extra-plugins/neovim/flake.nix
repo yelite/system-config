@@ -137,6 +137,9 @@
       url = "github:rafamadriz/friendly-snippets";
       flake = false;
     };
-
+    lsp_signature-nvim = {
+      url = "github:ray-x/lsp_signature.nvim";
+      flake = false;
+    };
   };
 }

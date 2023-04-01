@@ -413,7 +413,8 @@ function M.bind_lsp_keys(client, bufnr)
         require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
     end, opts, "Previous error")
 
-    mapkey("<C-o>", "i", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+    -- map for selection mode for snippet insert node
+    mapkey("<C-o>", { "s", "i" }, require("lsp_signature").toggle_float_win, opts)
     mapkey("<C-k>", "i", "<cmd>Lspsaga hover_doc<cr>", opts)
     mapkey("<C-g>", "i", "<cmd>CodeActionMenu<cr>", opts)
 

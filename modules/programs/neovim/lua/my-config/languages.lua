@@ -1,6 +1,7 @@
 local nvim_lsp = require("lspconfig")
 local lsp_status = require("lsp-status")
 local lspsaga = require("lspsaga")
+local lsp_signature = require("lsp_signature")
 local rust_tools = require("rust-tools")
 local clangd_extensions = require("clangd_extensions")
 local keymap = require("my-config.keymap")
@@ -38,6 +39,28 @@ local standard_lsp_config = {
     on_attach = M.standard_lsp_on_attach,
     capabilities = M.standard_lsp_capabilities,
 }
+
+lsp_signature.setup({
+    bind = true,
+    doc_lines = 10,
+    max_height = 12, -- max height of signature floating_window
+    max_width = 80, -- max_width of signature floating_window
+    noice = false, -- set to true if you using noice to render markdown
+
+    floating_window_above_cur_line = true,
+
+    close_timeout = 4000, -- close floating window after ms when laster parameter is entered
+    fix_pos = false, -- set to true, the floating window will not auto-close until finish all parameters
+    hint_enable = false, -- virtual hint enable
+    hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
+    handler_opts = {
+        border = "rounded", -- double, rounded, single, shadow, none, or a table of borders
+    },
+
+    toggle_key = nil, -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
+    select_signature_key = nil, -- cycle to next signature, e.g. '<M-n>' function overloading
+    move_cursor_key = nil, -- imap, use nvim_set_current_win to move cursor betw
+})
 
 lspsaga.setup({
     max_preview_lines = 20,
