@@ -40,8 +40,14 @@ possession.setup({
     },
     hooks = {
         before_save = save_user_data,
-        after_load = function(name, user_data)
+        -- load user data before sourcing the session vimscript,
+        -- in order to avoid losing persistent settings due to failure in
+        -- session restoration.
+        before_load = function(_, user_data)
             load_user_data(user_data)
+            return true
+        end,
+        after_load = function()
             vim.api.nvim_command("clearjumps")
         end,
     },
