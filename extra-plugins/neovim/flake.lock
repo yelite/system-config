@@ -224,6 +224,22 @@
         "type": "github"
       }
     },
+    "legendary-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1680283925,
+        "narHash": "sha256-pLdlG1V5tJH1/d9zEGCzirU8ifoAp8tPvZ4o9t320z8=",
+        "owner": "mrjones2014",
+        "repo": "legendary.nvim",
+        "rev": "be24559bf1701f88e69df2498153e9b71301cf4a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mrjones2014",
+        "repo": "legendary.nvim",
+        "type": "github"
+      }
+    },
     "lsp_signature-nvim": {
       "flake": false,
       "locked": {
@@ -415,6 +431,7 @@
         "hop-extensions": "hop-extensions",
         "leap-nvim": "leap-nvim",
         "leap-spooky-nvim": "leap-spooky-nvim",
+        "legendary-nvim": "legendary-nvim",
         "lsp_signature-nvim": "lsp_signature-nvim",
         "lspsaga-nvim": "lspsaga-nvim",
         "luasnip": "luasnip",

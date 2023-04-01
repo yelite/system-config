@@ -86,6 +86,10 @@ require("telescope").setup({
             height = 0.80,
             preview_cutoff = 120,
         },
+        cache_picker = {
+            num_pickers = 16,
+            limit_entries = 500,
+        },
     },
     pickers = {
         buffers = {

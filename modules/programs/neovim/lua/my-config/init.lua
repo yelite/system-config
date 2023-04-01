@@ -91,6 +91,12 @@ require("dressing").setup({
                 return {
                     relative = "editor",
                 }
+            elseif opts.kind == "legendary.nvim" then
+                return {
+                    telescope = {
+                        sorter = require("telescope.sorters").fuzzy_with_index_bias({}),
+                    },
+                }
             end
         end,
     },

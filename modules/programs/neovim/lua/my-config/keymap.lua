@@ -25,18 +25,11 @@ wk.setup({
     },
 })
 
-local function toggle_line_number()
-    vim.o.number = not vim.o.number
-end
-
-local function toggle_auto_save()
-    vim.cmd([[ASToggle]])
-    if vim.g.autosave_state then
-        print("AutoSave on")
-    else
-        print("AutoSave off")
-    end
-end
+require("legendary").setup({
+    which_key = {
+        auto_register = true,
+    },
+})
 
 local function copy_rel_path()
     local path = vim.fn.expand("%")
@@ -130,6 +123,7 @@ local search_keymap = {
         "Search Text in Current File Directory",
     },
     h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
+    k = { "<cmd>Legendary keymaps<cr>", "Keymap" },
     i = { "<cmd>Telescope treesitter<cr>", "Search Syntax Node" },
     t = { "<cmd>Telescope termfinder find<cr>", "Search Terminals" },
 }
@@ -138,10 +132,12 @@ local toggle_feature_keymap = {
     name = "toggle features",
     b = { [[<cmd>Gitsigns toggle_current_line_blame<cr>]], "Toggle Blame Line" },
     d = { [[<cmd>TroubleToggle<cr>]], "Trouble Window" },
-    n = { toggle_line_number, "Line Number" },
+    n = { [[<cmd>set invnumber<cr>]], "Line Number" },
     p = { [[<cmd>TSPlaygroundToggle<cr>]], "Treesitter Playground" },
     P = { require("pets").toggle_hide, "Pet" },
-    s = { toggle_auto_save, "Auto Save" },
+    s = { require("auto-save").toggle, "Auto Save" },
+    S = { [[<cmd>set invspell<cr>]], "Spell Check" },
+    l = { [[<cmd>LegendaryScratchToggle<cr>]], "Scratch Pad" },
     g = {
         name = "git",
         b = { my_util.make_async_func(my_settings.prompt_setting, "git_base_branch"), "Set Git Base Branch" },
@@ -212,9 +208,9 @@ wk.register({
     ["k"] = { require("my-config.telescope").quick_find_files, "Quick Find Files" },
     ["K"] = file_keymap.E, -- Start broswer in the same directory
     ["l"] = code_keymap.s, -- Workspace Symbols
-    ["x"] = { "<cmd>Telescope commands<cr>", "Commands" },
-    ["X"] = { "<cmd>Telescope command_history<cr>", "Commands" },
+    ["x"] = { "<cmd>Legendary commands<cr>", "Commands" },
     ["."] = session_keymap.t, -- Resume last telescope picker
+    [">"] = session_keymap.T, -- View cached telescope pickers
 }, {
     prefix = "<leader>",
 })

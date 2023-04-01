@@ -2,6 +2,13 @@
 with lib;
 let
   cfg = config.myHomeConfig.neovim;
+  sqlite3_lib_path =
+    if pkgs.stdenv.isLinux then
+      "${pkgs.sqlite.out}/lib/libsqlite3.so"
+    else if pkgs.stdenv.isDarwin then
+      "${pkgs.sqlite.out}/lib/libsqlite3.dylib"
+    else
+      assert false; "Unsupported";
 in
 {
   options = {
@@ -65,6 +72,7 @@ in
         nvim-termfinder
         toggleterm-nvim
         which-key-nvim
+        legendary-nvim
 
         autosave
         possession-nvim
@@ -101,7 +109,7 @@ in
 
         {
           plugin = sqlite-lua;
-          config = "let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'";
+          config = "let g:sqlite_clib_path = '${sqlite3_lib_path}'";
         }
       ];
 
