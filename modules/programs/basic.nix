@@ -1,10 +1,10 @@
-{ config, pkgs, lib, systemInfo, ... }:
+{ config, pkgs, lib, hostPlatform, ... }:
 let
   inherit (lib) optionals;
   useGUI =
     if config?myHomeConfig.xserver.enable then
       config.myHomeConfig.xserver.enable
-    else if systemInfo.isDarwin then
+    else if hostPlatform.isDarwin then
       true
     else
       false;
@@ -32,10 +32,10 @@ in
 
       my-fup-repl
     ] ++
-    optionals systemInfo.isLinux [
+    optionals hostPlatform.isLinux [
       steam-run
     ] ++
-    optionals (useGUI && systemInfo.isLinux) [
+    optionals (useGUI && hostPlatform.isLinux) [
       zeal
       libsForQt5.okular
       feh
@@ -57,7 +57,7 @@ in
       vivaldi-ffmpeg-codecs
       standardnotes
     ] ++
-    optionals systemInfo.isDarwin [
+    optionals hostPlatform.isDarwin [
       terminal-notifier
     ];
 
@@ -109,7 +109,7 @@ in
             identityFile = "~/.ssh/id_ed25519";
           };
         }
-        (lib.mkIf systemInfo.isDarwin
+        (lib.mkIf hostPlatform.isDarwin
           {
             "*" = {
               extraOptions = {
@@ -126,7 +126,7 @@ in
     };
 
     mpv = {
-      enable = systemInfo.isLinux;
+      enable = hostPlatform.isLinux;
       defaultProfiles = [ "gpu-hq" ];
       config = {
         hwdec = "auto";
@@ -134,14 +134,14 @@ in
       };
       scripts = [
         pkgs.mpvScripts.autoload
-      ] ++ optionals systemInfo.isLinux [
+      ] ++ optionals hostPlatform.isLinux [
         pkgs.mpvScripts.mpris
       ];
     };
   };
 
   services = {
-    kdeconnect = lib.mkIf systemInfo.isLinux {
+    kdeconnect = lib.mkIf hostPlatform.isLinux {
       enable = true;
       indicator = true;
     };

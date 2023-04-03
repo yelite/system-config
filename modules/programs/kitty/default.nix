@@ -1,4 +1,4 @@
-{ config, pkgs, lib, systemInfo, ... }:
+{ config, pkgs, lib, hostPlatform, ... }:
 let
   cfg = config.myHomeConfig.kitty;
   inherit (lib) types mkIf mkEnableOption mkOption;
@@ -11,7 +11,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = lib.optionals systemInfo.isLinux (with pkgs; [
+    home.packages = lib.optionals hostPlatform.isLinux (with pkgs; [
       ueberzug
     ]);
 
@@ -20,7 +20,7 @@ in
       font = {
         name = "Hack Nerd Font";
         size = 12;
-      } // lib.optionalAttrs systemInfo.isDarwin {
+      } // lib.optionalAttrs hostPlatform.isDarwin {
         package = (pkgs.nerdfonts.override {
           fonts = [ "Hack" ];
         });

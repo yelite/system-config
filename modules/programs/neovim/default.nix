@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, systemInfo, ... }:
+{ config, pkgs, lib, inputs, hostPlatform, ... }:
 with lib;
 let
   cfg = config.myHomeConfig.neovim;
@@ -18,7 +18,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; lib.optionals systemInfo.isLinux [
+    home.packages = with pkgs; lib.optionals hostPlatform.isLinux [
       # TODO: Enable this for darwin after https://github.com/NixOS/nixpkgs/pull/146052 
       neovide
     ];
@@ -144,7 +144,7 @@ in
       (
         # TODO: fix the ssl error. 
         # Probably just need to point to the right certificate store when building
-        lib.optional (!systemInfo.isDarwin)
+        lib.optional (!hostPlatform.isDarwin)
           cmake-language-server
       ) ++ (
         with pkgs.python310Packages;

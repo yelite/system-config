@@ -1,7 +1,7 @@
-{ config, pkgs, lib, systemInfo, ... }:
+{ config, pkgs, lib, hostPlatform, ... }:
 let myConfig = config.myConfig;
 in
-lib.optionalAttrs systemInfo.isDarwin {
+lib.optionalAttrs hostPlatform.isDarwin {
   environment = {
     shells = [ pkgs.fish ];
     shellAliases = {

@@ -1,8 +1,8 @@
-{ config, lib, systemInfo, ... }:
+{ config, lib, hostPlatform, ... }:
 
 with lib;
 
-optionalAttrs systemInfo.isDarwin {
+optionalAttrs hostPlatform.isDarwin {
   config = {
     system.defaults.".GlobalPreferences"."com.apple.mouse.scaling" = "-1";
   };

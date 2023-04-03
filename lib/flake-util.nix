@@ -5,32 +5,32 @@ let
 in
 {
   # This wraps mkFlake from flake-utils-plus to:
-  # - Add systemInfo.isDarwin/Linux/X86/Arm to module inputs as specialArgs
+  # - Add hostPlatform to module inputs as specialArgs
   # - Add all custom modules to the host definition depending on system type
   wrapMkFlake = { mkFlake, homeManager }: args: (
     let
       defaultSystem = args.hostDefaults.system or "x86_64-linux";
-      getHomeManagerModule = systemInfo:
-        if systemInfo.isLinux then
+      getHomeManagerModule = hostPlatform:
+        if hostPlatform.isLinux then
           homeManager.nixosModule
-        else if systemInfo.isDarwin then
+        else if hostPlatform.isDarwin then
           homeManager.darwinModule
         else
-          throw "Not supported system type ${systemInfo._name}";
-      getModulesForHost = name: systemInfo: extraModules:
-        (getSystemModules systemInfo) ++
+          throw "Not supported system type ${hostPlatform._name}";
+      getModulesForHost = name: hostPlatform: extraModules:
+        (getSystemModules hostPlatform) ++
         [
           ../hosts/${name}
-          (getHomeManagerModule systemInfo)
+          (getHomeManagerModule hostPlatform)
         ] ++
         extraModules;
       mkHost = name: host:
         let
-          systemInfo = lib.systems.elaborate (host.system or defaultSystem);
-          modules = getModulesForHost name systemInfo (host.modules or [ ]);
+          hostPlatform = lib.systems.elaborate (host.system or defaultSystem);
+          modules = getModulesForHost name hostPlatform (host.modules or [ ]);
         in
         (lib.deepMergeAttrs host {
-          specialArgs.systemInfo = systemInfo;
+          specialArgs.hostPlatform = hostPlatform;
         }) // {
           inherit modules;
         };

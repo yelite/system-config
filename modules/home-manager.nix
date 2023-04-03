@@ -1,4 +1,4 @@
-{ lib, config, systemInfo, inputs, ... }:
+{ lib, config, hostPlatform, inputs, ... }:
 let
   inherit (lib) mkOption mkOptionType types;
   cfg = config.myConfig;
@@ -40,7 +40,7 @@ in
       }];
       useGlobalPkgs = true;
       extraSpecialArgs = {
-        inherit inputs systemInfo;
+        inherit inputs hostPlatform;
       };
     };
   };

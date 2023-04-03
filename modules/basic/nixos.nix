@@ -1,7 +1,7 @@
-{ config, pkgs, lib, systemInfo, ... }:
+{ config, pkgs, lib, hostPlatform, ... }:
 let myConfig = config.myConfig;
 in
-lib.optionalAttrs systemInfo.isLinux {
+lib.optionalAttrs hostPlatform.isLinux {
   nix = {
     settings.auto-optimise-store = true;
 

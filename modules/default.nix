@@ -7,10 +7,10 @@ let
   optionals = pred: list: if pred then list else [ ];
 in
 {
-  getSystemModules = systemInfo:
+  getSystemModules = hostPlatform:
     univeralSystemModules ++
-    optionals systemInfo.isLinux linuxOnlyModules ++
-    optionals systemInfo.isDarwin darwinOnlyModules ++
+    optionals hostPlatform.isLinux linuxOnlyModules ++
+    optionals hostPlatform.isDarwin darwinOnlyModules ++
     [
       {
         myConfig.homeManagerModules = homeManagerModules;
