@@ -140,14 +140,9 @@ in
         rnix-lsp
 
         sumneko-lua-language-server
-      ] ++
-      (
-        # TODO: fix the ssl error. 
-        # Probably just need to point to the right certificate store when building
-        lib.optional (!hostPlatform.isDarwin)
-          cmake-language-server
-      ) ++ (
-        with pkgs.python310Packages;
+        cmake-language-server
+      ] ++ (
+        with pkgs.python3Packages;
         [
           jedi-language-server
         ]
