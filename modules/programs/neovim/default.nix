@@ -18,9 +18,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; lib.optionals hostPlatform.isLinux [
-      # TODO: Enable this for darwin after https://github.com/NixOS/nixpkgs/pull/146052 
-      neovide
+    home.packages = lib.optionals hostPlatform.isLinux [
+      pkgs.neovide
     ];
 
     home.sessionVariables = {
