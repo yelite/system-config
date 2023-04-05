@@ -1,10 +1,10 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, hostPlatform, ... }:
 let
   logiops = pkgs.callPackage ./package.nix { };
   cfg = config.myConfig.logitech;
   inherit (lib) mkIf mkEnableOption;
 in
-{
+lib.optionalAttrs hostPlatform.isLinux {
   options = {
     myConfig.logitech = {
       enable = mkEnableOption "logitech";

@@ -1,9 +1,9 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, hostPlatform, ... }:
 let
   cfg = config.myConfig.xserver;
   inherit (lib) mkIf mkEnableOption mkOption;
 in
-{
+lib.optionalAttrs hostPlatform.isLinux {
   imports = [
     ./greetd.nix
   ];

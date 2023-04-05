@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, hostPlatform, ... }:
 let
   cfg = config.myConfig.keyboardRemap;
   inherit (lib) mkIf mkEnableOption;
@@ -21,7 +21,7 @@ let
       };
     };
 in
-{
+lib.optionalAttrs hostPlatform.isLinux {
   options = {
     myConfig.keyboardRemap = {
       enable = mkEnableOption "keyboardRemap";

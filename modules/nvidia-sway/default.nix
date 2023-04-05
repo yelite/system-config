@@ -1,6 +1,6 @@
 # This module is not in use because of the flickering issue as of 2021-12-23.
-{ pkgs, ... }:
-{
+{ pkgs, lib, hostPlatform, ... }:
+lib.optionalAttrs hostPlatform.isLinux {
   hardware.opengl = {
     enable = true;
     driSupport = true;

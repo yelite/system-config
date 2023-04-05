@@ -1,9 +1,9 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, hostPlatform, ... }:
 let
   cfg = config.myConfig.nvfancontrol;
   inherit (lib) mkIf mkEnableOption;
 in
-{
+lib.optionalAttrs hostPlatform.isLinux {
   options =
     {
       myConfig.nvfancontrol = {

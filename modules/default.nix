@@ -1,19 +1,17 @@
 let
-  inherit (import ./module-list.nix)
-    univeralSystemModules
-    linuxOnlyModules
-    darwinOnlyModules
-    homeManagerModules;
-  optionals = pred: list: if pred then list else [ ];
+  systemModules = [
+    ./basic
+    ./binary-caches.nix
+    ./home-manager
+
+    # NixOS only
+    ./uinput.nix
+    ./xserver
+    ./keyboard-remap
+    ./logitech
+    ./nvfancontrol
+    # TODO: reenable this after wayland on nvidia is stable
+    # ./sway-nvidia
+  ];
 in
-{
-  getSystemModules = hostPlatform:
-    univeralSystemModules ++
-    optionals hostPlatform.isLinux linuxOnlyModules ++
-    optionals hostPlatform.isDarwin darwinOnlyModules ++
-    [
-      {
-        myConfig.homeManagerModules = homeManagerModules;
-      }
-    ];
-}
+systemModules

@@ -1,9 +1,9 @@
-{ config, lib, ... }:
+{ config, lib, hostPlatform, ... }:
 let
   cfg = config.myConfig.uinput;
   inherit (lib) mkIf mkEnableOption;
 in
-{
+lib.optionalAttrs hostPlatform.isLinux {
   options = {
     myConfig.uinput.enableGroup = mkEnableOption "keyboardRemap";
   };
