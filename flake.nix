@@ -55,7 +55,7 @@
           in
           {
             packages = utils.lib.exportPackages self.overlays channels;
-            devShells.nvim-config = import ./modules/programs/neovim/dev-shell.nix pkgs;
+            devShells.nvim-config = import ./modules/home-manager/neovim/dev-shell.nix pkgs;
           };
       };
 

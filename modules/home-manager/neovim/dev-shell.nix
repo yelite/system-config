@@ -9,7 +9,7 @@ pkgs.mkShell {
     The dev-shell.fish is to update the prompt to ditinguish the dev shell from normal ones.
   */
   shellHook = ''
-    export VIMINIT='set rtp^=~/.system-config/modules/programs/neovim/ | source ~/.config/nvim/init.lua'
+    export VIMINIT='set rtp^=~/.system-config/modules/home-manager/neovim/ | source ~/.config/nvim/init.lua'
 
     exec fish --init-command='source ${./dev-shell.fish}'
   '';
