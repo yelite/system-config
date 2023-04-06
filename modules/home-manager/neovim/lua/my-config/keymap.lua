@@ -291,6 +291,8 @@ mapkey("<C-a>", "s", "<Esc>`<i")
 
 -- Join line above
 mapkey("<C-j>", "i", "<cmd>normal! kJ<cr>")
+-- Open new line
+mapkey("<S-CR>", "i", "<cmd>normal! o<cr>")
 
 -- Quickly paste in insert and visual modes
 local function paste_in_insert_mode()
