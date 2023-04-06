@@ -22,17 +22,10 @@
         sharedOverlays = [
           self.overlay
           fenix.overlays.default
-          (get-flake ./extra-plugins/neovim).overlay
-          (get-flake ./extra-plugins/fish).overlay
+          (get-flake ./overlays/flakes/neovim).overlay
+          (get-flake ./overlays/flakes/fish).overlay
           # inputs.nixpkgs-wayland.overlay
           (final: prev: {
-            # rename the script of fup-repl from flake-utils-plus 
-            my-fup-repl = final.fup-repl.overrideAttrs (old: {
-              buildCommand = old.buildCommand + ''
-                mv $out/bin/repl $out/bin/fup-repl
-              '';
-            });
-
             lib = prev.lib.extend libOverride;
           })
         ];
