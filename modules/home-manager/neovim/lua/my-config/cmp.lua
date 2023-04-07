@@ -141,6 +141,12 @@ cmp.setup({
     },
 })
 
+cmp.setup.filetype("markdown", {
+    completion = {
+        autocomplete = {},
+    },
+})
+
 local cmdline_mapping = cmp.mapping.preset.cmdline({
     ["<C-n>"] = {
         c = cmp.mapping.select_prev_item({ behavior = cmp_types.cmp.SelectBehavior.Select }),
