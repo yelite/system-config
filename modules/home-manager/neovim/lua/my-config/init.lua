@@ -102,6 +102,10 @@ require("dressing").setup({
     },
 })
 
+require("glow").setup({
+    border = "single",
+})
+
 require("hop").setup({
     jump_on_sole_occurrence = false,
 })

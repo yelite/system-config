@@ -160,6 +160,22 @@
         "type": "github"
       }
     },
+    "glow-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1679769779,
+        "narHash": "sha256-kPM5c7iQ19cxVt5t/nk+svTsk814PBPsnYWAd2yhlas=",
+        "owner": "ellisonleao",
+        "repo": "glow.nvim",
+        "rev": "a3f24fdaa71d2c25a2b88026032b34f5b6a6e215",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ellisonleao",
+        "repo": "glow.nvim",
+        "type": "github"
+      }
+    },
     "hologram-nvim": {
       "flake": false,
       "locked": {
@@ -427,6 +443,7 @@
         "friendly-snippets": "friendly-snippets",
         "gitlinker-nvim": "gitlinker-nvim",
         "gitsigns-nvim": "gitsigns-nvim",
+        "glow-nvim": "glow-nvim",
         "hologram-nvim": "hologram-nvim",
         "hop-extensions": "hop-extensions",
         "leap-nvim": "leap-nvim",

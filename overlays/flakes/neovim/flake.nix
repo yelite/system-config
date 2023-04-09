@@ -145,5 +145,9 @@
       url = "github:mrjones2014/legendary.nvim";
       flake = false;
     };
+    glow-nvim = {
+      url = "github:ellisonleao/glow.nvim";
+      flake = false;
+    };
   };
 }

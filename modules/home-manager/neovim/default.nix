@@ -79,6 +79,7 @@ in
 
         zk-nvim
         zen-mode-nvim
+        glow-nvim
 
         nvim-lspconfig
         nvim-lsp-basic
@@ -140,6 +141,8 @@ in
 
         sumneko-lua-language-server
         cmake-language-server
+
+        glow
       ] ++ (
         with pkgs.python3Packages;
         [

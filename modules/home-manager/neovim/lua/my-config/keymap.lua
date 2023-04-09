@@ -63,6 +63,7 @@ local edit_keymap = {
     S = { "<plug>(SubversiveSubstituteRange)", "Substitue Range" },
     t = { "<cmd>Telescope spell_suggest<cr>", "Spell Suggests" },
     p = { "<cmd>Telescope neoclip<cr>", "Clipboard History" },
+    m = { "<cmd>Glow<cr>", "Preview Markdown" },
 }
 -- f -> file
 local file_keymap = {
