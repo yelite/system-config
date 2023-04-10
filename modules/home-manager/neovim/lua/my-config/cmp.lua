@@ -42,6 +42,39 @@ local buffer_source = {
     },
 }
 
+local regular_mapping = cmp.mapping.preset.insert({
+    -- TODO: reverse C-n/C-p when menu is reversed due to near_cursor
+    ["<C-n>"] = {
+        i = cmp.mapping.select_next_item({ behavior = cmp_types.cmp.SelectBehavior.Select }),
+    },
+    ["<C-p>"] = {
+        i = cmp.mapping.select_prev_item({ behavior = cmp_types.cmp.SelectBehavior.Select }),
+    },
+    ["<C-b>"] = {
+        i = cmp.mapping.scroll_docs(-4),
+    },
+    ["<C-f>"] = { i = cmp.mapping.scroll_docs(4) },
+    ["<C-Space>"] = { i = cmp.mapping.complete() },
+    ["<C-e>"] = { i = cmp.mapping.abort() },
+    ["<CR>"] = { i = cmp.mapping.confirm({ select = false }) },
+    ["<Tab>"] = cmp.mapping(function(fallback)
+        if cmp.confirm({ select = true }) then
+            return
+        elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+        else
+            fallback()
+        end
+    end, { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+        if luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+        else
+            fallback()
+        end
+    end, { "i", "s" }),
+})
+
 -- pumheight also limits the height of cmp custom menu
 vim.o.pumheight = 8
 cmp.setup({
@@ -66,38 +99,7 @@ cmp.setup({
     window = {
         documentation = cmp.config.window.bordered(),
     },
-    mapping = cmp.mapping.preset.insert({
-        -- TODO: reverse C-n/C-p when menu is reversed due to near_cursor
-        ["<C-n>"] = {
-            i = cmp.mapping.select_next_item({ behavior = cmp_types.cmp.SelectBehavior.Select }),
-        },
-        ["<C-p>"] = {
-            i = cmp.mapping.select_prev_item({ behavior = cmp_types.cmp.SelectBehavior.Select }),
-        },
-        ["<C-b>"] = {
-            i = cmp.mapping.scroll_docs(-4),
-        },
-        ["<C-f>"] = { i = cmp.mapping.scroll_docs(4) },
-        ["<C-Space>"] = { i = cmp.mapping.complete() },
-        ["<C-e>"] = { i = cmp.mapping.abort() },
-        ["<CR>"] = { i = cmp.mapping.confirm({ select = false }) },
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.confirm({ select = true }) then
-                return
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
-    }),
+    mapping = regular_mapping,
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "luasnip", max_item_count = 5 },
@@ -145,6 +147,16 @@ cmp.setup.filetype("markdown", {
     completion = {
         autocomplete = {},
     },
+    sources = cmp.config.sources({
+        { name = "nvim_lsp" },
+        {
+            name = "buffer",
+            keyword_length = 4,
+            option = {
+                get_bufnrs = get_visible_buffers,
+            },
+        },
+    }),
 })
 
 local cmdline_mapping = cmp.mapping.preset.cmdline({
@@ -154,6 +166,14 @@ local cmdline_mapping = cmp.mapping.preset.cmdline({
     ["<C-p>"] = {
         c = cmp.mapping.select_next_item({ behavior = cmp_types.cmp.SelectBehavior.Select }),
     },
+    ["<CR>"] = { c = cmp.mapping.confirm({ select = false }) },
+    ["<Tab>"] = cmp.mapping(function(fallback)
+        if cmp.confirm({ select = true }) then
+            return
+        else
+            fallback()
+        end
+    end, { "c" }),
 })
 
 cmp.setup.cmdline({ "/", "?" }, {
