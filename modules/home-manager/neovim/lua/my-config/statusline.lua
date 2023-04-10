@@ -1,4 +1,3 @@
-local lsp_status = require("lsp-status")
 local gps = require("nvim-gps")
 local terms = require("toggleterm.terminal")
 local nord_colors = require("nord.colors")
@@ -29,19 +28,6 @@ local diff_component = {
     symbols = { added = " ", modified = "柳", removed = " " },
 }
 
-local lsp_status_component = {
-    require("lsp-status").status_progress,
-    cond = function()
-        return #vim.lsp.get_active_clients() > 0
-    end,
-}
-
-lsp_status.register_progress()
-lsp_status.config({
-    diagnostics = false,
-    current_function = false,
-})
-
 require("lualine").setup({
     options = {
         theme = "nord",
@@ -65,7 +51,6 @@ require("lualine").setup({
         },
         lualine_c = {},
         lualine_x = {
-            lsp_status_component,
             { "diagnostics", sources = { "nvim_diagnostic", "coc" } },
             "filetype",
             diff_component,

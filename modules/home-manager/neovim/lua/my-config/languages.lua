@@ -1,5 +1,4 @@
 local nvim_lsp = require("lspconfig")
-local lsp_status = require("lsp-status")
 local lspsaga = require("lspsaga")
 local lsp_signature = require("lsp_signature")
 local rust_tools = require("rust-tools")
@@ -8,32 +7,12 @@ local keymap = require("my-config.keymap")
 
 local M = {}
 
--- Override lsp floating preview border globally
-local border = {
-    { "🭽", "FloatBorder" },
-    { "▔", "FloatBorder" },
-    { "🭾", "FloatBorder" },
-    { "▕", "FloatBorder" },
-    { "🭿", "FloatBorder" },
-    { "▁", "FloatBorder" },
-    { "🭼", "FloatBorder" },
-    { "▏", "FloatBorder" },
-}
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-    opts = opts or {}
-    opts.border = opts.border or border
-    return orig_util_open_floating_preview(contents, syntax, opts, ...)
-end
-
 function M.standard_lsp_on_attach(client, bufnr)
     keymap.bind_lsp_keys(client, bufnr)
-    lsp_status.on_attach(client)
     require("lsp_basics").make_lsp_commands(client, bufnr)
 end
 
-M.standard_lsp_capabilities =
-    vim.tbl_deep_extend("force", {}, lsp_status.capabilities, require("cmp_nvim_lsp").default_capabilities())
+M.standard_lsp_capabilities = vim.tbl_deep_extend("force", {}, require("cmp_nvim_lsp").default_capabilities())
 
 local standard_lsp_config = {
     on_attach = M.standard_lsp_on_attach,
@@ -71,6 +50,8 @@ lspsaga.setup({
         enable = false,
     },
 })
+
+require("fidget").setup({})
 
 rust_tools.setup({
     tools = {

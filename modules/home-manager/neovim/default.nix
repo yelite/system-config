@@ -83,7 +83,7 @@ in
 
         nvim-lspconfig
         nvim-lsp-basic
-        lsp-status-nvim
+        fidget-nvim
         lspsaga-nvim
         nvim-code-action-menu
         goto-preview
