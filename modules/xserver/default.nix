@@ -42,6 +42,11 @@ lib.optionalAttrs hostPlatform.isLinux {
 
       enableDefaultFonts = false;
 
+      fontconfig.subpixel = mkIf cfg.highDPI {
+        rgba = "none";
+        lcdfilter = "none";
+      };
+
       fontconfig.defaultFonts = {
         serif = [ "Noto Serif" "Noto Sans CJK SC" "Noto Sans Symbols" "Noto Color Emoji" ];
         sansSerif = [ "Noto Sans" "Noto Sans CJK SC" "Noto Sans Symbols" "Noto Color Emoji" ];
