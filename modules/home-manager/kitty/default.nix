@@ -1,7 +1,7 @@
 { config, pkgs, lib, hostPlatform, ... }:
 let
   cfg = config.myHomeConfig.kitty;
-  inherit (lib) types mkIf mkEnableOption mkOption;
+  inherit (lib) mkIf mkEnableOption;
 in
 {
   options = {

@@ -10,8 +10,10 @@
     ])
     rust-analyzer-nightly
 
-    python39
-  ] ++ (with python39Packages; [
+    deadnix
+
+    python3
+  ] ++ (with python3Packages; [
     ipython
     black
   ]);

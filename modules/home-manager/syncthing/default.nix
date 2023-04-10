@@ -1,7 +1,7 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, ... }:
 let
   cfg = config.myHomeConfig.syncthing;
-  inherit (lib) types mkIf mkEnableOption mkOption;
+  inherit (lib) mkIf mkEnableOption;
 in
 {
   options = {

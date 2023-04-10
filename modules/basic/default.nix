@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-let myConfig = config.myConfig;
-in
+{ config, ... }:
 {
   imports = [
     ./nixos.nix

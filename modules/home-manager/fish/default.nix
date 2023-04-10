@@ -1,7 +1,7 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, ... }:
 let
   cfg = config.myHomeConfig.fish;
-  inherit (lib) mkIf mkEnableOption mkOption;
+  inherit (lib) mkIf mkEnableOption;
 in
 {
   options = {

@@ -1,7 +1,7 @@
 {
   description = "Extra plugins for neovim";
 
-  outputs = { nixpkgs, ... }@inputs: {
+  outputs = { ... }@inputs: {
     overlay =
       let
         pluginInputs = builtins.removeAttrs inputs [ "nixpkgs" ];

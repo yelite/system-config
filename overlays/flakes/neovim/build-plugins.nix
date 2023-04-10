@@ -1,5 +1,5 @@
 let
-  inherit (builtins) listToAttrs filter attrNames;
+  inherit (builtins) listToAttrs attrNames;
   attrToList = set: map (name: { name = name; value = set.${name}; }) (attrNames set);
 in
 (pkgs: rawPlugins:

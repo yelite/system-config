@@ -50,9 +50,6 @@
           };
 
         outputsBuilder = channels:
-          let
-            pkgs = channels.nixpkgs;
-          in
           {
             packages = utils.lib.exportPackages self.overlays channels;
           };

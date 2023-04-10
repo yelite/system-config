@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, hostPlatform, ... }:
+{ config, pkgs, lib, hostPlatform, ... }:
 with lib;
 let
   cfg = config.myHomeConfig.neovim;

@@ -3,7 +3,7 @@
 
   outputs = inputs:
     let
-      inherit (builtins) map attrNames removeAttrs;
+      inherit (builtins) map attrNames;
       pluginSources = inputs;
       pluginNames = attrNames pluginSources;
     in

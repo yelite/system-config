@@ -1,6 +1,6 @@
 { lib }:
 let
-  inherit (builtins) mapAttrs remoteAttrs;
+  inherit (builtins) mapAttrs;
   myModules = import ../modules;
 in
 {

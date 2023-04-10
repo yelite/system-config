@@ -1,6 +1,6 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let cfg = config.myHomeConfig.dunst;
-  inherit (lib) types mkIf mkEnableOption mkOption;
+  inherit (lib) mkIf mkEnableOption;
 in
 {
   options = {

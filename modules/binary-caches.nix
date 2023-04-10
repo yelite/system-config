@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ ... }:
 {
   nix.settings = {
     # add binary caches
