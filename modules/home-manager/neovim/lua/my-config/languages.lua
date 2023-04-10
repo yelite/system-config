@@ -150,7 +150,11 @@ require("null-ls").setup({
         }),
         -- TODO: install pyproject-flake8
         -- require("null-ls").builtins.diagnostics.pyproject_flake8,
+        require("null-ls").builtins.formatting.prettier.with({
+            filetypes = { "html", "json", "yaml", "markdown" },
+        }),
     },
+    on_attach = M.standard_lsp_on_attach,
 })
 
 -- C indent

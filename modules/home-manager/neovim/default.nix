@@ -131,24 +131,18 @@ in
         sqlite # For sqlite.lua
 
         zk
+        glow
 
         clang-tools
-
         rust-analyzer
         rustfmt
-
         nil
-
         sumneko-lua-language-server
         cmake-language-server
+        python3Packages.jedi-language-server
 
-        glow
-      ] ++ (
-        with pkgs.python3Packages;
-        [
-          jedi-language-server
-        ]
-      );
+        nodePackages.prettier
+      ];
 
       viAlias = true;
       vimAlias = true;
