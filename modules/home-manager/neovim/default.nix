@@ -137,7 +137,7 @@ in
         rust-analyzer
         rustfmt
 
-        rnix-lsp
+        nil
 
         sumneko-lua-language-server
         cmake-language-server

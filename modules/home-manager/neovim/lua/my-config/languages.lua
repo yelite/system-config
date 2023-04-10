@@ -111,7 +111,15 @@ nvim_lsp.jedi_language_server.setup({
 })
 
 nvim_lsp.cmake.setup(standard_lsp_config)
-nvim_lsp.rnix.setup(standard_lsp_config)
+nvim_lsp.nil_ls.setup(vim.tbl_deep_extend("force", standard_lsp_config, {
+    settings = {
+        ["nil"] = {
+            formatting = {
+                command = { "nixpkgs-fmt" },
+            },
+        },
+    },
+}))
 
 -- todo move this into project-specific settings because
 -- lua-dev should only be used with init.lua development
