@@ -121,8 +121,6 @@ nvim_lsp.nil_ls.setup(vim.tbl_deep_extend("force", standard_lsp_config, {
     },
 }))
 
--- todo move this into project-specific settings because
--- lua-dev should only be used with init.lua development
 require("neodev").setup({
     override = function(root_dir, library)
         if vim.endswith(root_dir, ".system-config") then
@@ -130,6 +128,7 @@ require("neodev").setup({
             library.plugins = true
         end
     end,
+    lspconfig = false,
 })
 nvim_lsp.lua_ls.setup({
     settings = {
@@ -149,6 +148,7 @@ nvim_lsp.lua_ls.setup({
     },
     on_attach = M.standard_lsp_on_attach,
     capabilities = M.standard_lsp_capabilities,
+    before_init = require("neodev.lsp").before_init,
 })
 
 require("null-ls").setup({
