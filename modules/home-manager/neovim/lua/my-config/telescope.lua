@@ -1,4 +1,3 @@
-local async = require("plenary.async")
 local bufdelete = require("bufdelete")
 local action_state = require("telescope.actions.state")
 local action_generate = require("telescope.actions.generate")
@@ -67,6 +66,9 @@ require("telescope").setup({
                 ["<C-/>"] = "which_key",
                 -- TODO: smart open in opposite window
                 ["<C-Enter>"] = function() end,
+                ["<S-BS>"] = function()
+                    vim.cmd(":norm! dd")
+                end,
             },
         },
         prompt_prefix = "  ",
