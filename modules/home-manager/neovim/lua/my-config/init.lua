@@ -57,12 +57,14 @@ end
 require("my-config.telescope")
 
 require("indent_blankline").setup()
-vim.cmd([[
-augroup MyIndentBlankline
-    au!
-    au FileType help lua require('indent_blankline.commands').disable()
-augroup END
-]])
+vim.api.nvim_create_augroup("MyIndentBlankline", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "help",
+    group = "MyIndentBlankline",
+    callback = function()
+        require("indent_blankline.commands").disable()
+    end,
+})
 
 require("zen-mode").setup({
     window = {

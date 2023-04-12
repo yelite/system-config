@@ -425,7 +425,7 @@ function M.bind_lsp_keys(client, bufnr)
 end
 
 -- Keys for terminal mode
-function M.set_terminal_keymaps()
+local function set_terminal_keymaps()
     local opts = { buffer = vim.fn.bufnr(), silent = true }
     mapkey("<C-s>", { "t", "n" }, "<cmd>ToggleTerm<cr>", opts)
     mapkey("<C-w>h", "t", [[<C-\><C-n><C-W>h]], opts)
@@ -434,12 +434,12 @@ function M.set_terminal_keymaps()
     mapkey("<C-w>l", "t", [[<C-\><C-n><C-W>l]], opts)
 end
 
-vim.cmd([[
-augroup MyToggleTerm
-    au!
-    au TermOpen term://* lua require("my-config.keymap").set_terminal_keymaps()
-augroup END
-]])
+vim.api.nvim_create_augroup("MyToggleTerm", { clear = true })
+vim.api.nvim_create_autocmd("TermOpen", {
+    pattern = "term://*",
+    group = "MyToggleTerm",
+    callback = set_terminal_keymaps,
+})
 
 vim.g.bullets_set_mappings = 0
 

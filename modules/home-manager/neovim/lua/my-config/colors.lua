@@ -1,9 +1,7 @@
-local M = {}
-
 vim.g.nord_borders = true
 vim.g.nord_italic = false
 
-function M.patchNordColors()
+local function patchNordColors()
     local nord_colors = require("nord.colors")
     local nord_util = require("nord.util")
 
@@ -28,13 +26,11 @@ function M.patchNordColors()
 end
 
 vim.cmd([[colorscheme nord]])
-M.patchNordColors()
+patchNordColors()
 
-vim.cmd([[
-augroup MyColors
-    autocmd!
-    autocmd ColorScheme nord lua require"my-config.colors".patchNordColors()
-augroup end
-]])
-
-return M
+vim.api.nvim_create_augroup("MyColors", { clear = true })
+vim.api.nvim_create_autocmd("ColorScheme", {
+    group = "MyColors",
+    pattern = "nord",
+    callback = patchNordColors,
+})
