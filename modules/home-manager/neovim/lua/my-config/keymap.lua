@@ -441,4 +441,32 @@ augroup MyToggleTerm
 augroup END
 ]])
 
+vim.g.bullets_set_mappings = 0
+
+local function set_bullets_keymaps()
+    local opts = { buffer = vim.fn.bufnr(), silent = true }
+
+    mapkey("<CR>", "i", "<Plug>(bullets-newline)", opts)
+    mapkey("<C-CR>", "i", "<CR>", vim.tbl_extend("force", opts, { remap = false }))
+
+    mapkey("o", "n", "<Plug>(bullets-newline)", opts)
+
+    mapkey("gy", "n", "<Plug>(bullets-toggle-checkbox)", opts)
+    mapkey("gN", { "v", "n" }, "<Plug>(bullets-renumber)", opts)
+
+    mapkey("<C-t>", "i", "<Plug>(bullets-demote)", opts)
+    mapkey(">>", "n", "<Plug>(bullets-demote)", opts)
+    mapkey(">", "v", "<Plug>(bullets-demote)", opts)
+    mapkey("<C-d>", "i", "<Plug>(bullets-promote)", opts)
+    mapkey("<<", "n", "<Plug>(bullets-promote)", opts)
+    mapkey("<", "v", "<Plug>(bullets-promote)", opts)
+end
+
+vim.api.nvim_create_augroup("MyBulletKeymaps", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "markdown,text,gitcommit,scratch",
+    group = "MyBulletKeymaps",
+    callback = set_bullets_keymaps,
+})
+
 return M

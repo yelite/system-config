@@ -60,6 +60,7 @@ in
         vim-subversive
         vim-textobj-entire
         nvim-spectre
+        bullets-vim
 
         lualine-nvim
         nvim-gps
