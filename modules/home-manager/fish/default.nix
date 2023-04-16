@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, hostPlatform, ... }:
 let
   cfg = config.myHomeConfig.fish;
   inherit (lib) mkIf mkEnableOption;
@@ -16,6 +16,7 @@ in
       shellAliases = {
         "ls" = "exa";
         "cat" = "bat";
+      } // lib.optionalAttrs hostPlatform.isLinux {
         # Steal the name from macOS
         "pbcopy" = "xclip -i -rmlastnl -selection c";
         "pbpaste" = "xclip -o -selection c";
