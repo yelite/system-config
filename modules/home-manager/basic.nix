@@ -34,6 +34,7 @@ in
     ] ++
     optionals hostPlatform.isLinux [
       steam-run
+      tauon
     ] ++
     optionals (useGUI && hostPlatform.isLinux) [
       zeal
@@ -144,6 +145,10 @@ in
     kdeconnect = lib.mkIf hostPlatform.isLinux {
       enable = true;
       indicator = true;
+    };
+
+    playerctld = lib.mkIf hostPlatform.isLinux {
+      enable = true;
     };
   };
 }
