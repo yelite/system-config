@@ -32,10 +32,6 @@ in
 
       my-fup-repl
     ] ++
-    optionals hostPlatform.isLinux [
-      steam-run
-      tauon
-    ] ++
     optionals (useGUI && hostPlatform.isLinux) [
       zeal
       libsForQt5.okular
@@ -57,6 +53,7 @@ in
       widevine-cdm
       vivaldi-ffmpeg-codecs
       standardnotes
+      tauon
     ] ++
     optionals hostPlatform.isDarwin [
       terminal-notifier
