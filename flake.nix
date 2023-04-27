@@ -52,6 +52,17 @@
         outputsBuilder = channels:
           {
             packages = utils.lib.exportPackages self.overlays channels;
+
+            homeConfigurations.liteye = inputs.hm.lib.homeManagerConfiguration {
+              inherit (channels) nixpkgs;
+              modules = [
+                ./modules/home-manager/module.nix
+              ];
+              extraSpecialArgs = {
+                inherit inputs;
+                inherit (channels.nixpkgs.stdenv) hostPlatform;
+              };
+            };
           };
       };
 

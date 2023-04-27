@@ -2,21 +2,8 @@
 let
   inherit (lib) mkOption mkOptionType types;
   cfg = config.myConfig;
-  myModules = [
-    ./syncthing
-    ./basic.nix
-    ./dev.nix
-    ./neovim
-    ./i3
-    ./kitty
-    ./neovim
-    ./dunst
-    ./fish
-    ./sway.nix
-  ];
 in
 {
-
   options.myConfig = {
     username = mkOption {
       type = types.str;
@@ -40,18 +27,21 @@ in
           merge = lib.options.mergeOneOption;
           description = "Extra Home Manager Modules";
         });
-      default = [];
+      default = [ ];
     };
   };
 
   config = {
     home-manager = {
       users.${cfg.username} = { };
-      sharedModules = myModules ++ cfg.homeManagerModules ++ [{
-        myHomeConfig = cfg.homeManagerConfig;
-        # https://github.com/nix-community/home-manager/issues/3047
-        home.stateVersion = "18.09";
-      }];
+      sharedModules = cfg.homeManagerModules ++ [
+        ./module.nix
+        {
+          myHomeConfig = cfg.homeManagerConfig;
+          # https://github.com/nix-community/home-manager/issues/3047
+          home.stateVersion = "18.09";
+        }
+      ];
       useGlobalPkgs = true;
       extraSpecialArgs = {
         inherit inputs hostPlatform;
