@@ -43,6 +43,9 @@ lsp_signature.setup({
 
 lspsaga.setup({
     max_preview_lines = 20,
+    symbol_in_winbar = {
+        enable = false,
+    },
     rename = {
         quit = "<Esc>",
     },

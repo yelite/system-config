@@ -367,6 +367,22 @@
         "type": "github"
       }
     },
+    "nvim-navic": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1682150618,
+        "narHash": "sha256-K0FB7f9hhnDTwq9EizjcmupBBu0Twl0P0ak5C2ktmaY=",
+        "owner": "SmiteshP",
+        "repo": "nvim-navic",
+        "rev": "83dc174da915f9dbc9b51169e9b62a2e0d42b527",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SmiteshP",
+        "repo": "nvim-navic",
+        "type": "github"
+      }
+    },
     "nvim-termfinder": {
       "flake": false,
       "locked": {
@@ -380,22 +396,6 @@
       "original": {
         "owner": "tknightz",
         "repo": "telescope-termfinder.nvim",
-        "type": "github"
-      }
-    },
-    "nvim-treesitter": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1680160570,
-        "narHash": "sha256-sRYxbzBqQSjbyAbZsbXenUPcUW///nNtRaTbNvCGkRE=",
-        "owner": "nvim-treesitter",
-        "repo": "nvim-treesitter",
-        "rev": "09275650b8ae262ac173398976093b60e36e01e8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nvim-treesitter",
-        "repo": "nvim-treesitter",
         "type": "github"
       }
     },
@@ -456,8 +456,8 @@
         "nui-nvim": "nui-nvim",
         "nvim-cmp": "nvim-cmp",
         "nvim-lsp-basic": "nvim-lsp-basic",
+        "nvim-navic": "nvim-navic",
         "nvim-termfinder": "nvim-termfinder",
-        "nvim-treesitter": "nvim-treesitter",
         "pets-nvim": "pets-nvim",
         "possession-nvim": "possession-nvim",
         "session-lens": "session-lens",

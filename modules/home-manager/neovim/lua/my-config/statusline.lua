@@ -1,8 +1,43 @@
-local gps = require("nvim-gps")
+local navic = require("nvim-navic")
 local terms = require("toggleterm.terminal")
 local nord_colors = require("nord.colors")
 
-gps.setup()
+navic.setup({
+    icons = {
+        File = " ",
+        Module = " ",
+        Namespace = " ",
+        Package = " ",
+        Class = " ",
+        Method = " ",
+        Property = " ",
+        Field = " ",
+        Constructor = " ",
+        Enum = " ",
+        Interface = " ",
+        Function = " ",
+        Variable = " ",
+        Constant = " ",
+        String = " ",
+        Number = " ",
+        Boolean = " ",
+        Array = " ",
+        Object = " ",
+        Key = " ",
+        Null = " ",
+        EnumMember = " ",
+        Struct = " ",
+        Event = " ",
+        Operator = " ",
+        TypeParameter = " ",
+    },
+    lsp = {
+        auto_attach = true,
+        preference = nil,
+    },
+    highlight = true,
+    depth_limit = 5,
+})
 
 -- Pad the mode string so that switching between common
 -- modes will not cause width change in mode component
@@ -61,7 +96,21 @@ require("lualine").setup({
     winbar = {
         lualine_a = {},
         lualine_b = { { "filename", color = { fg = nord_colors.nord5_gui } } },
-        lualine_c = { { gps.get_location, cond = gps.is_available } },
+        lualine_c = {
+            {
+                "navic",
+                fmt = function(s)
+                    -- navic will return a string ends with #*, which reset the highlight
+                    -- group to default, creating a black block in the winbar because
+                    -- lualine pads a space after the returned string. This fmt function
+                    -- adds a space filler right after the returned string from navic, which
+                    -- removes the black block.
+                    return s .. "%#lualine_c_normal#%="
+                end,
+                color_correction = "static",
+                navic_opts = nil,
+            },
+        },
         lualine_x = {},
         lualine_y = { "location", "progress" },
         lualine_z = {},

@@ -51,10 +51,6 @@
       url = "github:nanotee/nvim-lsp-basics";
       flake = false;
     };
-    nvim-treesitter = {
-      url = "github:nvim-treesitter/nvim-treesitter";
-      flake = false;
-    };
     gitsigns-nvim = {
       url = "github:lewis6991/gitsigns.nvim";
       flake = false;
@@ -147,6 +143,10 @@
     };
     glow-nvim = {
       url = "github:ellisonleao/glow.nvim";
+      flake = false;
+    };
+    nvim-navic = {
+      url = "github:SmiteshP/nvim-navic";
       flake = false;
     };
   };
