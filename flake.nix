@@ -54,7 +54,7 @@
             packages = utils.lib.exportPackages self.overlays channels;
 
             homeConfigurations.liteye = inputs.hm.lib.homeManagerConfiguration {
-              inherit (channels) nixpkgs;
+              pkgs = channels.nixpkgs;
               modules = [
                 ./modules/home-manager/module.nix
               ];
