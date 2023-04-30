@@ -18,6 +18,10 @@
     black
   ]);
 
+  programs.go = {
+    enable = true;
+  };
+
   programs.git = {
     enable = true;
     userName = "Lite Ye";

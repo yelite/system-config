@@ -105,6 +105,13 @@ nvim_lsp.nil_ls.setup(vim.tbl_deep_extend("force", standard_lsp_config, {
     },
 }))
 
+require("go").setup({
+    lsp_cfg = {
+        on_attach = M.standard_lsp_on_attach,
+        capabilities = M.standard_lsp_capabilities,
+    },
+})
+
 require("neodev").setup({
     override = function(root_dir, library)
         if vim.endswith(root_dir, ".system-config") then

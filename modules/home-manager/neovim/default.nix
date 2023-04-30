@@ -134,6 +134,7 @@ in
         neodev-nvim
         rust-tools-nvim
         clangd_extensions-nvim
+        go-nvim
 
         {
           plugin = sqlite-lua;
