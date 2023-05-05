@@ -120,6 +120,7 @@ rec {
       "${mod}+Shift+j" = "move down";
       "${mod}+Shift+k" = "move up";
       "${mod}+Shift+l" = "move right";
+      "${mod}+Shift+t" = "layout toggle splitv splith tabbed";
       "${mod}+Shift+semicolon" = ''exec --no-startup-id bash "${./swap_workspace.sh}"'';
       "${mod}+Shift+m" = ''exec --no-startup-id "i3-input -F 'move container to workspace \\"%s\\"; workspace \\"%s\\"'"'';
       "${mod}+Shift+o" = "move container to output right; focus output right";
