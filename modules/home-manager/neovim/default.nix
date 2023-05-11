@@ -134,7 +134,6 @@ in
         neodev-nvim
         rust-tools-nvim
         clangd_extensions-nvim
-        go-nvim
 
         {
           plugin = sqlite-lua;
@@ -165,6 +164,9 @@ in
         clang-tools
         rust-analyzer
         rustfmt
+        gopls
+        golines
+        gofumpt
         nil
         sumneko-lua-language-server
         cmake-language-server

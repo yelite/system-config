@@ -105,10 +105,14 @@ nvim_lsp.nil_ls.setup(vim.tbl_deep_extend("force", standard_lsp_config, {
     },
 }))
 
-require("go").setup({
-    lsp_cfg = {
-        on_attach = M.standard_lsp_on_attach,
-        capabilities = M.standard_lsp_capabilities,
+nvim_lsp.gopls.setup({
+    on_attach = M.standard_lsp_on_attach,
+    capabilities = M.standard_lsp_capabilities,
+    settings = {
+        gopls = {
+            usePlaceholders = true,
+            gofumpt = true,
+        },
     },
 })
 
@@ -162,6 +166,11 @@ require("null-ls").setup({
         -- require("null-ls").builtins.diagnostics.pyproject_flake8,
         require("null-ls").builtins.formatting.prettier.with({
             filetypes = { "html", "json", "yaml", "markdown" },
+        }),
+        require("null-ls").builtins.formatting.golines.with({
+            extra_args = {
+                "--max-len=105",
+            },
         }),
     },
     on_attach = M.standard_lsp_on_attach,
