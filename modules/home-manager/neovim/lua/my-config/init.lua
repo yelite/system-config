@@ -11,8 +11,7 @@ o.wrap = false
 
 o.splitbelow = true
 o.splitright = true
--- TODO: enable it after new release
--- o.splitkeep = "screen"
+o.splitkeep = "screen"
 o.hidden = true
 o.showtabline = 0
 
