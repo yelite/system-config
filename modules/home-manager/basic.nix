@@ -148,4 +148,6 @@ in
       enable = true;
     };
   };
+
+  xdg.configFile."ranger/rc.conf".source = ./ranger.rc.conf;
 }
