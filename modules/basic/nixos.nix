@@ -54,6 +54,8 @@ lib.optionalAttrs hostPlatform.isLinux {
       enable = true;
       settings = {
         useDns = true;
+        passwordAuthentication = false;
+        permitRootLogin = false;
       };
     };
 
