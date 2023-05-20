@@ -60,7 +60,7 @@ end
 
 local diff_component = {
     "diff",
-    symbols = { added = " ", modified = "柳", removed = " " },
+    symbols = { added = " ", modified = " ", removed = " " },
 }
 
 require("lualine").setup({
