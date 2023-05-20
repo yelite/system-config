@@ -81,6 +81,9 @@ in
           plus-emph-style = "normal #627354";
         };
       };
+      includes = [
+        { path = "~/.config/git/config.inc"; }
+      ];
     };
 
     lazygit = {
