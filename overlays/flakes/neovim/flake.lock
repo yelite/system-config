@@ -319,6 +319,22 @@
         "type": "indirect"
       }
     },
+    "nord-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1679910686,
+        "narHash": "sha256-UDjGFRSCC6iJSQj5AIG0YwHXSEQriAswgNFiHpcNqoI=",
+        "owner": "gbprod",
+        "repo": "nord.nvim",
+        "rev": "e7d7135a1c5034deea72a5d8d42a25fdb93c85c1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gbprod",
+        "repo": "nord.nvim",
+        "type": "github"
+      }
+    },
     "nui-nvim": {
       "flake": false,
       "locked": {
@@ -453,6 +469,7 @@
         "lspsaga-nvim": "lspsaga-nvim",
         "luasnip": "luasnip",
         "nixpkgs": "nixpkgs",
+        "nord-nvim": "nord-nvim",
         "nui-nvim": "nui-nvim",
         "nvim-cmp": "nvim-cmp",
         "nvim-lsp-basic": "nvim-lsp-basic",

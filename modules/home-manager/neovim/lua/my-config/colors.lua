@@ -1,36 +1,33 @@
-vim.g.nord_borders = true
-vim.g.nord_italic = false
+local nord_utils = require("nord.utils")
 
-local function patchNordColors()
-    local nord_colors = require("nord.colors")
-    local nord_util = require("nord.util")
+require("nord").setup({
+    errors = { mode = "none" },
+    styles = {
+        comments = { italic = false },
+    },
+    on_highlights = function(highlights, colors)
+        highlights["MsgArea"] = { bg = colors.polar_night.origin }
 
-    vim.cmd([[hi clear LspReferenceText]])
-    nord_util.highlight("WhichKeyFloating", { bg = nord_colors.nord1_gui })
-    nord_util.highlight("WhichKeyFloat", { bg = nord_colors.nord1_gui })
-    nord_util.highlight("Folded", { style = "bold" })
+        highlights["CmpGhostText"] = { fg = colors.polar_night.light }
 
-    nord_util.highlight("CmpGhostText", { fg = nord_colors.nord3_gui, style = nil })
+        highlights["LuasnipInsertNodeUnvisited"] = { bg = colors.polar_night.brighter, bold = true }
+        highlights["LuasnipChoiceNodeUnvisited"] = { bg = colors.polar_night.brighter, bold = true }
+        highlights["LuasnipInsertNode"] = { fg = colors.polar_night.light }
 
-    -- Remove bold style from TS
-    nord_util.highlight("TSVariable", { fg = nord_colors.nord4_gui, style = nil })
-    nord_util.highlight("TSVariableBuiltin", { fg = nord_colors.nord4_gui, style = nil })
-    nord_util.highlight("TSBoolean", { fg = nord_colors.nord9_gui, style = nil })
-    nord_util.highlight("@variable", { fg = nord_colors.nord4_gui, style = nil })
-    nord_util.highlight("@variable.builtin", { fg = nord_colors.nord4_gui, style = nil })
-    nord_util.highlight("@boolean", { fg = nord_colors.nord9_gui, style = nil })
-    -- luasnip
-    nord_util.highlight("LuasnipInsertNodeUnvisited", { bg = nord_colors.nord2_gui, style = "bold" })
-    nord_util.highlight("LuasnipChoiceNodeUnvisited", { bg = nord_colors.nord2_gui, style = "bold" })
-    nord_util.highlight("LuasnipInsertNode", { fg = nord_colors.nord3_gui })
-end
+        highlights["LeapMatch"] =
+            { fg = colors.polar_night.origin, bg = colors.aurora.yellow, bold = true, nocombine = true }
+        highlights["LeapLabelPrimary"] =
+            { fg = colors.polar_night.origin, bg = colors.aurora.yellow, bold = true, nocombine = true }
+        highlights["LeapLabelSecondary"] =
+            { fg = colors.polar_night.origin, bg = colors.aurora.purple, bold = true, nocombine = true }
+        highlights["LeapLabelSelected"] =
+            { fg = colors.polar_night.origin, bg = colors.aurora.green, bold = true, nocombine = true }
 
-vim.cmd([[colorscheme nord]])
-patchNordColors()
+        highlights["TelescopeBorder"] = { fg = colors.snow_storm.origin, bg = nord_utils.make_global_bg() }
 
-vim.api.nvim_create_augroup("MyColors", { clear = true })
-vim.api.nvim_create_autocmd("ColorScheme", {
-    group = "MyColors",
-    pattern = "nord",
-    callback = patchNordColors,
+        highlights["@error"] = nil
+    end,
 })
+
+vim.o.termguicolors = true
+vim.cmd([[colorscheme nord]])

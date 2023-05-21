@@ -1,6 +1,6 @@
 local navic = require("nvim-navic")
 local terms = require("toggleterm.terminal")
-local nord_colors = require("nord.colors")
+local nord_colors = require("nord.colors").palette
 
 navic.setup({
     icons = {
@@ -95,7 +95,7 @@ require("lualine").setup({
     },
     winbar = {
         lualine_a = {},
-        lualine_b = { { "filename", color = { fg = nord_colors.nord5_gui } } },
+        lualine_b = { { "filename", color = { fg = nord_colors.snow_storm.brighter } } },
         lualine_c = {
             {
                 "navic",
@@ -117,7 +117,7 @@ require("lualine").setup({
     },
     inactive_winbar = {
         lualine_a = {},
-        lualine_b = { { "filename", color = { fg = nord_colors.nord3_gui_bright } } },
+        lualine_b = { { "filename", color = { fg = nord_colors.snow_storm.origin } } },
         lualine_c = {},
         lualine_x = {},
         lualine_y = {},

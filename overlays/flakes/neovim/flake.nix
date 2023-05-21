@@ -149,5 +149,9 @@
       url = "github:SmiteshP/nvim-navic";
       flake = false;
     };
+    nord-nvim = {
+      url = "github:gbprod/nord.nvim";
+      flake = false;
+    };
   };
 }
