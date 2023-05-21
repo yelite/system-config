@@ -6,8 +6,6 @@ require("nord").setup({
         comments = { italic = false },
     },
     on_highlights = function(highlights, colors)
-        highlights["MsgArea"] = { bg = colors.polar_night.origin }
-
         highlights["CmpGhostText"] = { fg = colors.polar_night.light }
 
         highlights["LuasnipInsertNodeUnvisited"] = { bg = colors.polar_night.brighter, bold = true }

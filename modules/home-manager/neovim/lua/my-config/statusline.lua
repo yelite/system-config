@@ -117,7 +117,7 @@ require("lualine").setup({
     },
     inactive_winbar = {
         lualine_a = {},
-        lualine_b = { { "filename", color = { fg = nord_colors.snow_storm.origin } } },
+        lualine_b = { { "filename", color = { fg = nord_colors.polar_night.light } } },
         lualine_c = {},
         lualine_x = {},
         lualine_y = {},

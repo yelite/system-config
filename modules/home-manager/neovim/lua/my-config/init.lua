@@ -24,7 +24,7 @@ o.foldexpr = "nvim_treesitter#foldexpr()"
 o.foldlevel = 99 -- Unfold everything by default
 o.foldtext =
     [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
-o.fillchars = "fold: "
+o.fillchars = "fold: ,msgsep:─"
 o.foldnestmax = 3
 o.foldminlines = 1
 
