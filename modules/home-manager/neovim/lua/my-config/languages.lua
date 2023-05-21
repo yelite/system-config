@@ -108,7 +108,6 @@ nvim_lsp.nil_ls.setup(vim.tbl_deep_extend("force", standard_lsp_config, {
 require("go").setup({
     max_line_len = 105,
     lsp_gofumpt = true,
-    lsp_on_attach = M.standard_lsp_on_attach,
     lsp_keymaps = false,
     lsp_codelens = false,
     lsp_diag_hdlr = false,
