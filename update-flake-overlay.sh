@@ -8,6 +8,7 @@ fi
 
 pushd $flake_dir > /dev/null
 
-nix flake update
+command=$2
+nix flake ${command:=update}
 
 popd > /dev/null

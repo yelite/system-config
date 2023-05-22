@@ -54,6 +54,19 @@ lspsaga.setup({
     },
 })
 
+vim.g.navbuddy_silence = true
+require("nvim-navbuddy").setup({
+    window = {
+        size = "62%",
+    },
+    lsp = {
+        auto_attach = true,
+    },
+    source_buffer = {
+        scrolloff = 5
+    }
+})
+
 require("fidget").setup({})
 
 rust_tools.setup({

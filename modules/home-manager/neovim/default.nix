@@ -116,6 +116,7 @@ in
         nvim-code-action-menu
         goto-preview
         glance-nvim
+        nvim-navbuddy
         trouble-nvim
         aerial-nvim
         nvim-dap

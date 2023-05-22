@@ -111,6 +111,22 @@
         "type": "github"
       }
     },
+    "nvim-navbuddy": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1684044793,
+        "narHash": "sha256-6wcZ2wMwl+bQLFfSXBIaM9eZA3wjtXJshm0EcjWPuqM=",
+        "owner": "SmiteshP",
+        "repo": "nvim-navbuddy",
+        "rev": "71424b01051913eee6db0cc4b34b1b9a1a31f5c1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SmiteshP",
+        "repo": "nvim-navbuddy",
+        "type": "github"
+      }
+    },
     "nvim-termfinder": {
       "flake": false,
       "locked": {
@@ -168,6 +184,7 @@
         "nixpkgs": "nixpkgs",
         "nord-nvim": "nord-nvim",
         "nvim-lsp-basic": "nvim-lsp-basic",
+        "nvim-navbuddy": "nvim-navbuddy",
         "nvim-termfinder": "nvim-termfinder",
         "pets-nvim": "pets-nvim",
         "possession-nvim": "possession-nvim",

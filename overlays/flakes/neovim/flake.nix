@@ -57,5 +57,9 @@
       url = "github:gbprod/nord.nvim";
       flake = false;
     };
+    nvim-navbuddy = {
+      url = "github:SmiteshP/nvim-navbuddy";
+      flake = false;
+    };
   };
 }
