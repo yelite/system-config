@@ -379,7 +379,8 @@ function M.bind_lsp_keys(client, bufnr)
     mapkey("gk", "n", "<cmd>Lspsaga hover_doc ++keep<cr>", opts, "Pin LSP Hover Window")
     mapkey("goo", "n", "<cmd>Lspsaga show_line_diagnostics<cr>", opts, "Show Line Diagnostics")
     mapkey("god", "n", "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", opts, "Preview Definition")
-    mapkey("gor", "n", "<cmd>lua require('goto-preview').goto_preview_references()<cr>", opts, "Preview Reference")
+    mapkey("gor", "n", "<cmd>Glance references<cr>", opts, "Glance Reference")
+    mapkey("goR", "n", "<cmd>lua require('goto-preview').goto_preview_references()<cr>", opts, "Preview Reference")
     mapkey(
         "got",
         "n",
@@ -387,8 +388,9 @@ function M.bind_lsp_keys(client, bufnr)
         opts,
         "Preview Type Definition"
     )
+    mapkey("goi", "n", "<cmd>Glance implementations<cr>", opts, "Glance Implementation")
     mapkey(
-        "goi",
+        "goI",
         "n",
         "<cmd>lua require('goto-preview').goto_preview_implementation()<cr>",
         opts,

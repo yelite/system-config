@@ -213,6 +213,12 @@ require("goto-preview").setup({
     bufhidden = "wipe", -- the bufhidden option to set on the floating window. See :h bufhidden
 })
 
+require("glance").setup({
+    border = {
+        enable = true,
+    },
+})
+
 vim.g.code_action_menu_show_diff = false
 
 require("gitlinker").setup({

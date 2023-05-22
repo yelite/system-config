@@ -115,6 +115,7 @@ in
         lspsaga-nvim-original
         nvim-code-action-menu
         goto-preview
+        glance-nvim
         trouble-nvim
         aerial-nvim
         nvim-dap
