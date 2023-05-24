@@ -5,7 +5,7 @@ lib.optionalAttrs hostPlatform.isDarwin {
   environment = {
     shells = [ pkgs.fish ];
     shellAliases = {
-      system-rebuild = "darwin-rebuild --flake ~/.system-config#lite-octo-macbook";
+      system-rebuild = "darwin-rebuild --flake ~/.system-config";
     };
   };
 

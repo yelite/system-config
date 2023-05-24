@@ -114,8 +114,8 @@ in
           {
             "*" = {
               extraOptions = {
+                IgnoreUnknown = "UseKeychain";
                 UseKeychain = "yes";
-                AddKeysToAgent = "yes";
               };
             };
           }

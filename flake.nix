@@ -38,6 +38,12 @@
             output = "darwinConfigurations";
             builder = darwin.lib.darwinSystem;
           };
+
+          lite-home-macbook = {
+            system = "x86_64-darwin";
+            output = "darwinConfigurations";
+            builder = darwin.lib.darwinSystem;
+          };
         };
 
 
