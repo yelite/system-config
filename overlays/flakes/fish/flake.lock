@@ -88,7 +88,6 @@
         "fzf-fish": "fzf-fish",
         "replay": "replay",
         "sponge": "sponge",
-        "tide": "tide",
         "z": "z"
       }
     },
@@ -105,22 +104,6 @@
       "original": {
         "owner": "andreiborisov",
         "repo": "sponge",
-        "type": "github"
-      }
-    },
-    "tide": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1680048966,
-        "narHash": "sha256-gqR7wuAVoNRymxaEr1KSa3Yy7GiNgHKEyJDSUVJeI2Q=",
-        "owner": "IlanCosman",
-        "repo": "tide",
-        "rev": "7f11fcbe90af995772d6df1516b67ec9521f2ba1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "IlanCosman",
-        "repo": "tide",
         "type": "github"
       }
     },

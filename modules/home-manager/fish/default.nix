@@ -25,6 +25,11 @@ in
       shellInit = builtins.readFile ./config.fish;
     };
 
+    programs.starship = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+
     xdg.configFile."bat/config".source = pkgs.writeText "bat_config"
       ''
         --theme="ansi"

@@ -22,10 +22,6 @@
       url = "github:PatrickF1/fzf.fish";
       flake = false;
     };
-    tide = {
-      url = "github:IlanCosman/tide";
-      flake = false;
-    };
     forgit = {
       url = "github:wfxr/forgit";
       flake = false;
