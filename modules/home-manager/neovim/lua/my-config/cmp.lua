@@ -53,7 +53,18 @@ local regular_mapping = cmp.mapping.preset.insert({
     ["<C-b>"] = {
         i = cmp.mapping.scroll_docs(-4),
     },
-    ["<C-f>"] = { i = cmp.mapping.scroll_docs(4) },
+    ["<C-f>"] = cmp.mapping(function(fallback)
+        if cmp.scroll_docs(4) then
+            return
+        end
+        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+        local line = vim.api.nvim_get_current_line()
+        if string.sub(line, col + 1) == "" and cmp.confirm({ select = true }) then
+            return
+        end
+        cmp.abort()
+        fallback()
+    end, { "i" }),
     ["<C-Space>"] = { i = cmp.mapping.complete() },
     ["<C-e>"] = { i = cmp.mapping.abort() },
     ["<CR>"] = { i = cmp.mapping.confirm({ select = false }) },
