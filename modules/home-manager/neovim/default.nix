@@ -177,6 +177,7 @@ in
         gomodifytags
 
         nil
+        taplo
         sumneko-lua-language-server
         cmake-language-server
         python3Packages.jedi-language-server

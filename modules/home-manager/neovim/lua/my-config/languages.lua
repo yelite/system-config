@@ -63,8 +63,8 @@ require("nvim-navbuddy").setup({
         auto_attach = true,
     },
     source_buffer = {
-        scrolloff = 5
-    }
+        scrolloff = 5,
+    },
 })
 
 require("fidget").setup({})
@@ -167,6 +167,11 @@ nvim_lsp.lua_ls.setup({
     on_attach = M.standard_lsp_on_attach,
     capabilities = M.standard_lsp_capabilities,
     before_init = require("neodev.lsp").before_init,
+})
+
+nvim_lsp.taplo.setup({
+    on_attach = M.standard_lsp_on_attach,
+    capabilities = M.standard_lsp_capabilities,
 })
 
 require("null-ls").setup({
