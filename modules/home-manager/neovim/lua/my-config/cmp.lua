@@ -50,14 +50,15 @@ local regular_mapping = cmp.mapping.preset.insert({
     ["<C-p>"] = {
         i = cmp.mapping.select_prev_item({ behavior = cmp_types.cmp.SelectBehavior.Select }),
     },
-    ["<C-b>"] = {
+    ["<C-d>"] = {
         i = cmp.mapping.scroll_docs(-4),
     },
+    ["<C-u>"] = {
+        i = cmp.mapping.scroll_docs(4),
+    },
     ["<C-f>"] = cmp.mapping(function(fallback)
-        if cmp.scroll_docs(4) then
-            return
-        end
-        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+        -- Confirm if this is the end of line, otherwise abort completion and fallback
+        local _, col = unpack(vim.api.nvim_win_get_cursor(0))
         local line = vim.api.nvim_get_current_line()
         if string.sub(line, col + 1) == "" and cmp.confirm({ select = true }) then
             return
