@@ -30,6 +30,7 @@ let
     p.markdown_inline
     p.prisma
     p.query
+    p.sql
     p.tsx
     p.typescript
     p.toml
@@ -171,6 +172,7 @@ in
         gopls
         golines
         gofumpt
+        golangci-lint
         impl
         reftools
         delve
@@ -183,6 +185,8 @@ in
         python3Packages.jedi-language-server
 
         nodePackages.prettier
+
+        pgformatter
       ];
 
       viAlias = true;

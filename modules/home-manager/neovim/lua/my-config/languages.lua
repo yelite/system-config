@@ -181,6 +181,7 @@ require("null-ls").setup({
         require("null-ls").builtins.formatting.black,
         require("null-ls").builtins.formatting.clang_format,
         require("null-ls").builtins.formatting.stylua,
+        require("null-ls").builtins.formatting.pg_format,
         require("null-ls").builtins.diagnostics.pylint.with({
             -- TODO: read project config
             extra_args = {
@@ -200,6 +201,7 @@ require("null-ls").setup({
                 "--max-len=105",
             },
         }),
+        require("null-ls").builtins.diagnostics.golangci_lint
     },
     on_attach = M.standard_lsp_on_attach,
 })
