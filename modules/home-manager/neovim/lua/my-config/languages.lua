@@ -181,7 +181,6 @@ require("null-ls").setup({
         require("null-ls").builtins.formatting.black,
         require("null-ls").builtins.formatting.clang_format,
         require("null-ls").builtins.formatting.stylua,
-        require("null-ls").builtins.formatting.pg_format,
         require("null-ls").builtins.diagnostics.pylint.with({
             -- TODO: read project config
             extra_args = {

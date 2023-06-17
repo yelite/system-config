@@ -185,8 +185,6 @@ in
         python3Packages.jedi-language-server
 
         nodePackages.prettier
-
-        pgformatter
       ];
 
       viAlias = true;
