@@ -174,6 +174,31 @@ nvim_lsp.taplo.setup({
     capabilities = M.standard_lsp_capabilities,
 })
 
+nvim_lsp.jsonls.setup({
+    settings = {
+        json = {
+            schemas = require("schemastore").json.schemas(),
+            validate = { enable = true },
+        },
+    },
+})
+
+nvim_lsp.yamlls.setup({
+    on_attach = function(client, bufnr)
+        M.standard_lsp_on_attach(client, bufnr)
+        client.server_capabilities.documentFormattingProvider = true
+    end,
+    capabilities = M.standard_lsp_capabilities,
+    settings = {
+        yaml = {
+            schemaStore = {
+                enable = false,
+            },
+            schemas = require("schemastore").yaml.schemas(),
+        },
+    },
+})
+
 require("null-ls").setup({
     diagnostics_format = "#{m} (#{c} #{s})",
     sources = {
@@ -193,16 +218,26 @@ require("null-ls").setup({
         -- TODO: install pyproject-flake8
         -- require("null-ls").builtins.diagnostics.pyproject_flake8,
         require("null-ls").builtins.formatting.prettier.with({
-            filetypes = { "html", "json", "yaml", "markdown" },
+            filetypes = { "html", "json", "markdown" },
         }),
         require("null-ls").builtins.formatting.golines.with({
             extra_args = {
                 "--max-len=105",
             },
         }),
-        require("null-ls").builtins.diagnostics.golangci_lint
+        require("null-ls").builtins.diagnostics.golangci_lint,
     },
     on_attach = M.standard_lsp_on_attach,
+})
+
+vim.api.nvim_create_augroup("MyIndent", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = {"markdown", "json", "yaml", "cpp", "c"},
+    group = "MyIndent",
+    callback = function()
+        vim.bo.tabstop = 2
+        vim.bo.shiftwidth = 2
+    end,
 })
 
 -- C indent

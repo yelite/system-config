@@ -138,6 +138,7 @@ in
         rust-tools-nvim
         clangd_extensions-nvim
         go-nvim
+        SchemaStore-nvim
 
         {
           plugin = sqlite-lua;
@@ -185,6 +186,8 @@ in
         python3Packages.jedi-language-server
 
         nodePackages.prettier
+        nodePackages.yaml-language-server
+        nodePackages.vscode-json-languageserver
       ];
 
       viAlias = true;
