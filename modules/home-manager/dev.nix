@@ -13,6 +13,7 @@
     deadnix
 
     python3
+    insomnia
   ] ++ (with python3Packages; [
     ipython
     black
