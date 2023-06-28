@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, hostPlatform, ... }:
 {
   home.packages = with pkgs; [
     (fenix.complete.withComponents [
@@ -10,14 +10,17 @@
     ])
     rust-analyzer
 
+    cloc
+
     deadnix
 
     python3
-    insomnia
   ] ++ (with python3Packages; [
     ipython
     black
-  ]);
+  ]) ++ lib.optionals hostPlatform.isLinux [
+    insomnia
+  ];
 
   programs.go = {
     enable = true;
