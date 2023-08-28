@@ -32,6 +32,9 @@ lib.optionalAttrs hostPlatform.isLinux {
     git # used for nixos-rebuild
     killall
     cifs-utils
+
+    age
+    gopass
   ];
 
   networking.networkmanager.enable = true;
