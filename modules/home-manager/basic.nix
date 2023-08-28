@@ -31,6 +31,9 @@ in
       zk
 
       my-fup-repl
+
+      age
+      gopass
     ] ++
     optionals (useGUI && hostPlatform.isLinux) [
       zeal
