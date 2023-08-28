@@ -54,6 +54,7 @@ in
       vivaldi-ffmpeg-codecs
       standardnotes
       tauon
+      supersonic
       picard
     ] ++
     optionals hostPlatform.isDarwin [
