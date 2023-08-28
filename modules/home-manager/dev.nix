@@ -20,6 +20,8 @@
     black
   ]) ++ lib.optionals hostPlatform.isLinux [
     insomnia
+  ] ++ lib.optionals hostPlatform.isDarwin [
+    (pkgs.writeShellScriptBin "gsed" "exec -a $0 ${gnused}/bin/sed $@")
   ];
 
   programs.go = {
