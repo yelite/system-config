@@ -46,6 +46,9 @@ in
 
         xsession = {
           enable = true;
+          initExtra = ''
+            ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all
+          '';
           scriptPath = ".xsession-hm";
         };
 
