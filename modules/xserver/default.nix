@@ -22,7 +22,7 @@ lib.optionalAttrs hostPlatform.isLinux {
 
   config = mkIf cfg.enable {
     fonts = {
-      fonts = with pkgs;
+      packages = with pkgs;
         [
           material-design-icons
 
@@ -40,7 +40,7 @@ lib.optionalAttrs hostPlatform.isLinux {
           })
         ];
 
-      enableDefaultFonts = false;
+      enableDefaultPackages = false;
 
       fontconfig.subpixel = mkIf cfg.highDPI {
         rgba = "none";

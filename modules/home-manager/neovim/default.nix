@@ -113,7 +113,7 @@ in
         nvim-lspconfig
         nvim-lsp-basic
         fidget-nvim
-        lspsaga-nvim-original
+        lspsaga-nvim
         nvim-code-action-menu
         goto-preview
         glance-nvim
