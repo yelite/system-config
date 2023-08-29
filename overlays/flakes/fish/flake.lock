@@ -35,11 +35,11 @@
     "forgit": {
       "flake": false,
       "locked": {
-        "lastModified": 1679153718,
-        "narHash": "sha256-3lvYIuzuJw0CQlaAQG6hAyfUgSXM+3BOmKRVDNFUN/U=",
+        "lastModified": 1693148790,
+        "narHash": "sha256-WvJxjEzF3vi+YPVSH3QdDyp3oxNypMoB71TAJ7D8hOQ=",
         "owner": "wfxr",
         "repo": "forgit",
-        "rev": "3f00348d5c712e1a0013bf64a08dd2ce8c8539e3",
+        "rev": "48e91dadb53f7ac33cab238fb761b18630b6da6e",
         "type": "github"
       },
       "original": {
@@ -51,11 +51,11 @@
     "fzf-fish": {
       "flake": false,
       "locked": {
-        "lastModified": 1674674469,
-        "narHash": "sha256-i9FcuQdmNlJnMWQp7myF3N0tMD/2I0CaMs/PlD8o1gw=",
+        "lastModified": 1692649589,
+        "narHash": "sha256-CqRSkwNqI/vdxPKrShBykh+eHQq9QIiItD6jWdZ/DSM=",
         "owner": "PatrickF1",
         "repo": "fzf.fish",
-        "rev": "63c8f8e65761295da51029c5b6c9e601571837a1",
+        "rev": "f9e2e48a54199fe7c6c846556a12003e75ab798e",
         "type": "github"
       },
       "original": {
