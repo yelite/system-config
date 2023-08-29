@@ -34,6 +34,7 @@ in
 
       age
       gopass
+      gopass-jsonapi
     ] ++
     optionals (useGUI && hostPlatform.isLinux) [
       zeal
@@ -154,6 +155,11 @@ in
 
     playerctld = lib.mkIf hostPlatform.isLinux {
       enable = true;
+    };
+
+    gpg-agent = {
+      enable = true;
+      pinentryFlavor = "qt";
     };
   };
 

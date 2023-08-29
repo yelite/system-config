@@ -61,6 +61,10 @@ lib.optionalAttrs hostPlatform.isLinux {
 
     # Hide the cursor when typing.
     xbanish.enable = true;
+
+    gnome.gnome-keyring = {
+      enable = true;
+    };
   };
 
   security = {
@@ -83,6 +87,7 @@ lib.optionalAttrs hostPlatform.isLinux {
   programs = {
     fish.enable = true;
     less.enable = true;
+    seahorse.enable = true;
     ssh = {
       startAgent = true;
       enableAskPassword = false;
