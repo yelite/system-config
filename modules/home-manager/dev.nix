@@ -1,6 +1,7 @@
 { pkgs, lib, hostPlatform, ... }:
 {
   home.packages = with pkgs; [
+    jq
     (fenix.complete.withComponents [
       "cargo"
       "clippy"

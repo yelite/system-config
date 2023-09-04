@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   session_start_cmd = "systemd-cat -t i3 startx ~/.xsession-hm";
 in
@@ -15,7 +15,12 @@ in
       vt = 2; # To avoid kernel logging. See https://github.com/apognu/tuigreet/issues/17
       settings = {
         default_session = {
-          command = ''${pkgs.greetd.tuigreet}/bin/tuigreet --asterisks --remember --cmd "${session_start_cmd}"'';
+          command = lib.concatStringsSep " " [
+            "${pkgs.greetd.tuigreet}/bin/tuigreet"
+            "--asterisks"
+            "--remember"
+            ''--cmd "${session_start_cmd}"''
+          ];
         };
       };
     };

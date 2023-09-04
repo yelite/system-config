@@ -2,10 +2,10 @@
 let
   inherit (lib) optionals;
   useGUI =
-    if config?myHomeConfig.xserver.enable then
-      config.myHomeConfig.xserver.enable
-    else if hostPlatform.isDarwin then
+    if hostPlatform.isDarwin then
       true
+    else if config?myHomeConfig.display.enable then
+      config.myHomeConfig.display.enable
     else
       false;
 in
@@ -48,14 +48,8 @@ in
       write_stylus
       reaper
       realvnc-vnc-viewer
-      (vivaldi.override {
-        commandLineArgs = [
-          "--enable-features=VaapiVideoDecoder"
-          "--force-dark-mode" # Make prefers-color-scheme selector to choose dark theme
-        ];
-      })
-      widevine-cdm
-      vivaldi-ffmpeg-codecs
+      chromium
+      vivaldi
       standardnotes
       tauon
       supersonic

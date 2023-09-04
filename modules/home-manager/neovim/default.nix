@@ -35,6 +35,7 @@ let
     p.typescript
     p.toml
     p.yaml
+    p.yuck
     p.vim
   ]));
 in

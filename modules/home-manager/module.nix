@@ -10,5 +10,6 @@
     ./dunst
     ./fish
     ./sway.nix
+    ./eww
   ];
 }

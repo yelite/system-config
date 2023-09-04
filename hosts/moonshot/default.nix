@@ -22,10 +22,12 @@
   networking.interfaces.eno1.useDHCP = true;
 
   myConfig = {
-    xserver = {
+    display = {
       enable = true;
       highDPI = true;
       displayProfiles = import ./display-profiles.nix;
+      xserver.enable = true;
+      wayland.enable = true;
     };
 
     logitech.enable = true;
@@ -66,7 +68,6 @@
   services.printing.enable = true;
 
   hardware = {
-    pulseaudio.enable = true;
     cpu.amd.updateMicrocode = true;
     nvidia = {
       modesetting.enable = true;

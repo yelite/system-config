@@ -1,6 +1,6 @@
 { pkgs, config, lib, hostPlatform, ... }:
 let
-  cfg = config.myConfig.xserver;
+  cfg = config.myConfig.display;
   inherit (lib) mkIf mkEnableOption mkOption;
 in
 lib.optionalAttrs hostPlatform.isLinux {
@@ -9,23 +9,40 @@ lib.optionalAttrs hostPlatform.isLinux {
   ];
 
   options = {
-    myConfig.xserver = {
-      enable = mkEnableOption "xserver";
+    myConfig.display = {
+      enable = mkEnableOption "display";
       highDPI = mkEnableOption "highDPI";
       displayProfiles = mkOption {
         type = with lib.types; attrsOf (uniq anything);
         description = "Autorandr profiles specification.";
         default = { };
       };
+
+      xserver = {
+        enable = mkEnableOption "xserver";
+      };
+
+      wayland = {
+        enable = mkEnableOption "wayland";
+      };
     };
   };
 
   config = mkIf cfg.enable {
+    myConfig.homeManagerModules = [{
+      imports = [ ./home.nix ];
+      config = {
+        myHomeConfig.display = cfg;
+      };
+    }];
+
     fonts = {
       packages = with pkgs;
         [
           material-design-icons
+          material-symbols
 
+          lexend
           merriweather
           source-han-sans
           source-han-serif
@@ -57,10 +74,18 @@ lib.optionalAttrs hostPlatform.isLinux {
 
     services = {
       geoclue2.enable = true;
+      ddccontrol.enable = true;
 
-      xserver = {
+      pipewire = {
         enable = true;
+        wireplumber.enable = true;
+        pulse.enable = true;
+        alsa.enable = true;
+        jack.enable = true;
+      };
 
+      xserver = mkIf cfg.xserver.enable {
+        enable = true;
         libinput = {
           enable = true;
           mouse.accelProfile = "flat";
@@ -68,14 +93,15 @@ lib.optionalAttrs hostPlatform.isLinux {
         };
         wacom.enable = true;
       };
-      ddccontrol.enable = true;
     };
 
-    myConfig.homeManagerModules = [{
-      imports = [ ./home.nix ];
-      config = {
-        myHomeConfig.xserver = cfg;
-      };
-    }];
+    environment.etc = {
+      "pipewire/pipewire.conf.d/99-my-device.conf".text = ''
+        context.properties = {
+          default.clock.rate = 44100
+          default.clock.allowed-rates = [ 44100 48000 88200 96000 176400 192000 352800 384000 ]
+        }
+      '';
+    };
   };
 }

@@ -26,4 +26,22 @@ final: prev:
 
     patches = [ ./tauon.patch ];
   });
+
+  vivaldi = (prev.vivaldi.override {
+    commandLineArgs = [
+      "--force-dark-mode" # Make prefers-color-scheme selector to choose dark theme
+      "--gtk-version=4"
+      "--disable-gpu-sandbox"
+    ];
+    enableWidevine = true;
+    widevine-cdm = final.widevine-cdm;
+  }).overrideAttrs (old: rec {
+    # TODO: upgrade to the latest version when GPU acceleration is working
+    version = "6.0.2979.25";
+    suffix = "amd64";
+    src = final.fetchurl {
+      url = "https://downloads.vivaldi.com/stable/vivaldi-stable_${version}-1_${suffix}.deb";
+      hash = "sha256-m3N7dvOtRna3FYLZdkPjAfGRF4KAJ8XlDlpGnToAwVY=";
+    };
+  });
 }

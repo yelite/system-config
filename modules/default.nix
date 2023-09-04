@@ -6,12 +6,10 @@ let
 
     # NixOS only
     ./uinput.nix
-    ./xserver
+    ./display
     ./keyboard-remap
     ./logitech
     ./nvfancontrol
-    # TODO: reenable this after wayland on nvidia is stable
-    # ./sway-nvidia
   ];
 in
 systemModules

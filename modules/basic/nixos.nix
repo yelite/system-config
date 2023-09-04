@@ -32,6 +32,7 @@ lib.optionalAttrs hostPlatform.isLinux {
     git # used for nixos-rebuild
     killall
     cifs-utils
+    libvdpau-va-gl
   ];
 
   networking.networkmanager.enable = true;
