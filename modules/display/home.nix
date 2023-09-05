@@ -25,6 +25,15 @@ in
   };
 
   config = mkMerge [
+    (mkIf cfg.enable {
+      home.pointerCursor = {
+        gtk.enable = true;
+        x11.enable = true;
+        package = pkgs.apple-cursor;
+        name = "macOSMonterey";
+        size = 40;
+      };
+    })
     (mkIf (cfg.enable && cfg.wayland.enable)
       {
         home.packages = with pkgs; [
@@ -49,7 +58,8 @@ in
 
         services = {
           gammastep = {
-            enable = true;
+            # TODO: Enable after nvidia driver support GAMMA_LUT
+            enable = false;
             provider = "geoclue2";
 
             temperature = {
@@ -104,12 +114,6 @@ in
           scriptPath = ".xsession-hm";
         };
 
-        home.pointerCursor = {
-          x11.enable = true;
-          package = pkgs.apple-cursor;
-          name = "macOSMonterey";
-          size = 40;
-        };
       })
     (mkIf (cfg.enable && cfg.highDPI)
       {

@@ -53,7 +53,12 @@ in
     ];
 
     windowrulev2 = [
+      "center,class:^(gcr-prompter)$"
       "idleinhibit focus,class:^(mpv)$"
+
+      "float,title:^Vivaldi Settings:"
+      "size 60% 60%,title:^Vivaldi Settings:"
+      "center,title:^Vivaldi Settings:"
     ];
 
     workspace = [
@@ -93,11 +98,28 @@ in
       "$mod, e, workspace, 3"
 
       "$mod SHIFT, a, moveworkspacetomonitor, name:code1 +1"
+      "$mod SHIFT, a, workspace, name:code1"
+      "$mod SHIFT, a, focusmonitor, -1"
+
       "$mod SHIFT, s, moveworkspacetomonitor, name:web +1"
+      "$mod SHIFT, s, workspace, name:web"
+      "$mod SHIFT, s, focusmonitor, -1"
+
       "$mod SHIFT, d, moveworkspacetomonitor, name:code2 +1"
+      "$mod SHIFT, d, workspace, name:code2"
+      "$mod SHIFT, d, focusmonitor, -1"
+
       "$mod SHIFT, q, moveworkspacetomonitor, name:1 +1"
+      "$mod SHIFT, q, workspace, 1"
+      "$mod SHIFT, q, focusmonitor, -1"
+
       "$mod SHIFT, w, moveworkspacetomonitor, name:2 +1"
+      "$mod SHIFT, w, workspace, 2"
+      "$mod SHIFT, w, focusmonitor, -1"
+
       "$mod SHIFT, e, moveworkspacetomonitor, name:3 +1"
+      "$mod SHIFT, e, workspace, 3"
+      "$mod SHIFT, e, focusmonitor, -1"
 
       "$mod, 1, togglespecialworkspace, term"
       "$mod SHIFT, 1, focusmonitor, +1"
@@ -114,7 +136,7 @@ in
       "$mod SHIFT, 3, togglespecialworkspace, music"
       "$mod SHIFT, 3, focusmonitor, -1"
 
-      "$mod, esc, exec, ${pkgs.bash}/bin/bash ${./close_special_workspace.sh}"
+      "$mod, escape, exec, bash ${./close_special_workspace.sh}"
 
       "$mod, o, focusmonitor, +1"
       "$mod SHIFT, o, movewindow, mon:+1"

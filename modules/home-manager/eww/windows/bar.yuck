@@ -17,8 +17,7 @@
     :onclick "eww open --toggle system-menu"
     (box
       (net)
-      (bluetooth)
-      (battery-module))))
+      (bluetooth))))
 
 (defwidget right []
   (box

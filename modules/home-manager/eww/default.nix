@@ -116,14 +116,14 @@ in
         Description = "Eww Daemon";
         # not yet implemented
         # PartOf = ["tray.target"];
-        PartOf = [ "graphical-session.target" ];
+        PartOf = [ "hyprland-session.target" ];
       };
       Service = {
         Environment = "PATH=/run/wrappers/bin:${lib.makeBinPath dependencies}";
         ExecStart = "${cfg.package}/bin/eww daemon --no-daemonize";
         Restart = "on-failure";
       };
-      Install.WantedBy = [ "graphical-session.target" ];
+      Install.WantedBy = [ "hyprland-session.target" ];
     };
   };
 }

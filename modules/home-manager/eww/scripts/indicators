@@ -15,9 +15,9 @@ gen_output() {
 
     json='['
 
-    if [ "$micreveal" -ge 1 ]; then
-      json+='{"name": "Microphone", "icon": "", "class": "micshare"}'
-    fi
+    # if [ "$micreveal" -ge 1 ]; then
+    #   json+='{"name": "Microphone", "icon": "", "class": "micshare"}'
+    # fi
     if [ "$screenreveal" = "true" ]; then
       json+="$([ "$json" == "[" ] || echo ',')"'{"name": "Screen", "icon": "", "class": "screenshare"}'
     fi

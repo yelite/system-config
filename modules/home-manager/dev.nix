@@ -2,6 +2,8 @@
 {
   home.packages = with pkgs; [
     jq
+    htop
+
     (fenix.complete.withComponents [
       "cargo"
       "clippy"

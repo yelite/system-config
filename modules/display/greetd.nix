@@ -1,6 +1,11 @@
 { pkgs, lib, ... }:
 let
   session_start_cmd = "systemd-cat -t i3 startx ~/.xsession-hm";
+  # TODO: Reevaluate wayland
+  # session_start_cmd = "~/hyprland.sh";
+  # Content:
+  # export WLR_NO_HARDWARE_CURSORS=1
+  # systemd-cat -t hyprland Hyprland
 in
 {
   services = {
