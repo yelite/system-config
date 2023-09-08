@@ -1,6 +1,5 @@
 { config, pkgs, lib, hostPlatform, ... }:
 let
-  logiops = pkgs.callPackage ./package.nix { };
   cfg = config.myConfig.logitech;
   inherit (lib) mkIf mkEnableOption;
 in
@@ -14,6 +13,7 @@ lib.optionalAttrs hostPlatform.isLinux {
   config = mkIf cfg.enable {
     environment.systemPackages = [
       pkgs.solaar # tool for the unify receiver
+      pkgs.logiops
     ];
 
     users.users.logiops = {
@@ -29,17 +29,25 @@ lib.optionalAttrs hostPlatform.isLinux {
       SUBSYSTEM=="hidraw", ATTRS{idVendor}=="046d", MODE="0660", GROUP="logiops" 
     '';
 
+    services.dbus.packages = [
+      (pkgs.writeTextFile
+        {
+          name = "logiops-dbus-conf";
+          destination = "/share/dbus-1/system.d/pizza.pixl.LogiOps.conf";
+          text = builtins.readFile ./logiops-dbus.conf;
+        })
+    ];
+
     systemd.services.logiops = {
       description = "Logitech Configuration Daemon";
       serviceConfig = {
         Type = "simple";
-        ExecStart = "${logiops}/bin/logid -c ${./logiops.cfg}";
+        ExecStart = "${pkgs.logiops}/bin/logid -c ${./logiops.cfg}";
         User = "logiops";
-        ExecReload = "${pkgs.coreutils}/bin/kill -HUP $MAINPID";
-        Restart = "on-failure";
+        Restart = "on-abort";
         RestartSec = 3;
       };
-      wantedBy = [ "multi-user.target" ];
+      wantedBy = [ "graphical.target" ];
     };
   };
 }

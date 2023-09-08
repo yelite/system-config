@@ -142,11 +142,6 @@ in
   };
 
   services = {
-    kdeconnect = lib.mkIf hostPlatform.isLinux {
-      enable = true;
-      indicator = true;
-    };
-
     playerctld = lib.mkIf hostPlatform.isLinux {
       enable = true;
     };
@@ -154,6 +149,21 @@ in
     gpg-agent = {
       enable = true;
       pinentryFlavor = "qt";
+    };
+  };
+
+  systemd.user.services.kdeconnect-indicator = {
+    Unit = {
+      Description = "kdeconnect-indicator";
+      PartOf = [ "hm-graphical-session.target" ];
+    };
+
+    Install = { WantedBy = [ "hm-graphical-session.target" ]; };
+
+    Service = {
+      Environment = "PATH=${config.home.profileDirectory}/bin";
+      ExecStart = "${pkgs.plasma5Packages.kdeconnect-kde}/bin/kdeconnect-indicator";
+      Restart = "on-abort";
     };
   };
 

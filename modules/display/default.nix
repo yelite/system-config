@@ -95,6 +95,15 @@ lib.optionalAttrs hostPlatform.isLinux {
       };
     };
 
+    xdg.portal = {
+      enable = true;
+    };
+
+    # TODO: for kde connect, move this to other place
+    programs.kdeconnect = {
+      enable = true;
+    };
+
     environment.etc = {
       "pipewire/pipewire.conf.d/99-my-device.conf".text = ''
         context.properties = {

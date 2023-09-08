@@ -39,6 +39,7 @@
       syncthing.enable = true;
       neovim.enable = true;
       kitty.enable = true;
+      # TODO: move this to opt out under GUI mode, i.e., make this flag default to true in GUI
       dunst.enable = true;
       fish.enable = true;
       i3 = {

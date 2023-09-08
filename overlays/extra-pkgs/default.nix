@@ -4,6 +4,7 @@ final: prev:
   xremap = prev.callPackage ./xremap.nix { };
   goimports-reviser = prev.callPackage ./goimports-reviser.nix { };
   supersonic = prev.callPackage ./supersonic.nix { };
+  i3-focus-last = prev.callPackage ./i3-focus-last.nix { };
 
   # rename the script of fup-repl from flake-utils-plus 
   my-fup-repl = final.fup-repl.overrideAttrs (old: {
@@ -25,6 +26,19 @@ final: prev:
     buildInputs = old.buildInputs ++ [ final.libappindicator ];
 
     patches = [ ./tauon.patch ];
+  });
+
+  logiops = prev.logiops.overrideAttrs (old: {
+    version = "0.3.3";
+    src = final.fetchFromGitHub {
+      owner = "pixlone";
+      repo = "logiops";
+      rev = "v0.3.3";
+      sha256 = "sha256-9nFTud5szQN8jpG0e/Bkp+I9ELldfo66SdfVCUTuekg=";
+      fetchSubmodules = true;
+    };
+    patches = [ ./logiops.patch ];
+    buildInputs = old.buildInputs ++ [ final.glib ];
   });
 
   vivaldi = (prev.vivaldi.override {

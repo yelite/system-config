@@ -62,9 +62,6 @@ lib.optionalAttrs hostPlatform.isLinux {
       };
     };
 
-    # Hide the cursor when typing.
-    xbanish.enable = true;
-
     gnome.gnome-keyring = {
       enable = true;
     };

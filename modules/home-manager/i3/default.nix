@@ -31,10 +31,77 @@ in
 
     xsession.windowManager.i3 = {
       enable = true;
-      package = pkgs.i3-gaps;
       config = import ./config.nix { inherit cfg pkgs; };
       extraConfig = ''
       '';
+    };
+
+    programs.i3status-rust = {
+      enable = true;
+      bars = {
+        default = {
+          settings = {
+            theme = {
+              theme = "ctp-macchiato";
+              overrides = {
+                separator = "";
+              };
+            };
+          };
+          icons = "material-nf";
+          blocks = [
+            {
+              block = "music";
+              format = "{ $icon  $combo.str(max_w:35) $play |}";
+            }
+            {
+              block = "sound";
+              show_volume_when_muted = true;
+              max_vol = 100;
+              format = " $icon {$volume.eng(w:3) |}";
+            }
+            {
+              block = "disk_space";
+              info_type = "available";
+              interval = 60;
+              alert = 5.0;
+              warning = 10.0;
+            }
+            {
+              block = "cpu";
+              format = " $icon ";
+              format_alt = " $icon $utilization.eng(w:2) ";
+              interval = 2;
+            }
+            {
+              block = "memory";
+              format = " $icon ";
+              format_alt = " $icon $mem_used_percents.eng(w:2) ";
+            }
+            {
+              block = "temperature";
+              format = " $icon $max ";
+              format_alt = " $icon $min min, $average avg, $max max ";
+              good = 0;
+              idle = 68;
+              info = 75;
+              warning = 81;
+
+              interval = 30;
+            }
+            {
+              block = "tea_timer";
+              format = " $icon {$minutes:$seconds |}";
+              done_cmd = "notify-send 'Timer Finished'";
+            }
+            {
+              block = "time";
+              format = " $icon $timestamp.datetime(f:'%a %F %R') ";
+              interval = 60;
+            }
+          ];
+        };
+      };
     };
 
     services = {
@@ -42,85 +109,6 @@ in
         enable = true;
         lockCmd = "${i3lock-run}/bin/i3lock-run";
         inactiveInterval = 10;
-      };
-      polybar = {
-        enable = false;
-        package = pkgs.polybar.override {
-          i3Support = true;
-          nlSupport = true;
-          iwSupport = true;
-          alsaSupport = true;
-          githubSupport = true;
-          mpdSupport = true;
-        };
-        script = ''
-          for m in $(polybar --list-monitors | ${pkgs.coreutils}/bin/cut -d":" -f1); do
-              MONITOR=$m polybar --reload top &
-          done
-        '';
-        config = {
-          "bar/top" = {
-            monitor = "\${env:MONITOR:}";
-            bottom = false;
-            module-margin = "1.5";
-            modules-left = [
-              "date"
-              "wireless-network"
-              "audio"
-              "cpu"
-              "memory"
-            ];
-            modules-right = [
-              "i3"
-            ];
-          };
-        };
-        settings = {
-          "module/cpu" = {
-            type = "internal/cpu";
-            interval = 5.0;
-            warn-percentage = 75;
-          };
-          "module/memory" = {
-            type = "internal/memory";
-            interval = 5.0;
-            warn-percentage = 85;
-          };
-          "module/wireless-network" = {
-            type = "internal/network";
-            # TODO: Paramterize this
-            interface = "wlp5s0";
-          };
-          "module/date" = {
-            type = "internal/date";
-            interval = 2.0;
-            date = "%a %F";
-            time = "%H:%M";
-            time-alt = "%H:%M:%S";
-            label = "%time%  %date%";
-          };
-          "module/i3" = {
-            type = "internal/i3";
-            pin-workspaces = true;
-            show-urgent = true;
-            strip-wsnumbers = true;
-            index-sort = true;
-            enable-click = true;
-            enable-scroll = false;
-            fuzzy-match = true;
-
-            ws-icon = [
-              "code;"
-              "terminal;"
-              "web;爵"
-              "comm;聆"
-            ];
-            ws-icon-default = "";
-          };
-          "module/audio" = {
-            type = "internal/pulseaudio";
-          };
-        };
       };
     };
   };

@@ -31,6 +31,8 @@ in
     };
   };
 
+  security.pam.services.greetd.enableGnomeKeyring = true;
+
   # To avoid kernel logging on greetd tty. See https://github.com/apognu/tuigreet/issues/17
   boot.kernelParams = [ "console=tty1" ];
 }

@@ -31,7 +31,7 @@ in
         x11.enable = true;
         package = pkgs.apple-cursor;
         name = "macOSMonterey";
-        size = 40;
+        size = 48;
       };
     })
     (mkIf (cfg.enable && cfg.wayland.enable)
@@ -52,7 +52,7 @@ in
 
         programs = {
           eww-hyprland = {
-            enable = true;
+            enable = false;
           };
         };
 
@@ -99,11 +99,26 @@ in
           xdragon
           xorg.xev
           xorg.xmodmap
+          haskellPackages.greenclip
         ];
 
         programs.autorandr = {
           enable = true;
           profiles = cfg.displayProfiles;
+        };
+
+        programs.rofi = {
+          enable = true;
+          theme = ./rofi-theme.rasi;
+          plugins = [
+            pkgs.rofi-calc
+            pkgs.rofi-emoji
+          ];
+          extraConfig = {
+            # TODO: expose these through shortcuts
+            modi = "combi,emoji,calc,drun,window";
+            dpi = 1;
+          };
         };
 
         xsession = {
@@ -114,6 +129,22 @@ in
           scriptPath = ".xsession-hm";
         };
 
+        # TODO: split this to standalone file
+        systemd.user.services.greenclip = {
+          Unit = {
+            Description = "greenclip";
+            PartOf = [ "hm-graphical-session.target" ];
+          };
+          Service = {
+            Type = "simple";
+            ExecStart = "${pkgs.haskellPackages.greenclip}/bin/greenclip daemon";
+          };
+          Install = {
+            WantedBy = [ "hm-graphical-session.target" ];
+          };
+        };
+
+        xdg.configFile."greenclip.toml".source = ./greenclip.toml;
       })
     (mkIf (cfg.enable && cfg.highDPI)
       {
