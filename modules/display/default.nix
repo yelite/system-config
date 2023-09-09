@@ -50,6 +50,7 @@ lib.optionalAttrs hostPlatform.isLinux {
           noto-fonts
           noto-fonts-cjk
           noto-fonts-emoji
+          roboto-mono
           overpass
 
           (nerdfonts.override {

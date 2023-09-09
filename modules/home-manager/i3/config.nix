@@ -16,7 +16,7 @@ rec {
     statusCommand = "i3status-rs config-default.toml";
     fonts = {
       names = [
-        "Hack Nerd Font Mono"
+        "Roboto Mono"
       ];
       size = 9.0;
     };
@@ -74,7 +74,7 @@ rec {
       notification = false;
     }
     {
-      command = "neovide --x11-wm-class=neovide-notes ~/notes";
+      command = "cd ~/notes; neovide --x11-wm-class=neovide-notes";
       always = false;
       notification = false;
     }
@@ -223,13 +223,25 @@ rec {
       "${mod}+4" = ''[con_mark=any] scratchpad show'';
       "${mod}+Escape" = ''scratchpad show'';
 
-      "${mod}+Shift+a" = "exec --no-startup-id bash ${./remote_open_workspace.sh} code2";
-      "${mod}+Shift+s" = "exec --no-startup-id bash ${./remote_open_workspace.sh} web";
-      "${mod}+Shift+d" = "exec --no-startup-id bash ${./remote_open_workspace.sh} code1";
-      "${mod}+Shift+q" = "exec --no-startup-id bash ${./remote_open_workspace.sh} q";
-      "${mod}+Shift+w" = "exec --no-startup-id bash ${./remote_open_workspace.sh} w";
-      "${mod}+Shift+e" = "exec --no-startup-id bash ${./remote_open_workspace.sh} e";
-      "${mod}+Shift+r" = "exec --no-startup-id bash ${./remote_open_workspace.sh} r";
+      "${mod}+Shift+a" = "move container to workspace code2; workspace code2";
+      "${mod}+Shift+s" = "move container to workspace web; workspace web";
+      "${mod}+Shift+d" = "move container to workspace code1; workspace code1";
+      "${mod}+Shift+q" = "move container to workspace q; workspace q";
+      "${mod}+Shift+w" = "move container to workspace w; workspace w";
+      "${mod}+Shift+e" = "move container to workspace e; workspace e";
+      "${mod}+Shift+r" = "move container to workspace r; workspace r";
+      "${mod}+Shift+1" = "mark term; move scratchpad; [con_mark=term] scratchpad show";
+      "${mod}+Shift+2" = "mark notes; move scratchpad; [con_mark=notes] scratchpad show";
+      "${mod}+Shift+3" = "mark music; move scratchpad; [con_mark=music] scratchpad show";
+      "${mod}+Shift+4" = "mark any; move scratchpad; [con_mark=any] scratchpad show";
+
+      "${mod}+Control+a" = "exec --no-startup-id bash ${./remote_open_workspace.sh} code2";
+      "${mod}+Control+s" = "exec --no-startup-id bash ${./remote_open_workspace.sh} web";
+      "${mod}+Control+d" = "exec --no-startup-id bash ${./remote_open_workspace.sh} code1";
+      "${mod}+Control+q" = "exec --no-startup-id bash ${./remote_open_workspace.sh} q";
+      "${mod}+Control+w" = "exec --no-startup-id bash ${./remote_open_workspace.sh} w";
+      "${mod}+Control+e" = "exec --no-startup-id bash ${./remote_open_workspace.sh} e";
+      "${mod}+Control+r" = "exec --no-startup-id bash ${./remote_open_workspace.sh} r";
 
       "XF86AudioMedia" = "[con_mark=music] scratchpad show";
       "XF86AudioPlay" = "exec --no-startup-id ${playerctl} play-pause";

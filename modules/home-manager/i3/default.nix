@@ -47,57 +47,67 @@ in
                 separator = "";
               };
             };
+            icons_format = " <span size='x-large'>{icon} </span>";
           };
           icons = "material-nf";
           blocks = [
             {
               block = "music";
-              format = "{ $icon  $combo.str(max_w:35) $play |}";
+              format = "$icon{$combo.str(max_w:75)$play|}";
             }
             {
               block = "sound";
               show_volume_when_muted = true;
               max_vol = 100;
-              format = " $icon {$volume.eng(w:3) |}";
-            }
-            {
-              block = "disk_space";
-              info_type = "available";
-              interval = 60;
-              alert = 5.0;
-              warning = 10.0;
+              format = "$icon";
             }
             {
               block = "cpu";
-              format = " $icon ";
-              format_alt = " $icon $utilization.eng(w:2) ";
-              interval = 2;
+              format = "$icon";
+              format_alt = "$icon{$utilization.eng(w:2)} ";
+              interval = 10;
             }
             {
               block = "memory";
-              format = " $icon ";
-              format_alt = " $icon $mem_used_percents.eng(w:2) ";
+              format = "$icon";
+              format_alt = "$icon{$mem_used_percents.eng(w:2)} ";
+              interval = 10;
             }
             {
               block = "temperature";
-              format = " $icon $max ";
-              format_alt = " $icon $min min, $average avg, $max max ";
-              good = 0;
+              format = "<span size='x-large'>$icon</span>";
+              format_alt = "$icon{$min min, $average avg, $max max} ";
+              good = 68;
               idle = 68;
               info = 75;
               warning = 81;
 
-              interval = 30;
+              interval = 5;
+
+              theme_overrides = {
+                good_bg = "#363a4f";
+                good_fg = "#cad3f5";
+              };
+            }
+            {
+              block = "net";
+              format = "$icon";
+              # Nested format just to keep text and icons align vertically
+              format_alt = "$icon^icon_net_down{$speed_down.eng(w:2, prefix:K) {^icon_net_up{$speed_up.eng(w:2, prefix:K)}}} ";
             }
             {
               block = "tea_timer";
-              format = " $icon {$minutes:$seconds |}";
-              done_cmd = "notify-send 'Timer Finished'";
+              format = "^icon_time{$minutes:$seconds |}";
+              done_cmd = "${pkgs.libnotify}/bin/notify-send 'Timer Finished'";
             }
             {
               block = "time";
-              format = " $icon $timestamp.datetime(f:'%a %F %R') ";
+              format = " $timestamp.datetime(f:'%a %F %R') ";
               interval = 60;
+            }
+            {
+              block = "notify";
+              format = "$icon";
             }
           ];
         };
