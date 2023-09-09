@@ -232,7 +232,7 @@ require("null-ls").setup({
 
 vim.api.nvim_create_augroup("MyIndent", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = {"markdown", "json", "yaml", "cpp", "c"},
+    pattern = {"markdown", "json", "yaml", "cpp", "c", "nix"},
     group = "MyIndent",
     callback = function()
         vim.bo.tabstop = 2
