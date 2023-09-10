@@ -53,6 +53,26 @@ if g.neovide then
     g.neovide_floating_opacity = 0.9
 end
 
+-- Override vim.paste to make terminal paste not add killed content into register
+vim.paste = (function(original)
+    return function(lines, phase)
+        if #lines == 1 and phase == -1 and vim.api.nvim_get_mode().mode == "v" then
+            -- paste single line, non-streaming paste, and in visual mode
+            -- Taken from https://github.com/neovim/neovim/blob/bb38c066a96512cf8cb2ef2e733494b5bbdfa3fd/runtime/lua/vim/_editor.lua#L280
+            -- The only difference is that the first line exec '<Del>' to the black hole register
+            vim.api.nvim_command([[exe "silent normal! \"_\<Del>"]])
+            local del_start = vim.fn.getpos("'[")
+            local cursor_pos = vim.fn.getpos(".")
+            -- paste after cursor when replacing text at eol, otherwise paste before cursor
+            vim.api.nvim_put(lines, "c", cursor_pos[3] < del_start[3], false)
+            -- put cursor at the end of the text instead of one character after it
+            vim.fn.setpos(".", vim.fn.getpos("']"))
+            return
+        end
+        original(lines, phase)
+    end
+end)(vim.paste)
+
 require("my-config.telescope")
 
 require("indent_blankline").setup()
