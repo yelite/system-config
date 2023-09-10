@@ -24,8 +24,8 @@ rec {
       background = "#363a4f";
 
       focusedWorkspace = {
-        background = "#7dc4e4";
-        border = "#7dc4e4";
+        background = "#8aadf4";
+        border = "#8aadf4";
         text = "#24273a";
       };
 
@@ -37,7 +37,7 @@ rec {
 
       activeWorkspace = {
         background = "#1e2030";
-        border = "#7dc4e4";
+        border = "#8aadf4";
         text = "#b8c0e0";
       };
 

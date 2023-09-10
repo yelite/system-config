@@ -91,7 +91,7 @@ in
             }
             {
               block = "net";
-              format = "$icon";
+              format = "$icon ";
               # Nested format just to keep text and icons align vertically
               format_alt = "$icon^icon_net_down{$speed_down.eng(w:2, prefix:K) {^icon_net_up{$speed_up.eng(w:2, prefix:K)}}} ";
             }
