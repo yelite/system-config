@@ -27,6 +27,7 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       jq
+      xidlehook
     ];
 
     xsession.windowManager.i3 = {
@@ -114,11 +115,53 @@ in
       };
     };
 
-    services = {
-      screen-locker = {
-        enable = true;
-        lockCmd = "${i3lock-run}/bin/i3lock-run";
-        inactiveInterval = 10;
+    # TODO: move to standalone screen lock module
+    systemd.user.services.xidlehook =
+      let
+        notify-cmd = ''${pkgs.libnotify}/bin/notify-send "Idle" "Sleeping in 1 minute" -t 5000 -u low'';
+        script = pkgs.writeShellScript "xidlehook" (lib.concatStringsSep " " [
+          "${pkgs.xidlehook}/bin/xidlehook"
+          "--detect-sleep"
+          "--not-when-fullscreen"
+          "--not-when-audio"
+          ''--socket /tmp/xidlehook.sock''
+          ''--timer 420 ${lib.escapeShellArgs [ notify-cmd "" ]}''
+          ''--timer 60 ${lib.escapeShellArgs [ "${i3lock-run}/bin/i3lock-run" "" ]}''
+          ''--timer 10 ${lib.escapeShellArgs [ "xset dpms force off" "" ]}''
+          ''--timer 600 ${lib.escapeShellArgs [ "systemctl suspend" "" ]}''
+        ]);
+      in
+      {
+        Unit = {
+          Description = "xidlehook";
+          After = [ "graphical-session.target" ];
+          PartOf = [ "graphical-session.target" ];
+          ConditionEnvironment = [ "DISPLAY" ];
+        };
+
+        Install = { WantedBy = [ "graphical-session.target" ]; };
+
+        Service = {
+          Type = "simple";
+          ExecStart = "${script}";
+        };
+      };
+
+    systemd.user.services.xss-lock = {
+      Unit = {
+        Description = "xss-lock";
+        After = [ "graphical-session-pre.target" ];
+        PartOf = [ "graphical-session.target" ];
+      };
+
+      Install = { WantedBy = [ "graphical-session.target" ]; };
+
+      Service = {
+        ExecStart = lib.concatStringsSep " " [
+          "${pkgs.xss-lock}/bin/xss-lock"
+          "-s \${XDG_SESSION_ID}"
+          "-- ${i3lock-run}/bin/i3lock-run"
+        ];
       };
     };
   };

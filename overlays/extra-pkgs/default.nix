@@ -13,6 +13,10 @@ final: prev:
     '';
   });
 
+  flameshot = prev.flameshot.overrideAttrs (old: {
+    patches = old.patches ++ [ ./flameshot.patch ];
+  });
+
   # Fix cover art and tray icon
   tauon = prev.tauon.overrideAttrs (old: {
     version = "head";

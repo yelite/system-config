@@ -51,7 +51,8 @@
 
   services.logind.extraConfig = ''
     HandlePowerKey=ignore
-    HandleSuspendKey=lock
+    HandleSuspendKey=ignore
+    HandleSuspendKeyLongPress=ignore
   '';
 
   services.xserver = {

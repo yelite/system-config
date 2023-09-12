@@ -1,0 +1,27 @@
+diff --git a/src/core/flameshot.cpp b/src/core/flameshot.cpp
+index 54b0ada4..56d476c7 100644
+--- a/src/core/flameshot.cpp
++++ b/src/core/flameshot.cpp
+@@ -123,8 +123,7 @@ CaptureWidget* Flameshot::gui(const CaptureRequest& req)
+         m_captureWindow->activateWindow();
+         m_captureWindow->raise();
+ #else
+-        m_captureWindow->showFullScreen();
+-//        m_captureWindow->show(); // For CaptureWidget Debugging under Linux
++       m_captureWindow->show(); // For CaptureWidget Debugging under Linux
+ #endif
+         return m_captureWindow;
+     } else {
+diff --git a/src/widgets/capture/capturewidget.cpp b/src/widgets/capture/capturewidget.cpp
+index 49ebff97..ba7399d2 100644
+--- a/src/widgets/capture/capturewidget.cpp
++++ b/src/widgets/capture/capturewidget.cpp
+@@ -152,7 +152,7 @@ CaptureWidget::CaptureWidget(const CaptureRequest& req,
+ #else
+ // Call cmake with -DFLAMESHOT_DEBUG_CAPTURE=ON to enable easier debugging
+ #if !defined(FLAMESHOT_DEBUG_CAPTURE)
+-        setWindowFlags(Qt::BypassWindowManagerHint | Qt::WindowStaysOnTopHint |
++        setWindowFlags( Qt::WindowStaysOnTopHint |
+                        Qt::FramelessWindowHint | Qt::Tool);
+         resize(pixmap().size());
+ #endif

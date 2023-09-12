@@ -56,7 +56,7 @@ rec {
     extraConfig = ''
       bindsym button5 nop
       bindsym button4 nop
-      workspace_min_width 50
+      workspace_min_width 60
     '';
   }];
 
@@ -65,7 +65,7 @@ rec {
   startup = [
     {
       command = "autorandr --change";
-      always = true;
+      always = false;
       notification = false;
     }
     {
@@ -150,6 +150,10 @@ rec {
       command = "move position center";
       criteria = { class = "zoom"; title = "Chat"; };
     }
+    {
+      command = "border pixel 0, fullscreen enable global";
+      criteria = { class = "flameshot"; };
+    }
   ];
   floating.criteria = [
     { window_role = "pop-up"; }
@@ -201,7 +205,7 @@ rec {
       "${mod}+v" = ''exec i3-input ${input-font-flag} -F '[con_mark="%s"] focus' -l 1 -P "Goto: "'';
       "${mod}+Shift+v" = "exec i3-input ${input-font-flag} -F 'mark %s' -l 1 -P 'Mark: '";
 
-      "${mod}+Shift+f" = "fullscreen toggle";
+      "${mod}+Shift+g" = "fullscreen toggle";
       "${mod}+Shift+slash" = "floating toggle";
       "${mod}+Shift+equal" = "move position center";
       "${mod}+Shift+x" = "kill";
@@ -253,7 +257,12 @@ rec {
 
       "${mod}+Control+Shift+1" = ''exec --no-startup-id "sleep 0.8; xset dpms force off"'';
       "${mod}+Control+Shift+2" = ''exec --no-startup-id "systemctl suspend"'';
+      "XF86Sleep" = ''exec --no-startup-id "systemctl suspend"'';
       "${mod}+Control+Shift+3" = ''exec --no-startup-id "systemctl hibernate"'';
+      "XF86PowerOff" = ''exec --no-startup-id "systemctl hibernate"'';
+
+      "Shift+Mod4+4" = ''exec flameshot gui'';
+      "Ctrl+Shift+Mod4+4" = ''exec flameshot gui -c'';
 
       "${mod}+Shift+z" = "restart";
       "${mod}+Shift+Escape" =

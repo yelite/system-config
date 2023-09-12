@@ -4,6 +4,9 @@
     jq
     htop
 
+    ninja
+    clang-tools 
+
     (fenix.complete.withComponents [
       "cargo"
       "clippy"
