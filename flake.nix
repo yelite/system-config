@@ -28,9 +28,6 @@
           (final: prev: {
             lib = prev.lib.extend libOverride;
           })
-          (final: prev: {
-            gross = inputs.gross.packages.${prev.system}.gross;
-          })
         ];
 
         hosts = {
@@ -101,10 +98,6 @@
     };
     fenix = {
       url = "github:nix-community/fenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    gross = {
-      url = "github:fufexan/gross";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

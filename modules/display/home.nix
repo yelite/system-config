@@ -50,12 +50,6 @@ in
           inherit pkgs lib;
         });
 
-        programs = {
-          eww-hyprland = {
-            enable = false;
-          };
-        };
-
         services = {
           gammastep = {
             # TODO: Enable after nvidia driver support GAMMA_LUT
