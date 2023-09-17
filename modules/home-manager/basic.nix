@@ -146,7 +146,7 @@ in
       enable = true;
     };
 
-    gpg-agent = {
+    gpg-agent = lib.mkIf hostPlatform.isLinux {
       enable = true;
       pinentryFlavor = "qt";
     };
