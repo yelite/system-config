@@ -78,19 +78,22 @@ rust_tools.setup({
     server = standard_lsp_config,
 })
 
-clangd_extensions.setup({
-    server = {
-        cmd = {
-            "clangd",
-            "--background-index",
-            "--all-scopes-completion",
-            "--inlay-hints",
-            "--clang-tidy",
-            "--header-insertion=iwyu",
-        },
-        on_attach = M.standard_lsp_on_attach,
-        capabilities = M.standard_lsp_capabilities,
+nvim_lsp.clangd.setup({
+    cmd = {
+        "clangd",
+        "--background-index",
+        "--all-scopes-completion",
+        "--inlay-hints",
+        "--clang-tidy",
+        "--header-insertion=iwyu",
     },
+    on_attach = function(client, bufnr)
+        M.standard_lsp_on_attach(client, bufnr)
+        require("clangd_extensions.inlay_hints").setup_autocmd()
+        require("clangd_extensions.inlay_hints").set_inlay_hints()
+    end,
+
+    capabilities = M.standard_lsp_capabilities,
 })
 
 nvim_lsp.jedi_language_server.setup({
@@ -232,7 +235,7 @@ require("null-ls").setup({
 
 vim.api.nvim_create_augroup("MyIndent", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = {"markdown", "json", "yaml", "cpp", "c", "nix"},
+    pattern = { "markdown", "json", "yaml", "cpp", "c", "nix" },
     group = "MyIndent",
     callback = function()
         vim.bo.tabstop = 2
