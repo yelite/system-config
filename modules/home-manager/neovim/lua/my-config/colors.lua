@@ -25,8 +25,7 @@ require("nord").setup({
 
         highlights["FlashLabel"] =
             { fg = colors.polar_night.origin, bg = colors.aurora.yellow, bold = true, nocombine = true }
-        highlights["FlashCurrent"] =
-            { fg = colors.polar_night.origin, bg = colors.aurora.green, nocombine = true }
+        highlights["FlashCurrent"] = { fg = colors.polar_night.origin, bg = colors.aurora.green, nocombine = true }
 
         highlights["@error"] = nil
     end,

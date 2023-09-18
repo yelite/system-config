@@ -134,12 +134,30 @@ require("hop").setup({
 })
 
 require("flash").setup({
+    jump = {
+        nohlsearch = true,
+    },
+    label = {
+        min_pattern_length = 2,
+    },
     modes = {
         search = {
             enabled = false,
         },
         char = {
-            enabled = false,
+            enabled = true,
+            config = function(opts)
+                if vim.fn.mode(true):find("no") then
+                    opts.autohide = true
+                    opts.highlight.groups.label = ""
+                    opts.highlight.groups.match = ""
+                    opts.highlight.backdrop = false
+                end
+                opts.jump_labels = opts.jump_labels and vim.v.count == 0
+            end,
+            highlight = {
+                backdrop = true,
+            },
         },
     },
 })
