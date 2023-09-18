@@ -23,6 +23,11 @@ require("nord").setup({
 
         highlights["TelescopeBorder"] = { fg = colors.snow_storm.origin, bg = nord_utils.make_global_bg() }
 
+        highlights["FlashLabel"] =
+            { fg = colors.polar_night.origin, bg = colors.aurora.yellow, bold = true, nocombine = true }
+        highlights["FlashCurrent"] =
+            { fg = colors.polar_night.origin, bg = colors.aurora.green, nocombine = true }
+
         highlights["@error"] = nil
     end,
 })

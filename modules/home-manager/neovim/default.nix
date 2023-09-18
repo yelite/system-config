@@ -79,8 +79,7 @@ in
         gitlinker-nvim
 
         leap-nvim
-        flit-nvim
-        leap-spooky-nvim
+        flash-nvim
         hop-nvim
         hop-extensions
         nvim-autopairs

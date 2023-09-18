@@ -321,6 +321,15 @@ mapkey("x", { "o", "x" }, "<Plug>(leap-forward-till)")
 mapkey("X", { "o", "x" }, "<Plug>(leap-backward-till)")
 mapkey("gs", { "n" }, "<Plug>(leap-cross-window)")
 
+-- flash
+mapkey("s", { "x" }, [[<cmd>lua require("flash").treesitter()<cr>]], {}, "Flash TS Search")
+mapkey("r", { "o" }, function()
+    require("flash").remote()
+end, {}, "Remote Flash")
+mapkey("R", { "o", "x" }, function()
+    require("flash").treesitter_search()
+end, {}, "Remote Flash")
+
 -- Substitue
 mapkey("S", { "n", "x" }, "<Plug>(SubversiveSubstitute)")
 mapkey("R", { "n", "x" }, "<Plug>(SubversiveSubstituteRange)")

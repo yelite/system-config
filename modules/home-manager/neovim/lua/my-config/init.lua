@@ -133,9 +133,14 @@ require("hop").setup({
     jump_on_sole_occurrence = false,
 })
 
-require("my-config.leap").setup({
-    remote = {
-        yank_paste = true,
+require("flash").setup({
+    modes = {
+        search = {
+            enabled = false,
+        },
+        char = {
+            enabled = false,
+        },
     },
 })
 
