@@ -18,7 +18,7 @@ in
 
       ripgrep
       bat
-      exa
+      eza
       fd
       fzf
 

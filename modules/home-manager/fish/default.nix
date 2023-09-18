@@ -14,7 +14,7 @@ in
     programs.fish = {
       enable = true;
       shellAliases = {
-        "ls" = "exa";
+        "ls" = "eza";
         "cat" = "bat";
       } // lib.optionalAttrs hostPlatform.isLinux {
         # Steal the name from macOS
