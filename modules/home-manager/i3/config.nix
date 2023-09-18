@@ -127,7 +127,7 @@ rec {
       criteria = { class = "kitty"; title = "i3#scratchpad"; };
     }
     {
-      command = "mark notes; [con_mark=notes] floating enable, resize set width 38 ppt height 62 ppt, border pixel 1, move position center, move scratchpad";
+      command = "mark notes; [con_mark=notes] floating enable, resize set width 42 ppt height 63 ppt, border pixel 3, move position center, move scratchpad";
       criteria = { class = "neovide-notes"; };
     }
     {

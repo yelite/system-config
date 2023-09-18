@@ -115,10 +115,34 @@ in
           };
         };
 
+        i18n.inputMethod = {
+          enabled = "fcitx5";
+          fcitx5.addons = [
+            (pkgs.fcitx5-rime.override
+              {
+                rimeDataPkgs = [
+                  pkgs.rime-data
+                  pkgs.rime-dict
+                  (pkgs.runCommandLocal "my-rime-config" { } ''
+                    mkdir -p $out/share/
+
+                    cp -r ${./rime} $out/share/rime-data
+                  '')
+                ];
+              })
+          ];
+        };
+
+        # TODO: move all fcitx config into nix
+        xdg.dataFile."fcitx5/themes/FluentDark-my" = {
+          source = "${pkgs.fcitx5-fluent-dark}/share/fcitx5/themes/FluentDark";
+        };
+
         xsession = {
           enable = true;
           initExtra = ''
             ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all
+            ${pkgs.xorg.xset}/bin/xset s off
           '';
           scriptPath = ".xsession-hm";
         };

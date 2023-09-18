@@ -42,3 +42,4 @@ keymap:
         - kitty
         - alacritty
         - neovide
+        - neovide-notes
