@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     jq
+    fx
     htop
 
     ninja
