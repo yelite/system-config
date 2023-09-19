@@ -9,34 +9,34 @@ let
       "${pkgs.sqlite.out}/lib/libsqlite3.dylib"
     else
       assert false; "Unsupported";
-  my-treesitter = (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
-    p.c
-    p.cpp
-    p.cmake
-    p.rust
-    p.python
-    p.html
-    p.css
-    p.javascript
-    p.bash
-    p.fish
-    p.go
-    p.json
-    p.jsonc
-    p.lua
-    p.nix
-    p.norg
-    p.markdown
-    p.markdown_inline
-    p.prisma
-    p.query
-    p.sql
-    p.tsx
-    p.typescript
-    p.toml
-    p.yaml
-    p.yuck
-    p.vim
+  my-treesitter = (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: with p; [
+    c
+    cpp
+    cmake
+    rust
+    python
+    html
+    css
+    javascript
+    bash
+    fish
+    go
+    json
+    jsonc
+    lua
+    nix
+    norg
+    markdown
+    markdown_inline
+    prisma
+    query
+    sql
+    tsx
+    typescript
+    toml
+    yaml
+    yuck
+    vim
   ]));
 in
 {
