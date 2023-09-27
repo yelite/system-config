@@ -25,6 +25,7 @@
   ] ++ (with python3Packages; [
     ipython
     black
+    pylint
   ]) ++ lib.optionals hostPlatform.isLinux [
     insomnia
   ] ++ lib.optionals hostPlatform.isDarwin [
