@@ -7,13 +7,7 @@ final: prev:
   i3-focus-last = prev.callPackage ./i3-focus-last.nix { };
   fcitx5-fluent-dark = prev.callPackage ./fcitx5-fluent-dark { };
   rime-dict = prev.callPackage ./rime-dict.nix { };
-
-  # rename the script of fup-repl from flake-utils-plus 
-  my-fup-repl = final.fup-repl.overrideAttrs (old: {
-    buildCommand = old.buildCommand + ''
-      mv $out/bin/repl $out/bin/fup-repl
-    '';
-  });
+  flake-repl = prev.callPackage ./flake-repl { };
 
   flameshot = prev.flameshot.overrideAttrs (old: {
     patches = old.patches ++ [ ./flameshot.patch ];

@@ -30,7 +30,7 @@ in
 
       zk
 
-      my-fup-repl
+      flake-repl
 
       age
       gopass
