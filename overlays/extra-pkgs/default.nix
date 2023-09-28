@@ -10,7 +10,7 @@ final: prev:
   flake-repl = prev.callPackage ./flake-repl { };
 
   flameshot = prev.flameshot.overrideAttrs (old: {
-    patches = old.patches ++ [ ./flameshot.patch ];
+    patches = old.patches ++ [ ./patches/flameshot.patch ];
   });
 
   # Fix cover art and tray icon
@@ -25,7 +25,7 @@ final: prev:
 
     buildInputs = old.buildInputs ++ [ final.libappindicator ];
 
-    patches = [ ./tauon.patch ];
+    patches = [ ./patches/tauon.patch ];
   });
 
   logiops = prev.logiops.overrideAttrs (old: {
@@ -37,7 +37,7 @@ final: prev:
       sha256 = "sha256-9nFTud5szQN8jpG0e/Bkp+I9ELldfo66SdfVCUTuekg=";
       fetchSubmodules = true;
     };
-    patches = [ ./logiops.patch ];
+    patches = [ ./patches/logiops.patch ];
     buildInputs = old.buildInputs ++ [ final.glib ];
   });
 
