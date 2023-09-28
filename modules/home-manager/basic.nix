@@ -51,7 +51,6 @@ in
       chromium
       vivaldi
       standardnotes
-      tauon
       supersonic
       picard
     ] ++

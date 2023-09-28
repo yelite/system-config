@@ -13,21 +13,6 @@ final: prev:
     patches = old.patches ++ [ ./patches/flameshot.patch ];
   });
 
-  # Fix cover art and tray icon
-  tauon = prev.tauon.overrideAttrs (old: {
-    version = "head";
-    src = final.fetchFromGitHub {
-      owner = "Taiko2k";
-      repo = "TauonMusicBox";
-      rev = "f2d683228eeb420171cdde2a7ec0dfb50b376997";
-      hash = "sha256-ibGv7IBjhqjyD+glPdBNtQiAXquRqG0eMqGIy58RH8g=";
-    };
-
-    buildInputs = old.buildInputs ++ [ final.libappindicator ];
-
-    patches = [ ./patches/tauon.patch ];
-  });
-
   logiops = prev.logiops.overrideAttrs (old: {
     version = "0.3.3";
     src = final.fetchFromGitHub {
