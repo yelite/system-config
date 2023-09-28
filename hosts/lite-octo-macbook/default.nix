@@ -1,8 +1,6 @@
-{ config, ... }:
-
-let myConfig = config.myConfig;
-in
-{
+{config, ...}: let
+  myConfig = config.myConfig;
+in {
   myConfig.homeManagerConfig = {
     neovim.enable = true;
     kitty.enable = true;

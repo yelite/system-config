@@ -1,45 +1,49 @@
-{ config, pkgs, lib, hostPlatform, ... }:
-with lib;
-let
+{
+  config,
+  pkgs,
+  lib,
+  hostPlatform,
+  ...
+}:
+with lib; let
   cfg = config.myHomeConfig.neovim;
   sqlite3_lib_path =
-    if pkgs.stdenv.isLinux then
-      "${pkgs.sqlite.out}/lib/libsqlite3.so"
-    else if pkgs.stdenv.isDarwin then
-      "${pkgs.sqlite.out}/lib/libsqlite3.dylib"
-    else
-      assert false; "Unsupported";
-  my-treesitter = (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: with p; [
-    c
-    cpp
-    cmake
-    rust
-    python
-    html
-    css
-    javascript
-    bash
-    fish
-    go
-    json
-    jsonc
-    lua
-    nix
-    norg
-    markdown
-    markdown_inline
-    prisma
-    query
-    sql
-    tsx
-    typescript
-    toml
-    yaml
-    yuck
-    vim
-  ]));
-in
-{
+    if pkgs.stdenv.isLinux
+    then "${pkgs.sqlite.out}/lib/libsqlite3.so"
+    else if pkgs.stdenv.isDarwin
+    then "${pkgs.sqlite.out}/lib/libsqlite3.dylib"
+    else assert false; "Unsupported";
+  my-treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (p:
+    with p; [
+      c
+      cpp
+      cmake
+      rust
+      python
+      html
+      css
+      javascript
+      bash
+      fish
+      go
+      json
+      jsonc
+      lua
+      nix
+      norg
+      markdown
+      markdown_inline
+      prisma
+      query
+      sql
+      tsx
+      typescript
+      toml
+      yaml
+      yuck
+      vim
+    ]);
+in {
   options = {
     myHomeConfig.neovim = {
       enable = mkEnableOption "neovim";
@@ -180,6 +184,7 @@ in
         gomodifytags
 
         nil
+        alejandra
         taplo
         sumneko-lua-language-server
         cmake-language-server

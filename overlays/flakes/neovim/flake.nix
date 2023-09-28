@@ -1,15 +1,14 @@
 {
   description = "Extra plugins for neovim";
 
-  outputs = { ... }@inputs: {
-    overlay =
-      let
-        pluginInputs = builtins.removeAttrs inputs [ "nixpkgs" ];
-      in
-      (final: prev: {
-        vimPlugins = prev.vimPlugins //
-          (import ./build-plugins.nix) prev pluginInputs;
-      });
+  outputs = {...} @ inputs: {
+    overlay = let
+      pluginInputs = builtins.removeAttrs inputs ["nixpkgs"];
+    in (final: prev: {
+      vimPlugins =
+        prev.vimPlugins
+        // (import ./build-plugins.nix) prev pluginInputs;
+    });
   };
 
   inputs = {

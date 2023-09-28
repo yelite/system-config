@@ -115,7 +115,7 @@ nvim_lsp.nil_ls.setup(vim.tbl_deep_extend("force", standard_lsp_config, {
     settings = {
         ["nil"] = {
             formatting = {
-                command = { "nixpkgs-fmt" },
+                command = { "alejandra" },
             },
         },
     },

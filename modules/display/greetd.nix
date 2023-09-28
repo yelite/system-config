@@ -1,13 +1,15 @@
-{ pkgs, lib, ... }:
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   session_start_cmd = "systemd-cat -t i3 startx ~/.xsession-hm";
   # TODO: Reevaluate wayland
   # session_start_cmd = "~/hyprland.sh";
   # Content:
   # export WLR_NO_HARDWARE_CURSORS=1
   # systemd-cat -t hyprland Hyprland
-in
-{
+in {
   services = {
     xserver = {
       displayManager = {
@@ -34,5 +36,5 @@ in
   security.pam.services.greetd.enableGnomeKeyring = true;
 
   # To avoid kernel logging on greetd tty. See https://github.com/apognu/tuigreet/issues/17
-  boot.kernelParams = [ "console=tty1" ];
+  boot.kernelParams = ["console=tty1"];
 }

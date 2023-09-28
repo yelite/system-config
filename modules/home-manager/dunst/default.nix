@@ -1,9 +1,11 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.myHomeConfig.dunst;
   inherit (lib) mkIf mkEnableOption;
-in
-{
+in {
   options = {
     myHomeConfig.dunst = {
       enable = mkEnableOption "dunst";

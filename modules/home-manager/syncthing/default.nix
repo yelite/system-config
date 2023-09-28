@@ -1,9 +1,12 @@
-{ config, lib, hostPlatform, ... }:
-let
+{
+  config,
+  lib,
+  hostPlatform,
+  ...
+}: let
   cfg = config.myHomeConfig.syncthing;
   inherit (lib) mkIf mkEnableOption;
-in
-{
+in {
   options = {
     myHomeConfig.syncthing = {
       enable = mkEnableOption "syncthing";

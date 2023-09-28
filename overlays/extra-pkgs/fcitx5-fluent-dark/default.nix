@@ -1,4 +1,8 @@
-{ stdenv, fetchzip, ... }:
+{
+  stdenv,
+  fetchzip,
+  ...
+}:
 stdenv.mkDerivation {
   pname = "fcitx5-fluent-dark";
   version = "0.3.0";

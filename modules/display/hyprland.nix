@@ -1,8 +1,10 @@
-{ pkgs, lib, ... }:
-let
-  playerctl = "${pkgs.playerctl}/bin/playerctl";
-in
 {
+  pkgs,
+  lib,
+  ...
+}: let
+  playerctl = "${pkgs.playerctl}/bin/playerctl";
+in {
   settings = {
     general = {
       gaps_out = 5;
@@ -168,54 +170,53 @@ in
     ];
   };
 
-  extraConfig =
-    ''
-      # Move submap
-      bind = $mod, m, submap, movewindow
-      submap = movewindow
+  extraConfig = ''
+    # Move submap
+    bind = $mod, m, submap, movewindow
+    submap = movewindow
 
-      bind = ,a,movetoworkspace,name:code1
-      bind = ,a,submap,reset
+    bind = ,a,movetoworkspace,name:code1
+    bind = ,a,submap,reset
 
-      bind = ,s,movetoworkspace,name:web
-      bind = ,s,submap,reset
+    bind = ,s,movetoworkspace,name:web
+    bind = ,s,submap,reset
 
-      bind = ,d,movetoworkspace,name:code2
-      bind = ,d,submap,reset
+    bind = ,d,movetoworkspace,name:code2
+    bind = ,d,submap,reset
 
-      bind = ,q,movetoworkspace,1
-      bind = ,q,submap,reset
+    bind = ,q,movetoworkspace,1
+    bind = ,q,submap,reset
 
-      bind = ,w,movetoworkspace,2
-      bind = ,w,submap,reset
+    bind = ,w,movetoworkspace,2
+    bind = ,w,submap,reset
 
-      bind = ,e,movetoworkspace,3
-      bind = ,e,submap,reset
+    bind = ,e,movetoworkspace,3
+    bind = ,e,submap,reset
 
-      bind = ,1,movetoworkspace,special:term
-      bind = ,1,submap,reset
+    bind = ,1,movetoworkspace,special:term
+    bind = ,1,submap,reset
 
-      bind = ,2,movetoworkspace,special:notes
-      bind = ,2,submap,reset
+    bind = ,2,movetoworkspace,special:notes
+    bind = ,2,submap,reset
 
-      bind = ,3,movetoworkspace,special:music
-      bind = ,3,submap,reset
+    bind = ,3,movetoworkspace,special:music
+    bind = ,3,submap,reset
 
-      bind = ,escape,submap,reset
+    bind = ,escape,submap,reset
 
-      submap = reset
+    submap = reset
 
-      # Resize submap
-      bind = $mod SHIFT, r, submap, resize
-      submap = resize
+    # Resize submap
+    bind = $mod SHIFT, r, submap, resize
+    submap = resize
 
-      binde = ,$right,resizeactive,10 0
-      binde = ,$left,resizeactive,-10 0
-      binde = ,$up,resizeactive,0 -10
-      binde = ,$down,resizeactive,0 10
+    binde = ,$right,resizeactive,10 0
+    binde = ,$left,resizeactive,-10 0
+    binde = ,$up,resizeactive,0 -10
+    binde = ,$down,resizeactive,0 10
 
-      bind = ,escape,submap,reset
+    bind = ,escape,submap,reset
 
-      submap = reset
-    '';
+    submap = reset
+  '';
 }

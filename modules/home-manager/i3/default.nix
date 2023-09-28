@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   cfg = config.myHomeConfig.i3;
   inherit (lib) types mkIf mkEnableOption mkOption;
   i3lock-run-unwrapped = (pkgs.writeScriptBin "i3lock-run" (builtins.readFile ./i3lock.sh)).overrideAttrs (old: {
@@ -7,12 +11,11 @@ let
   });
   i3lock-run = pkgs.symlinkJoin {
     name = "i3lock-run";
-    paths = [ i3lock-run-unwrapped ];
-    nativeBuildInputs = [ pkgs.makeWrapper ];
+    paths = [i3lock-run-unwrapped];
+    nativeBuildInputs = [pkgs.makeWrapper];
     postBuild = "wrapProgram $out/bin/i3lock-run --prefix PATH : ${pkgs.i3lock-color}/bin";
   };
-in
-{
+in {
   options = {
     myHomeConfig.i3 = {
       enable = mkEnableOption "i3";
@@ -32,7 +35,7 @@ in
 
     xsession.windowManager.i3 = {
       enable = true;
-      config = import ./config.nix { inherit cfg pkgs; };
+      config = import ./config.nix {inherit cfg pkgs;};
       extraConfig = ''
       '';
     };
@@ -116,45 +119,43 @@ in
     };
 
     # TODO: move to standalone screen lock module
-    systemd.user.services.xidlehook =
-      let
-        notify-cmd = ''${pkgs.libnotify}/bin/notify-send "Idle" "Sleeping in 1 minute" -t 5000 -u low'';
-        script = pkgs.writeShellScript "xidlehook" (lib.concatStringsSep " " [
-          "${pkgs.xidlehook}/bin/xidlehook"
-          "--detect-sleep"
-          "--not-when-fullscreen"
-          "--not-when-audio"
-          ''--socket /tmp/xidlehook.sock''
-          ''--timer 420 ${lib.escapeShellArgs [ notify-cmd "" ]}''
-          ''--timer 60 ${lib.escapeShellArgs [ "${i3lock-run}/bin/i3lock-run" "" ]}''
-          ''--timer 10 ${lib.escapeShellArgs [ "xset dpms force off" "" ]}''
-          ''--timer 600 ${lib.escapeShellArgs [ "systemctl suspend" "" ]}''
-        ]);
-      in
-      {
-        Unit = {
-          Description = "xidlehook";
-          After = [ "graphical-session.target" ];
-          PartOf = [ "graphical-session.target" ];
-          ConditionEnvironment = [ "DISPLAY" ];
-        };
-
-        Install = { WantedBy = [ "graphical-session.target" ]; };
-
-        Service = {
-          Type = "simple";
-          ExecStart = "${script}";
-        };
+    systemd.user.services.xidlehook = let
+      notify-cmd = ''${pkgs.libnotify}/bin/notify-send "Idle" "Sleeping in 1 minute" -t 5000 -u low'';
+      script = pkgs.writeShellScript "xidlehook" (lib.concatStringsSep " " [
+        "${pkgs.xidlehook}/bin/xidlehook"
+        "--detect-sleep"
+        "--not-when-fullscreen"
+        "--not-when-audio"
+        ''--socket /tmp/xidlehook.sock''
+        ''--timer 420 ${lib.escapeShellArgs [notify-cmd ""]}''
+        ''--timer 60 ${lib.escapeShellArgs ["${i3lock-run}/bin/i3lock-run" ""]}''
+        ''--timer 10 ${lib.escapeShellArgs ["xset dpms force off" ""]}''
+        ''--timer 600 ${lib.escapeShellArgs ["systemctl suspend" ""]}''
+      ]);
+    in {
+      Unit = {
+        Description = "xidlehook";
+        After = ["graphical-session.target"];
+        PartOf = ["graphical-session.target"];
+        ConditionEnvironment = ["DISPLAY"];
       };
+
+      Install = {WantedBy = ["graphical-session.target"];};
+
+      Service = {
+        Type = "simple";
+        ExecStart = "${script}";
+      };
+    };
 
     systemd.user.services.xss-lock = {
       Unit = {
         Description = "xss-lock";
-        After = [ "graphical-session-pre.target" ];
-        PartOf = [ "graphical-session.target" ];
+        After = ["graphical-session-pre.target"];
+        PartOf = ["graphical-session.target"];
       };
 
-      Install = { WantedBy = [ "graphical-session.target" ]; };
+      Install = {WantedBy = ["graphical-session.target"];};
 
       Service = {
         ExecStart = lib.concatStringsSep " " [

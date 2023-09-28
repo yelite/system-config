@@ -1,17 +1,20 @@
 {
   description = "Extra plugins for fish";
 
-  outputs = inputs:
-    let
-      inherit (builtins) map attrNames;
-      pluginSources = inputs;
-      pluginNames = attrNames pluginSources;
-    in
-    {
-      overlay = (final: prev: {
-        myFishPlugins = map (name: { inherit name; src = pluginSources.${name}; }) pluginNames;
-      });
+  outputs = inputs: let
+    inherit (builtins) map attrNames;
+    pluginSources = inputs;
+    pluginNames = attrNames pluginSources;
+  in {
+    overlay = final: prev: {
+      myFishPlugins =
+        map (name: {
+          inherit name;
+          src = pluginSources.${name};
+        })
+        pluginNames;
     };
+  };
 
   inputs = {
     z = {

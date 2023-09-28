@@ -1,9 +1,13 @@
-{ config, pkgs, lib, hostPlatform, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  hostPlatform,
+  ...
+}: let
   cfg = config.myHomeConfig.fish;
   inherit (lib) mkIf mkEnableOption;
-in
-{
+in {
   options = {
     myHomeConfig.fish = {
       enable = mkEnableOption "fish";
@@ -13,14 +17,16 @@ in
   config = mkIf cfg.enable {
     programs.fish = {
       enable = true;
-      shellAliases = {
-        "ls" = "eza";
-        "cat" = "bat";
-      } // lib.optionalAttrs hostPlatform.isLinux {
-        # Steal the name from macOS
-        "pbcopy" = "xclip -i -rmlastnl -selection c";
-        "pbpaste" = "xclip -o -selection c";
-      };
+      shellAliases =
+        {
+          "ls" = "eza";
+          "cat" = "bat";
+        }
+        // lib.optionalAttrs hostPlatform.isLinux {
+          # Steal the name from macOS
+          "pbcopy" = "xclip -i -rmlastnl -selection c";
+          "pbpaste" = "xclip -o -selection c";
+        };
       plugins = pkgs.myFishPlugins;
       shellInit = builtins.readFile ./config.fish;
     };
@@ -50,7 +56,8 @@ in
       };
     };
 
-    xdg.configFile."bat/config".source = pkgs.writeText "bat_config"
+    xdg.configFile."bat/config".source =
+      pkgs.writeText "bat_config"
       ''
         --theme="ansi"
       '';

@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }:
-let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   cfg = config.myHomeConfig.display;
   inherit (lib) mkIf mkMerge mkEnableOption mkOption;
-in
-{
+in {
   options = {
     myHomeConfig.display = {
       enable = mkEnableOption "display1";
@@ -11,7 +14,7 @@ in
       displayProfiles = mkOption {
         type = with lib.types; attrsOf (uniq anything);
         description = "Autorandr profiles specification.";
-        default = { };
+        default = {};
       };
 
       xserver = {
@@ -43,12 +46,14 @@ in
           wofi
         ];
 
-        wayland.windowManager.hyprland = {
-          enable = true;
-          enableNvidiaPatches = true;
-        } // (import ./hyprland.nix {
-          inherit pkgs lib;
-        });
+        wayland.windowManager.hyprland =
+          {
+            enable = true;
+            enableNvidiaPatches = true;
+          }
+          // (import ./hyprland.nix {
+            inherit pkgs lib;
+          });
 
         services = {
           gammastep = {
@@ -66,8 +71,16 @@ in
             systemdTarget = "hyprland-session.target";
             profiles = {
               "regular".outputs = [
-                { criteria = "HDMI-A-3"; scale = 2.0; position = "0,445"; }
-                { criteria = "HDMI-A-1"; scale = 2.0; position = "1920,0"; }
+                {
+                  criteria = "HDMI-A-3";
+                  scale = 2.0;
+                  position = "0,445";
+                }
+                {
+                  criteria = "HDMI-A-1";
+                  scale = 2.0;
+                  position = "1920,0";
+                }
               ];
             };
           };
@@ -123,7 +136,7 @@ in
                 rimeDataPkgs = [
                   pkgs.rime-data
                   pkgs.rime-dict
-                  (pkgs.runCommandLocal "my-rime-config" { } ''
+                  (pkgs.runCommandLocal "my-rime-config" {} ''
                     mkdir -p $out/share/
 
                     cp -r ${./rime} $out/share/rime-data
@@ -151,14 +164,14 @@ in
         systemd.user.services.greenclip = {
           Unit = {
             Description = "greenclip";
-            PartOf = [ "hm-graphical-session.target" ];
+            PartOf = ["hm-graphical-session.target"];
           };
           Service = {
             Type = "simple";
             ExecStart = "${pkgs.haskellPackages.greenclip}/bin/greenclip daemon";
           };
           Install = {
-            WantedBy = [ "hm-graphical-session.target" ];
+            WantedBy = ["hm-graphical-session.target"];
           };
         };
 

@@ -1,4 +1,8 @@
-{ stdenv, fetchzip, ... }:
+{
+  stdenv,
+  fetchzip,
+  ...
+}:
 stdenv.mkDerivation rec {
   pname = "apple-cursor";
   version = "1.2.3";

@@ -1,36 +1,44 @@
-{ pkgs, lib, hostPlatform, ... }:
 {
-  home.packages = with pkgs; [
-    jq
-    fx
-    htop
+  pkgs,
+  lib,
+  hostPlatform,
+  ...
+}: {
+  home.packages = with pkgs;
+    [
+      jq
+      fx
+      htop
 
-    ninja
-    clang-tools 
+      ninja
+      clang-tools
 
-    (fenix.complete.withComponents [
-      "cargo"
-      "clippy"
-      "rust-src"
-      "rustc"
-      "rustfmt"
+      (fenix.complete.withComponents [
+        "cargo"
+        "clippy"
+        "rust-src"
+        "rustc"
+        "rustfmt"
+      ])
+      rust-analyzer
+
+      cloc
+
+      deadnix
+
+      python3
+    ]
+    ++ (with python3Packages; [
+      ipython
+      black
+      pylint
     ])
-    rust-analyzer
-
-    cloc
-
-    deadnix
-
-    python3
-  ] ++ (with python3Packages; [
-    ipython
-    black
-    pylint
-  ]) ++ lib.optionals hostPlatform.isLinux [
-    insomnia
-  ] ++ lib.optionals hostPlatform.isDarwin [
-    (pkgs.writeShellScriptBin "gsed" "exec -a $0 ${gnused}/bin/sed $@")
-  ];
+    ++ lib.optionals hostPlatform.isLinux [
+      insomnia
+    ]
+    ++ lib.optionals hostPlatform.isDarwin [
+      (pkgs.writeShellScriptBin "gsed" "exec -a $0 ${gnused}/bin/sed $@")
+    ];
 
   programs.go = {
     enable = true;

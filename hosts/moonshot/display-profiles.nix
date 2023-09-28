@@ -31,7 +31,6 @@ let
       };
     };
   };
-in
-{
+in {
   both = base_profile;
 }

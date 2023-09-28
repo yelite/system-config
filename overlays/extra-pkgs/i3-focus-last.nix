@@ -1,7 +1,7 @@
-{ fetchFromGitHub
-, rustPlatform
+{
+  fetchFromGitHub,
+  rustPlatform,
 }:
-
 rustPlatform.buildRustPackage rec {
   pname = "i3-focus-last";
   version = "e551306";

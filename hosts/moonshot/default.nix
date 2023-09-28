@@ -1,11 +1,8 @@
-{ pkgs, ... }:
-
-{
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+{pkgs, ...}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.editor = false;
@@ -14,7 +11,7 @@
 
   time.timeZone = "US/Eastern";
   time.hardwareClockInLocalTime = true;
-  networking.timeServers = [ "pool.ntp.org" ];
+  networking.timeServers = ["pool.ntp.org"];
 
   networking.hostName = "moonshot";
   networking.wireless.enable = false;
@@ -56,7 +53,7 @@
   '';
 
   services.xserver = {
-    videoDrivers = [ "nvidia" ];
+    videoDrivers = ["nvidia"];
     screenSection = ''
       Option         "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
       Option         "AllowIndirectGLXProtocol" "off"
@@ -88,7 +85,7 @@
   systemd.services.disable-wakeup-from-GPP0 = {
     # Fix the system sleep issue (wake up immediately after sleep)
     description = "Disable ACPI wakeup from GPP0";
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
     serviceConfig = {
       ExecStart = "${pkgs.bash}/bin/sh -c '${pkgs.coreutils}/bin/echo GPP0 > /proc/acpi/wakeup'";
       ExecStop = "${pkgs.bash}/bin/sh -c '${pkgs.coreutils}/bin/echo GPP0 > /proc/acpi/wakeup'";

@@ -1,9 +1,13 @@
-{ config, pkgs, lib, hostPlatform, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  hostPlatform,
+  ...
+}: let
   cfg = config.myHomeConfig.kitty;
   inherit (lib) mkIf mkEnableOption;
-in
-{
+in {
   options = {
     myHomeConfig.kitty = {
       enable = mkEnableOption "kitty";
@@ -17,15 +21,17 @@ in
 
     programs.kitty = {
       enable = true;
-      font = {
-        name = "Hack Nerd Font";
-        size = 12;
-      } // lib.optionalAttrs hostPlatform.isDarwin {
-        package = (pkgs.nerdfonts.override {
-          fonts = [ "Hack" ];
-        });
-        size = 14;
-      };
+      font =
+        {
+          name = "Hack Nerd Font";
+          size = 12;
+        }
+        // lib.optionalAttrs hostPlatform.isDarwin {
+          package = pkgs.nerdfonts.override {
+            fonts = ["Hack"];
+          };
+          size = 14;
+        };
       settings = {
         cursor_blink_interval = 0;
         enabled_layouts = "tall:bias=50;full_size=1;mirrored=false, horizontal";

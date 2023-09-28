@@ -1,10 +1,13 @@
 # This is still incomplete. Wait for more mature support for sway on nvidia
-{ config, lib, pkgs, ... }:
-with lib;
-let
-  cfg = config.myHomeConfig.sway;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.myHomeConfig.sway;
+in {
   options = {
     myHomeConfig.sway = {
       enable = mkEnableOption "sway";
@@ -34,19 +37,17 @@ in
         export __GLX_VENDOR_LIBRARY_NAME=nvidia
         export WLR_NO_HARDWARE_CURSORS=1
       '';
-      wrapperFeatures = { gtk = true; };
-
+      wrapperFeatures = {gtk = true;};
 
       # config = removeAttrs  config.xsession.windowManager.i3.config ["startup"];
       config = {
         terminal = "${pkgs.kitty}/bin/kitty";
 
-
         focus.forceWrapping = lib.mkForce true;
         startup = [
-          { command = "wl-paste -t text --watch clipman store"; }
-          { command = ''wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"''; }
-          { command = "mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob"; }
+          {command = "wl-paste -t text --watch clipman store";}
+          {command = ''wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"'';}
+          {command = "mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob";}
         ];
       };
 
@@ -68,7 +69,7 @@ in
       # bemenu as a dmenu replacement
       waybar # just for testing
       wl-clipboard # wl-copy / wl-paste
-      wdisplays # to show 
+      wdisplays # to show
       wob # to display a progressbar
     ];
 
@@ -80,8 +81,8 @@ in
 
     services.kanshi = {
       enable = true;
-      # profiles = 
-      # extraConfig = 
+      # profiles =
+      # extraConfig =
     };
   };
 }

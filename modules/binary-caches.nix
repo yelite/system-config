@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   nix.settings = {
     # add binary caches
     trusted-public-keys = [

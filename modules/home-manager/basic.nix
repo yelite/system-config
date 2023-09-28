@@ -1,15 +1,18 @@
-{ config, pkgs, lib, hostPlatform, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  hostPlatform,
+  ...
+}: let
   inherit (lib) optionals;
   useGUI =
-    if hostPlatform.isDarwin then
-      true
-    else if config?myHomeConfig.display.enable then
-      config.myHomeConfig.display.enable
-    else
-      false;
-in
-{
+    if hostPlatform.isDarwin
+    then true
+    else if config ? myHomeConfig.display.enable
+    then config.myHomeConfig.display.enable
+    else false;
+in {
   home.packages = with pkgs;
     [
       wget
@@ -26,6 +29,7 @@ in
 
       nix-tree
       nixpkgs-fmt
+      alejandra
       cachix
 
       zk
@@ -35,8 +39,8 @@ in
       age
       gopass
       gopass-jsonapi
-    ] ++
-    optionals (useGUI && hostPlatform.isLinux) [
+    ]
+    ++ optionals (useGUI && hostPlatform.isLinux) [
       zeal
       libsForQt5.okular
       feh
@@ -53,8 +57,8 @@ in
       standardnotes
       supersonic
       picard
-    ] ++
-    optionals hostPlatform.isDarwin [
+    ]
+    ++ optionals hostPlatform.isDarwin [
       terminal-notifier
     ];
 
@@ -81,7 +85,7 @@ in
         };
       };
       includes = [
-        { path = "~/.config/git/config.inc"; }
+        {path = "~/.config/git/config.inc";}
       ];
     };
 
@@ -102,14 +106,15 @@ in
 
     ssh = {
       enable = true;
-      includes = [ "~/.ssh/config.d/*" ];
+      includes = ["~/.ssh/config.d/*"];
       matchBlocks = lib.mkMerge [
         {
           "*" = {
             identityFile = "~/.ssh/id_ed25519";
           };
         }
-        (lib.mkIf hostPlatform.isDarwin
+        (
+          lib.mkIf hostPlatform.isDarwin
           {
             "*" = {
               extraOptions = {
@@ -127,16 +132,18 @@ in
 
     mpv = {
       enable = hostPlatform.isLinux;
-      defaultProfiles = [ "gpu-hq" ];
+      defaultProfiles = ["gpu-hq"];
       config = {
         hwdec = "auto";
         save-position-on-quit = true;
       };
-      scripts = [
-        pkgs.mpvScripts.autoload
-      ] ++ optionals hostPlatform.isLinux [
-        pkgs.mpvScripts.mpris
-      ];
+      scripts =
+        [
+          pkgs.mpvScripts.autoload
+        ]
+        ++ optionals hostPlatform.isLinux [
+          pkgs.mpvScripts.mpris
+        ];
     };
   };
 
@@ -154,10 +161,10 @@ in
   systemd.user.services.kdeconnect-indicator = {
     Unit = {
       Description = "kdeconnect-indicator";
-      PartOf = [ "hm-graphical-session.target" ];
+      PartOf = ["hm-graphical-session.target"];
     };
 
-    Install = { WantedBy = [ "hm-graphical-session.target" ]; };
+    Install = {WantedBy = ["hm-graphical-session.target"];};
 
     Service = {
       Environment = "PATH=${config.home.profileDirectory}/bin";

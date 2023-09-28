@@ -1,21 +1,21 @@
-{ lib
-, hostPlatform
-, buildGoModule
-, fetchFromGitHub
-, darwin
-, makeWrapper
-, pkg-config
-, libX11
-, libXrandr
-, libXinerama
-, libXcursor
-, libXi
-, libXext
-, libGL
-, mesa
-, mpv
+{
+  lib,
+  hostPlatform,
+  buildGoModule,
+  fetchFromGitHub,
+  darwin,
+  makeWrapper,
+  pkg-config,
+  libX11,
+  libXrandr,
+  libXinerama,
+  libXcursor,
+  libXi,
+  libXext,
+  libGL,
+  mesa,
+  mpv,
 }:
-
 buildGoModule rec {
   pname = "supersonic";
   version = "0.5.2";
@@ -26,25 +26,28 @@ buildGoModule rec {
     sha256 = "sha256-4SLAUqLMoUxTSi4I/QeHqudO62Gmhpm1XbCGf+3rPlc=";
   };
 
-  nativeBuildInputs = [ pkg-config makeWrapper ];
+  nativeBuildInputs = [pkg-config makeWrapper];
 
-  buildInputs = [
-    mpv
-  ] ++ lib.optionals hostPlatform.isLinux [
-    libX11
-    libXrandr
-    libXinerama
-    libXcursor
-    libXi
-    libXext
-    libGL
-    mesa.dev
-  ] ++ lib.optionals hostPlatform.isDarwin [
-    # darwin.CarbonHeaders
-    darwin.apple_sdk.frameworks.Cocoa
-    darwin.apple_sdk.frameworks.Kernel
-    darwin.apple_sdk.frameworks.UserNotifications
-  ];
+  buildInputs =
+    [
+      mpv
+    ]
+    ++ lib.optionals hostPlatform.isLinux [
+      libX11
+      libXrandr
+      libXinerama
+      libXcursor
+      libXi
+      libXext
+      libGL
+      mesa.dev
+    ]
+    ++ lib.optionals hostPlatform.isDarwin [
+      # darwin.CarbonHeaders
+      darwin.apple_sdk.frameworks.Cocoa
+      darwin.apple_sdk.frameworks.Kernel
+      darwin.apple_sdk.frameworks.UserNotifications
+    ];
 
   postInstall = ''
     wrapProgram "$out/bin/supersonic" --set FYNE_SCALE 2

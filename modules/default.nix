@@ -12,4 +12,4 @@ let
     ./nvfancontrol
   ];
 in
-systemModules
+  systemModules
