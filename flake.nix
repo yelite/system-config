@@ -31,10 +31,6 @@
         fenix.overlays.default
         (get-flake ./overlays/flakes/neovim).overlay
         (get-flake ./overlays/flakes/fish).overlay
-        # inputs.nixpkgs-wayland.overlay
-        (final: prev: {
-          lib = prev.lib.extend libOverride;
-        })
       ];
 
       hosts = {
@@ -63,29 +59,7 @@
         };
 
       outputsBuilder = channels: {
-        packages =
-          utils.lib.exportPackages self.overlays channels
-          // {
-            homeConfigurations.liteye = inputs.hm.lib.homeManagerConfiguration {
-              pkgs = channels.nixpkgs;
-              modules = [
-                ./modules/home-manager/module.nix
-                {
-                  myHomeConfig = {
-                    neovim.enable = true;
-                    fish.enable = true;
-                  };
-                  # https://github.com/nix-community/home-manager/issues/3047
-                  home.stateVersion = "18.09";
-                }
-              ];
-              extraSpecialArgs = {
-                inherit inputs;
-                inherit (channels.nixpkgs.stdenv) hostPlatform;
-              };
-            };
-          };
-
+        packages = utils.lib.exportPackages self.overlays channels;
         formatter = channels.nixpkgs.alejandra;
       };
     };
