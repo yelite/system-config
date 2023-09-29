@@ -13,7 +13,7 @@
       ninja
       clang-tools
 
-      (fenix.complete.withComponents [
+      (fenix.stable.withComponents [
         "cargo"
         "clippy"
         "rust-src"

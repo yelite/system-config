@@ -35,12 +35,10 @@
 
   nixpkgsFromInputsPath = flake.inputs.nixpkgs.outPath or "";
   nixpkgs =
-    flake.pkgs.${currentSystem}.nixpkgs
-    or (
-      if nixpkgsFromInputsPath != ""
-      then import nixpkgsFromInputsPath {}
-      else {}
-    );
+    if nixpkgsFromInputsPath != ""
+    then import nixpkgsFromInputsPath {}
+    else {};
+  lib = nixpkgs.lib;
 
   nixpkgsOutput = removeAttrs (nixpkgs // nixpkgs.lib or {}) ["options" "config"];
 in
@@ -51,9 +49,8 @@ in
     pkgs = nixpkgsOutput;
     getFlake = path: getFlake (toString path);
   }
-  // (
-    if flakePath == null
-    then {
+  // lib.optionalAttrs (flakePath == null) (
+    let
       systemConfig =
         if (match ".*-darwin$" currentSystem) == null
         then
@@ -64,6 +61,8 @@ in
           (
             flake.darwinConfigurations.${hostname'} or {}
           );
+    in {
+      inherit systemConfig;
+      pkgs = systemConfig.config.nixpkgs.pkgs or nixpkgsOutput;
     }
-    else {}
   )

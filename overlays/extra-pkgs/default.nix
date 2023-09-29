@@ -1,12 +1,12 @@
 final: prev: {
-  apple-cursor = prev.callPackage ./apple-cursor.nix {};
-  xremap = prev.callPackage ./xremap.nix {};
-  goimports-reviser = prev.callPackage ./goimports-reviser.nix {};
-  supersonic = prev.callPackage ./supersonic.nix {};
-  i3-focus-last = prev.callPackage ./i3-focus-last.nix {};
-  fcitx5-fluent-dark = prev.callPackage ./fcitx5-fluent-dark {};
-  rime-dict = prev.callPackage ./rime-dict.nix {};
-  flake-repl = prev.callPackage ./flake-repl {};
+  apple-cursor = final.callPackage ./apple-cursor.nix {};
+  xremap = final.callPackage ./xremap.nix {};
+  goimports-reviser = final.callPackage ./goimports-reviser.nix {};
+  supersonic = final.callPackage ./supersonic.nix {};
+  i3-focus-last = final.callPackage ./i3-focus-last.nix {};
+  fcitx5-fluent-dark = final.callPackage ./fcitx5-fluent-dark {};
+  rime-dict = final.callPackage ./rime-dict.nix {};
+  flake-repl = final.callPackage ./flake-repl {};
 
   flameshot = prev.flameshot.overrideAttrs (old: {
     patches = old.patches ++ [./patches/flameshot.patch];

@@ -16,15 +16,6 @@ in
         dates = "weekly";
         options = "--delete-older-than 7d";
       };
-
-      # FUP options
-      generateNixPathFromInputs = true;
-      generateRegistryFromInputs = true;
-      linkInputs = true;
-      extraOptions = ''
-        keep-outputs = true
-        keep-derivations = true
-      '';
     };
 
     console = {
