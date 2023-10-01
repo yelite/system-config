@@ -4,12 +4,11 @@
   outputs = inputs @ {flake-parts, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} ({inputs, ...}: {
       imports = [
-        ./flake-module/hosts.nix
-        ./flake-module/pkgs.nix
+        ./flake-module/lite-system.nix
         ./flake-module/formatter.nix
       ];
 
-      config = {
+      config.lite-system = {
         nixpkgs = {
           config = {
             allowUnfree = true;
@@ -21,6 +20,9 @@
             (import ./overlays/extra-pkgs)
           ];
         };
+
+        systemModule = ./modules;
+        hostModuleDir = ./hosts;
 
         hosts = {
           moonshot = {

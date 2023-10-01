@@ -7,7 +7,15 @@
 }: let
   inherit (lib) mkOption mkOptionType types;
   cfg = config.myConfig;
+  hmModule =
+    if hostPlatform.isLinux
+    then inputs.hm.nixosModule
+    else if hostPlatform.isDarwin
+    then inputs.hm.darwinModule
+    else throw "Not supported system type ${hostPlatform.system}";
 in {
+  imports = [hmModule];
+
   options.myConfig = {
     username = mkOption {
       type = types.str;

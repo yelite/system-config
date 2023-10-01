@@ -13,7 +13,6 @@
   time.hardwareClockInLocalTime = true;
   networking.timeServers = ["pool.ntp.org"];
 
-  networking.hostName = "moonshot";
   networking.wireless.enable = false;
   networking.useDHCP = false;
   networking.interfaces.eno1.useDHCP = true;

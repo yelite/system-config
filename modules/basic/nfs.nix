@@ -1,10 +1,5 @@
-{
-  pkgs,
-  lib,
-  hostPlatform,
-  ...
-}:
-lib.optionalAttrs hostPlatform.isLinux {
+{pkgs, ...}: {
+  # TODO: Add option for this
   boot.supportedFilesystems = ["nfs"];
   environment.systemPackages = with pkgs; [
     nfs-utils
