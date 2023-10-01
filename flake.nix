@@ -4,8 +4,8 @@
   outputs = inputs @ {flake-parts, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} ({inputs, ...}: {
       imports = [
-        ./flake-module/lite-system.nix
-        ./flake-module/formatter.nix
+        inputs.lite-system.flakeModule
+        ./flake-modules/formatter.nix
       ];
 
       config.lite-system = {
@@ -43,8 +43,9 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    lite-system.url = "github:yelite/lite-system";
     get-flake.url = "github:ursi/get-flake";
-    darwin = {
+    nix-darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };

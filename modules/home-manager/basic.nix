@@ -87,6 +87,9 @@ in {
       includes = [
         {path = "~/.config/git/config.inc";}
       ];
+      extraConfig = {
+        init.defaultBranch = "main";
+      };
     };
 
     lazygit = {
