@@ -1,21 +1,11 @@
 {
   lib,
   config,
-  hostPlatform,
-  inputs,
   ...
 }: let
   inherit (lib) mkOption mkOptionType types;
   cfg = config.myConfig;
-  hmModule =
-    if hostPlatform.isLinux
-    then inputs.hm.nixosModule
-    else if hostPlatform.isDarwin
-    then inputs.hm.darwinModule
-    else throw "Not supported system type ${hostPlatform.system}";
 in {
-  imports = [hmModule];
-
   options.myConfig = {
     username = mkOption {
       type = types.str;
@@ -49,17 +39,12 @@ in {
       sharedModules =
         cfg.homeManagerModules
         ++ [
-          ./module.nix
           {
             myHomeConfig = cfg.homeManagerConfig;
             # https://github.com/nix-community/home-manager/issues/3047
             home.stateVersion = "18.09";
           }
         ];
-      useGlobalPkgs = true;
-      extraSpecialArgs = {
-        inherit inputs hostPlatform;
-      };
     };
   };
 }

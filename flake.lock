@@ -54,18 +54,18 @@
         "type": "github"
       }
     },
-    "hm": {
+    "home-manager": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1694643239,
-        "narHash": "sha256-pv2k/5FvyirDE8g4TNehzwZ0T4UOMMmqWSQnM/luRtE=",
+        "lastModified": 1696145345,
+        "narHash": "sha256-3dM7I/d4751SLPJah0to1WBlWiyzIiuCEUwJqwBdmr4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "d9b88b43524db1591fb3d9410a21428198d75d49",
+        "rev": "6f9b5b83ad1f470b3d11b8a9fe1d5ef68c7d0e30",
         "type": "github"
       },
       "original": {
@@ -76,11 +76,11 @@
     },
     "lite-system": {
       "locked": {
-        "lastModified": 1696187443,
-        "narHash": "sha256-C+KzWdAEBiHuUyycZLJ7KIu5xV+R75Pd6xUCjiMUwR8=",
+        "lastModified": 1696217157,
+        "narHash": "sha256-4D4iemgow/zUtGJVqGgrmHG3sNxc1ILPBC/wSaxbJYQ=",
         "owner": "yelite",
         "repo": "lite-system",
-        "rev": "a16abfd43a8a7b7895a63ea30353123af32855d7",
+        "rev": "deffb0415bc7b9de0b37c6fc8ed68f3c9172e552",
         "type": "github"
       },
       "original": {
@@ -148,7 +148,7 @@
         "fenix": "fenix",
         "flake-parts": "flake-parts",
         "get-flake": "get-flake",
-        "hm": "hm",
+        "home-manager": "home-manager",
         "lite-system": "lite-system",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs"

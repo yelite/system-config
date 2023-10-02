@@ -7,7 +7,7 @@
     [
       ./basic
       ./binary-caches.nix
-      ./home-manager
+      ./home-manager.nix
     ]
     ++ lib.optionals hostPlatform.isLinux [
       ./uinput.nix

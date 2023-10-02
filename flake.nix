@@ -21,7 +21,8 @@
           ];
         };
 
-        systemModule = ./modules;
+        systemModule = ./system;
+        homeModule = ./home;
         hostModuleDir = ./hosts;
 
         hosts = {
@@ -49,7 +50,7 @@
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hm = {
+    home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
