@@ -156,6 +156,8 @@ in {
           initExtra = ''
             ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all
             ${pkgs.xorg.xset}/bin/xset s off
+            ${pkgs.xorg.xset}/bin/xset s noblank
+            ${pkgs.xorg.xset}/bin/xset -dpms
           '';
           scriptPath = ".xsession-hm";
         };
