@@ -120,6 +120,7 @@ require("telescope").setup({
     },
     extensions = {
         file_browser = {
+            display_stat = { size = true },
             mappings = {
                 i = {
                     ["<C-f>"] = { "<Right>", type = "command" },
