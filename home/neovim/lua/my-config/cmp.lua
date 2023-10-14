@@ -66,6 +66,18 @@ local regular_mapping = cmp.mapping.preset.insert({
         cmp.abort()
         fallback()
     end, { "i" }),
+    ["<C-CR>"] = function()
+        local selected = cmp.get_selected_entry()
+        if not selected then
+            cmp.select_next_item()
+        else
+            cmp.select_next_item()
+            cmp.select_prev_item()
+        end
+        vim.schedule(function()
+            cmp.close()
+        end)
+    end,
     ["<C-Space>"] = { i = cmp.mapping.complete() },
     ["<C-e>"] = { i = cmp.mapping.abort() },
     ["<CR>"] = { i = cmp.mapping.confirm({ select = false }) },
