@@ -41,8 +41,6 @@ in {
         ++ [
           {
             myHomeConfig = cfg.homeManagerConfig;
-            # https://github.com/nix-community/home-manager/issues/3047
-            home.stateVersion = "18.09";
           }
         ];
     };

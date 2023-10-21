@@ -19,6 +19,7 @@
             (inputs.get-flake ./overlays/flakes/fish).overlay
             (import ./overlays/extra-pkgs)
           ];
+          # exportPackagesInOverlays = false;
         };
 
         systemModule = ./system;
@@ -36,6 +37,40 @@
 
           lite-home-macbook = {
             system = "x86_64-darwin";
+          };
+        };
+      };
+
+      config.perSystem = {
+        inputs',
+        pkgs,
+        ...
+      }: {
+        packages = {
+          hm = inputs'.home-manager.packages.default;
+          homeConfigurations = pkgs.stdenv.mkDerivation {
+            name = "homeConfigurations";
+            version = "1.0";
+            phases = [];
+            passthru = {
+              liteye = inputs.home-manager.lib.homeManagerConfiguration {
+                inherit pkgs;
+                modules = [
+                  ./home
+                  {
+                    home.username = "liteye";
+                    home.homeDirectory = "/home/liteye";
+                  }
+                ];
+
+                extraSpecialArgs = {
+                  inherit inputs;
+                  hostPlatform = pkgs.stdenv.hostPlatform;
+                  pkgs = pkgs;
+                  # home.homeDirectory = "/home/liteye";
+                };
+              };
+            };
           };
         };
       };

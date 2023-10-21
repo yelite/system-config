@@ -11,4 +11,9 @@
     ./fish
     ./sway.nix
   ];
+
+  config = {
+    # https://github.com/nix-community/home-manager/issues/3047
+    home.stateVersion = "23.11";
+  };
 }
