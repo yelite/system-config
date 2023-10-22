@@ -32,6 +32,9 @@
       ipython
       black
       pylint
+
+      # Markdown preview
+      grip
     ])
     ++ lib.optionals hostPlatform.isLinux [
       insomnia
