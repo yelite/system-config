@@ -14,6 +14,9 @@
     smartGaps = true;
     smartBorders = "no_gaps";
   };
+  window = {
+    titlebar = false;
+  };
   bars = [
     {
       position = "top";
