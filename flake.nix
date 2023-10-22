@@ -40,7 +40,12 @@
         };
 
         homeConfigurations = {
-          liteye = {};
+          liteye = {
+            myHomeConfig = {
+              neovim.enable = true;
+              fish.enable = true;
+            };
+          };
         };
       };
     });
