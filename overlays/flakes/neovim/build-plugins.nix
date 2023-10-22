@@ -13,7 +13,7 @@ in (pkgs: rawPlugins:
           inherit (item) name;
         in {
           inherit name;
-          value = pkgs.vimUtils.buildVimPluginFrom2Nix {
+          value = pkgs.vimUtils.buildVimPlugin {
             pname = name;
             version = "flake";
             src = item.value;

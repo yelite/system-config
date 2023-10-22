@@ -26,8 +26,10 @@ wk.setup({
 })
 
 require("legendary").setup({
-    which_key = {
-        auto_register = true,
+    extensions = {
+        which_key = {
+            auto_register = true,
+        },
     },
 })
 

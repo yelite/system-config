@@ -75,15 +75,7 @@ end)(vim.paste)
 
 require("my-config.telescope")
 
-require("indent_blankline").setup()
-vim.api.nvim_create_augroup("MyIndentBlankline", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "help",
-    group = "MyIndentBlankline",
-    callback = function()
-        require("indent_blankline.commands").disable()
-    end,
-})
+require("ibl").setup()
 
 require("zen-mode").setup({
     window = {
@@ -185,7 +177,6 @@ vim.api.nvim_create_autocmd("BufLeave", {
 require("gitsigns").setup({
     signcolumn = false,
     numhl = true,
-    keymaps = {},
 })
 
 require("trouble").setup({

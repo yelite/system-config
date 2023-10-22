@@ -2,7 +2,6 @@ local nvim_lsp = require("lspconfig")
 local lspsaga = require("lspsaga")
 local lsp_signature = require("lsp_signature")
 local rust_tools = require("rust-tools")
-local clangd_extensions = require("clangd_extensions")
 local keymap = require("my-config.keymap")
 
 local M = {}
@@ -126,7 +125,9 @@ require("go").setup({
     lsp_gofumpt = true,
     lsp_keymaps = false,
     lsp_codelens = false,
-    lsp_diag_hdlr = false,
+    disgnostic = {
+        hdlr = false,
+    },
     trouble = true,
     luasnip = true,
 })
