@@ -56,7 +56,7 @@
     lite-system.url = "github:yelite/lite-system";
     get-flake.url = "github:ursi/get-flake";
     nix-darwin = {
-      url = "github:lnl7/nix-darwin/master";
+      url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
