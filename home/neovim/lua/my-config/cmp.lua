@@ -71,7 +71,7 @@ local regular_mapping = cmp.mapping.preset.insert({
         if not selected then
             cmp.select_next_item()
         else
-            cmp.select_next_item()
+            cmp.select_next_item({ behavior = cmp_types.cmp.SelectBehavior.Select })
             cmp.select_prev_item()
         end
         vim.schedule(function()
