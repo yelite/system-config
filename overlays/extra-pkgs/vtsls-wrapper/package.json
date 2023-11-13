@@ -1,0 +1,24 @@
+{
+  "name": "@vtsls/language-server",
+  "description": "LSP wrapper for typescript extension of vscode",
+  "version": "0.1.22",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14"
+  },
+  "main": "main.js",
+  "bin": {
+    "vtsls": "main.js"
+  },
+  "keywords": [
+    "language-server-protocol"
+  ],
+  "dependencies": {
+    "@vtsls/language-server": "0.1.22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yioneko/vtsls.git",
+    "directory": "packages/server"
+  }
+}

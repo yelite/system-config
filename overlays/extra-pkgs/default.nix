@@ -44,4 +44,13 @@ final: prev: {
       #   hash = "sha256-m3N7dvOtRna3FYLZdkPjAfGRF4KAJ8XlDlpGnToAwVY=";
       # };
     });
+
+  vtsls = final.buildNpmPackage {
+    pname = "vtsls";
+    version = "0.1.22";
+    src = ./vtsls-wrapper;
+    npmDepsHash = "sha256-H3c2R4NgUIKLg/TpHyDktkjeiNtj+FUWk1EtKftm0lg=";
+    dontNpmBuild = true;
+  };
 }
+

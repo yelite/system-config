@@ -10,6 +10,8 @@
       fx
       htop
 
+      cloc
+
       ninja
       clang-tools
 
@@ -22,7 +24,7 @@
       ])
       rust-analyzer
 
-      cloc
+      vtsls
 
       deadnix
 
@@ -32,6 +34,7 @@
       ipython
       black
       pylint
+      isort
 
       # Markdown preview
       grip
