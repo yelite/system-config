@@ -18,12 +18,12 @@
 }:
 buildGoModule rec {
   pname = "supersonic";
-  version = "0.5.2";
+  version = "0.7.0";
   src = fetchFromGitHub {
     owner = "dweymouth";
     repo = pname;
-    rev = "3321540bd38948a769eaab1e233e39dececbb3e9";
-    sha256 = "sha256-4SLAUqLMoUxTSi4I/QeHqudO62Gmhpm1XbCGf+3rPlc=";
+    rev = "v0.7.0";
+    sha256 = "sha256-DVduZ1qPbcDlH+B5hibC2HUjwEUV+CpDDpMI8GdPwro=";
   };
 
   nativeBuildInputs = [pkg-config makeWrapper];
@@ -53,7 +53,7 @@ buildGoModule rec {
     wrapProgram "$out/bin/supersonic" --set FYNE_SCALE 2
   '';
 
-  vendorSha256 = "sha256-6Yp5OoybFpoBuIKodbwnyX3crLCl8hJ2r4plzo0plsY=";
+  vendorSha256 = "sha256-Dj6I+gt0gB5HWTWdFXCV5UpLuvg+HhuygRJAdvV/Yp8=";
 
   meta = {
     homepage = "https://github.com/dweymouth/supersonic";
