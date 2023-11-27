@@ -138,7 +138,6 @@ local toggle_feature_keymap = {
     d = { [[<cmd>TroubleToggle<cr>]], "Trouble Window" },
     n = { [[<cmd>set invnumber<cr>]], "Line Number" },
     p = { [[<cmd>TSPlaygroundToggle<cr>]], "Treesitter Playground" },
-    P = { require("pets").toggle_hide, "Pet" },
     s = { require("auto-save").toggle, "Auto Save" },
     S = { [[<cmd>set invspell<cr>]], "Spell Check" },
     l = { [[<cmd>LegendaryScratchToggle<cr>]], "Scratch Pad" },

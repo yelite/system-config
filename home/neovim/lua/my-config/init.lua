@@ -95,8 +95,6 @@ if not g.neovide then
         col = 25,
         speed_multiplier = 0.3,
     })
-    pets.create_pet("duckling", "rubber-duck", "yellow")
-    pets.toggle_hide()
 end
 
 require("dressing").setup({
