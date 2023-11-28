@@ -40,6 +40,9 @@ in {
       gopass
       gopass-jsonapi
     ]
+    ++ optionals (useGUI) [
+      supersonic
+    ]
     ++ optionals (useGUI && hostPlatform.isLinux) [
       zeal
       libsForQt5.okular
@@ -55,7 +58,6 @@ in {
       chromium
       vivaldi
       standardnotes
-      supersonic
       picard
     ]
     ++ optionals hostPlatform.isDarwin [
