@@ -50,6 +50,10 @@ buildGoModule rec {
       darwin.apple_sdk.frameworks.MediaPlayer
     ];
 
+  postInstall = lib.optionalString hostPlatform.isLinux ''
+    wrapProgram "$out/bin/supersonic" --set FYNE_SCALE 2
+  '';
+
   vendorSha256 = "sha256-I4ZZmQfYTMtNT+3WCs6/g42uF4EKGSjGHCqG8Du5rCo=";
 
   meta = {
