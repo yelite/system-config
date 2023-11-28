@@ -102,6 +102,9 @@ in {
 
     xdg.portal = {
       enable = true;
+      # This is added based on the warning message from the new xdg portal impl
+      # TODO: figure out how to configure this properly
+      config.common.default = "*";
     };
 
     # TODO: for kde connect, move this to other place

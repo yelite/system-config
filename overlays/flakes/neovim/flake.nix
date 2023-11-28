@@ -34,10 +34,6 @@
       url = "github:otavioschwanck/telescope-alternate";
       flake = false;
     };
-    leap-spooky-nvim = {
-      url = "github:ggandor/leap-spooky.nvim";
-      flake = false;
-    };
     possession-nvim = {
       url = "github:jedrzejboczar/possession.nvim";
       flake = false;

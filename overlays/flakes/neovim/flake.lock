@@ -48,29 +48,13 @@
         "type": "github"
       }
     },
-    "leap-spooky-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1687792124,
-        "narHash": "sha256-EPqbsG7KFHdnbW430+BSrPeOoVy99KtIC8OpFbV1ycw=",
-        "owner": "ggandor",
-        "repo": "leap-spooky.nvim",
-        "rev": "e003f2aa376190148f2e7731a60c89239335013c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ggandor",
-        "repo": "leap-spooky.nvim",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1697723726,
-        "narHash": "sha256-SaTWPkI8a5xSHX/rrKzUe+/uVNy6zCGMXgoeMb7T9rg=",
+        "lastModified": 1700794826,
+        "narHash": "sha256-RyJTnTNKhO0yqRpDISk03I/4A67/dp96YRxc86YOPgU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7c9cc5a6e5d38010801741ac830a3f8fd667a7a0",
+        "rev": "5a09cb4b393d58f9ed0d9ca1555016a8543c2ac8",
         "type": "github"
       },
       "original": {
@@ -82,11 +66,11 @@
     "nord-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1697127013,
-        "narHash": "sha256-Each3D+0jkXSEWXsAbMa4J2VCDMnsTAxKVPzCOqQS7s=",
+        "lastModified": 1700724584,
+        "narHash": "sha256-8fwD6LCvoBOXCL5aXe2p0+eofz+uyf5IEq/cW5dV4D8=",
         "owner": "gbprod",
         "repo": "nord.nvim",
-        "rev": "7c92694ee67d0a23ba4071e4e966976b34bccb99",
+        "rev": "2948bddbc3cf202789a37b38237144b290b432f6",
         "type": "github"
       },
       "original": {
@@ -162,11 +146,11 @@
     "possession-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1696861225,
-        "narHash": "sha256-j62KFdAbNbBDTxSw/OfwBBVOJ2UoGeaeUgvc20+YhXI=",
+        "lastModified": 1700333279,
+        "narHash": "sha256-KM8PbOaqp5evVsGQMqXetdOqZKTN/xOOqeFPqMaY1bg=",
         "owner": "jedrzejboczar",
         "repo": "possession.nvim",
-        "rev": "2dbf7aee020a330827eedc15dc7a32f0a8da8eee",
+        "rev": "c344becc4b70fe9115282048610747756d419455",
         "type": "github"
       },
       "original": {
@@ -180,7 +164,6 @@
         "autosave": "autosave",
         "gitlinker-nvim": "gitlinker-nvim",
         "hop-extensions": "hop-extensions",
-        "leap-spooky-nvim": "leap-spooky-nvim",
         "nixpkgs": "nixpkgs",
         "nord-nvim": "nord-nvim",
         "nvim-lsp-basic": "nvim-lsp-basic",

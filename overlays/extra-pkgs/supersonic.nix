@@ -54,7 +54,7 @@ buildGoModule rec {
     wrapProgram "$out/bin/supersonic" --set FYNE_SCALE 2
   '';
 
-  vendorSha256 = "sha256-I4ZZmQfYTMtNT+3WCs6/g42uF4EKGSjGHCqG8Du5rCo=";
+  vendorHash = "sha256-I4ZZmQfYTMtNT+3WCs6/g42uF4EKGSjGHCqG8Du5rCo=";
 
   meta = {
     homepage = "https://github.com/dweymouth/supersonic";
