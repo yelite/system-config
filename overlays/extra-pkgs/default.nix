@@ -3,6 +3,7 @@ final: prev: {
   xremap = final.callPackage ./xremap.nix {};
   goimports-reviser = final.callPackage ./goimports-reviser.nix {};
   supersonic = final.callPackage ./supersonic.nix {};
+  fyne = final.callPackage ./fyne.nix {};
   i3-focus-last = final.callPackage ./i3-focus-last.nix {};
   fcitx5-fluent-dark = final.callPackage ./fcitx5-fluent-dark {};
   rime-dict = final.callPackage ./rime-dict.nix {};

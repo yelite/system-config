@@ -4,6 +4,7 @@
   buildGoModule,
   fetchFromGitHub,
   darwin,
+  fyne,
   makeWrapper,
   pkg-config,
   libX11,
@@ -26,7 +27,7 @@ buildGoModule rec {
     sha256 = "sha256-rNM3kQrEkqLAW6Dia+VsEi9etUG218AL8tO0amWXb34=";
   };
 
-  nativeBuildInputs = [pkg-config makeWrapper];
+  nativeBuildInputs = [pkg-config makeWrapper fyne];
 
   buildInputs =
     [
@@ -50,9 +51,17 @@ buildGoModule rec {
       darwin.apple_sdk.frameworks.MediaPlayer
     ];
 
-  postInstall = lib.optionalString hostPlatform.isLinux ''
-    wrapProgram "$out/bin/supersonic" --set FYNE_SCALE 2
-  '';
+  postInstall =
+    ''
+      wrapProgram "$out/bin/supersonic" --set FYNE_SCALE 2
+    ''
+    ++ lib.optionalString hostPlatform.isDarwin ''
+      mkdir -p $out/Applications
+
+      fyne package -os darwin -name Supersonic -appVersion ${version} -icon ./res/appicon-512.png
+      cp $out/bin/supersonic Supersonic.app/Contents/MacOS/
+      mv Supersonic.app $out/Applications
+    '';
 
   vendorHash = "sha256-I4ZZmQfYTMtNT+3WCs6/g42uF4EKGSjGHCqG8Du5rCo=";
 
