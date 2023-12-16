@@ -55,7 +55,7 @@ buildGoModule rec {
     ''
       wrapProgram "$out/bin/supersonic" --set FYNE_SCALE 2
     ''
-    ++ lib.optionalString hostPlatform.isDarwin ''
+    + lib.optionalString hostPlatform.isDarwin ''
       mkdir -p $out/Applications
 
       fyne package -os darwin -name Supersonic -appVersion ${version} -icon ./res/appicon-512.png
