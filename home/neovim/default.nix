@@ -15,6 +15,7 @@ with lib; let
     else assert false; "Unsupported";
   my-treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (p:
     with p; [
+      astro
       c
       cpp
       cmake
@@ -189,10 +190,14 @@ in {
         sumneko-lua-language-server
         cmake-language-server
         python3Packages.jedi-language-server
+        marksman
 
         nodePackages.prettier
         nodePackages.yaml-language-server
-        nodePackages.vscode-json-languageserver
+        nodePackages.vscode-langservers-extracted
+        vtsls
+        nodePackages."@astrojs/language-server"
+        nodePackages."@tailwindcss/language-server"
       ];
 
       viAlias = true;

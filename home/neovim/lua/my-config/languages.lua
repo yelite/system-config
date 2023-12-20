@@ -203,6 +203,31 @@ nvim_lsp.yamlls.setup({
     },
 })
 
+nvim_lsp.astro.setup({
+    on_attach = M.standard_lsp_on_attach,
+    capabilities = M.standard_lsp_capabilities,
+})
+nvim_lsp.tailwindcss.setup({
+    on_attach = M.standard_lsp_on_attach,
+    capabilities = M.standard_lsp_capabilities,
+})
+nvim_lsp.vtsls.setup({
+    on_attach = M.standard_lsp_on_attach,
+    capabilities = M.standard_lsp_capabilities,
+})
+nvim_lsp.html.setup({
+    on_attach = M.standard_lsp_on_attach,
+    capabilities = M.standard_lsp_capabilities,
+})
+nvim_lsp.cssls.setup({
+    on_attach = M.standard_lsp_on_attach,
+    capabilities = M.standard_lsp_capabilities,
+})
+nvim_lsp.marksman.setup({
+    on_attach = M.standard_lsp_on_attach,
+    capabilities = M.standard_lsp_capabilities,
+})
+
 require("null-ls").setup({
     diagnostics_format = "#{m} (#{c} #{s})",
     sources = {

@@ -6,6 +6,8 @@
 }: {
   home.packages = with pkgs;
     [
+      git-lfs
+
       jq
       fx
       htop

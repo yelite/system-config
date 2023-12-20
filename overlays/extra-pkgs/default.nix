@@ -54,4 +54,3 @@ final: prev: {
     dontNpmBuild = true;
   };
 }
-

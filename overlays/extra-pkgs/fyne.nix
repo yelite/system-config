@@ -1,6 +1,5 @@
 {
   lib,
-  hostPlatform,
   buildGoModule,
   fetchFromGitHub,
 }:
