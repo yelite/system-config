@@ -33,7 +33,15 @@ with lib; let
       nix
       norg
       markdown
-      markdown_inline
+      (markdown_inline.overrideAttrs (old: {
+        EXTENSION_WIKI_LINK = true;
+        nativeBuildInputs = old.nativeBuildInputs ++ [pkgs.nodejs pkgs.tree-sitter];
+        configurePhase =
+          old.configurePhase
+          + ''
+            tree-sitter generate
+          '';
+      }))
       prisma
       query
       sql
