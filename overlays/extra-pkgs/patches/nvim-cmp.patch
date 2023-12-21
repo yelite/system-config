@@ -1,0 +1,23 @@
+From 4521f9494bd7ee3e8baadcc36f5af44bb94f70a6 Mon Sep 17 00:00:00 2001
+From: Jaydon Soo <jaydonsky@gmail.com>
+Date: Thu, 12 Oct 2023 23:44:05 +0800
+Subject: [PATCH] favor existing values in completion_item over
+ resovled_completion_item
+
+---
+ lua/cmp/entry.lua | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lua/cmp/entry.lua b/lua/cmp/entry.lua
+index aec3778c1..1ccaab0fb 100644
+--- a/lua/cmp/entry.lua
++++ b/lua/cmp/entry.lua
+@@ -423,7 +423,7 @@ entry.get_completion_item = function(self)
+     if self.resolved_completion_item then
+       local completion_item = misc.copy(self.completion_item)
+       for k, v in pairs(self.resolved_completion_item) do
+-        completion_item[k] = v or completion_item[k]
++        completion_item[k] = completion_item[k] or v
+       end
+       return completion_item
+     end

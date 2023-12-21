@@ -53,4 +53,12 @@ final: prev: {
     npmDepsHash = "sha256-H3c2R4NgUIKLg/TpHyDktkjeiNtj+FUWk1EtKftm0lg=";
     dontNpmBuild = true;
   };
+
+  vimPlugins =
+    prev.vimPlugins
+    // {
+      nvim-cmp = prev.vimPlugins.nvim-cmp.overrideAttrs (old: {
+        patches = [./patches/nvim-cmp.patch];
+      });
+    };
 }
