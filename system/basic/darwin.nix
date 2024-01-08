@@ -31,7 +31,7 @@ in {
       home = "/Users/${myConfig.username}";
     };
 
-    system.defaults.".GlobalPreferences"."com.apple.mouse.scaling" = "-1";
+    system.defaults.".GlobalPreferences"."com.apple.mouse.scaling" = -1.0;
 
     home-manager.sharedModules = [
       inputs.mac-app-util.homeManagerModules.default
