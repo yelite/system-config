@@ -40,7 +40,7 @@ in {
       gopass
       gopass-jsonapi
     ]
-    ++ optionals (useGUI) [
+    ++ optionals useGUI [
       supersonic
     ]
     ++ optionals (useGUI && hostPlatform.isLinux) [
@@ -112,6 +112,7 @@ in {
     ssh = {
       enable = true;
       includes = ["~/.ssh/config.d/*"];
+      addKeysToAgent = "yes";
       matchBlocks = lib.mkMerge [
         {
           "*" = {
@@ -130,9 +131,6 @@ in {
           }
         )
       ];
-      extraConfig = ''
-        AddKeysToAgent yes
-      '';
     };
 
     mpv = {
