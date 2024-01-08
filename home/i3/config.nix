@@ -82,7 +82,7 @@
       notification = false;
     }
     {
-      command = "cd ~/notes; neovide --x11-wm-class=neovide-notes";
+      command = "cd ~/notes; neovide --x11-wm-class-instance=neovide-notes";
       always = false;
       notification = false;
     }

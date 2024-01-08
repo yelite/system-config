@@ -49,7 +49,6 @@ in {
         wayland.windowManager.hyprland =
           {
             enable = true;
-            enableNvidiaPatches = true;
           }
           // (import ./hyprland.nix {
             inherit pkgs lib;

@@ -1,7 +1,7 @@
 local o = vim.o
 local g = vim.g
 
-o.guifont = "Hack Nerd Font Mono:h12"
+o.guifont = "Hack Nerd Font Mono:h14"
 o.mouse = "a"
 o.clipboard = "unnamedplus"
 
