@@ -58,6 +58,7 @@ final: prev: {
     prev.vimPlugins
     // {
       nvim-cmp = prev.vimPlugins.nvim-cmp.overrideAttrs (old: {
+        # TODO: remove after https://github.com/hrsh7th/nvim-cmp/pull/1725 is merged
         patches = [./patches/nvim-cmp.patch];
       });
     };
