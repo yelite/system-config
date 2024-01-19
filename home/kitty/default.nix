@@ -40,6 +40,7 @@ in {
         visual_bell_duration = "0.3";
         placement_strategy = "top-left";
       };
+      shellIntegration.mode = "no-sudo";
       theme = "Tomorrow Night Eighties";
       keybindings = {
         "ctrl+tab" = "no_op";
