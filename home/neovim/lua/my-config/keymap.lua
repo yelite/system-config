@@ -189,9 +189,6 @@ local project_keymap = {
 -- n -> notes
 local notes_keymap = {
     name = "notes",
-    f = { "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", "Find Note" },
-    t = { "<Cmd>ZkTags<CR>", "Find Tags" },
-    n = { my_note.new_note, "New Note" },
 }
 
 wk.register({

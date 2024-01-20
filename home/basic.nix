@@ -32,8 +32,6 @@ in {
       alejandra
       cachix
 
-      zk
-
       flake-repl
 
       age
@@ -42,6 +40,7 @@ in {
     ]
     ++ optionals useGUI [
       supersonic
+      obsidian
     ]
     ++ optionals (useGUI && hostPlatform.isLinux) [
       zeal

@@ -119,7 +119,6 @@ in {
         possession-nvim
         nvim-neoclip-lua
 
-        zk-nvim
         zen-mode-nvim
         glow-nvim
 
@@ -176,7 +175,6 @@ in {
         graphviz # For rust crate graph visualization
         sqlite # For sqlite.lua
 
-        zk
         glow
 
         clang-tools
@@ -216,6 +214,5 @@ in {
     };
 
     xdg.configFile."nvim/lua".source = ./lua;
-    xdg.configFile."zk/config.toml".source = ./zk_config.toml;
   };
 }
