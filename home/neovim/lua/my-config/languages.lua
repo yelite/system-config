@@ -222,6 +222,13 @@ nvim_lsp.html.setup({
 nvim_lsp.cssls.setup({
     on_attach = M.standard_lsp_on_attach,
     capabilities = M.standard_lsp_capabilities,
+    settings = {
+        css = {
+            lint = {
+                unknownAtRules = "ignore",
+            },
+        },
+    },
 })
 nvim_lsp.marksman.setup({
     on_attach = M.standard_lsp_on_attach,
