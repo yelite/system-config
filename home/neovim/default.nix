@@ -121,6 +121,7 @@ in {
 
         zen-mode-nvim
         glow-nvim
+        obsidian-nvim
 
         nvim-lspconfig
         nvim-lsp-basic
@@ -174,6 +175,7 @@ in {
         stylua
         graphviz # For rust crate graph visualization
         sqlite # For sqlite.lua
+        pngpaste # For ObsidianPasteImg
 
         glow
 
