@@ -167,46 +167,49 @@ in {
         END🤞
       '';
 
-      extraPackages = with pkgs; [
-        # for treesitter
-        gcc
-        fd
-        ripgrep
-        stylua
-        graphviz # For rust crate graph visualization
-        sqlite # For sqlite.lua
-        pngpaste # For ObsidianPasteImg
+      extraPackages = with pkgs;
+        [
+          # for treesitter
+          gcc
+          fd
+          ripgrep
+          stylua
+          graphviz # For rust crate graph visualization
+          sqlite # For sqlite.lua
 
-        glow
+          glow
 
-        clang-tools
-        rust-analyzer
-        rustfmt
+          clang-tools
+          rust-analyzer
+          rustfmt
 
-        gopls
-        golines
-        gofumpt
-        golangci-lint
-        impl
-        reftools
-        delve
-        gomodifytags
+          gopls
+          golines
+          gofumpt
+          golangci-lint
+          impl
+          reftools
+          delve
+          gomodifytags
 
-        nil
-        alejandra
-        taplo
-        sumneko-lua-language-server
-        cmake-language-server
-        python3Packages.jedi-language-server
-        marksman
+          nil
+          alejandra
+          taplo
+          sumneko-lua-language-server
+          cmake-language-server
+          python3Packages.jedi-language-server
+          marksman
 
-        nodePackages.prettier
-        nodePackages.yaml-language-server
-        nodePackages.vscode-langservers-extracted
-        vtsls
-        nodePackages."@astrojs/language-server"
-        nodePackages."@tailwindcss/language-server"
-      ];
+          nodePackages.prettier
+          nodePackages.yaml-language-server
+          nodePackages.vscode-langservers-extracted
+          vtsls
+          nodePackages."@astrojs/language-server"
+          nodePackages."@tailwindcss/language-server"
+        ]
+        ++ lib.optionals hostPlatform.isDarwin [
+          pngpaste # For ObsidianPasteImg
+        ];
 
       viAlias = true;
       vimAlias = true;
