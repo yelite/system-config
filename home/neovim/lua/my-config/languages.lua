@@ -86,6 +86,7 @@ nvim_lsp.clangd.setup({
         "--clang-tidy",
         "--header-insertion=iwyu",
     },
+    filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
     on_attach = function(client, bufnr)
         M.standard_lsp_on_attach(client, bufnr)
         require("clangd_extensions.inlay_hints").setup_autocmd()
@@ -173,6 +174,11 @@ nvim_lsp.lua_ls.setup({
     before_init = require("neodev.lsp").before_init,
 })
 
+nvim_lsp.bufls.setup({
+    on_attach = M.standard_lsp_on_attach,
+    capabilities = M.standard_lsp_capabilities,
+})
+
 nvim_lsp.taplo.setup({
     on_attach = M.standard_lsp_on_attach,
     capabilities = M.standard_lsp_capabilities,
@@ -240,7 +246,10 @@ require("null-ls").setup({
     sources = {
         require("null-ls").builtins.formatting.isort,
         require("null-ls").builtins.formatting.black,
-        require("null-ls").builtins.formatting.clang_format,
+        require("null-ls").builtins.formatting.buf,
+        require("null-ls").builtins.formatting.clang_format.with({
+            filetypes = { "c", "cpp", "cs", "java", "cuda" },
+        }),
         require("null-ls").builtins.formatting.stylua,
         require("null-ls").builtins.diagnostics.pylint.with({
             -- TODO: read project config

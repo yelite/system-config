@@ -197,6 +197,8 @@ in {
           taplo
           sumneko-lua-language-server
           cmake-language-server
+          buf
+          buf-language-server
           python3Packages.jedi-language-server
           marksman
 
