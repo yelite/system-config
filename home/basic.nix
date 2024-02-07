@@ -120,7 +120,7 @@ in {
     };
 
     ssh = {
-      enable = !config.myConfig.isServer;
+      enable = !config.myHomeConfig.isServer;
       includes = ["~/.ssh/config.d/*"];
       addKeysToAgent = "yes";
       matchBlocks = lib.mkMerge [

@@ -28,6 +28,8 @@
   ];
 
   myConfig = {
+    isServer = true;
+
     display = {
       enable = false;
     };
