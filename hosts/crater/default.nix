@@ -36,6 +36,7 @@
       syncthing.enable = true;
       neovim.enable = true;
       fish.enable = true;
+      kitty.enable = true;
     };
   };
 

@@ -120,13 +120,17 @@ in {
     };
 
     ssh = {
-      enable = true;
+      enable = !config.myConfig.isServer;
       includes = ["~/.ssh/config.d/*"];
       addKeysToAgent = "yes";
       matchBlocks = lib.mkMerge [
         {
           "*" = {
             identityFile = "~/.ssh/id_ed25519";
+          };
+          "crater" = {
+            host = "crater.home";
+            forwardAgent = true;
           };
         }
         (

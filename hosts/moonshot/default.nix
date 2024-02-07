@@ -17,6 +17,10 @@
   networking.useDHCP = false;
   networking.interfaces.eno1.useDHCP = true;
 
+  programs.steam.enable = true;
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
   myConfig = {
     display = {
       enable = true;

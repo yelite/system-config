@@ -8,6 +8,7 @@
       ./basic
       ./binary-caches.nix
       ./home-manager.nix
+      ./options.nix
     ]
     ++ lib.optionals hostPlatform.isLinux [
       ./uinput.nix
