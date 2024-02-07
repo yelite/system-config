@@ -45,10 +45,6 @@ in {
         PermitRootLogin = "no";
       };
     };
-
-    gnome.gnome-keyring = {
-      enable = true;
-    };
   };
 
   security = {
@@ -71,7 +67,6 @@ in {
   programs = {
     fish.enable = true;
     less.enable = true;
-    seahorse.enable = true;
     ssh = {
       startAgent = true;
       enableAskPassword = false;
@@ -94,6 +89,7 @@ in {
   users.users.${myConfig.username} = {
     isNormalUser = true;
     shell = pkgs.fish;
-    extraGroups = ["wheel" "networkmanager"];
+    # TODO: Split into different modules
+    extraGroups = ["wheel" "networkmanager" "libvirtd"];
   };
 }

@@ -7,10 +7,6 @@
   cfg = config.myConfig.display;
   inherit (lib) mkIf mkEnableOption mkOption;
 in {
-  imports = [
-    ./greetd.nix
-  ];
-
   options = {
     myConfig.display = {
       enable = mkEnableOption "display";
@@ -89,8 +85,15 @@ in {
         jack.enable = true;
       };
 
+      gnome.gnome-keyring = {
+        enable = true;
+      };
+
       xserver = mkIf cfg.xserver.enable {
         enable = true;
+        displayManager = {
+          startx.enable = true;
+        };
         libinput = {
           enable = true;
           mouse.accelProfile = "flat";
@@ -98,7 +101,31 @@ in {
         };
         wacom.enable = true;
       };
+
+      greetd = {
+        enable = true;
+        vt = 2; # To avoid kernel logging. See https://github.com/apognu/tuigreet/issues/17
+        settings = {
+          default_session = {
+            command = lib.concatStringsSep " " [
+              "${pkgs.greetd.tuigreet}/bin/tuigreet"
+              "--asterisks"
+              "--remember"
+              ''--cmd "systemd-cat -t i3 startx ~/.xsession-hm"''
+            ];
+          };
+        };
+      };
     };
+
+    programs = {
+      seahorse.enable = true;
+    };
+
+    security.pam.services.greetd.enableGnomeKeyring = true;
+
+    # To avoid kernel logging on greetd tty. See https://github.com/apognu/tuigreet/issues/17
+    boot.kernelParams = ["console=tty1"];
 
     xdg.portal = {
       enable = true;

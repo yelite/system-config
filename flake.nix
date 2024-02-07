@@ -30,6 +30,10 @@
             system = "x86_64-linux";
           };
 
+          crater = {
+            system = "x86_64-linux";
+          };
+
           lite-octo-macbook = {
             system = "aarch64-darwin";
           };
@@ -68,5 +72,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mac-app-util.url = "github:hraban/mac-app-util";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

@@ -42,7 +42,6 @@
       grip
     ])
     ++ lib.optionals hostPlatform.isLinux [
-      insomnia
       file
     ]
     ++ lib.optionals hostPlatform.isDarwin [

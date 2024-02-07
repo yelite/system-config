@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  hostPlatform,
   ...
 }: let
   cfg = config.myConfig.uinput;

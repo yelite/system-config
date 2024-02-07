@@ -12,6 +12,7 @@
     else if config ? myHomeConfig.display.enable
     then config.myHomeConfig.display.enable
     else false;
+  isLinuxGUI = hostPlatform.isLinux && useGUI;
   obsidian = lib.throwIf (lib.versionOlder "1.5.3" pkgs.obsidian.version) "Obsidian no longer requires EOL Electron" (
     pkgs.obsidian.override {
       electron = pkgs.electron_25.overrideAttrs (_: {
@@ -52,7 +53,7 @@ in {
       # TODO: revisit this: supersonic cannot be built on x86 mac
       supersonic
     ]
-    ++ optionals (useGUI && hostPlatform.isLinux) [
+    ++ optionals isLinuxGUI [
       zeal
       libsForQt5.okular
       feh
@@ -143,7 +144,7 @@ in {
     };
 
     mpv = {
-      enable = hostPlatform.isLinux;
+      enable = isLinuxGUI;
       defaultProfiles = ["gpu-hq"];
       config = {
         hwdec = "auto";
@@ -160,17 +161,17 @@ in {
   };
 
   services = {
-    playerctld = lib.mkIf hostPlatform.isLinux {
+    playerctld = lib.mkIf isLinuxGUI {
       enable = true;
     };
 
-    gpg-agent = lib.mkIf hostPlatform.isLinux {
+    gpg-agent = lib.mkIf isLinuxGUI {
       enable = true;
       pinentryFlavor = "qt";
     };
   };
 
-  systemd.user.services.kdeconnect-indicator = {
+  systemd.user.services.kdeconnect-indicator = lib.mkIf isLinuxGUI {
     Unit = {
       Description = "kdeconnect-indicator";
       PartOf = ["hm-graphical-session.target"];
