@@ -1,5 +1,6 @@
 {
   inputs,
+  config,
   ...
 }: {
   imports = [
@@ -19,7 +20,7 @@
 
   virtualisation.libvirtd.enable = true;
 
-  users.users.root.openssh.authorizedKeys.keys = [
+  users.users.${config.myConfig.username}.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMJlEkPKudGyqz5wue5k+kMOpVbxbv+A4jp2V/X+6Wtx"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKv7WdB5E97No2NUWnF7RaqeqYy5csakTyvEgWq4DPA"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJZe8IqMw3y0S/jbEHa6FyqSFojG1HkngMBUkGd5jO+i"
