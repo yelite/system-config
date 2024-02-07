@@ -37,6 +37,10 @@
                     mountOptions = ["compress=zstd" "noatime"];
                     mountpoint = "/nix";
                   };
+                  "/data" = {
+                    mountOptions = ["compress=zstd"];
+                    mountpoint = "/data";
+                  };
                   "/var-lib" = {
                     mountOptions = ["compress=zstd"];
                     mountpoint = "/var/lib";
