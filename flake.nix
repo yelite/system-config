@@ -6,6 +6,7 @@
       imports = [
         inputs.lite-system.flakeModule
         ./flake-modules/formatter.nix
+        ./deploy
       ];
 
       config.lite-system = {
@@ -74,6 +75,10 @@
     mac-app-util.url = "github:hraban/mac-app-util";
     disko = {
       url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

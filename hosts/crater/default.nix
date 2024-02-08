@@ -42,5 +42,7 @@
     };
   };
 
+  nix.settings.trusted-users = ["@wheel"];
+
   system.stateVersion = "24.05";
 }
