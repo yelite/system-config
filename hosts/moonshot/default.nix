@@ -18,7 +18,15 @@
   networking.interfaces.eno1.useDHCP = true;
 
   programs.steam.enable = true;
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    nss.enable = true;
+    nss.enableGuest = true;
+  };
+
+  environment.systemPackages = [
+    pkgs.virtiofsd
+  ];
   programs.virt-manager.enable = true;
 
   myConfig = {
