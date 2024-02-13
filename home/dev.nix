@@ -29,6 +29,7 @@
       vtsls
 
       deadnix
+      nvd
 
       python3
     ]
