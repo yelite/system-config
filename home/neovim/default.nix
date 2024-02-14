@@ -77,7 +77,6 @@ in {
 
         my-treesitter
         nvim-treesitter-textobjects
-        nvim-treesitter-refactor
         playground # treesitter-playground
 
         nord-nvim
