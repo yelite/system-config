@@ -40,7 +40,8 @@
       isort
 
       # Markdown preview
-      grip
+      # TODO: Enable this after it builds
+      # grip
     ])
     ++ lib.optionals hostPlatform.isLinux [
       file
