@@ -26,6 +26,14 @@
       ])
       rust-analyzer
 
+      golines
+      gofumpt
+      golangci-lint
+      impl
+      reftools
+      delve
+      gomodifytags
+
       vtsls
 
       deadnix
