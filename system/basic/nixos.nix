@@ -17,6 +17,7 @@ in {
     killall
     cifs-utils
     libvdpau-va-gl
+    nftables
   ];
 
   networking.networkmanager.enable = true;
