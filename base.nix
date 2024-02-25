@@ -4,7 +4,6 @@ in {
   imports = [
     inputs.lite-system.flakeModule
     ./flake-modules/formatter.nix
-    ./deploy
   ];
 
   config.lite-system = {
