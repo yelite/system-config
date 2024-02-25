@@ -2,53 +2,40 @@
   description = "Config for my computers";
 
   outputs = inputs @ {flake-parts, ...}:
-    flake-parts.lib.mkFlake {inherit inputs;} ({inputs, ...}: {
+    flake-parts.lib.mkFlake {inherit inputs;} ({
+      inputs,
+      flake-parts-lib,
+      ...
+    }: let
+      inherit (flake-parts-lib) importApply;
+      baseModule = importApply ./base.nix {localInputs = inputs;};
+    in {
       imports = [
-        inputs.lite-system.flakeModule
-        ./flake-modules/formatter.nix
-        ./deploy
+        baseModule
       ];
 
-      config.lite-system = {
-        nixpkgs = {
-          config = {
-            allowUnfree = true;
-          };
-          overlays = [
-            inputs.fenix.overlays.default
-            (inputs.get-flake ./overlays/flakes/neovim).overlay
-            (inputs.get-flake ./overlays/flakes/fish).overlay
-            (import ./overlays/extra-pkgs)
-          ];
+      config = {
+        flake.flakeModules.default = {
+          inherit baseModule;
         };
+        lite-system = {
+          hostModuleDir = ./hosts;
 
-        systemModule = ./system;
-        homeModule = ./home;
-        hostModuleDir = ./hosts;
+          hosts = {
+            moonshot = {
+              system = "x86_64-linux";
+            };
 
-        hosts = {
-          moonshot = {
-            system = "x86_64-linux";
-          };
+            crater = {
+              system = "x86_64-linux";
+            };
 
-          crater = {
-            system = "x86_64-linux";
-          };
+            lite-octo-macbook = {
+              system = "aarch64-darwin";
+            };
 
-          lite-octo-macbook = {
-            system = "aarch64-darwin";
-          };
-
-          lite-home-macbook = {
-            system = "x86_64-darwin";
-          };
-        };
-
-        homeConfigurations = {
-          liteye = {
-            myHomeConfig = {
-              neovim.enable = true;
-              fish.enable = true;
+            lite-home-macbook = {
+              system = "x86_64-darwin";
             };
           };
         };
