@@ -15,9 +15,7 @@
       ];
 
       config = {
-        flake.flakeModules.default = {
-          inherit baseModule;
-        };
+        flake.flakeModules.default = baseModule;
         lite-system = {
           hostModuleDir = ./hosts;
 
