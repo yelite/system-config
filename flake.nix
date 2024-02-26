@@ -20,14 +20,6 @@
           hostModuleDir = ./hosts;
 
           hosts = {
-            moonshot = {
-              system = "x86_64-linux";
-            };
-
-            crater = {
-              system = "x86_64-linux";
-            };
-
             lite-octo-macbook = {
               system = "aarch64-darwin";
             };
