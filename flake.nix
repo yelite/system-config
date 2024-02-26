@@ -10,8 +10,6 @@
     privateOverrides = nixpkgs.lib.filterAttrs (k: _: (builtins.elem k privateArgNames)) rawInputs;
     # Extra args for private config override
     inputs = builtins.removeAttrs rawInputs privateArgNames;
-  in let
-    rawInputs = null;
   in
     flake-parts.lib.mkFlake {inherit inputs;} ({inputs, ...}: {
       imports =
