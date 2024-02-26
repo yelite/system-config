@@ -15,7 +15,7 @@
       ];
 
       config = {
-        flake.flakeModules.default = baseModule;
+        flake.flakeModule = baseModule;
         lite-system = {
           hostModuleDir = ./hosts;
 
