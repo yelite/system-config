@@ -1,65 +1,33 @@
 {
   description = "Config for my computers";
 
-  outputs = rawInputs @ {
-    flake-parts,
-    nixpkgs,
-    ...
-  }: let
-    privateArgNames = ["hostModuleDir" "hosts" "extraFlakeModules"];
-    privateOverrides = nixpkgs.lib.filterAttrs (k: _: (builtins.elem k privateArgNames)) rawInputs;
-    # Extra args for private config override
-    inputs = builtins.removeAttrs rawInputs privateArgNames;
-  in
-    flake-parts.lib.mkFlake {inherit inputs;} ({inputs, ...}: {
-      imports =
-        [
-          inputs.lite-system.flakeModule
-        ]
-        ++ (privateOverrides.extraFlakeModules or []);
+  outputs = inputs @ {flake-parts, ...}:
+    flake-parts.lib.mkFlake {inherit inputs;} ({
+      inputs,
+      flake-parts-lib,
+      ...
+    }: let
+      baseModule = flake-parts-lib.importApply ./base.nix {localInputs = inputs;};
+    in {
+      imports = [
+        inputs.lite-system.flakeModule
+        baseModule
+      ];
 
       config = {
+        flake.flakeModule = baseModule;
         lite-system = {
-          nixpkgs = {
-            config = {
-              allowUnfree = true;
-            };
-            overlays = [
-              inputs.fenix.overlays.default
-              (inputs.get-flake ./overlays/flakes/neovim).overlay
-              (inputs.get-flake ./overlays/flakes/fish).overlay
-              (import ./overlays/extra-pkgs)
-            ];
-          };
+          hostModuleDir = ./hosts;
 
-          systemModule = ./system;
-          homeModule = ./home;
-          hostModuleDir = privateOverrides.hostModuleDir or ./hosts;
-
-          hosts =
-            privateOverrides.hosts
-            or {
-              lite-octo-macbook = {
-                system = "aarch64-darwin";
-              };
-
-              lite-home-macbook = {
-                system = "x86_64-darwin";
-              };
+          hosts = {
+            lite-octo-macbook = {
+              system = "aarch64-darwin";
             };
 
-          homeConfigurations = {
-            liteye = {
-              myHomeConfig = {
-                neovim.enable = true;
-                fish.enable = true;
-              };
+            lite-home-macbook = {
+              system = "x86_64-darwin";
             };
           };
-        };
-
-        perSystem = {pkgs, ...}: {
-          formatter = pkgs.alejandra;
         };
       };
     });
