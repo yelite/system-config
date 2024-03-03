@@ -121,6 +121,7 @@ require("telescope").setup({
     extensions = {
         file_browser = {
             display_stat = { size = true },
+            hide_parent_dir = true,
             mappings = {
                 i = {
                     ["<C-f>"] = { "<Right>", type = "command" },

@@ -70,11 +70,11 @@ local edit_keymap = {
 -- f -> file
 local file_keymap = {
     name = "file",
-    e = { "<cmd>lua require'telescope'.extensions.file_browser.file_browser()<cr>", "Browser" },
-    E = {
+    e = {
         "<cmd>lua require'telescope'.extensions.file_browser.file_browser{path='%:p:h'}<cr>",
         "Browser in current directory",
     },
+    E = { "<cmd>lua require'telescope'.extensions.file_browser.file_browser{files=false}<cr>", "Browser folders" },
     f = {
         [[<cmd>lua require('telescope.builtin').find_files({cwd="%:p:h", results_title=vim.fn.expand("%:h")})<cr>]],
         "Find Files",
@@ -204,11 +204,11 @@ wk.register({
     v = vcs_keymap,
     w = window_keymap,
     ["j"] = { require("my-config.telescope").git_changed_files, "Changed Files in Git Branch" },
-    ["J"] = code_keymap.S, -- Switch buffer
+    ["J"] = code_keymap.E, -- Find folder
     ["k"] = { require("my-config.telescope").quick_find_files, "Quick Find Files" },
-    ["K"] = file_keymap.E, -- Start broswer in the same directory
-    ["l"] = { "<cmd>Navbuddy<cr>", "Navigate current file" },
-    ["L"] = code_keymap.s, -- Workspace Symbols
+    ["K"] = file_keymap.e, -- Start broswer in the same directory
+    ["l"] = code_keymap.s, -- Workspace Symbols
+    ["L"] = code_keymap.S, -- Doc Symbols
     ["x"] = { "<cmd>Legendary commands<cr>", "Commands" },
     ["."] = session_keymap.t, -- Resume last telescope picker
     [">"] = session_keymap.T, -- View cached telescope pickers
