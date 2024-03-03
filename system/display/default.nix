@@ -138,14 +138,5 @@ in {
     programs.kdeconnect = {
       enable = true;
     };
-
-    environment.etc = {
-      "pipewire/pipewire.conf.d/99-my-device.conf".text = ''
-        context.properties = {
-          default.clock.rate = 44100
-          default.clock.allowed-rates = [ 44100 48000 88200 96000 176400 192000 352800 384000 ]
-        }
-      '';
-    };
   };
 }

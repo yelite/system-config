@@ -13,13 +13,6 @@
     then config.myHomeConfig.display.enable
     else false;
   isLinuxGUI = hostPlatform.isLinux && useGUI;
-  obsidian = lib.throwIf (lib.versionOlder "1.5.3" pkgs.obsidian.version) "Obsidian no longer requires EOL Electron" (
-    pkgs.obsidian.override {
-      electron = pkgs.electron_25.overrideAttrs (_: {
-        meta.knownVulnerabilities = []; # NixOS/nixpkgs#273611
-      });
-    }
-  );
 in {
   home.packages = with pkgs;
     [
