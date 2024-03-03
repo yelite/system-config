@@ -72,7 +72,7 @@ local file_keymap = {
     name = "file",
     e = { "<cmd>lua require'telescope'.extensions.file_browser.file_browser()<cr>", "Browser" },
     E = {
-        "<cmd>lua require'telescope'.extensions.file_browser.file_browser{cwd='%:p:h', path='%:p:h'}<cr>",
+        "<cmd>lua require'telescope'.extensions.file_browser.file_browser{path='%:p:h'}<cr>",
         "Browser in current directory",
     },
     f = {
