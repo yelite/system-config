@@ -62,6 +62,13 @@ in {
       vivaldi
       standardnotes
       picard
+
+      kdePackages.dolphin
+      kdePackages.qtsvg
+      kdePackages.breeze
+      kdePackages.breeze-icons
+      kdePackages.breeze-gtk
+      hicolor-icon-theme
     ]
     ++ optionals hostPlatform.isDarwin [
       terminal-notifier
