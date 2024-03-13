@@ -5,7 +5,7 @@ keymap:
     remap:
       C-M-Shift-2: sleep
       C-M-Shift-3: power
-  - name: Mac Emacs
+  - name: Emacs
     exact_match: true
     remap:
       # Cursor
@@ -28,6 +28,16 @@ keymap:
       Super-backspace: C-Shift-backspace
       C-u: [Shift-home, backspace]
       C-k: [Shift-end, backspace]
+    application:
+      not:
+        - kitty
+        - alacritty
+        - neovide
+        - neovide-notes
+
+  - name: MacOS
+    exact_match: true
+    remap:
       # Common macos keys
       Super-z: C-z
       Super-Shift-z: C-Shift-z
@@ -38,8 +48,9 @@ keymap:
       Super-s: C-s
       Super-f: C-f
     application:
-      not: 
+      not:
         - kitty
         - alacritty
         - neovide
         - neovide-notes
+        - firefox # the ui.key.accelKey is changed to super key so we don't need to remap it here.

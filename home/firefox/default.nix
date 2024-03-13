@@ -60,7 +60,7 @@ in {
               visibility: collapse;
             }
             /* Hide sidebar header (except Bookmarks, History, Sync'd Tabs) */
-            #sidebar-box:not([sidebarcommand="viewBookmarksSidebar"]):not([sidebarcommand="viewHistorySidebar"]):not([sidebarcommand="viewTabsSidebar"]) 
+            #sidebar-box:not([sidebarcommand="viewBookmarksSidebar"]):not([sidebarcommand="viewHistorySidebar"]):not([sidebarcommand="viewTabsSidebar"])
               > #sidebar-header {
                 visibility: collapse;
               }
@@ -101,6 +101,7 @@ in {
 
             # UI
             # "browser.tabs.inTitlebar" = 0;
+            "ui.key.accelKey" = 224;
 
             # Enable HTTPS only mode
             "dom.security.https_only_mode" = true;
@@ -113,30 +114,12 @@ in {
             "extensions.webextensions.restrictedDomains" = "";
 
             # Disable annoying firefox functionality
-            "browser.aboutConfig.showWarning" = false; # about:config warning
-            "browser.aboutwelcome.enabled" = false;
-            "browser.formfill.enable" = false;
-            "browser.newtabpage.activity-stream.feeds.topsites" = false;
             "browser.translations.automaticallyPopup" = false;
             "extensions.formautofill.creditCards.enabled" = false;
             "extensions.pocket.enabled" = false;
             "privacy.webrtc.legacyGlobalIndicator" = false; # Sharing indicator
             "signon.autofillForms" = false;
             "signon.rememberSignons" = false;
-
-            # Disable telemetry
-            "toolkit.telemetry.firstShutdownPing.enabled" = false;
-            "toolkit.telemetry.newProfilePing.enabled" = false;
-            "toolkit.telemetry.pioneer-new-studies-available" = false;
-            "toolkit.telemetry.shutdownPingSender.enabled" = false;
-            "toolkit.telemetry.updatePing.enabled" = false;
-            "toolkit.telemetry.server" = "";
-            "app.shield.optoutstudies.enabled" = false;
-            "browser.discovery.enabled" = false;
-            "datareporting.healthreport.uploadEnabled" = false;
-            "extensions.getAddons.showPane" = false;
-            "extensions.htmlaboutaddons.recommendations.enabled" = false;
-            permissions = {"default.desktop-notification" = false;};
 
             # From betterfox
             "content.notify.interval" = 100000;
@@ -154,6 +137,98 @@ in {
             "dom.enable_web_task_scheduling" = true;
             "layout.css.has-selector.enabled" = true;
             "dom.security.sanitizer.enabled" = true;
+
+            "network.cookie.sameSite.noneRequiresSecure" = true;
+            "browser.uitour.enabled" = true;
+            "privacy.globalprivacycontrol.enabled" = true;
+            "security.OCSP.enabled" = 0;
+            "security.remote_settings.crlite_filters.enabled" = true;
+            "security.pki.crlite_mode" = 2;
+            "security.ssl.treat_unsafe_negotiation_as_broken" = true;
+            "browser.xul.error_pages.expert_bad_cert" = true;
+            "security.tls.enable_0rtt_data" = false;
+            "privacy.history.custom" = true;
+
+            "security.insecure_connection_text.enabled" = true;
+            "security.insecure_connection_text.pbmode.enabled" = true;
+            "browser.search.separatePrivateDefault.ui.enabled" = true;
+
+            "browser.urlbar.update2.engineAliasRefresh" = true;
+            "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+            "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
+
+            "browser.formfill.enable" = false;
+            "signon.formlessCapture.enabled" = false;
+            "signon.privateBrowsingCapture.enabled" = false;
+            "network.auth.subresource-http-auth-allow" = 1;
+            "editor.truncate_user_pastes" = false;
+            "pdfjs.enableScripting" = false;
+            "extensions.postDownloadThirdPartyPrompt" = false;
+            "network.http.referer.XOriginTrimmingPolicy" = 2;
+            "browser.safebrowsing.downloads.remote.enabled" = false;
+            "permissions.default.geo" = 2;
+            "datareporting.policy.dataSubmissionEnabled" = false;
+            "datareporting.healthreport.uploadEnabled" = false;
+            "toolkit.telemetry.unified" = false;
+            "toolkit.telemetry.enabled" = false;
+            "toolkit.telemetry.server" = "data: =";
+            "toolkit.telemetry.archive.enabled" = false;
+            "toolkit.telemetry.newProfilePing.enabled" = false;
+            "toolkit.telemetry.shutdownPingSender.enabled" = false;
+            "toolkit.telemetry.updatePing.enabled" = false;
+            "toolkit.telemetry.bhrPing.enabled" = false;
+            "toolkit.telemetry.firstShutdownPing.enabled" = false;
+            "toolkit.telemetry.coverage.opt-out" = true;
+            "toolkit.coverage.opt-out" = true;
+            "toolkit.coverage.endpoint.base" = "";
+            "toolkit.telemetry.pioneer-new-studies-available" = false;
+            permissions = {"default.desktop-notification" = false;};
+            "browser.ping-centre.telemetry" = false;
+            "browser.newtabpage.activity-stream.feeds.telemetry" = false;
+            "browser.newtabpage.activity-stream.telemetry" = false;
+            "app.shield.optoutstudies.enabled" = false;
+            "app.normandy.enabled" = false;
+            "app.normandy.api_url" = "";
+
+            "breakpad.reportURL" = "";
+            "browser.tabs.crashReporting.sendReport" = false;
+
+            "browser.crashReports.unsubmittedCheck.autoSubmit2" = false;
+
+            "captivedetect.canonicalURL" = "";
+            "network.captive-portal-service.enabled" = false;
+
+            # Peskyfox
+            "browser.privatebrowsing.vpnpromourl" = "";
+            "extensions.getAddons.showPane" = false;
+            "extensions.htmlaboutaddons.recommendations.enabled" = false;
+            "browser.discovery.enabled" = false;
+            "browser.shell.checkDefaultBrowser" = false;
+            "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false;
+            "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
+            "browser.preferences.moreFromMozilla" = false;
+            "browser.aboutConfig.showWarning" = false;
+            "browser.aboutwelcome.enabled" = false;
+            # Dark theme
+            "layout.css.prefers-color-scheme.content-override" = 0;
+            "browser.urlbar.suggest.engines" = false;
+            "browser.urlbar.suggest.calculator" = true;
+            "browser.urlbar.unitConversion.enabled" = true;
+            "browser.urlbar.trending.featureGate" = false;
+            "browser.newtabpage.activity-stream.feeds.topsites" = false;
+            "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+            "browser.download.manager.addToRecentDocs" = false;
+            "browser.download.open_pdf_attachments_inline" = true;
+            "browser.menu.showViewImageInfo" = true;
+            "findbar.highlightAll" = true;
+            "layout.word_select.eat_space_to_next_word" = false;
+
+            # Smoothfox
+            "apz.overscroll.enabled" = true;
+            "mousewheel.min_line_scroll_amount" = 10;
+            "general.smoothScroll.mouseWheel.durationMinMS" = 80;
+            "general.smoothScroll.currentVelocityWeighting" = "0.15";
+            "general.smoothScroll.stopDecelerationWeighting" = "0.6";
           };
         };
       };
