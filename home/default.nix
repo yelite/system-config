@@ -10,6 +10,7 @@
     ./dunst
     ./fish
     ./sway.nix
+    ./firefox
   ];
 
   config = {
