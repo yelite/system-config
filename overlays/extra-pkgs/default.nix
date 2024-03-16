@@ -62,4 +62,9 @@ final: prev: {
         patches = [./patches/nvim-cmp.patch];
       });
     };
+
+  firefox-devedition-bin =
+    if prev.stdenv.isDarwin
+    then final.callPackage ./firefox-devedition-darwin.nix {}
+    else prev.firefox-devedition-bin;
 }

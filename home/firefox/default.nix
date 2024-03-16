@@ -8,10 +8,13 @@
 }: let
   addonsPkgs = inputs.firefox-addons.packages.${hostPlatform.system};
 in {
-  config = lib.mkIf (hostPlatform.isLinux && config.myHomeConfig.display.enable) {
+  config = lib.mkIf (hostPlatform.isDarwin || config.myHomeConfig.display.enable) {
     programs.firefox = {
       enable = true;
-      package = pkgs.firefox-devedition;
+      package =
+        if hostPlatform.isDarwin
+        then pkgs.firefox-devedition-bin
+        else pkgs.firefox-devedition;
       policies = {
         OverrideFirstRunPage = "";
         OverridePostUpdatePage = "";
@@ -60,7 +63,7 @@ in {
               visibility: collapse;
             }
             /* Hide sidebar header (except Bookmarks, History, Sync'd Tabs) */
-            #sidebar-box:not([sidebarcommand="viewBookmarksSidebar"]):not([sidebarcommand="viewHistorySidebar"]):not([sidebarcommand="viewTabsSidebar"]) 
+            #sidebar-box:not([sidebarcommand="viewBookmarksSidebar"]):not([sidebarcommand="viewHistorySidebar"]):not([sidebarcommand="viewTabsSidebar"])
               > #sidebar-header {
                 visibility: collapse;
               }
