@@ -19,12 +19,12 @@
 }:
 buildGoModule rec {
   pname = "supersonic";
-  version = "0.9.0";
+  version = "0.9.1";
   src = fetchFromGitHub {
     owner = "dweymouth";
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-QHDTbcWSEFleMsjt4BR4xt6DlqPSowUbHmi4+83c0kc=";
+    sha256 = "sha256-R9Bn+xFq8pBSuGX1okA3l/7ralKodKDxcpGov9diuxw=";
   };
 
   nativeBuildInputs = [pkg-config makeWrapper fyne];
@@ -63,7 +63,7 @@ buildGoModule rec {
       mv Supersonic.app $out/Applications
     '';
 
-  vendorHash = "sha256-ANVkQpCnPsRueHyxRJMY5cqMZ5Q/QMVW4KS+TFYMpUQ=";
+  vendorHash = "sha256-4Un1twPfjRfLVl91GqYJsyY8GbKgYoMIsdNESpumH5M=";
 
   meta = {
     homepage = "https://github.com/dweymouth/supersonic";
