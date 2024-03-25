@@ -117,30 +117,12 @@ in {
             "extensions.webextensions.restrictedDomains" = "";
 
             # Disable annoying firefox functionality
-            "browser.aboutConfig.showWarning" = false; # about:config warning
-            "browser.aboutwelcome.enabled" = false;
-            "browser.formfill.enable" = false;
-            "browser.newtabpage.activity-stream.feeds.topsites" = false;
             "browser.translations.automaticallyPopup" = false;
             "extensions.formautofill.creditCards.enabled" = false;
             "extensions.pocket.enabled" = false;
             "privacy.webrtc.legacyGlobalIndicator" = false; # Sharing indicator
             "signon.autofillForms" = false;
             "signon.rememberSignons" = false;
-
-            # Disable telemetry
-            "toolkit.telemetry.firstShutdownPing.enabled" = false;
-            "toolkit.telemetry.newProfilePing.enabled" = false;
-            "toolkit.telemetry.pioneer-new-studies-available" = false;
-            "toolkit.telemetry.shutdownPingSender.enabled" = false;
-            "toolkit.telemetry.updatePing.enabled" = false;
-            "toolkit.telemetry.server" = "";
-            "app.shield.optoutstudies.enabled" = false;
-            "browser.discovery.enabled" = false;
-            "datareporting.healthreport.uploadEnabled" = false;
-            "extensions.getAddons.showPane" = false;
-            "extensions.htmlaboutaddons.recommendations.enabled" = false;
-            permissions = {"default.desktop-notification" = false;};
 
             # From betterfox
             "content.notify.interval" = 100000;
