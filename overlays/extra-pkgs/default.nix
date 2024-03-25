@@ -48,9 +48,9 @@ final: prev: {
 
   vtsls = final.buildNpmPackage {
     pname = "vtsls";
-    version = "0.1.22";
+    version = "0.2.0";
     src = ./vtsls-wrapper;
-    npmDepsHash = "sha256-H3c2R4NgUIKLg/TpHyDktkjeiNtj+FUWk1EtKftm0lg=";
+    npmDepsHash = "sha256-d7eb7cYAu637d0+xsKtumgIUAIqWg9q+ikRs2yGrmuc=";
     dontNpmBuild = true;
   };
 
@@ -62,4 +62,9 @@ final: prev: {
         patches = [./patches/nvim-cmp.patch];
       });
     };
+
+  firefox-devedition-bin =
+    if prev.stdenv.isDarwin
+    then final.callPackage ./firefox-devedition-darwin.nix {}
+    else prev.firefox-devedition-bin;
 }

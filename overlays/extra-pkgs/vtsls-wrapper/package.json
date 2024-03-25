@@ -1,7 +1,7 @@
 {
   "name": "@vtsls/language-server",
   "description": "LSP wrapper for typescript extension of vscode",
-  "version": "0.1.22",
+  "version": "0.2.0",
   "license": "MIT",
   "engines": {
     "node": ">=14"
@@ -14,7 +14,7 @@
     "language-server-protocol"
   ],
   "dependencies": {
-    "@vtsls/language-server": "0.1.22"
+    "@vtsls/language-server": "0.2.0"
   },
   "repository": {
     "type": "git",
