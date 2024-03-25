@@ -237,18 +237,18 @@
         "type": "github"
       }
     },
-    "lite-system": {
+    "lite-config": {
       "locked": {
-        "lastModified": 1702506847,
-        "narHash": "sha256-GMu/84PNOCRsOUQhqDgVvqATq4rie035VzFqZT9xGLw=",
+        "lastModified": 1711342190,
+        "narHash": "sha256-HjqP9BQdkheOnJ/wEjit9+fFxA5D2fJRIq7RG76N4o4=",
         "owner": "yelite",
-        "repo": "lite-system",
-        "rev": "4c2ebc1f9317f133682f39c79f82fbdfd15cc8b8",
+        "repo": "lite-config",
+        "rev": "a000ec116187dea47889070a9e2b2c2ea93508f8",
         "type": "github"
       },
       "original": {
         "owner": "yelite",
-        "repo": "lite-system",
+        "repo": "lite-config",
         "type": "github"
       }
     },
@@ -371,7 +371,7 @@
         "flake-parts": "flake-parts",
         "get-flake": "get-flake",
         "home-manager": "home-manager",
-        "lite-system": "lite-system",
+        "lite-config": "lite-config",
         "mac-app-util": "mac-app-util",
         "microvm": "microvm",
         "nix-darwin": "nix-darwin",

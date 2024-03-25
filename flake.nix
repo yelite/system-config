@@ -10,13 +10,13 @@
       baseModule = flake-parts-lib.importApply ./base.nix {localInputs = inputs;};
     in {
       imports = [
-        inputs.lite-system.flakeModule
+        inputs.lite-config.flakeModules.default
         baseModule
       ];
 
       config = {
         flake.flakeModule = baseModule;
-        lite-system = {
+        lite-config = {
           hostModuleDir = ./hosts;
 
           hosts = {
@@ -35,7 +35,7 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    lite-system.url = "github:yelite/lite-system";
+    lite-config.url = "github:yelite/lite-config";
     get-flake.url = "github:ursi/get-flake";
     nix-darwin = {
       url = "github:lnl7/nix-darwin";

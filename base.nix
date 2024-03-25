@@ -1,7 +1,7 @@
 {localInputs}: {...}: let
   inputs = localInputs;
 in {
-  lite-system = {
+  lite-config = {
     nixpkgs = {
       config = {
         allowUnfree = true;
