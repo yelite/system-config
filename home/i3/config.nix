@@ -96,6 +96,11 @@
       always = false;
       notification = false;
     }
+    {
+      command = "${pkgs.albert}/bin/albert";
+      always = false;
+      notification = false;
+    }
   ];
 
   workspaceOutputAssign = let
@@ -209,7 +214,7 @@
     rofi = "rofi";
     input-font-flag = ''-f "pango:Hack Nerd Font Mono 13"'';
   in {
-    "${mod}+space" = "exec ${rofi} -show run";
+    "${mod}+space" = "exec --no-startup-id ${pkgs.albert}/bin/albert toggle";
     "${mod}+Shift+Return" = "exec ${terminal}";
 
     "${mod}+h" = "focus left";
