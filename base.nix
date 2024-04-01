@@ -14,8 +14,8 @@ in {
       ];
     };
 
-    systemModule = ./system;
-    homeModule = ./home;
+    systemModules = [./system];
+    homeModules = [./home];
 
     homeConfigurations = {
       liteye = {
