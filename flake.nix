@@ -7,30 +7,59 @@
       flake-parts-lib,
       ...
     }: let
-      baseModule = flake-parts-lib.importApply ./base.nix {localInputs = inputs;};
-    in {
-      imports = [
-        inputs.lite-config.flakeModules.default
-        baseModule
-      ];
+      module = {
+        imports = [
+          inputs.lite-config.flakeModules.default
+        ];
 
-      config = {
-        flake.flakeModule = baseModule;
-        lite-config = {
-          hostModuleDir = ./hosts;
+        config = {
+          flake.flakeModule = module;
 
-          hosts = {
-            lite-octo-macbook = {
-              system = "aarch64-darwin";
+          lite-config = {
+            nixpkgs = {
+              config = {
+                allowUnfree = true;
+              };
+              overlays = [
+                inputs.fenix.overlays.default
+                (inputs.get-flake ./overlays/flakes/neovim).overlay
+                (inputs.get-flake ./overlays/flakes/fish).overlay
+                (import ./overlays/extra-pkgs)
+              ];
             };
 
-            lite-home-macbook = {
-              system = "x86_64-darwin";
+            systemModules = [./system];
+            homeModules = [./home];
+
+            hosts = {
+              lite-octo-macbook = {
+                system = "aarch64-darwin";
+                hostModule = ./hosts/lite-octo-macbook;
+              };
+
+              lite-home-macbook = {
+                system = "x86_64-darwin";
+                hostModule = ./hosts/lite-home-macbook;
+              };
             };
+
+            homeConfigurations = {
+              liteye = {
+                myHomeConfig = {
+                  neovim.enable = true;
+                  fish.enable = true;
+                };
+              };
+            };
+          };
+
+          perSystem = {pkgs, ...}: {
+            formatter = pkgs.alejandra;
           };
         };
       };
-    });
+    in
+      module);
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
