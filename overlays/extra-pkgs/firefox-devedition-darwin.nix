@@ -10,8 +10,8 @@ stdenv.mkDerivation {
   version = "124.0b9";
 
   src = fetchurl {
-    url = "https://archive.mozilla.org/pub/devedition/releases/124.0b9/mac/en-US/Firefox%20124.0b9.dmg";
-    sha256 = "sha256-69rXVKCZnYWdyUfRloA5/L8ZUwgEvA2O9D9ssZn/S/M=";
+    url = "https://archive.mozilla.org/pub/devedition/releases/126.0b4/mac/en-US/Firefox%20126.0b4.dmg";
+    sha256 = "sha256-kyl2FWkbwwqXQANDyL2slCzRRMA2Vo4uOIgtxkvZ3Bc=";
   };
 
   nativeBuildInputs = [undmg];
