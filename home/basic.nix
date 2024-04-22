@@ -62,6 +62,7 @@ in {
       vivaldi
       standardnotes
       picard
+      rsgain
 
       kdePackages.dolphin
       kdePackages.qtsvg
@@ -170,11 +171,6 @@ in {
   services = {
     playerctld = lib.mkIf isLinuxGUI {
       enable = true;
-    };
-
-    gpg-agent = lib.mkIf isLinuxGUI {
-      enable = true;
-      pinentryFlavor = "qt";
     };
   };
 
