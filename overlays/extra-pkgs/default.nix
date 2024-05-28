@@ -67,4 +67,17 @@ final: prev: {
     if prev.stdenv.isDarwin
     then final.callPackage ./firefox-devedition-darwin.nix {}
     else prev.firefox-devedition-bin;
+
+  # TODO: Remove after https://github.com/NixOS/nixpkgs/pull/303628 is resolved
+  albert = prev.albert.overrideAttrs (old: {
+    version = "0.22.17";
+
+    src = final.fetchFromGitHub {
+      owner = "albertlauncher";
+      repo = "albert";
+      rev = "v0.22.17";
+      sha256 = "sha256-2wu4bOQDKoZ4DDzTttXXRNDluvuJth7M1pCvJmYQ+f4=";
+      fetchSubmodules = true;
+    };
+  });
 }
