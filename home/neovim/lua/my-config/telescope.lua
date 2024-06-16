@@ -1,7 +1,7 @@
 local bufdelete = require("bufdelete")
 local action_state = require("telescope.actions.state")
 local action_generate = require("telescope.actions.generate")
-local trouble = require("trouble.providers.telescope")
+local trouble = require("trouble.sources.telescope")
 local ts_themes = require("telescope.themes")
 local ts_actions = require("telescope.actions")
 local ts_layout_actions = require("telescope.actions.layout")
@@ -61,7 +61,7 @@ require("telescope").setup({
             i = {
                 ["<esc>"] = ts_actions.close,
                 ["<C-s>"] = ts_layout_actions.toggle_preview,
-                ["<C-t>"] = trouble.open_with_trouble,
+                ["<C-t>"] = trouble.open,
                 ["<C-h>"] = "which_key",
                 ["<C-/>"] = "which_key",
                 -- TODO: smart open in opposite window

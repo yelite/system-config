@@ -19,11 +19,11 @@
     "done": {
       "flake": false,
       "locked": {
-        "lastModified": 1704894068,
-        "narHash": "sha256-VSCYsGjNPSFIZSdLrkc7TU7qyPVm8UupOoav5UqXPMk=",
+        "lastModified": 1712867771,
+        "narHash": "sha256-DMIRKRAVOn7YEnuAtz4hIxrU93ULxNoQhW6juxCoh4o=",
         "owner": "franciscolourenco",
         "repo": "done",
-        "rev": "d47f4d6551cccb0e46edfb14213ca0097ee22f9a",
+        "rev": "eb32ade85c0f2c68cbfcff3036756bbf27a4f366",
         "type": "github"
       },
       "original": {
@@ -35,11 +35,11 @@
     "forgit": {
       "flake": false,
       "locked": {
-        "lastModified": 1703083844,
-        "narHash": "sha256-WHhyllOr/PgR+vlrfMQs/3/d3xpmDylT6BlLCu50a2g=",
+        "lastModified": 1715472008,
+        "narHash": "sha256-odxdySx3Bzxs5RMXJ4nivwltQYIaM/UrPb+A0/pnDSk=",
         "owner": "wfxr",
         "repo": "forgit",
-        "rev": "d7f88d75b6cb3b2bd95f5a2351a3ee79d35a35f9",
+        "rev": "17394d10569899eded337dec59ef461f8becea51",
         "type": "github"
       },
       "original": {
@@ -51,11 +51,11 @@
     "fzf-fish": {
       "flake": false,
       "locked": {
-        "lastModified": 1704317914,
-        "narHash": "sha256-5cO5Ey7z7KMF3vqQhIbYip5JR6YiS2I9VPRd6BOmeC8=",
+        "lastModified": 1712464035,
+        "narHash": "sha256-T8KYLA/r/gOKvAivKRoeqIwE2pINlxFQtZJHpOy9GMM=",
         "owner": "PatrickF1",
         "repo": "fzf.fish",
-        "rev": "e5d54b93cd3e096ad6c2a419df33c4f50451c900",
+        "rev": "8920367cf85eee5218cc25a11e209d46e2591e7a",
         "type": "github"
       },
       "original": {

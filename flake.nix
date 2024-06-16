@@ -32,9 +32,9 @@
             homeModules = [./home];
 
             hosts = {
-              lite-octo-macbook = {
+              liteye-mbp = {
                 system = "aarch64-darwin";
-                hostModule = ./hosts/lite-octo-macbook;
+                hostModule = ./hosts/lite-meta-macbook;
               };
 
               lite-home-macbook = {

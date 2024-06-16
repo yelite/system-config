@@ -52,15 +52,11 @@ in {
       feh
       flameshot
       playerctl
-      slack
       zoom-us
-      notion-app-enhanced
       write_stylus
       reaper
       realvnc-vnc-viewer
       chromium
-      vivaldi
-      standardnotes
       picard
       rsgain
 
