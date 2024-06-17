@@ -33,8 +33,8 @@ require("legendary").setup({
     },
 })
 
-local function copy_rel_path()
-    local path = vim.fn.expand("%")
+local function copy_expansion_result(s)
+    local path = vim.fn.expand(s)
     vim.fn.setreg("+", path)
     vim.notify('Copied "' .. path .. '" to the clipboard!')
 end
@@ -83,7 +83,8 @@ local file_keymap = {
     r = { [[<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>]], "Recent Files" },
     R = { [[<cmd>lua require('telescope.builtin').oldfiles({})<cr>]], "Global Recent Files" },
     s = { "<cmd>w<cr>", "Save File" },
-    p = { copy_rel_path, "Copy Relative Path" },
+    p = { function () copy_expansion_result("%:.") end, "Copy relative path" },
+    P = { function () copy_expansion_result("%:.:h") end, "Copy relative path of the current directory" },
 }
 -- b -> buffer
 local buffer_keymap = {
