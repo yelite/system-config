@@ -22,14 +22,6 @@
       url = "github:IndianBoy42/hop-extensions";
       flake = false;
     };
-    nvim-termfinder = {
-      url = "github:tknightz/telescope-termfinder.nvim";
-      flake = false;
-    };
-    nvim-lsp-basic = {
-      url = "github:nanotee/nvim-lsp-basics";
-      flake = false;
-    };
     telescope-alternate = {
       url = "github:otavioschwanck/telescope-alternate";
       flake = false;
@@ -46,10 +38,6 @@
     };
     pets-nvim = {
       url = "github:giusgad/pets.nvim";
-      flake = false;
-    };
-    nord-nvim = {
-      url = "github:gbprod/nord.nvim";
       flake = false;
     };
     lazydev-nvim = {

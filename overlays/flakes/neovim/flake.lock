@@ -79,54 +79,6 @@
         "type": "indirect"
       }
     },
-    "nord-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1716301625,
-        "narHash": "sha256-y7ZhPvbhM+XL3/1HMzrEONDO1XNCT6HxpM6BZxSioZE=",
-        "owner": "gbprod",
-        "repo": "nord.nvim",
-        "rev": "c707723cf0c0f19a409a6190209d51d6ec057943",
-        "type": "github"
-      },
-      "original": {
-        "owner": "gbprod",
-        "repo": "nord.nvim",
-        "type": "github"
-      }
-    },
-    "nvim-lsp-basic": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1652014098,
-        "narHash": "sha256-pAEg9eoXXMl954mjA/8VmGCuyWgBXNk8CUZIdodVtvI=",
-        "owner": "nanotee",
-        "repo": "nvim-lsp-basics",
-        "rev": "632714bd3ab355eb6e725b5a78cd8730f12d14d2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nanotee",
-        "repo": "nvim-lsp-basics",
-        "type": "github"
-      }
-    },
-    "nvim-termfinder": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1666858512,
-        "narHash": "sha256-9OvEQvMgDM2KqvGq4j6cwHXE060XDiyZEj5b5ouBohI=",
-        "owner": "tknightz",
-        "repo": "telescope-termfinder.nvim",
-        "rev": "d639bfae1ff5e644700f20d208b2224648b573cf",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tknightz",
-        "repo": "telescope-termfinder.nvim",
-        "type": "github"
-      }
-    },
     "pets-nvim": {
       "flake": false,
       "locked": {
@@ -166,9 +118,6 @@
         "hop-extensions": "hop-extensions",
         "lazydev-nvim": "lazydev-nvim",
         "nixpkgs": "nixpkgs",
-        "nord-nvim": "nord-nvim",
-        "nvim-lsp-basic": "nvim-lsp-basic",
-        "nvim-termfinder": "nvim-termfinder",
         "pets-nvim": "pets-nvim",
         "possession-nvim": "possession-nvim",
         "telescope-alternate": "telescope-alternate"

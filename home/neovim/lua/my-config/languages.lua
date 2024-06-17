@@ -8,7 +8,6 @@ local M = {}
 
 function M.standard_lsp_on_attach(client, bufnr)
     keymap.bind_lsp_keys(client, bufnr)
-    require("lsp_basics").make_lsp_commands(client, bufnr)
 end
 
 M.standard_lsp_capabilities = vim.tbl_deep_extend("force", {}, require("cmp_nvim_lsp").default_capabilities())

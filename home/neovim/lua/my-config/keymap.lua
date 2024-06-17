@@ -129,7 +129,6 @@ local search_keymap = {
     h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
     k = { "<cmd>Legendary keymaps<cr>", "Keymap" },
     i = { "<cmd>Telescope treesitter<cr>", "Search Syntax Node" },
-    t = { "<cmd>Telescope termfinder find<cr>", "Search Terminals" },
 }
 -- t -> toggle / settings
 local toggle_feature_keymap = {

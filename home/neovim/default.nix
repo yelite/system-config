@@ -80,7 +80,7 @@ in {
         nvim-treesitter-textobjects
         playground # treesitter-playground
 
-        nord-nvim
+        gbprod-nord
         nvim-web-devicons
         hologram-nvim
         nui-nvim
@@ -110,7 +110,6 @@ in {
         telescope-file-browser-nvim
         telescope-live-grep-args-nvim
         telescope-alternate
-        nvim-termfinder
         toggleterm-nvim
         which-key-nvim
         legendary-nvim
@@ -124,7 +123,6 @@ in {
         obsidian-nvim
 
         nvim-lspconfig
-        nvim-lsp-basic
         fidget-nvim
         lspsaga-nvim
         nvim-code-action-menu
