@@ -251,7 +251,7 @@
     "${mod}+x" = ''exec --no-startup-id i3-input ${input-font-flag}'';
 
     "Mod4+Tab" = "exec --no-startup-id ${pkgs.i3-focus-last}/bin/i3-focus-last";
-    "${mod}+Mod4+c" = ''exec ${rofi} -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' '';
+    "${mod}+Mod4+c" = ''exec ${rofi} -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' && sleep 0.1 && xdotool key "super+v" '';
 
     "${mod}+a" = "workspace code2";
     "${mod}+s" = "workspace web";
