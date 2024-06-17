@@ -35,6 +35,7 @@ o.updatetime = 800
 
 o.signcolumn = "no"
 o.number = true
+o.conceallevel = 1
 
 o.completeopt = "menu,preview,noinsert"
 o.spelloptions = "camel"
@@ -52,6 +53,10 @@ if g.neovide then
     g.neovide_remember_window_size = true
     g.neovide_floating_opacity = 0.9
 end
+
+-- bullets.vim
+vim.g.bullets_set_mappings = 0
+vim.g.bullets_checkbox_markers = ' .oOx'
 
 -- Override vim.paste to make terminal paste not add killed content into register
 vim.paste = (function(original)

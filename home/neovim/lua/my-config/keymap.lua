@@ -453,8 +453,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
     callback = set_terminal_keymaps,
 })
 
-vim.g.bullets_set_mappings = 0
-
 local function set_bullets_keymaps()
     local opts = { buffer = vim.fn.bufnr(), silent = true }
 
