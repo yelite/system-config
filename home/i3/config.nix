@@ -82,7 +82,7 @@
       notification = false;
     }
     {
-      command = "cd ~/notes; neovide --x11-wm-class-instance=neovide-notes";
+      command = "kitty -T i3#notes -d ~/notes -- nvim";
       always = false;
       notification = false;
     }
@@ -145,7 +145,10 @@
     }
     {
       command = "mark notes; [con_mark=notes] floating enable, resize set width 42 ppt height 63 ppt, border pixel 3, move position center, move scratchpad";
-      criteria = {class = "neovide-notes";};
+      criteria = {
+        class = "kitty";
+        title = "i3#notes";
+      };
     }
     {
       command = "mark music; [con_mark=music] floating enable, resize set width 75 ppt height 85 ppt, border pixel 1, move position center, move scratchpad";
