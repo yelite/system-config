@@ -94,12 +94,13 @@ in {
         displayManager = {
           startx.enable = true;
         };
-        libinput = {
-          enable = true;
-          mouse.accelProfile = "flat";
-          mouse.middleEmulation = false;
-        };
         wacom.enable = true;
+      };
+
+      libinput = {
+        enable = true;
+        mouse.accelProfile = "flat";
+        mouse.middleEmulation = false;
       };
 
       greetd = {
