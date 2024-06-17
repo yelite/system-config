@@ -244,7 +244,7 @@
     "${mod}+v" = ''exec i3-input ${input-font-flag} -F '[con_mark="%s"] focus' -l 1 -P "Goto: "'';
     "${mod}+Shift+v" = "exec i3-input ${input-font-flag} -F 'mark %s' -l 1 -P 'Mark: '";
 
-    "${mod}+Shift+g" = "fullscreen toggle";
+    "${mod}+Shift+f" = "fullscreen toggle";
     "${mod}+Shift+slash" = "floating toggle";
     "${mod}+Shift+equal" = "move position center";
     "${mod}+Shift+x" = "kill";
