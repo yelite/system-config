@@ -36,11 +36,6 @@
                 system = "aarch64-darwin";
                 hostModule = ./hosts/lite-meta-macbook;
               };
-
-              lite-home-macbook = {
-                system = "x86_64-darwin";
-                hostModule = ./hosts/lite-home-macbook;
-              };
             };
 
             homeConfigurations = {
