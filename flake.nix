@@ -22,8 +22,8 @@
               };
               overlays = [
                 inputs.fenix.overlays.default
-                (inputs.get-flake ./overlays/flakes/neovim).overlay
-                (inputs.get-flake ./overlays/flakes/fish).overlay
+                (inputs.get-flake ./overlays/neovim).overlay
+                (inputs.get-flake ./overlays/fish).overlay
                 (import ./overlays/extra-pkgs)
               ];
             };
