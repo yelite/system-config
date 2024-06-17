@@ -48,6 +48,7 @@ with lib; let
       tsx
       typescript
       toml
+      vimdoc
       yaml
       yuck
       vim
