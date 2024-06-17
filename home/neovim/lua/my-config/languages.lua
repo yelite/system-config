@@ -131,15 +131,12 @@ nvim_lsp.gopls.setup({
     },
 })
 
-require("neodev").setup({
-    override = function(root_dir, library)
-        if vim.endswith(root_dir, ".system-config") then
-            library.enabled = true
-            library.plugins = true
-        end
-    end,
-    lspconfig = false,
-})
+require("lazydev").setup {
+  integrations = {
+    lspconfig = true,
+    cmp = true,
+  },
+}
 nvim_lsp.lua_ls.setup({
     settings = {
         Lua = {
@@ -158,7 +155,6 @@ nvim_lsp.lua_ls.setup({
     },
     on_attach = M.standard_lsp_on_attach,
     capabilities = M.standard_lsp_capabilities,
-    before_init = require("neodev.lsp").before_init,
 })
 
 nvim_lsp.bufls.setup({

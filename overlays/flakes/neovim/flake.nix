@@ -52,5 +52,9 @@
       url = "github:gbprod/nord.nvim";
       flake = false;
     };
+    lazydev-nvim = {
+      url = "github:folke/lazydev.nvim";
+      flake = false;
+    };
   };
 }
