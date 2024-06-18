@@ -37,7 +37,11 @@ M.git_changed_files = my_util.make_async_func(function()
 end)
 
 function M.quick_find_files()
-    require("telescope.builtin").find_files(ts_themes.get_dropdown({ previewer = false }))
+    -- require("telescope.builtin").find_files(ts_themes.get_dropdown({ previewer = false }))
+    require("telescope").extensions.smart_open.smart_open(ts_themes.get_dropdown({
+        cwd_only = true,
+        previewer = false,
+    }))
 end
 
 local function delete_buffer(prompt_bufnr)
@@ -154,5 +158,7 @@ require("telescope").load_extension("neoclip")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("live_grep_args")
 require("telescope").load_extension("telescope-alternate")
+require("telescope").load_extension("frecency")
+require("telescope").load_extension("smart_open")
 
 return M

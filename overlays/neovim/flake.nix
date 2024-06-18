@@ -44,5 +44,9 @@
       url = "github:folke/lazydev.nvim";
       flake = false;
     };
+    smart-open-nvim = {
+      url = "github:danielfalk/smart-open.nvim";
+      flake = false;
+    };
   };
 }

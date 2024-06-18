@@ -7,7 +7,6 @@ local themes = require("telescope.themes")
 
 local possession = require("possession")
 local possession_session = require("possession.session")
-local possession_paths = require("possession.paths")
 local possession_utils = require("possession.utils")
 
 local my_settings = require("my-config.settings")
@@ -30,13 +29,29 @@ local function load_user_data(user_data)
     end
 end
 
+local auto_session_disabled_dirs = {
+    "/etc",
+}
+
+local function should_enable_auto_session()
+    local cwd = vim.fn.getcwd()
+    for _, disabled_dir in ipairs(auto_session_disabled_dirs) do
+        if vim.startswith(cwd, disabled_dir) then
+            return false
+        end
+    end
+    return true
+end
+
 possession.setup({
     autosave = {
         current = true,
-        tmp = true,
-        tmp_name = "temp session",
+        cwd = should_enable_auto_session,
         on_load = true,
         on_quit = true,
+    },
+    autoload = {
+        cwd = should_enable_auto_session,
     },
     hooks = {
         before_save = save_user_data,
@@ -62,55 +77,15 @@ possession.setup({
                 custom = false, -- or fun(win): boolean
             },
         },
-        delete_hidden_buffers = false,
-        nvim_tree = false,
-        tabby = false,
-        dap = false,
-        delete_buffers = false,
+        delete_hidden_buffers = {
+            hooks = {
+                "before_load",
+                vim.o.sessionoptions:match("buffer") and "before_save",
+            },
+            force = false,
+        },
+        symbols_outline = true,
     },
-})
-
-local auto_session_disabled_dirs = {
-    "/etc",
-}
-
-local function should_enter_auto_session(path)
-    for _, disabled_dir in ipairs(auto_session_disabled_dirs) do
-        if vim.startswith(path, disabled_dir) then
-            return false
-        end
-    end
-    return true
-end
-
-local function get_auto_session_name(path)
-    return path:gsub("/", "__")
-end
-
-vim.api.nvim_create_augroup("MyAutoSession", { clear = true })
--- Auto load session
--- Based on https://github.com/stevearc/resession.nvim#create-one-session-per-directory
-vim.api.nvim_create_autocmd("VimEnter", {
-    group = "MyAutoSession",
-    callback = function()
-        local dir = vim.fn.getcwd()
-        -- Only load the session if nvim was started with no args
-        if vim.fn.argc(-1) == 0 and should_enter_auto_session(dir) then
-            local session_name = get_auto_session_name(dir)
-            local session_file_path = possession_paths.session(session_name)
-            -- unconditionally set the session name
-            require("possession.session").session_name = session_name
-            if session_file_path:exists() then
-                -- There is a (uncomfirmed) bug in nvim_exec, which caused buffer
-                -- local options to be left in a weird state (ft is null, etc.) if
-                -- possession.load is called eagerly at VimEnter. So here it calls
-                -- it with defer_fn.
-                vim.defer_fn(function()
-                    possession.load(session_name)
-                end, 0)
-            end
-        end
-    end,
 })
 
 -- Session Picker
