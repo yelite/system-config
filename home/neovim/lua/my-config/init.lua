@@ -56,7 +56,7 @@ end
 
 -- bullets.vim
 vim.g.bullets_set_mappings = 0
-vim.g.bullets_checkbox_markers = ' .oOx'
+vim.g.bullets_checkbox_markers = " .oOx"
 
 -- Override vim.paste to make terminal paste not add killed content into register
 vim.paste = (function(original)
@@ -80,7 +80,20 @@ end)(vim.paste)
 
 require("my-config.telescope")
 
-require("ibl").setup()
+require("hlchunk").setup({
+    chunk = {
+        enable = false,
+    },
+    indent = {
+        enable = true,
+    },
+    line_num = {
+        enable = false,
+    },
+    blank = {
+        enable = false,
+    },
+})
 
 require("zen-mode").setup({
     window = {
@@ -108,12 +121,6 @@ require("dressing").setup({
             if opts.kind == "my_setting" or opts.kind == "note_prompt" then
                 return {
                     relative = "editor",
-                }
-            elseif opts.kind == "legendary.nvim" then
-                return {
-                    telescope = {
-                        sorter = require("telescope.sorters").fuzzy_with_index_bias({}),
-                    },
                 }
             end
         end,
@@ -250,12 +257,6 @@ require("goto-preview").setup({
     dismiss_on_move = false, -- Dismiss the floating window when moving the cursor.
     force_close = true, -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
     bufhidden = "wipe", -- the bufhidden option to set on the floating window. See :h bufhidden
-})
-
-require("glance").setup({
-    border = {
-        enable = true,
-    },
 })
 
 vim.g.code_action_menu_show_diff = false

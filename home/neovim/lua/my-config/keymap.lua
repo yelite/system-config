@@ -25,14 +25,6 @@ wk.setup({
     },
 })
 
-require("legendary").setup({
-    extensions = {
-        which_key = {
-            auto_register = true,
-        },
-    },
-})
-
 local function copy_expansion_result(s)
     local path = vim.fn.expand(s)
     vim.fn.setreg("+", path)
@@ -83,8 +75,18 @@ local file_keymap = {
     r = { [[<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>]], "Recent Files" },
     R = { [[<cmd>lua require('telescope.builtin').oldfiles({})<cr>]], "Global Recent Files" },
     s = { "<cmd>w<cr>", "Save File" },
-    p = { function () copy_expansion_result("%:.") end, "Copy relative path" },
-    P = { function () copy_expansion_result("%:.:h") end, "Copy relative path of the current directory" },
+    p = {
+        function()
+            copy_expansion_result("%:.")
+        end,
+        "Copy relative path",
+    },
+    P = {
+        function()
+            copy_expansion_result("%:.:h")
+        end,
+        "Copy relative path of the current directory",
+    },
 }
 -- b -> buffer
 local buffer_keymap = {
@@ -128,7 +130,7 @@ local search_keymap = {
         "Search Text in Current File Directory",
     },
     h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
-    k = { "<cmd>Legendary keymaps<cr>", "Keymap" },
+    k = { "<cmd>Telescope keymaps<cr>", "Keymap" },
     i = { "<cmd>Telescope treesitter<cr>", "Search Syntax Node" },
 }
 -- t -> toggle / settings
@@ -140,7 +142,6 @@ local toggle_feature_keymap = {
     p = { [[<cmd>TSPlaygroundToggle<cr>]], "Treesitter Playground" },
     s = { require("auto-save").toggle, "Auto Save" },
     S = { [[<cmd>set invspell<cr>]], "Spell Check" },
-    l = { [[<cmd>LegendaryScratchToggle<cr>]], "Scratch Pad" },
     g = {
         name = "git",
         b = { my_util.make_async_func(my_settings.prompt_setting, "git_base_branch"), "Set Git Base Branch" },
@@ -209,7 +210,7 @@ wk.register({
     ["K"] = file_keymap.e, -- Start broswer in the same directory
     ["l"] = code_keymap.s, -- Workspace Symbols
     ["L"] = code_keymap.S, -- Doc Symbols
-    ["x"] = { "<cmd>Legendary commands<cr>", "Commands" },
+    ["x"] = { "<cmd>Telescope commands<cr>", "Commands" },
     ["."] = session_keymap.t, -- Resume last telescope picker
     [">"] = session_keymap.T, -- View cached telescope pickers
 }, {
@@ -389,8 +390,7 @@ function M.bind_lsp_keys(client, bufnr)
     mapkey("gi", "n", "<cmd>Telescope lsp_implementations<cr>", opts, "Implementations")
     mapkey("goo", "n", "<cmd>Lspsaga show_line_diagnostics<cr>", opts, "Show Line Diagnostics")
     mapkey("god", "n", "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", opts, "Preview Definition")
-    mapkey("gor", "n", "<cmd>Glance references<cr>", opts, "Glance Reference")
-    mapkey("goR", "n", "<cmd>lua require('goto-preview').goto_preview_references()<cr>", opts, "Preview Reference")
+    mapkey("gor", "n", "<cmd>lua require('goto-preview').goto_preview_references()<cr>", opts, "Preview Reference")
     mapkey(
         "got",
         "n",
@@ -398,9 +398,8 @@ function M.bind_lsp_keys(client, bufnr)
         opts,
         "Preview Type Definition"
     )
-    mapkey("goi", "n", "<cmd>Glance implementations<cr>", opts, "Glance Implementation")
     mapkey(
-        "goI",
+        "goi",
         "n",
         "<cmd>lua require('goto-preview').goto_preview_implementation()<cr>",
         opts,

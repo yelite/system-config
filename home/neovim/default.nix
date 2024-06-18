@@ -82,11 +82,11 @@ in {
 
         gbprod-nord
         nvim-web-devicons
-        hologram-nvim
-        nui-nvim
         pets-nvim
+        hologram-nvim # dependency of pets-nvim
+        nui-nvim # dependency of pets-nvim
         dressing-nvim
-        indent-blankline-nvim
+        hlchunk-nvim
         gitsigns-nvim
         bufdelete-nvim
         gitlinker-nvim
@@ -112,7 +112,6 @@ in {
         telescope-alternate
         toggleterm-nvim
         which-key-nvim
-        legendary-nvim
         smart-open-nvim
 
         autosave
@@ -128,7 +127,6 @@ in {
         lspsaga-nvim
         nvim-code-action-menu
         goto-preview
-        glance-nvim
         trouble-nvim
         aerial-nvim
         nvim-dap

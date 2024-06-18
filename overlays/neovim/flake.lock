@@ -19,16 +19,32 @@
     "gitlinker-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1678318913,
-        "narHash": "sha256-TdTcXe93JB89VzLr/uEm18dyUiaaE/dM19IYlM+PiKk=",
-        "owner": "yelite",
+        "lastModified": 1713934594,
+        "narHash": "sha256-OnlJf31dTzLOJ1tlDKH7slPnQGMZUloavEAtd/FxK0U=",
+        "owner": "linrongbin16",
         "repo": "gitlinker.nvim",
-        "rev": "6976cef2c9ac746a8e621567d2e5e31799bc0d3b",
+        "rev": "542f51784f20107ef9ecdadc47825204837efed5",
         "type": "github"
       },
       "original": {
-        "owner": "yelite",
+        "owner": "linrongbin16",
         "repo": "gitlinker.nvim",
+        "type": "github"
+      }
+    },
+    "hlchunk-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1718620185,
+        "narHash": "sha256-IwxyUwL10pop+Aod7BFM67JFXVY37z2Ly4EnlGPwfls=",
+        "owner": "shellRaining",
+        "repo": "hlchunk.nvim",
+        "rev": "930fe6262f87d66ca0c85dada3bb7c2a8cb6ec3e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "shellRaining",
+        "repo": "hlchunk.nvim",
         "type": "github"
       }
     },
@@ -115,6 +131,7 @@
       "inputs": {
         "autosave": "autosave",
         "gitlinker-nvim": "gitlinker-nvim",
+        "hlchunk-nvim": "hlchunk-nvim",
         "hop-extensions": "hop-extensions",
         "lazydev-nvim": "lazydev-nvim",
         "nixpkgs": "nixpkgs",

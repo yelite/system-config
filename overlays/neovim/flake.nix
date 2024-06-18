@@ -46,5 +46,9 @@
       url = "github:danielfalk/smart-open.nvim";
       flake = false;
     };
+    hlchunk-nvim = {
+      url = "github:shellRaining/hlchunk.nvim";
+      flake = false;
+    };
   };
 }
