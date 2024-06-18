@@ -28,7 +28,7 @@ in {
           "pbpaste" = "xclip -o -selection c";
         };
       plugins = pkgs.myFishPlugins;
-      shellInit = builtins.readFile ./config.fish;
+      interactiveShellInit = builtins.readFile ./config.fish;
     };
 
     programs.starship = {
