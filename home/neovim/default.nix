@@ -110,7 +110,6 @@ in {
         telescope-file-browser-nvim
         telescope-live-grep-args-nvim
         telescope-alternate
-        telescope-frecency-nvim
         toggleterm-nvim
         which-key-nvim
         legendary-nvim
