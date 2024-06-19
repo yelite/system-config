@@ -125,8 +125,6 @@ in {
         nvim-lspconfig
         fidget-nvim
         lspsaga-nvim
-        nvim-code-action-menu
-        goto-preview
         trouble-nvim
         aerial-nvim
         nvim-dap

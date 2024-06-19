@@ -40,14 +40,18 @@ lsp_signature.setup({
 })
 
 lspsaga.setup({
-    max_preview_lines = 20,
     symbol_in_winbar = {
         enable = false,
     },
     rename = {
-        quit = "<Esc>",
+        keys = {
+            quit = "<Esc>",
+        },
     },
     lightbulb = {
+        enable = false,
+    },
+    beacon = {
         enable = false,
     },
 })
@@ -130,12 +134,13 @@ nvim_lsp.gopls.setup({
     },
 })
 
-require("lazydev").setup {
-  integrations = {
-    lspconfig = true,
-    cmp = true,
-  },
-}
+require("lazydev").setup({
+    integrations = {
+        lspconfig = true,
+        cmp = true,
+    },
+})
+
 nvim_lsp.lua_ls.setup({
     settings = {
         Lua = {

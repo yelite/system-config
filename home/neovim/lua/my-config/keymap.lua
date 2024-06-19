@@ -1,14 +1,12 @@
 local toggleterm = require("toggleterm")
 local leap = require("leap")
 local leap_util = require("leap.util")
--- local lspsaga_action = require("lspsaga.action")
 local aerial = require("aerial")
 
 local my_window = require("my-config.window")
 local my_settings = require("my-config.settings")
 local my_git = require("my-config.git")
 local my_util = require("my-config.util")
-local my_note = require("my-config.note")
 
 local M = {}
 
@@ -347,10 +345,8 @@ mapkey("zp", "n", "<cmd>put<cr>")
 mapkey("zP", "n", "<cmd>put!<cr>")
 
 -- Tool windows
-mapkey("<C-1>", { "n", "t" }, "<cmd>TroubleToggle<cr>")
-mapkey("<C-2>", { "n", "t" }, function()
-    aerial.toggle({ focus = true, direction = "right" })
-end)
+mapkey("<C-1>", { "n", "t" }, "<cmd>Trouble diagnostics toggle focus=false filter.buf=0<cr>")
+mapkey("<C-2>", { "n", "t" }, "<cmd>Trouble symbols toggle pinned=true focus=true win.position=left win.relative=win<cr>")
 mapkey("<C-3>", { "n", "t" }, function()
     toggleterm.toggle(3, nil, nil, "float")
 end)
@@ -389,25 +385,15 @@ function M.bind_lsp_keys(client, bufnr)
     mapkey("gk", "n", "<cmd>Lspsaga hover_doc ++keep<cr>", opts, "Pin LSP Hover Window")
     mapkey("gi", "n", "<cmd>Telescope lsp_implementations<cr>", opts, "Implementations")
     mapkey("goo", "n", "<cmd>Lspsaga show_line_diagnostics<cr>", opts, "Show Line Diagnostics")
-    mapkey("god", "n", "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", opts, "Preview Definition")
-    mapkey("gor", "n", "<cmd>lua require('goto-preview').goto_preview_references()<cr>", opts, "Preview Reference")
+    mapkey("god", "n", "<cmd>Lspsaga peek_definition<cr>", opts, "Preview Definition")
     mapkey(
         "got",
         "n",
-        "<cmd>lua require('goto-preview').goto_preview_type_definition()<cr>",
+        "<cmd>Lspsaga peek_type_definition<cr>",
         opts,
         "Preview Type Definition"
     )
-    mapkey(
-        "goi",
-        "n",
-        "<cmd>lua require('goto-preview').goto_preview_implementation()<cr>",
-        opts,
-        "Preview Implementation"
-    )
-    -- TODO: Smart close all tool windows
-    mapkey("<Esc>", "n", "<cmd>lua require('goto-preview').close_all_win()<cr>", opts, "Close all preview windows")
-    mapkey("ga", "n", "<cmd>CodeActionMenu<cr>", opts, "Code Actions")
+    mapkey("ga", "n", "<cmd>Lspsaga code_action<cr>", opts, "Code Actions")
     mapkey("K", "n", "<cmd>Lspsaga hover_doc<cr>", opts, "LSP Hover")
 
     mapkey("[e", "n", function()
@@ -426,7 +412,7 @@ function M.bind_lsp_keys(client, bufnr)
     -- map for selection mode for snippet insert node
     mapkey("<C-o>", { "s", "i" }, require("lsp_signature").toggle_float_win, opts)
     mapkey("<C-k>", "i", "<cmd>Lspsaga hover_doc<cr>", opts)
-    mapkey("<C-g>", "i", "<cmd>CodeActionMenu<cr>", opts)
+    mapkey("<C-g>", "i", "<cmd>Lspsaga code_action<cr>", opts)
 
     if client.name == "rust_analyzer" then
         bind_rust_lsp_keys(bufnr)
