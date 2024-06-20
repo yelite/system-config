@@ -243,22 +243,6 @@ require("neoclip").setup({
 
 require("aerial").setup({})
 
-require("goto-preview").setup({
-    width = 135, -- Width of the floating window
-    height = 20, -- Height of the floating window
-    border = { "↖", "─", "┐", "│", "┘", "─", "└", "│" }, -- Border characters of the floating window
-    default_mappings = false, -- Bind default mappings
-    resizing_mappings = false, -- Binds arrow keys to resizing the floating window.
-    references = { -- Configure the telescope UI for slowing the references cycling window.
-        telescope = require("telescope.themes").get_dropdown({ hide_preview = false }),
-    },
-    -- These two config can also be passed down to the goto-preview definition and implementation calls for one off "peak" functionality.
-    focus_on_open = true, -- Focus the floating window when opening it.
-    dismiss_on_move = false, -- Dismiss the floating window when moving the cursor.
-    force_close = true, -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
-    bufhidden = "wipe", -- the bufhidden option to set on the floating window. See :h bufhidden
-})
-
 vim.g.code_action_menu_show_diff = false
 
 require("gitlinker").setup({

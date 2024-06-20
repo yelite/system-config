@@ -346,7 +346,11 @@ mapkey("zP", "n", "<cmd>put!<cr>")
 
 -- Tool windows
 mapkey("<C-1>", { "n", "t" }, "<cmd>Trouble diagnostics toggle focus=false filter.buf=0<cr>")
-mapkey("<C-2>", { "n", "t" }, "<cmd>Trouble symbols toggle pinned=true focus=true win.position=left win.relative=win<cr>")
+mapkey(
+    "<C-2>",
+    { "n", "t" },
+    "<cmd>Trouble symbols toggle pinned=true focus=true win.position=left win.relative=win<cr>"
+)
 mapkey("<C-3>", { "n", "t" }, function()
     toggleterm.toggle(3, nil, nil, "float")
 end)
@@ -370,8 +374,9 @@ end
 function M.bind_lsp_keys(client, bufnr)
     local opts = { buffer = bufnr, silent = true }
     mapkey("<leader>if", "n", "<cmd>lua vim.lsp.buf.format({timeout_ms = 2000})<cr>", opts, "Format")
-    -- TODO: only bind if client supports it
-    mapkey("<leader>if", "x", "<cmd>lua vim.lsp.buf.format({timeout_ms = 2000})<cr>", opts, "Range Format")
+    if client.resolved_capabilities.document_formatting then
+        mapkey("<leader>if", "x", "<cmd>lua vim.lsp.buf.format({timeout_ms = 2000})<cr>", opts, "Format")
+    end
 
     mapkey("<leader>ic", "n", "<cmd>Lspsaga incoming_calls<cr>", opts, "Incoming Calls")
     mapkey("<leader>iC", "n", "<cmd>Lspsaga outgoing_calls<cr>", opts, "Outgoing Calls")
@@ -386,13 +391,7 @@ function M.bind_lsp_keys(client, bufnr)
     mapkey("gi", "n", "<cmd>Telescope lsp_implementations<cr>", opts, "Implementations")
     mapkey("goo", "n", "<cmd>Lspsaga show_line_diagnostics<cr>", opts, "Show Line Diagnostics")
     mapkey("god", "n", "<cmd>Lspsaga peek_definition<cr>", opts, "Preview Definition")
-    mapkey(
-        "got",
-        "n",
-        "<cmd>Lspsaga peek_type_definition<cr>",
-        opts,
-        "Preview Type Definition"
-    )
+    mapkey("got", "n", "<cmd>Lspsaga peek_type_definition<cr>", opts, "Preview Type Definition")
     mapkey("ga", "n", "<cmd>Lspsaga code_action<cr>", opts, "Code Actions")
     mapkey("K", "n", "<cmd>Lspsaga hover_doc<cr>", opts, "LSP Hover")
 
