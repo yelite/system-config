@@ -135,6 +135,8 @@ in {
         cmp-cmdline
         cmp_luasnip
         luasnip
+        copilot-lua
+        copilot-cmp
         lspkind-nvim
         lsp_signature-nvim
 
@@ -196,6 +198,7 @@ in {
           python3Packages.jedi-language-server
           marksman
 
+          nodePackages.nodejs
           nodePackages.prettier
           nodePackages.yaml-language-server
           nodePackages.vscode-langservers-extracted

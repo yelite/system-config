@@ -58,6 +58,12 @@ lspsaga.setup({
 
 require("fidget").setup({})
 
+require("copilot").setup({
+    suggestion = { enabled = false },
+    panel = { enabled = false },
+})
+require("copilot_cmp").setup()
+
 rust_tools.setup({
     tools = {
         hover_actions = {

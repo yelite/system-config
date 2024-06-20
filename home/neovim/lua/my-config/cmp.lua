@@ -125,6 +125,7 @@ cmp.setup({
     },
     mapping = regular_mapping,
     sources = cmp.config.sources({
+        { name = "copilot", group_index = 2 },
         { name = "nvim_lsp" },
         { name = "luasnip", max_item_count = 5 },
         buffer_source,
@@ -144,11 +145,13 @@ cmp.setup({
             before = function(entry, vim_item)
                 return vim_item
             end,
+            symbol_map = { Copilot = "" },
         }),
     },
     sorting = {
         priority_weight = 2,
         comparators = {
+            require("copilot_cmp.comparators").prioritize,
             cmp.config.compare.offset,
             cmp.config.compare.exact,
             cmp.config.compare.score,
