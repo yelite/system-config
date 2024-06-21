@@ -374,7 +374,7 @@ end
 function M.bind_lsp_keys(client, bufnr)
     local opts = { buffer = bufnr, silent = true }
     mapkey("<leader>if", "n", "<cmd>lua vim.lsp.buf.format({timeout_ms = 2000})<cr>", opts, "Format")
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.documentRangeFormattingProvider then
         mapkey("<leader>if", "x", "<cmd>lua vim.lsp.buf.format({timeout_ms = 2000})<cr>", opts, "Format")
     end
 
