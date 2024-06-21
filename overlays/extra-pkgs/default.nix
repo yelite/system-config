@@ -5,7 +5,6 @@ final: prev: {
   supersonic = final.writeShellScriptBin "supersonic" ''
     FYNE_SCALE=2 ${prev.supersonic}/bin/supersonic
   '';
-  fyne = final.callPackage ./fyne.nix {};
   i3-focus-last = final.callPackage ./i3-focus-last.nix {};
   fcitx5-fluent-dark = final.callPackage ./fcitx5-fluent-dark {};
   rime-dict = final.callPackage ./rime-dict.nix {};
