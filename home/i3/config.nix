@@ -252,7 +252,7 @@
 
     "Mod4+Tab" = "exec --no-startup-id ${pkgs.i3-focus-last}/bin/i3-focus-last";
     "${mod}+Tab" = "exec --no-startup-id ${pkgs.i3-focus-last}/bin/i3-focus-last menu";
-    "${mod}+Mod4+c" = ''exec ${rofi} -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' && sleep 0.1 && xdotool key "super+v" '';
+    "${mod}+Mod4+c" = ''exec ${rofi} -modi "clipboard:greenclip print" -kb-cancel 'Escape' -show clipboard -run-command '{cmd}' '';
 
     "${mod}+a" = "workspace code2";
     "${mod}+s" = "workspace web";
