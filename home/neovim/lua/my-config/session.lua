@@ -34,6 +34,10 @@ local auto_session_disabled_dirs = {
 }
 
 local function should_enable_auto_session()
+    if vim.fn.argc(-1) > 0 then
+        return false
+    end
+
     local cwd = vim.fn.getcwd()
     for _, disabled_dir in ipairs(auto_session_disabled_dirs) do
         if vim.startswith(cwd, disabled_dir) then
