@@ -1,7 +1,6 @@
 final: prev: {
   apple-cursor = final.callPackage ./apple-cursor.nix {};
   xremap = final.callPackage ./xremap.nix {};
-  goimports-reviser = final.callPackage ./goimports-reviser.nix {};
   supersonic = final.writeShellScriptBin "supersonic" ''
     FYNE_SCALE=2 ${prev.supersonic}/bin/supersonic
   '';
