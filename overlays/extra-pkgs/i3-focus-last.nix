@@ -4,7 +4,7 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "i3-focus-last";
-  version = "e551306";
+  version = "ef8affae96179568be5faa04fd1542ceb7285964";
 
   src = fetchFromGitHub {
     owner = "lbonn";
@@ -13,7 +13,7 @@ rustPlatform.buildRustPackage rec {
     sha256 = "sha256-KL3NxnzppOzlg4QW96Qh3WLHIwX0ctRdVmZR2yZhEnM=";
   };
 
-  cargoSha256 = "sha256-EJbDorxNqZVGYTXamDkbKi6bgZ+FWyffR+4s0RuQVf0=";
+  cargoSha256 = "sha256-spxgNZP4bgbvP7vX9IfSS3Zg0E/luZHpCvvTwbD4zgk=";
 
   meta = {
     description = "Another implementation of this classic (and useful) example of i3 ipc use.";
