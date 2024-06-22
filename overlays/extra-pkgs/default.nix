@@ -16,9 +16,9 @@ final: prev: {
 
   vtsls = final.buildNpmPackage {
     pname = "vtsls";
-    version = "0.2.0";
+    version = "0.2.4";
     src = ./vtsls-wrapper;
-    npmDepsHash = "sha256-1YKVwyxjx0wrCIbIZ+WIOZ+ZuE5zORPqV7xiwsTUQkE=";
+    npmDepsHash = "sha256-TrrN+tPZILaxjboOEUEgCpadyKvgeBIIPGE+WOyk3Ro=";
     dontNpmBuild = true;
   };
 
