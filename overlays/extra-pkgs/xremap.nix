@@ -10,7 +10,7 @@
 assert !(enableX11 && enableHypr);
   rustPlatform.buildRustPackage rec {
     pname = "xremap";
-    version = "a22b48";
+    version = "0.10.0";
 
     src = fetchFromGitHub {
       owner = "k0kubun";
@@ -19,7 +19,7 @@ assert !(enableX11 && enableHypr);
       sha256 = "sha256-VLbFd+3en/Syy48j2IFMitwqP/S0PNxdokLXQLqDLaQ=";
     };
 
-    cargoSha256 = "sha256-P+jjyHqYCU5knCkN/2Ftu230q4/ZlYJFFekEdAfBoMc=";
+    cargoSha256 = "sha256-aN8YMcb+qzqqDmSzIEC9TMmWLKuSeS6PBxqGQ0L2FyA=";
 
     buildFeatures =
       lib.optional enableX11 "x11"
