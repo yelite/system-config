@@ -78,6 +78,8 @@ vim.paste = (function(original)
     end
 end)(vim.paste)
 
+vim.loader.enable()
+
 require("my-config.telescope")
 
 require("hlchunk").setup({
