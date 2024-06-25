@@ -38,6 +38,8 @@
       nvd
 
       python3
+
+      cloudflare-utils
     ]
     ++ (with python3Packages; [
       ipython

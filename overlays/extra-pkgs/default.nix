@@ -8,6 +8,7 @@ final: prev: {
   fcitx5-fluent-dark = final.callPackage ./fcitx5-fluent-dark {};
   rime-dict = final.callPackage ./rime-dict.nix {};
   flake-repl = final.callPackage ./flake-repl {};
+  cloudflare-utils = final.callPackage ./cloudflare-utils.nix {};
 
   flameshot = prev.flameshot.overrideAttrs (old: {
     patches = old.patches ++ [./patches/flameshot.patch];
