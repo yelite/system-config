@@ -437,7 +437,9 @@ vim.api.nvim_create_autocmd("TermOpen", {
     callback = set_terminal_keymaps,
 })
 
-local function set_bullets_keymaps()
+local function enable_text_mode()
+    vim.bo.textwidth = 80
+
     local opts = { buffer = vim.fn.bufnr(), silent = true }
 
     mapkey("<CR>", "i", "<Plug>(bullets-newline)", opts)
@@ -456,11 +458,11 @@ local function set_bullets_keymaps()
     mapkey("<", "v", "<Plug>(bullets-promote)", opts)
 end
 
-vim.api.nvim_create_augroup("MyBulletKeymaps", { clear = true })
+vim.api.nvim_create_augroup("TextMode", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "markdown,text,gitcommit,scratch",
-    group = "MyBulletKeymaps",
-    callback = set_bullets_keymaps,
+    group = "TextMode",
+    callback = enable_text_mode,
 })
 
 return M
