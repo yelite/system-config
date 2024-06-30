@@ -60,6 +60,9 @@ in {
       picard
       rsgain
 
+      gimp-with-plugins
+      gimpPlugins.resynthesizer
+
       kdePackages.dolphin
       kdePackages.qtsvg
       kdePackages.breeze
