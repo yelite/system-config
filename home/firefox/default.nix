@@ -6,7 +6,7 @@
   hostPlatform,
   ...
 }: let
-  addonsPkgs = inputs.firefox-addons.packages.${hostPlatform.system};
+  addonsPkgs = pkgs.callPackage inputs.firefox-addons {};
 in {
   config = lib.mkIf (hostPlatform.isDarwin || config.myHomeConfig.display.enable) {
     programs.firefox = {
@@ -82,7 +82,9 @@ in {
             sponsorblock
             search-by-image
             sidebery
+            tampermonkey
           ];
+
           settings = {
             # Based on https://github.com/xenoxanite/melted.flakes/blob/566ee0a3c4703aba471ee5cc44a2d584f7ba7020/home/programs/firefox/default.nix#L4-L4
 

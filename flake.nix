@@ -88,7 +88,10 @@
     };
     firefox-addons = {
       url = "github:nix-community/nur-combined?dir=repos/rycee/pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # It has to be imported as non-flake and use callPackage from our own nixpkgs to
+      # create derivations from it. Otherwise plugins with unfree license will refuse to 
+      # be evaluated, regardless of the config of our own nixpkgs.
+      flake = false;
     };
   };
 }
