@@ -9,7 +9,7 @@
 in {
   options = {
     myHomeConfig.display = {
-      enable = mkEnableOption "display1";
+      enable = mkEnableOption "display";
       highDPI = mkEnableOption "highDPI";
       displayProfiles = mkOption {
         type = with lib.types; attrsOf (uniq anything);

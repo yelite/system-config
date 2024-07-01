@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
   myConfig = config.myConfig;
@@ -19,8 +20,6 @@ in {
     libvdpau-va-gl
     nftables
   ];
-
-  networking.networkmanager.enable = true;
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -50,7 +49,7 @@ in {
 
   security = {
     rtkit.enable = true;
-    sudo.enable = false;
+    sudo.enable = lib.mkDefault false;
 
     doas = {
       enable = true;
