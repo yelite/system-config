@@ -38,6 +38,7 @@ in {
       age
       gopass
       gopass-jsonapi
+      kitty.terminfo
     ]
     ++ optionals useGUI [
       obsidian
