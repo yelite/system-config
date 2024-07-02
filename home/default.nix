@@ -1,5 +1,6 @@
 {
   imports = [
+    ../options.nix
     ./syncthing
     ./basic.nix
     ./dev.nix
@@ -9,7 +10,6 @@
     ./neovim
     ./dunst
     ./fish
-    ./sway.nix
     ./firefox
   ];
 

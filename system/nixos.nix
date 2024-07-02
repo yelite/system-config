@@ -17,8 +17,6 @@ in {
     git # used for nixos-rebuild
     killall
     cifs-utils
-    libvdpau-va-gl
-    nftables
   ];
 
   i18n = {
@@ -34,13 +32,11 @@ in {
     avahi = {
       enable = true;
       nssmdns4 = true;
-      publish.enable = false;
     };
 
     openssh = {
       enable = true;
       settings = {
-        UseDns = true;
         PasswordAuthentication = false;
         PermitRootLogin = "no";
       };
@@ -48,7 +44,6 @@ in {
   };
 
   security = {
-    rtkit.enable = true;
     sudo.enable = lib.mkDefault false;
 
     doas = {

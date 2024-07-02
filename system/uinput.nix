@@ -2,20 +2,12 @@
   config,
   lib,
   ...
-}: let
-  cfg = config.myConfig.uinput;
-  inherit (lib) mkIf mkEnableOption;
-in {
-  options = {
-    myConfig.uinput.enableGroup = mkEnableOption "keyboardRemap";
-  };
-
-  config =
-    mkIf cfg.enableGroup
-    {
-      users.groups.uinput = {};
-      services.udev.extraRules = ''
-        KERNEL=="uinput", GROUP="uinput", MODE:="0660", OPTIONS+="static_node=uinput"
-      '';
-    };
+}:
+lib.mkIf config.myConfig.uinputGroup.enable
+{
+  users.groups.uinput = {};
+  # Allow group uinput to access /dev/uinput, so that users can emulate input devices
+  services.udev.extraRules = ''
+    KERNEL=="uinput", GROUP="uinput", MODE:="0660", OPTIONS+="static_node=uinput"
+  '';
 }

@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  cfg = config.myHomeConfig.i3;
+  cfg = config.myConfig.i3;
   inherit (lib) types mkIf mkEnableOption mkOption;
   i3lock-run-unwrapped = (pkgs.writeScriptBin "i3lock-run" (builtins.readFile ./i3lock.sh)).overrideAttrs (old: {
     buildCommand = "${old.buildCommand}\n patchShebangs $out";
@@ -15,19 +15,8 @@
     nativeBuildInputs = [pkgs.makeWrapper];
     postBuild = "wrapProgram $out/bin/i3lock-run --prefix PATH : ${pkgs.i3lock-color}/bin";
   };
-in {
-  options = {
-    myHomeConfig.i3 = {
-      enable = mkEnableOption "i3";
-
-      secondaryMonitorName = mkOption {
-        type = types.str;
-        default = "primary";
-      };
-    };
-  };
-
-  config = mkIf cfg.enable {
+in
+  mkIf cfg.enable {
     home.packages = with pkgs; [
       jq
       xidlehook
@@ -165,5 +154,4 @@ in {
         ];
       };
     };
-  };
-}
+  }

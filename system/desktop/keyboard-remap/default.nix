@@ -4,31 +4,26 @@
   lib,
   ...
 }: let
-  cfg = config.myConfig.keyboardRemap;
-  displayCfg = config.myConfig.display;
-  inherit (lib) mkIf mkEnableOption mkMerge;
+  cfg = config.myConfig.desktop.keyboardRemap;
+  desktopCfg = config.myConfig.desktop;
+  inherit (lib) mkIf mkMerge;
   xremap-x11 = pkgs.xremap.override {enableX11 = true;};
   xremap-hypr = pkgs.xremap.override {enableHypr = true;};
 in {
-  options = {
-    myConfig.keyboardRemap = {
-      enable = mkEnableOption "keyboardRemap";
-    };
-  };
-
   config = mkMerge [
     (mkIf cfg.enable {
-      myConfig.uinput.enableGroup = lib.mkForce true;
+      myConfig.uinputGroup.enable = lib.mkForce true;
     })
 
-    (mkIf (cfg.enable && displayCfg.wayland.enable) {
+    (mkIf (cfg.enable && desktopCfg.wayland.enable) {
       users.users.${config.myConfig.username} = {
         # TODO: Can we avoid having uinput group on user? Maybe use socat to proxy hyprland socket?
         extraGroups = ["uinput" "input"];
       };
-      myConfig.hmModules = [
+      home-manager.sharedModules = [
         ({pkgs, ...}: {
-          systemd.user.services.xremap-hypr = mkIf displayCfg.wayland.enable {
+          _file = ./default.nix;
+          systemd.user.services.xremap-hypr = mkIf desktopCfg.wayland.enable {
             Unit = {
               Description = "xremap-hypr";
               PartOf = ["hyprland-session.target"];
@@ -48,7 +43,7 @@ in {
       ];
     })
 
-    (mkIf (cfg.enable && displayCfg.xserver.enable) {
+    (mkIf (cfg.enable && desktopCfg.xserver.enable) {
       users.users.xremap = {
         isSystemUser = true;
         group = "xremap";
@@ -68,9 +63,10 @@ in {
           ];
         }
       ];
-      myConfig.hmModules = [
+      home-manager.sharedModules = [
         ({pkgs, ...}: {
-          systemd.user.services.xremap-x11 = mkIf displayCfg.xserver.enable {
+          _file = ./default.nix;
+          systemd.user.services.xremap-x11 = mkIf desktopCfg.xserver.enable {
             Unit = {
               Description = "xremap-x11";
               PartOf = ["hm-graphical-session.target"];

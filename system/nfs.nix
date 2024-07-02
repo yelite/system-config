@@ -1,8 +1,10 @@
-{pkgs, ...}: {
-  # TODO: Add option for this
+{
+  pkgs,
+  lib,
+  ...
+}: {
   boot.supportedFilesystems = ["nfs"];
   environment.systemPackages = with pkgs; [
     nfs-utils
   ];
-  services.rpcbind.enable = true;
 }

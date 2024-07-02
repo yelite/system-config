@@ -4,30 +4,10 @@
   lib,
   ...
 }: let
-  cfg = config.myHomeConfig.display;
-  inherit (lib) mkIf mkMerge mkEnableOption mkOption;
-in {
-  options = {
-    myHomeConfig.display = {
-      enable = mkEnableOption "display";
-      highDPI = mkEnableOption "highDPI";
-      displayProfiles = mkOption {
-        type = with lib.types; attrsOf (uniq anything);
-        description = "Autorandr profiles specification.";
-        default = {};
-      };
-
-      xserver = {
-        enable = mkEnableOption "xserver";
-      };
-
-      wayland = {
-        enable = mkEnableOption "wayland";
-      };
-    };
-  };
-
-  config = mkMerge [
+  cfg = config.myConfig.desktop;
+  inherit (lib) mkIf mkMerge;
+in
+  mkMerge [
     (mkIf cfg.enable {
       home.pointerCursor = {
         gtk.enable = true;
@@ -191,5 +171,4 @@ in {
           QT_FONT_DPI = "96";
         };
       })
-  ];
-}
+  ]

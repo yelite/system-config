@@ -6,7 +6,7 @@
   ...
 }:
 with lib; let
-  cfg = config.myHomeConfig.neovim;
+  cfg = config.myConfig.neovim;
   sqlite3_lib_path =
     if pkgs.stdenv.isLinux
     then "${pkgs.sqlite.out}/lib/libsqlite3.so"
@@ -53,14 +53,8 @@ with lib; let
       yuck
       vim
     ]);
-in {
-  options = {
-    myHomeConfig.neovim = {
-      enable = mkEnableOption "neovim";
-    };
-  };
-
-  config = mkIf cfg.enable {
+in
+  mkIf cfg.enable {
     home.packages = lib.optionals hostPlatform.isLinux [
       pkgs.neovide
     ];
@@ -218,5 +212,4 @@ in {
     };
 
     xdg.configFile."nvim/lua".source = ./lua;
-  };
-}
+  }

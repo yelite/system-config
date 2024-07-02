@@ -7,8 +7,8 @@
   ...
 }: let
   addonsPkgs = pkgs.callPackage inputs.firefox-addons {};
-in {
-  config = lib.mkIf (hostPlatform.isDarwin || config.myHomeConfig.display.enable) {
+in
+  lib.mkIf (config.myConfig.firefox.enable) {
     programs.firefox = {
       enable = true;
       package =
@@ -238,5 +238,4 @@ in {
         };
       };
     };
-  };
-}
+  }

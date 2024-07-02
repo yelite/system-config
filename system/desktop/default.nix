@@ -4,75 +4,22 @@
   lib,
   ...
 }: let
-  cfg = config.myConfig.display;
-  inherit (lib) mkIf mkEnableOption mkOption mkMerge;
+  cfg = config.myConfig.desktop;
+  inherit (lib) mkIf mkMerge;
 in {
-  options = {
-    myConfig.display = {
-      enable = mkEnableOption "display";
-      highDPI = mkEnableOption "highDPI";
-      displayProfiles = mkOption {
-        type = with lib.types; attrsOf (uniq anything);
-        description = "Autorandr profiles specification.";
-        default = {};
-      };
-
-      xserver = {
-        enable = mkEnableOption "xserver";
-      };
-
-      wayland = {
-        enable = mkEnableOption "wayland";
-      };
-    };
-  };
+  imports = [
+    ./fonts.nix
+    ./keyboard-remap
+    ./logitech
+  ];
 
   config = mkMerge [
     {
       home-manager.sharedModules = [
         ./home.nix
-        {
-          myHomeConfig.display = cfg;
-        }
       ];
     }
     (mkIf cfg.enable {
-      fonts = {
-        packages = with pkgs; [
-          material-design-icons
-          material-symbols
-
-          lexend
-          merriweather
-          source-han-sans
-          source-han-serif
-          source-han-mono
-          noto-fonts
-          noto-fonts-cjk
-          noto-fonts-emoji
-          roboto-mono
-          overpass
-
-          (nerdfonts.override {
-            fonts = ["Hack"];
-          })
-        ];
-
-        enableDefaultPackages = false;
-
-        fontconfig.subpixel = mkIf cfg.highDPI {
-          rgba = "none";
-          lcdfilter = "none";
-        };
-
-        fontconfig.defaultFonts = {
-          serif = ["Noto Serif" "Noto Sans CJK SC" "Noto Sans Symbols" "Noto Color Emoji"];
-          sansSerif = ["Noto Sans" "Noto Sans CJK SC" "Noto Sans Symbols" "Noto Color Emoji"];
-          monospace = ["Hack Nerd Font Mono" "Noto Sans Symbols" "Noto Color Emoji"];
-          emoji = ["Noto Color Emoji"];
-        };
-      };
-
       services = {
         geoclue2.enable = true;
         ddccontrol.enable = true;

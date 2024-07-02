@@ -40,7 +40,7 @@
 
             homeConfigurations = {
               liteye = {
-                myHomeConfig = {
+                myConfig = {
                   neovim.enable = true;
                   fish.enable = true;
                 };

@@ -9,8 +9,8 @@
   useGUI =
     if hostPlatform.isDarwin
     then true
-    else if config ? myHomeConfig.display.enable
-    then config.myHomeConfig.display.enable
+    else if config ? myConfig.desktop.enable
+    then config.myConfig.desktop.enable
     else false;
   isLinuxGUI = hostPlatform.isLinux && useGUI;
 in {
@@ -124,7 +124,7 @@ in {
     };
 
     ssh = {
-      enable = !config.myHomeConfig.isServer;
+      enable = !config.myConfig.isServer;
       includes = ["~/.ssh/config.d/*"];
       addKeysToAgent = "yes";
       matchBlocks = lib.mkMerge [
