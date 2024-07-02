@@ -4,6 +4,7 @@
     ./syncthing
     ./basic.nix
     ./dev.nix
+    ./desktop.nix
     ./neovim
     ./i3
     ./kitty
