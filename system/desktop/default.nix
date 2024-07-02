@@ -13,79 +13,72 @@ in {
     ./logitech
   ];
 
-  config = mkMerge [
-    {
-      home-manager.sharedModules = [
-        ./home.nix
-      ];
-    }
-    (mkIf cfg.enable {
-      services = {
-        geoclue2.enable = true;
-        ddccontrol.enable = true;
+  config = mkIf cfg.enable {
+    services = {
+      geoclue2.enable = true;
+      ddccontrol.enable = true;
 
-        pipewire = {
-          enable = true;
-          wireplumber.enable = true;
-          pulse.enable = true;
-          alsa.enable = true;
-          jack.enable = true;
+      pipewire = {
+        enable = true;
+        wireplumber.enable = true;
+        pulse.enable = true;
+        alsa.enable = true;
+        jack.enable = true;
+      };
+
+      gnome.gnome-keyring = {
+        enable = true;
+      };
+
+      xserver = mkIf cfg.xserver.enable {
+        enable = true;
+        displayManager = {
+          startx.enable = true;
         };
+        wacom.enable = true;
+      };
 
-        gnome.gnome-keyring = {
-          enable = true;
-        };
+      libinput = {
+        enable = true;
+        mouse.accelProfile = "flat";
+        mouse.middleEmulation = false;
+      };
 
-        xserver = mkIf cfg.xserver.enable {
-          enable = true;
-          displayManager = {
-            startx.enable = true;
-          };
-          wacom.enable = true;
-        };
-
-        libinput = {
-          enable = true;
-          mouse.accelProfile = "flat";
-          mouse.middleEmulation = false;
-        };
-
-        greetd = {
-          enable = true;
-          vt = 2; # To avoid kernel logging. See https://github.com/apognu/tuigreet/issues/17
-          settings = {
-            default_session = {
-              command = lib.concatStringsSep " " [
-                "${pkgs.greetd.tuigreet}/bin/tuigreet"
-                "--asterisks"
-                "--remember"
-                ''--cmd "systemd-cat -t i3 startx ~/.xsession-hm"''
-              ];
-            };
+      greetd = {
+        enable = true;
+        vt = 2; # To avoid kernel logging. See https://github.com/apognu/tuigreet/issues/17
+        settings = {
+          default_session = {
+            command = lib.concatStringsSep " " [
+              "${pkgs.greetd.tuigreet}/bin/tuigreet"
+              "--asterisks"
+              "--remember"
+              ''--cmd "systemd-cat -t i3 startx ~/.xsession-hm"''
+            ];
           };
         };
       };
+    };
 
-      programs = {
-        seahorse.enable = true;
-      };
+    programs = {
+      seahorse.enable = true;
+    };
 
-      security.pam.services.greetd.enableGnomeKeyring = true;
+    security.pam.services.greetd.enableGnomeKeyring = true;
 
-      # To avoid kernel logging on greetd tty. See https://github.com/apognu/tuigreet/issues/17
-      boot.kernelParams = ["console=tty1"];
+    # To avoid kernel logging on greetd tty. See https://github.com/apognu/tuigreet/issues/17
+    boot.kernelParams = ["console=tty1"];
 
-      xdg.portal = {
-        enable = true;
-        # This is added based on the warning message from the new xdg portal impl
-        # TODO: figure out how to configure this properly
-        config.common.default = "*";
-      };
+    xdg.portal = {
+      enable = true;
+      # This is added based on the warning message from the new xdg portal impl
+      # TODO: figure out how to configure this properly
+      config.common.default = "*";
+    };
 
-      # TODO: for kde connect, move this to other place
-      programs.kdeconnect = {
-        enable = true;
-      };
-    })
-  ];
+    # TODO: for kde connect, move this to other place
+    programs.kdeconnect = {
+      enable = true;
+    };
+  };
 }
