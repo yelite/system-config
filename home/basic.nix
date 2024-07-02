@@ -124,7 +124,7 @@ in {
     };
 
     ssh = {
-      enable = !config.myConfig.isServer;
+      enable = !config.myConfig.isServer; # always use agent forward on server
       includes = ["~/.ssh/config.d/*"];
       addKeysToAgent = "yes";
       matchBlocks = lib.mkMerge [

@@ -4,8 +4,7 @@
   lib,
   ...
 }: let
-  cfg = config.myConfig.i3;
-  inherit (lib) types mkIf mkEnableOption mkOption;
+  cfg = config.myConfig.desktop.i3;
   i3lock-run-unwrapped = (pkgs.writeScriptBin "i3lock-run" (builtins.readFile ./i3lock.sh)).overrideAttrs (old: {
     buildCommand = "${old.buildCommand}\n patchShebangs $out";
   });
@@ -16,7 +15,7 @@
     postBuild = "wrapProgram $out/bin/i3lock-run --prefix PATH : ${pkgs.i3lock-color}/bin";
   };
 in
-  mkIf cfg.enable {
+  lib.mkIf (cfg.enable && config.myConfig.desktop.enable) {
     home.packages = with pkgs; [
       jq
       xidlehook

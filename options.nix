@@ -3,6 +3,7 @@
   config,
   ...
 }: let
+  cfg = config.myConfig;
   inherit (lib) mkEnableOption mkOption types;
 in {
   options.myConfig = {
@@ -32,6 +33,15 @@ in {
         };
       };
 
+      i3 = {
+        enable = mkEnableOption "i3";
+
+        secondaryMonitorName = mkOption {
+          type = types.str;
+          default = "primary";
+        };
+      };
+
       wayland = {
         enable = mkEnableOption "wayland";
       };
@@ -45,23 +55,32 @@ in {
       };
     };
 
-    nfs-client.enable = lib.mkEnableOption "Enable NFS client support";
+    dunst.enable = mkEnableOption "dunst" // {default = cfg.desktop.enable;};
+    firefox.enable = mkEnableOption "firefox";
+    fish.enable = mkEnableOption "fish";
+    kitty.enable = mkEnableOption "kitty";
+    neovim.enable = mkEnableOption "neovim";
+    nfs-client.enable = mkEnableOption "Enable NFS client support";
     nvfancontrol.enable = mkEnableOption "nvfancontrol";
     syncthing.enable = mkEnableOption "syncthing";
-    neovim.enable = mkEnableOption "neovim";
-    kitty.enable = mkEnableOption "kitty";
-    fish.enable = mkEnableOption "fish";
-    firefox.enable = mkEnableOption "firefox";
-    dunst.enable = mkEnableOption "dunst";
-    i3 = {
-      enable = mkEnableOption "i3";
-
-      secondaryMonitorName = mkOption {
-        type = types.str;
-        default = "primary";
-      };
-    };
 
     uinputGroup.enable = mkEnableOption "uinput group";
+  };
+
+  config = {
+    assertions = let
+      onlyOnDesktop = name: {
+        assertion = !cfg.${name}.enable || cfg.desktop.enable;
+        message = "${name} can only be enabled if desktop is enabled.";
+      };
+    in [
+      {
+        assertion = !(cfg.isServer && cfg.desktop.enable);
+        message = "isServer and desktop.enable cannot be both true.";
+      }
+      (onlyOnDesktop "kitty")
+      (onlyOnDesktop "firefox")
+      (onlyOnDesktop "dunst")
+    ];
   };
 }
