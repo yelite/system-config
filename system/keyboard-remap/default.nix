@@ -26,7 +26,7 @@ in {
         # TODO: Can we avoid having uinput group on user? Maybe use socat to proxy hyprland socket?
         extraGroups = ["uinput" "input"];
       };
-      myConfig.homeManagerModules = [
+      myConfig.hmModules = [
         ({pkgs, ...}: {
           systemd.user.services.xremap-hypr = mkIf displayCfg.wayland.enable {
             Unit = {
@@ -68,7 +68,7 @@ in {
           ];
         }
       ];
-      myConfig.homeManagerModules = [
+      myConfig.hmModules = [
         ({pkgs, ...}: {
           systemd.user.services.xremap-x11 = mkIf displayCfg.xserver.enable {
             Unit = {

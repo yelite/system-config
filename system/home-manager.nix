@@ -11,9 +11,9 @@ in {
       type = types.str;
       default = "liteye";
     };
-    homeManagerConfig = mkOption {
+    home = mkOption {
       type = mkOptionType {
-        name = "homeManagerConfig";
+        name = "home";
         inherit (types.submodule {}) check;
         merge = lib.options.mergeOneOption;
         description = "My Home Manager Config";
@@ -21,7 +21,7 @@ in {
       default = {};
     };
     # Type is copied from https://github.com/nix-community/home-manager/pull/2396
-    homeManagerModules = mkOption {
+    hmModules = mkOption {
       type = with types;
         listOf (mkOptionType {
           name = "submodule";
@@ -37,10 +37,10 @@ in {
     home-manager = {
       users.${cfg.username} = {};
       sharedModules =
-        cfg.homeManagerModules
+        cfg.hmModules
         ++ [
           {
-            myHomeConfig = cfg.homeManagerConfig;
+            myHomeConfig = cfg.home;
           }
         ];
     };

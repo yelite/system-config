@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  myConfig = config.myConfig;
+  inherit (config) myConfig;
 in {
   console = {
     earlySetup = true;

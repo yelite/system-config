@@ -1,7 +1,5 @@
-{config, ...}: let
-  myConfig = config.myConfig;
-in {
-  myConfig.homeManagerConfig = {
+{
+  myConfig.home = {
     neovim.enable = true;
     kitty.enable = true;
     fish.enable = true;

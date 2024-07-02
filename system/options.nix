@@ -10,7 +10,7 @@ in {
   };
 
   config = {
-    myConfig.homeManagerModules = [
+    home-manager.sharedModules = [
       {
         options.myHomeConfig.isServer = mkEnableOption "isServer";
         config.myHomeConfig.isServer = lib.mkDefault config.myConfig.isServer;

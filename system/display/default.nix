@@ -29,12 +29,10 @@ in {
 
   config = mkMerge [
     {
-      myConfig.homeManagerModules = [
+      home-manager.sharedModules = [
+        ./home.nix
         {
-          imports = [./home.nix];
-          config = {
-            myHomeConfig.display = cfg;
-          };
+          myHomeConfig.display = cfg;
         }
       ];
     }
