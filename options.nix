@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  hostPlatform,
   ...
 }: let
   cfg = config.myConfig;
@@ -70,8 +71,8 @@ in {
   config = {
     assertions = let
       onlyOnDesktop = name: {
-        assertion = !cfg.${name}.enable || cfg.desktop.enable;
-        message = "${name} can only be enabled if desktop is enabled.";
+        assertion = !cfg.${name}.enable || (cfg.desktop.enable || hostPlatform.isDarwin);
+        message = "${name} can only be enabled if desktop is enabled or it's on MacOS.";
       };
     in [
       {

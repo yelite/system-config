@@ -7,7 +7,7 @@
 }:
 stdenv.mkDerivation {
   pname = "firefox-devedition-bin";
-  version = "124.0b9";
+  version = "128.0b4";
 
   src = fetchurl {
     url = "https://archive.mozilla.org/pub/devedition/releases/128.0b4/mac/en-US/Firefox%20128.0b4.dmg";
@@ -30,7 +30,5 @@ stdenv.mkDerivation {
     license = licenses.mpl20;
     sourceProvenance = with sourceTypes; [binaryNativeCode];
     platforms = ["x86_64-darwin" "aarch64-darwin"];
-    hydraPlatforms = [];
-    maintainers = with maintainers; [taku0 lovesegfault];
   };
 }
