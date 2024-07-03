@@ -129,6 +129,7 @@ in {
       luasnip
       copilot-lua
       copilot-cmp
+      copilot-status-nvim
       lspkind-nvim
       lsp_signature-nvim
 

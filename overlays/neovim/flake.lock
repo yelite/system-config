@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "copilot-status-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1704580084,
+        "narHash": "sha256-jJqbMuTjTN2n7s2iXAoxJDKiRCFkBdpJEHap5KphKbM=",
+        "owner": "jonahgoldwastaken",
+        "repo": "copilot-status.nvim",
+        "rev": "decbffa57732f3d257641aea1d5541dd4fe536f6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jonahgoldwastaken",
+        "repo": "copilot-status.nvim",
+        "type": "github"
+      }
+    },
     "gitlinker-nvim": {
       "flake": false,
       "locked": {
@@ -130,6 +146,7 @@
     "root": {
       "inputs": {
         "autosave": "autosave",
+        "copilot-status-nvim": "copilot-status-nvim",
         "gitlinker-nvim": "gitlinker-nvim",
         "hlchunk-nvim": "hlchunk-nvim",
         "hop-extensions": "hop-extensions",

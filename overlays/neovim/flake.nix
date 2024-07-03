@@ -50,5 +50,9 @@
       url = "github:shellRaining/hlchunk.nvim";
       flake = false;
     };
+    copilot-status-nvim = {
+      url = "github:jonahgoldwastaken/copilot-status.nvim";
+      flake = false;
+    };
   };
 }

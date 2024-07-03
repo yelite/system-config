@@ -3,7 +3,7 @@ local Rule = require("nvim-autopairs.rule")
 local cond = require("nvim-autopairs.conds")
 local ts_cond = require("nvim-autopairs.ts-conds")
 
-local function setup()
+local function setup_auto_pair()
     if npairs.config ~= nil then
         npairs.clear_rules()
     end
@@ -28,4 +28,4 @@ local function setup()
     })
 end
 
-setup()
+setup_auto_pair()

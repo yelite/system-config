@@ -3,6 +3,7 @@ local cmp_types = require("cmp.types")
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 local luasnip_types = require("luasnip.util.types")
+local util = require("my-config.util")
 
 luasnip.config.set_config({
     ext_opts = {
@@ -56,6 +57,17 @@ local regular_mapping = cmp.mapping.preset.insert({
     ["<C-u>"] = {
         i = cmp.mapping.scroll_docs(4),
     },
+    ["<C-i>"] = {
+        i = function(fallback)
+            if cmp.visible() then
+                util.toggle_copilot_suppression()
+                -- Refresh candidates
+                cmp.complete()
+            else
+                fallback()
+            end
+        end,
+    },
     ["<C-f>"] = cmp.mapping(function(fallback)
         -- Confirm if this is the end of line, otherwise abort completion and fallback
         local _, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -84,14 +96,14 @@ local regular_mapping = cmp.mapping.preset.insert({
     ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.confirm({ select = true }) then
             return
-        elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
+        elseif luasnip.locally_jumpable(1) then
+            luasnip.jump(1)
         else
             fallback()
         end
     end, { "i", "s" }),
     ["<S-Tab>"] = cmp.mapping(function(fallback)
-        if luasnip.jumpable(-1) then
+        if luasnip.locally_jumpable(-1) then
             luasnip.jump(-1)
         else
             fallback()
@@ -105,7 +117,7 @@ cmp.setup({
     enabled = function()
         local disabled = false
         local context = require("cmp.config.context")
-        disabled = disabled or (vim.api.nvim_buf_get_option(0, "buftype") == "prompt")
+        disabled = disabled or (vim.api.nvim_get_option_value("buftype", { buf = 0 }) == "prompt")
         disabled = disabled or (vim.fn.reg_recording() ~= "")
         disabled = disabled or (vim.fn.reg_executing() ~= "")
         disabled = disabled or (context.in_treesitter_capture("comment"))
@@ -125,13 +137,15 @@ cmp.setup({
     },
     mapping = regular_mapping,
     sources = cmp.config.sources({
-        { name = "copilot", group_index = 2 },
+        { name = "copilot" },
         { name = "nvim_lsp" },
         { name = "luasnip", max_item_count = 5 },
         buffer_source,
         { name = "path", keyword_length = 2 },
     }),
     formatting = {
+        expandable_indicator = true,
+        fields = { "abbr", "kind", "menu" },
         format = lspkind.cmp_format({
             mode = "symbol_text",
             maxwidth = 60,
@@ -141,6 +155,7 @@ cmp.setup({
                 nvim_lsp = "[LSP]",
                 luasnip = "[LuaSnip]",
                 nvim_lua = "[Lua]",
+                copilot = "[AI]",
             },
             before = function(entry, vim_item)
                 return vim_item

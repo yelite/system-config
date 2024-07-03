@@ -1,4 +1,7 @@
 local async = require("plenary.async")
+local copilot_client = require("copilot.client")
+local copilot_command = require("copilot.command")
+local lualine = require("lualine")
 
 local M = {}
 
@@ -37,5 +40,28 @@ function M.open_float_window()
 end
 
 vim.api.nvim_create_user_command("OpenFloat", M.open_float_window, { desc = "Open a float window" })
+
+local copilot_suppressed = false
+
+M.is_copilot_suppressed = function()
+    return copilot_suppressed
+end
+
+M.toggle_copilot_suppression = function()
+    if copilot_client.buf_is_attached(0) then
+        copilot_command.detach()
+        copilot_suppressed = true
+    elseif copilot_suppressed then
+        copilot_command.attach()
+        copilot_suppressed = false
+    else
+        print("Tried to toggle copilot suppression without copilot attached. No action taken.")
+    end
+
+    lualine.refresh({
+        place = { "statusline" },
+        tirgger = "copilot_suppression",
+    })
+end
 
 return M
