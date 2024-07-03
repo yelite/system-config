@@ -120,12 +120,15 @@ local code_keymap = {
 -- s -> search
 local search_keymap = {
     name = "search",
-    s = { "viw:lua require('spectre').open_file_search()<CR>", "Search Current Symbol" },
-    S = { "<cmd>lua require('spectre').open()<CR>", "Search" },
-    f = { "<cmd>Telescope live_grep_args<cr>", "Search Text" },
+    r = { "<cmd>lua require('spectre').open()<CR>", "Search and replace" },
+    R = { "viw:lua require('spectre').open_file_search()<CR>", "Search and replace current symbol" },
+    f = {
+        [[<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>]],
+        "Search",
+    },
     F = {
-        [[<cmd>lua require('telescope.builtin').live_grep({cwd="%:p:h", results_title=vim.fn.fnamemodify(vim.fn.expand("%:h"), ":~:.")})<cr>]],
-        "Search Text in Current File Directory",
+        [[<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args({cwd="%:p:h", results_title=vim.fn.fnamemodify(vim.fn.expand("%:h"), ":~:.")})<cr>]],
+        "Search in the directory of current file",
     },
     h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymap" },
@@ -203,11 +206,11 @@ wk.register({
     v = vcs_keymap,
     w = window_keymap,
     ["j"] = { require("my-config.telescope").git_changed_files, "Changed Files in Git Branch" },
-    ["J"] = code_keymap.E, -- Find folder
+    ["J"] = search_keymap.S, -- Search in the current directory
     ["k"] = { require("my-config.telescope").quick_find_files, "Quick Find Files" },
     ["K"] = file_keymap.e, -- Start broswer in the same directory
     ["l"] = code_keymap.s, -- Workspace Symbols
-    ["L"] = code_keymap.S, -- Doc Symbols
+    ["L"] = file_keymap.E, -- Open file browser in folder mode
     ["x"] = { "<cmd>Telescope commands<cr>", "Commands" },
     ["."] = session_keymap.t, -- Resume last telescope picker
     [">"] = session_keymap.T, -- View cached telescope pickers

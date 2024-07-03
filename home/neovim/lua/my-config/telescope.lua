@@ -9,6 +9,8 @@ local make_entry = require("telescope.make_entry")
 local pickers = require("telescope.pickers")
 local sorters = require("telescope.sorters")
 local finders = require("telescope.finders")
+local lga_actions = require("telescope-live-grep-args.actions")
+local fb_actions = require("telescope._extensions.file_browser.actions")
 
 local my_util = require("my-config.util")
 local my_settings = require("my-config.settings")
@@ -37,7 +39,6 @@ M.git_changed_files = my_util.make_async_func(function()
 end)
 
 function M.quick_find_files()
-    -- require("telescope.builtin").find_files(ts_themes.get_dropdown({ previewer = false }))
     require("telescope").extensions.smart_open.smart_open(ts_themes.get_dropdown({
         cwd_only = true,
         previewer = false,
@@ -51,12 +52,9 @@ local function delete_buffer(prompt_bufnr)
     end)
 end
 
--- TODO: remove this once nvim-telescope/telescope.nvim#1473 is merged
--- Snippet copied from https://github.com/nvim-telescope/telescope-file-browser.nvim/pull/6
-local function fb_action(f)
-    return function(b)
-        require("telescope").extensions.file_browser.actions[f](b)
-    end
+local toggle_fb_hidden = function(prompt_bufnr)
+    fb_actions.toggle_hidden(prompt_bufnr)
+    fb_actions.toggle_respect_gitignore(prompt_bufnr)
 end
 
 require("telescope").setup({
@@ -123,8 +121,19 @@ require("telescope").setup({
         },
     },
     extensions = {
+        live_grep_args = {
+            auto_quoting = true,
+            mappings = {
+                i = {
+                    ["<C-k>"] = lga_actions.quote_prompt(),
+                    ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+                    ["<C-space>"] = ts_actions.to_fuzzy_refine,
+                },
+            },
+        },
         file_browser = {
             display_stat = { size = true },
+            hijack_netrw = true,
             hide_parent_dir = true,
             mappings = {
                 i = {
@@ -134,20 +143,21 @@ require("telescope").setup({
                         keybind_width = 12,
                         max_height = 0.5,
                     }),
-                    ["<S-CR>"] = fb_action("create_from_prompt"),
-                    ["<C-g>"] = fb_action("goto_parent_dir"),
+                    ["<S-CR>"] = fb_actions.create_from_prompt,
+                    ["<C-g>"] = fb_actions.goto_parent_dir,
                     ["<C-w>"] = false,
                     ["<C-w><Esc>"] = false,
-                    ["<C-w><C-d>"] = fb_action("remove"),
-                    ["<C-w><C-n>"] = fb_action("create"),
-                    ["<C-w><C-r>"] = fb_action("rename"),
-                    ["<C-w><C-p>"] = fb_action("copy"),
-                    ["<C-w><C-m>"] = fb_action("move"),
-                    ["<C-w><C-f>"] = fb_action("toggle_browser"),
-                    ["<C-w><C-t>"] = fb_action("toggle_hidden"),
-                    ["<C-w><C-w>"] = fb_action("goto_cwd"),
-                    ["<C-w><C-s>d"] = fb_action("sort_by_size"),
-                    ["<C-w><C-s>s"] = fb_action("sort_by_date"),
+                    ["<C-w><C-d>"] = fb_actions.remove,
+                    ["<C-w><C-n>"] = fb_actions.create,
+                    ["<C-w><C-r>"] = fb_actions.rename,
+                    ["<C-w><C-p>"] = fb_actions.copy,
+                    ["<C-w><C-m>"] = fb_actions.move,
+                    ["<C-w><C-f>"] = fb_actions.toggle_browser,
+                    ["<C-w><C-t>"] = toggle_fb_hidden,
+                    ["<C-w><C-w>"] = fb_actions.goto_cwd,
+                    ["<C-w><C-a>"] = fb_actions.toggle_all,
+                    ["<C-w><C-s>d"] = fb_actions.sort_by_size,
+                    ["<C-w><C-s>s"] = fb_actions.sort_by_date,
                 },
             },
         },
