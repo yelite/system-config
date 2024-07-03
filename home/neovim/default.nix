@@ -70,7 +70,6 @@ in {
 
       my-treesitter
       nvim-treesitter-textobjects
-      playground # treesitter-playground
 
       gbprod-nord
       nvim-web-devicons
@@ -150,9 +149,9 @@ in {
 
     extraConfig = ''
       lua << END🤞
-        vim.g._my_config_script_folder = "${./scripts}"
-        vim.g._friendly_snippets_path = "${pkgs.vimPlugins.friendly-snippets}"
-        require "my-config"
+      vim.g._my_config_script_folder = "${./scripts}"
+      vim.g._friendly_snippets_path = "${pkgs.vimPlugins.friendly-snippets}"
+      require "my-config"
       END🤞
     '';
 
@@ -211,4 +210,5 @@ in {
   };
 
   xdg.configFile."nvim/lua".source = ./lua;
+  xdg.configFile."nvim/after/queries".source = ./queries;
 })
