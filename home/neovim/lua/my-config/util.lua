@@ -48,14 +48,14 @@ M.is_copilot_suppressed = function()
 end
 
 M.toggle_copilot_suppression = function()
-    if copilot_client.buf_is_attached(0) then
-        copilot_command.detach()
+    if not copilot_client.is_disabled() then
+        copilot_command.disable()
         copilot_suppressed = true
     elseif copilot_suppressed then
-        copilot_command.attach()
+        copilot_command.enable()
         copilot_suppressed = false
     else
-        print("Tried to toggle copilot suppression without copilot attached. No action taken.")
+        print("Tried to toggle copilot suppression without copilot enabled. No action taken.")
     end
 
     lualine.refresh({
