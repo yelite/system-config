@@ -208,7 +208,7 @@ wk.register({
     v = vcs_keymap,
     w = window_keymap,
     ["j"] = { require("my-config.telescope").git_changed_files, "Changed Files in Git Branch" },
-    ["J"] = search_keymap.S, -- Search in the current directory
+    ["J"] = search_keymap.F, -- Search in the current directory
     ["k"] = { require("my-config.telescope").quick_find_files, "Quick Find Files" },
     ["K"] = file_keymap.e, -- Start broswer in the same directory
     ["l"] = code_keymap.s, -- Workspace Symbols
