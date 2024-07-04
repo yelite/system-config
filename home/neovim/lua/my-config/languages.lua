@@ -277,5 +277,13 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.bo.shiftwidth = 2
     end,
 })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "nix" },
+    group = "MyIndent",
+    callback = function()
+        require("my-config.nix-indent")
+        vim.bo.indentexpr = "GetNixIndent()"
+    end,
+})
 
 return M
