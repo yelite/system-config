@@ -3,6 +3,7 @@ local lspsaga = require("lspsaga")
 local lsp_signature = require("lsp_signature")
 local rust_tools = require("rust-tools")
 local keymap = require("my-config.keymap")
+local util = require("my-config.util")
 
 local M = {}
 
@@ -58,11 +59,13 @@ lspsaga.setup({
 
 require("fidget").setup({})
 
-require("copilot").setup({
-    suggestion = { enabled = false },
-    panel = { enabled = true, auto_refresh = true },
-})
-require("copilot_cmp").setup()
+if util.is_copilot_installed() then
+    require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = true, auto_refresh = true },
+    })
+    require("copilot_cmp").setup()
+end
 
 rust_tools.setup({
     tools = {

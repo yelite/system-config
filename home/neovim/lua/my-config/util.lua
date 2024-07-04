@@ -1,6 +1,4 @@
 local async = require("plenary.async")
-local copilot_client = require("copilot.client")
-local copilot_command = require("copilot.command")
 local lualine = require("lualine")
 
 local M = {}
@@ -43,11 +41,23 @@ vim.api.nvim_create_user_command("OpenFloat", M.open_float_window, { desc = "Ope
 
 local copilot_suppressed = false
 
+M.is_copilot_installed = function()
+    return vim.g._copilot_enabled
+end
+
 M.is_copilot_suppressed = function()
     return copilot_suppressed
 end
 
 M.toggle_copilot_suppression = function()
+    if not M.is_copilot_installed() then
+        print("Tried to toggle copilot suppression without copilot installed. No action taken.")
+        return
+    end
+
+    local copilot_client = require("copilot.client")
+    local copilot_command = require("copilot.command")
+
     if not copilot_client.is_disabled() then
         copilot_command.disable()
         copilot_suppressed = true

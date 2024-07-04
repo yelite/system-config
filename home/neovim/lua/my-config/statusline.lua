@@ -1,5 +1,4 @@
 local navic = require("nvim-navic")
-local copilot_status = require("copilot_status")
 local terms = require("toggleterm.terminal")
 local nord_colors = require("nord.colors").palette
 local util = require("my-config.util")
@@ -41,15 +40,17 @@ navic.setup({
     depth_limit = 5,
 })
 
-require("copilot_status").setup({
-    icons = {
-        idle = " ",
-        error = " ",
-        offline = "",
-        warning = " ",
-        loading = " ",
-    },
-})
+if util.is_copilot_installed() then
+    require("copilot_status").setup({
+        icons = {
+            idle = " ",
+            error = " ",
+            offline = "",
+            warning = " ",
+            loading = " ",
+        },
+    })
+end
 
 -- Pad the mode string so that switching between common
 -- modes will not cause width change in mode component
@@ -76,10 +77,14 @@ local diff_component = {
 }
 
 local function get_copilot_status()
+    if not util.is_copilot_installed() then
+        return ""
+    end
+
     if util.is_copilot_suppressed() then
         return " "
     end
-    return copilot_status.status_string()
+    return require("copilot_status").status_string()
 end
 
 require("lualine").setup({

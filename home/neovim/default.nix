@@ -64,93 +64,97 @@ in {
   programs.neovim = {
     enable = true;
 
-    plugins = with pkgs.vimPlugins; [
-      plenary-nvim
-      popup-nvim
+    plugins = with pkgs.vimPlugins;
+      [
+        plenary-nvim
+        popup-nvim
 
-      my-treesitter
-      nvim-treesitter-textobjects
+        my-treesitter
+        nvim-treesitter-textobjects
 
-      gbprod-nord
-      nvim-web-devicons
-      pets-nvim
-      hologram-nvim # dependency of pets-nvim
-      nui-nvim # dependency of pets-nvim
-      dressing-nvim
-      hlchunk-nvim
-      gitsigns-nvim
-      bufdelete-nvim
-      gitlinker-nvim
+        gbprod-nord
+        nvim-web-devicons
+        pets-nvim
+        hologram-nvim # dependency of pets-nvim
+        nui-nvim # dependency of pets-nvim
+        dressing-nvim
+        hlchunk-nvim
+        gitsigns-nvim
+        bufdelete-nvim
+        gitlinker-nvim
 
-      leap-nvim
-      flash-nvim
-      hop-nvim
-      hop-extensions
-      nvim-autopairs
-      vim-repeat
-      vim-surround
-      vim-subversive
-      vim-textobj-entire
-      nvim-spectre
-      bullets-vim
+        leap-nvim
+        flash-nvim
+        hop-nvim
+        hop-extensions
+        nvim-autopairs
+        vim-repeat
+        vim-surround
+        vim-subversive
+        vim-textobj-entire
+        nvim-spectre
+        bullets-vim
 
-      lualine-nvim
-      nvim-navic
-      telescope-nvim
-      telescope-fzf-native-nvim
-      telescope-file-browser-nvim
-      telescope-live-grep-args-nvim
-      telescope-alternate
-      toggleterm-nvim
-      which-key-nvim
-      smart-open-nvim
+        lualine-nvim
+        nvim-navic
+        telescope-nvim
+        telescope-fzf-native-nvim
+        telescope-file-browser-nvim
+        telescope-live-grep-args-nvim
+        telescope-alternate
+        toggleterm-nvim
+        which-key-nvim
+        smart-open-nvim
 
-      autosave
-      possession-nvim
-      nvim-neoclip-lua
+        autosave
+        possession-nvim
+        nvim-neoclip-lua
 
-      zen-mode-nvim
-      glow-nvim
-      obsidian-nvim
+        zen-mode-nvim
+        glow-nvim
+        obsidian-nvim
 
-      nvim-lspconfig
-      fidget-nvim
-      lspsaga-nvim
-      trouble-nvim
-      aerial-nvim
-      nvim-dap
-      nvim-cmp
-      cmp-buffer
-      cmp-nvim-lsp
-      cmp-path
-      cmp-cmdline
-      cmp_luasnip
-      luasnip
-      copilot-lua
-      copilot-cmp
-      copilot-status-nvim
-      lspkind-nvim
-      lsp_signature-nvim
+        nvim-lspconfig
+        fidget-nvim
+        lspsaga-nvim
+        trouble-nvim
+        aerial-nvim
+        nvim-dap
+        nvim-cmp
+        cmp-buffer
+        cmp-nvim-lsp
+        cmp-path
+        cmp-cmdline
+        cmp_luasnip
+        luasnip
+        lspkind-nvim
+        lsp_signature-nvim
 
-      todo-comments-nvim
-      comment-nvim
-      null-ls-nvim
-      lazydev-nvim
-      rust-tools-nvim
-      clangd_extensions-nvim
-      go-nvim
-      SchemaStore-nvim
+        todo-comments-nvim
+        comment-nvim
+        null-ls-nvim
+        lazydev-nvim
+        rust-tools-nvim
+        clangd_extensions-nvim
+        go-nvim
+        SchemaStore-nvim
 
-      {
-        plugin = sqlite-lua;
-        config = "let g:sqlite_clib_path = '${sqlite3_lib_path}'";
-      }
-    ];
+        {
+          plugin = sqlite-lua;
+          config = "let g:sqlite_clib_path = '${sqlite3_lib_path}'";
+        }
+      ]
+      ++ lib.optionals config.myConfig.neovim.copilot.enable [
+        copilot-lua
+        copilot-cmp
+        copilot-status-nvim
+      ];
 
     extraConfig = ''
       lua << END🤞
       vim.g._my_config_script_folder = "${./scripts}"
       vim.g._friendly_snippets_path = "${pkgs.vimPlugins.friendly-snippets}"
+      vim.g._copilot_enabled = ${lib.boolToString config.myConfig.neovim.copilot.enable}
       require "my-config"
       END🤞
     '';
