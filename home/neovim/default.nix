@@ -210,5 +210,4 @@ in {
   };
 
   xdg.configFile."nvim/lua".source = ./lua;
-  xdg.configFile."nvim/after/queries".source = ./queries;
 })
