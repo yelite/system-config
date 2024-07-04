@@ -43,6 +43,14 @@ local buffer_source = {
     },
 }
 
+local copilot_comparator = function()
+    return nil
+end
+
+if util.is_copilot_installed() then
+    copilot_comparator = require("copilot_cmp.comparators").prioritize
+end
+
 local regular_mapping = cmp.mapping.preset.insert({
     -- TODO: reverse C-n/C-p when menu is reversed due to near_cursor
     ["<C-n>"] = {
@@ -168,7 +176,7 @@ cmp.setup({
         comparators = {
             cmp.config.compare.offset,
             cmp.config.compare.exact,
-            require("copilot_cmp.comparators").prioritize,
+            copilot_comparator,
             cmp.config.compare.kind,
             cmp.config.compare.score,
             cmp.config.compare.recently_used,
