@@ -25,6 +25,17 @@ in {
       SUBSYSTEM=="hidraw", ATTRS{idVendor}=="046d", MODE="0660", GROUP="logiops"
     '';
 
+    services.dbus.packages = [
+      # For some reason this dbus config is needed to be part of services.dbus.packages
+      # Otherwise logiops won't work in non-root user.
+      (pkgs.writeTextFile
+        {
+          name = "logiops-dbus-conf";
+          destination = "/share/dbus-1/system.d/pizza.pixl.LogiOps.conf";
+          text = builtins.readFile ./logiops-dbus.conf;
+        })
+    ];
+
     systemd.services.logiops = {
       description = "Logitech Configuration Daemon";
       serviceConfig = {
