@@ -64,6 +64,7 @@ require("telescope").setup({
                 ["<esc>"] = ts_actions.close,
                 ["<C-s>"] = ts_layout_actions.toggle_preview,
                 ["<C-t>"] = trouble.open,
+                ["<C-f>"] = { "<Right>", type = "command" },
                 ["<C-h>"] = "which_key",
                 ["<C-/>"] = "which_key",
                 -- TODO: smart open in opposite window
