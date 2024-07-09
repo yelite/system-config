@@ -2,59 +2,60 @@
   description = "Config for my computers";
 
   outputs = inputs @ {flake-parts, ...}:
-    flake-parts.lib.mkFlake {inherit inputs;} ({
-      inputs,
-      flake-parts-lib,
-      ...
-    }: let
-      module = {
-        imports = [
-          inputs.lite-config.flakeModules.default
-        ];
+    flake-parts.lib.mkFlake {inherit inputs;} (
+      {
+        inputs,
+        flake-parts-lib,
+        ...
+      }: let
+        module = {
+          imports = [
+            inputs.lite-config.flakeModules.default
+          ];
 
-        config = {
-          flake.flakeModule = module;
+          config = {
+            flake.flakeModule = module;
 
-          lite-config = {
-            nixpkgs = {
-              config = {
-                allowUnfree = true;
+            lite-config = {
+              nixpkgs = {
+                config = {
+                  allowUnfree = true;
+                };
+                overlays = [
+                  inputs.fenix.overlays.default
+                  (inputs.get-flake ./overlays/neovim).overlay
+                  (inputs.get-flake ./overlays/fish).overlay
+                  (import ./overlays/extra-pkgs)
+                ];
               };
-              overlays = [
-                inputs.fenix.overlays.default
-                (inputs.get-flake ./overlays/neovim).overlay
-                (inputs.get-flake ./overlays/fish).overlay
-                (import ./overlays/extra-pkgs)
-              ];
-            };
 
-            systemModules = [./system];
-            homeModules = [./home];
+              systemModules = [./system];
+              homeModules = [./home];
 
-            hosts = {
-              liteye-mbp = {
-                system = "aarch64-darwin";
-                hostModule = ./hosts/lite-meta-macbook;
+              hosts = {
+                liteye-mbp = {
+                  system = "aarch64-darwin";
+                  hostModule = ./hosts/lite-meta-macbook;
+                };
               };
-            };
 
-            homeConfigurations = {
-              liteye = {
-                myConfig = {
-                  neovim.enable = true;
-                  fish.enable = true;
+              homeConfigurations = {
+                liteye = {
+                  myConfig = {
+                    neovim.enable = true;
+                    fish.enable = true;
+                  };
                 };
               };
             };
-          };
 
-          perSystem = {pkgs, ...}: {
-            formatter = pkgs.alejandra;
+            perSystem = {pkgs, ...}: {
+              formatter = pkgs.alejandra;
+            };
           };
         };
-      };
-    in
-      module);
+      in {imports = [module ./shell.nix];}
+    );
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
@@ -89,7 +90,7 @@
     firefox-addons = {
       url = "github:nix-community/nur-combined?dir=repos/rycee/pkgs/firefox-addons";
       # It has to be imported as non-flake and use callPackage from our own nixpkgs to
-      # create derivations from it. Otherwise plugins with unfree license will refuse to 
+      # create derivations from it. Otherwise plugins with unfree license will refuse to
       # be evaluated, regardless of the config of our own nixpkgs.
       flake = false;
     };
