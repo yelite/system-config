@@ -47,6 +47,11 @@ in {
       # TODO: revisit this: supersonic cannot be built on x86 mac
       supersonic
     ]
+    ++ optionals hostPlatform.isLinux [
+      lm_sensors
+      smartmontools
+      usbutils
+    ]
     ++ optionals isLinuxGUI [
       zeal
       libsForQt5.okular
