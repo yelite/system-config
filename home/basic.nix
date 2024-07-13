@@ -51,6 +51,8 @@ in {
       lm_sensors
       smartmontools
       usbutils
+      dnsutils
+      lsof
     ]
     ++ optionals isLinuxGUI [
       zeal
