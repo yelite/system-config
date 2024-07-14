@@ -37,9 +37,12 @@ end
 
 local buffer_source = {
     name = "buffer",
-    keyword_length = 2,
+    keyword_length = 4,
     option = {
-        get_bufnrs = get_visible_buffers,
+        get_bufnrs = function()
+            return vim.api.nvim_list_bufs()
+        end,
+        max_indexed_line_length = 1024 * 5,
     },
 }
 
