@@ -47,5 +47,14 @@ in {
       };
       wantedBy = ["graphical.target"];
     };
+
+    # Device will use the default config if logiops isn't restarted after sleeping
+    # https://github.com/PixlOne/logiops/issues/129
+    environment.etc."systemd/system-sleep/restart-logiops.sh".source = pkgs.writeShellScript "restart-logiops.sh" ''
+      if [ "$1" = "post" ]; then
+        echo "Restarting logiops service after wake up"
+        systemctl restart logiops.service
+      fi
+    '';
   };
 }
