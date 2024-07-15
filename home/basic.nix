@@ -139,10 +139,6 @@ in {
           "*" = {
             identityFile = "~/.ssh/id_ed25519";
           };
-          "crater" = {
-            host = "crater.home";
-            forwardAgent = true;
-          };
         }
         (
           lib.mkIf hostPlatform.isDarwin
