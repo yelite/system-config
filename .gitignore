@@ -2,3 +2,5 @@
 result
 outputs
 node_modules
+
+.direnv/
