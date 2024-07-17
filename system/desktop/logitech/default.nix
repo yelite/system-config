@@ -54,6 +54,8 @@ in {
       if [ "$1" = "post" ]; then
         echo "Restarting logiops service after wake up"
         systemctl restart logiops.service
+      else
+        echo "Not restarting logiops service. Received args: " $@
       fi
     '';
   };
