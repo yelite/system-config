@@ -37,6 +37,8 @@ in {
 
       age
       gopass
+      rbw
+      pinentry-qt
       kitty.terminfo
     ]
     ++ optionals useGUI [

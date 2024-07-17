@@ -83,6 +83,7 @@ in
             search-by-image
             sidebery
             tampermonkey
+            bitwarden
           ];
 
           settings = {
