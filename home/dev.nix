@@ -15,15 +15,6 @@
       ninja
       clang-tools
 
-      (fenix.stable.withComponents [
-        "cargo"
-        "clippy"
-        "rust-src"
-        "rustc"
-        "rustfmt"
-      ])
-      rust-analyzer
-
       golines
       gofumpt
       golangci-lint

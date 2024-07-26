@@ -22,7 +22,6 @@
                   allowUnfree = true;
                 };
                 overlays = [
-                  inputs.fenix.overlays.default
                   (inputs.get-flake ./overlays/neovim).overlay
                   (inputs.get-flake ./overlays/fish).overlay
                   (import ./overlays/extra-pkgs)
@@ -58,7 +57,7 @@
     );
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?rev=b6bcda5de105b202e7ef53af5109d5f256b1181d";
     flake-parts.url = "github:hercules-ci/flake-parts";
     lite-config.url = "github:yelite/lite-config";
     get-flake.url = "github:ursi/get-flake";
@@ -68,10 +67,6 @@
     };
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    fenix = {
-      url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mac-app-util.url = "github:hraban/mac-app-util";
