@@ -80,21 +80,26 @@
       }
     },
     "firefox-addons": {
-      "flake": false,
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
       "locked": {
-        "dir": "repos/rycee/pkgs/firefox-addons",
-        "lastModified": 1721958695,
-        "narHash": "sha256-/vqXcKDSqWTKaxpMKnLgg1Of/gpJ6tnXmuJyx7jqOlA=",
-        "owner": "nix-community",
-        "repo": "nur-combined",
-        "rev": "335e52aeaf2be1011120eaa5e995436798a262b7",
-        "type": "github"
+        "dir": "pkgs/firefox-addons",
+        "lastModified": 1721138223,
+        "narHash": "sha256-NH2EeCX6Vph3KT0kOelDriPSAuLi8Ml4DjUY4Jsj5HU=",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "rev": "a9250ac868999a4ddd4c709859a9eb1d2075c8fd",
+        "type": "gitlab"
       },
       "original": {
-        "dir": "repos/rycee/pkgs/firefox-addons",
-        "owner": "nix-community",
-        "repo": "nur-combined",
-        "type": "github"
+        "dir": "pkgs/firefox-addons",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "type": "gitlab"
       }
     },
     "flake-compat": {
@@ -237,7 +242,7 @@
       "inputs": {
         "cl-nix-lite": "cl-nix-lite",
         "flake-compat": "flake-compat_2",
-        "flake-utils": "flake-utils",
+        "flake-utils": "flake-utils_2",
         "nixpkgs": "nixpkgs"
       },
       "locked": {
@@ -327,17 +332,17 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1720270622,
-        "narHash": "sha256-1yTfNjrk6uPLB90v2Bl8N723IP6NP43/j6yHWUJH2EM=",
-        "owner": "nixos",
+        "lastModified": 1718318537,
+        "narHash": "sha256-4Zu0RYRcAY/VWuu6awwq4opuiD//ahpc2aFHg2CWqFY=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b6bcda5de105b202e7ef53af5109d5f256b1181d",
+        "rev": "2e92235aa591abc613504fde2546d6f78b18c0cd",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "b6bcda5de105b202e7ef53af5109d5f256b1181d",
+        "rev": "2e92235aa591abc613504fde2546d6f78b18c0cd",
         "type": "github"
       }
     },
