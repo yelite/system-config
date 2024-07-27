@@ -7,7 +7,7 @@
 }:
 lib.mkIf config.myConfig.kitty.enable {
   home.packages = lib.optionals hostPlatform.isLinux (with pkgs; [
-    ueberzug
+    ueberzugpp
   ]);
 
   programs.kitty = {

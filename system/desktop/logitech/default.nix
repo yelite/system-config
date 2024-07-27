@@ -8,7 +8,8 @@
 in {
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [
-      pkgs.solaar # tool for the unify receiver
+      # TODO: enable it once https://github.com/NixOS/nixpkgs/pull/325872 is backported to the my pinned version of nixpkgs
+      # pkgs.solaar # tool for the unify receiver
       pkgs.logiops
     ];
 

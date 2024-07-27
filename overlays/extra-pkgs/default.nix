@@ -41,16 +41,26 @@ final: prev: {
     then final.callPackage ./firefox-devedition-darwin.nix {}
     else prev.firefox-devedition-bin;
 
-  # TODO: Remove after https://github.com/NixOS/nixpkgs/pull/305081 is resolved
-  albert = prev.albert.overrideAttrs (old: {
-    version = "0.22.17";
+  # TODO: remove after https://github.com/NixOS/nixpkgs/issues/325946 is truely resolved
+  picard = final.callPackage ./picard.nix {};
 
-    src = final.fetchFromGitHub {
-      owner = "albertlauncher";
-      repo = "albert";
-      rev = "v0.22.17";
-      sha256 = "sha256-2wu4bOQDKoZ4DDzTttXXRNDluvuJth7M1pCvJmYQ+f4=";
-      fetchSubmodules = true;
-    };
+  # TODO: remove this after bumping nixpkgs beyond https://github.com/NixOS/nixpkgs/pull/325056
+  pythonPackagesExtensions =
+    prev.pythonPackagesExtensions
+    ++ [
+      (pyfinal: pyprev: {
+        afdko = pyprev.afdko.overridePythonAttrs (oldAttrs: {
+          disabledTests =
+            oldAttrs.disabledTests
+            ++ [
+              "test_glyphs_2_7"
+              "test_hinting_data"
+              "test_waterfallplot"
+            ];
+        });
+      })
+    ];
+  noto-fonts-color-emoji = prev.noto-fonts-color-emoji.overrideAttrs (oldAttrs: {
+    buildFlags = ["BYPASS_SEQUENCE_CHECK=True"];
   });
 }
