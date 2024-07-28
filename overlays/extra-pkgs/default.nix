@@ -40,27 +40,4 @@ final: prev: {
     if prev.stdenv.isDarwin
     then final.callPackage ./firefox-devedition-darwin.nix {}
     else prev.firefox-devedition-bin;
-
-  # TODO: remove after https://github.com/NixOS/nixpkgs/issues/325946 is truely resolved
-  picard = final.callPackage ./picard.nix {};
-
-  # TODO: remove this after bumping nixpkgs beyond https://github.com/NixOS/nixpkgs/pull/325056
-  pythonPackagesExtensions =
-    prev.pythonPackagesExtensions
-    ++ [
-      (pyfinal: pyprev: {
-        afdko = pyprev.afdko.overridePythonAttrs (oldAttrs: {
-          disabledTests =
-            oldAttrs.disabledTests
-            ++ [
-              "test_glyphs_2_7"
-              "test_hinting_data"
-              "test_waterfallplot"
-            ];
-        });
-      })
-    ];
-  noto-fonts-color-emoji = prev.noto-fonts-color-emoji.overrideAttrs (oldAttrs: {
-    buildFlags = ["BYPASS_SEQUENCE_CHECK=True"];
-  });
 }
