@@ -1,3 +1,26 @@
+diff --git a/src/tools/pin/pinwidget.cpp b/src/tools/pin/pinwidget.cpp
+index 8baa19e7..1dda8ade 100644
+--- a/src/tools/pin/pinwidget.cpp
++++ b/src/tools/pin/pinwidget.cpp
+@@ -75,15 +75,14 @@ PinWidget::PinWidget(const QPixmap& pixmap,
+ #if defined(Q_OS_MACOS) || defined(Q_OS_LINUX)
+     if (currentScreen != nullptr) {
+         QPoint topLeft = currentScreen->geometry().topLeft();
+-        adjusted_pos.setX((adjusted_pos.x() - topLeft.x()) / devicePixelRatio +
++        adjusted_pos.setX((adjusted_pos.x() - topLeft.x() * devicePixelRatio) / devicePixelRatio +
+                           topLeft.x());
+ 
+-        adjusted_pos.setY((adjusted_pos.y() - topLeft.y()) / devicePixelRatio +
++        adjusted_pos.setY((adjusted_pos.y() - topLeft.y()  * devicePixelRatio) / devicePixelRatio +
+                           topLeft.y());
+         adjusted_pos.setWidth(adjusted_pos.size().width() / devicePixelRatio);
+         adjusted_pos.setHeight(adjusted_pos.size().height() / devicePixelRatio);
+-        resize(0, 0);
+-        move(adjusted_pos.x(), adjusted_pos.y());
++    setGeometry(adjusted_pos);
+     }
+ #endif
+     grabGesture(Qt::PinchGesture);
 diff --git a/src/widgets/capture/capturewidget.cpp b/src/widgets/capture/capturewidget.cpp
 index 49ebff97..ba7399d2 100644
 --- a/src/widgets/capture/capturewidget.cpp
