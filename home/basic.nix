@@ -25,6 +25,7 @@ in {
       eza
       fd
       fzf
+      tree
 
       difftastic
 
@@ -60,6 +61,7 @@ in {
       libsForQt5.okular
       feh
       flameshot
+      satty
       playerctl
       zoom-us
       write_stylus
