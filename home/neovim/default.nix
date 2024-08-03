@@ -118,7 +118,6 @@ in {
         fidget-nvim
         lspsaga-nvim
         trouble-nvim
-        aerial-nvim
         nvim-dap
         nvim-cmp
         cmp-buffer

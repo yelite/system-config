@@ -243,8 +243,6 @@ require("neoclip").setup({
     },
 })
 
-require("aerial").setup({})
-
 vim.g.code_action_menu_show_diff = false
 
 require("gitlinker").setup({

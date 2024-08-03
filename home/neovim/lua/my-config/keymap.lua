@@ -1,7 +1,6 @@
 local toggleterm = require("toggleterm")
 local leap = require("leap")
 local leap_util = require("leap.util")
-local aerial = require("aerial")
 
 local my_window = require("my-config.window")
 local my_settings = require("my-config.settings")
@@ -15,7 +14,7 @@ vim.o.timeoutlen = 1200
 
 local wk = require("which-key")
 wk.setup({
-    window = { border = "single" },
+    win = { border = "single" },
     icons = { separator = " " },
     layout = {
         height = { max = 18 },
