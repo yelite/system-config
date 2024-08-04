@@ -58,7 +58,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    vm-nixpkgs.url = "nixpkgs/nixos-unstable";
+    vm-nixpkgs.url = "github:nixos/nixpkgs?rev=4ca52fdf5f0da995fc26e7d07c6c30a710ed4f8a";
     flake-parts.url = "github:hercules-ci/flake-parts";
     lite-config.url = "github:yelite/lite-config";
     get-flake.url = "github:ursi/get-flake";
