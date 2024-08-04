@@ -1,4 +1,5 @@
 ---@diagnostic disable: missing-fields
+local queries = require("nvim-treesitter.query")
 
 require("nvim-treesitter.configs").setup({
     highlight = {
@@ -15,6 +16,9 @@ require("nvim-treesitter.configs").setup({
     },
     indent = {
         enable = true,
+        is_supported = function(lang)
+            return queries.has_indents(lang) and lang ~= "nix"
+        end,
     },
     textobjects = {
         select = {
