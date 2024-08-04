@@ -18,7 +18,6 @@ in {
     [
       wget
       unzip
-      ranger
 
       ripgrep
       bat
@@ -90,10 +89,12 @@ in {
       enable = true;
       nix-direnv.enable = true;
     };
+
     nix-index = {
       enable = true;
       enableFishIntegration = true;
     };
+
     git = {
       enable = true;
       delta = {
@@ -172,6 +173,11 @@ in {
           pkgs.mpvScripts.mpris
         ];
     };
+
+    yazi = {
+      enable = true;
+      enableFishIntegration = true;
+    };
   };
 
   services = {
@@ -194,6 +200,4 @@ in {
       Restart = "on-abort";
     };
   };
-
-  xdg.configFile."ranger/rc.conf".source = ./ranger.rc.conf;
 }
