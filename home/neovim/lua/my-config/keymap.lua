@@ -84,6 +84,18 @@ local file_keymap = {
         end,
         "Copy relative path of the current directory",
     },
+    y = {
+        function()
+            require("yazi").yazi(nil, vim.fn.expand("%:p:h"))
+        end,
+        "Open yazi in cwd",
+    },
+    Y = {
+        function()
+            require("yazi").yazi(nil, vim.fn.getcwd())
+        end,
+        "Open yazi in cwd",
+    },
 }
 -- b -> buffer
 local buffer_keymap = {

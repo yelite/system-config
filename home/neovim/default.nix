@@ -105,6 +105,7 @@ in {
         toggleterm-nvim
         which-key-nvim
         smart-open-nvim
+        yazi-nvim
 
         autosave
         possession-nvim
