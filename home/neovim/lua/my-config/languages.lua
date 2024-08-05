@@ -271,10 +271,10 @@ require("null-ls").setup({
     on_attach = M.standard_lsp_on_attach,
 })
 
-vim.api.nvim_create_augroup("MyIndent", { clear = true })
+vim.api.nvim_create_augroup("MyLangCustomization", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "markdown", "json", "yaml", "cpp", "c", "nix" },
-    group = "MyIndent",
+    group = "MyLangCustomization",
     callback = function()
         vim.bo.tabstop = 2
         vim.bo.shiftwidth = 2
@@ -282,10 +282,17 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "nix" },
-    group = "MyIndent",
+    group = "MyLangCustomization",
     callback = function()
         require("my-config.nix-indent")
         vim.bo.indentexpr = "GetNixIndent()"
+    end,
+})
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "json" },
+    group = "MyLangCustomization",
+    callback = function()
+        vim.bo.conceallevel = 0
     end,
 })
 
