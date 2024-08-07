@@ -99,6 +99,8 @@ function M.get_nix_indent(lnum)
         print(node:type())
         if node_type_to_indent[node:type()] then
             return previndent + vim.fn.shiftwidth()
+        else
+            return previndent
         end
     else
         local node = get_first_node_at_line(root, lnum)
