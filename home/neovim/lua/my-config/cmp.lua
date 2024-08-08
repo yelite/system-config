@@ -37,7 +37,7 @@ end
 
 local buffer_source = {
     name = "buffer",
-    keyword_length = 4,
+    keyword_length = 3,
     option = {
         get_bufnrs = function()
             return vim.api.nvim_list_bufs()
@@ -45,14 +45,6 @@ local buffer_source = {
         max_indexed_line_length = 1024 * 5,
     },
 }
-
-local copilot_comparator = function()
-    return nil
-end
-
-if util.is_copilot_installed() then
-    copilot_comparator = require("copilot_cmp.comparators").prioritize
-end
 
 local regular_mapping = cmp.mapping.preset.insert({
     -- TODO: reverse C-n/C-p when menu is reversed due to near_cursor
@@ -148,11 +140,11 @@ cmp.setup({
     },
     mapping = regular_mapping,
     sources = cmp.config.sources({
+        { name = "path", keyword_length = 3 },
         { name = "copilot" },
         { name = "nvim_lsp" },
         { name = "luasnip", max_item_count = 5 },
         buffer_source,
-        { name = "path", keyword_length = 2 },
     }),
     formatting = {
         expandable_indicator = true,
@@ -179,7 +171,6 @@ cmp.setup({
         comparators = {
             cmp.config.compare.offset,
             cmp.config.compare.exact,
-            copilot_comparator,
             cmp.config.compare.kind,
             cmp.config.compare.score,
             cmp.config.compare.recently_used,
