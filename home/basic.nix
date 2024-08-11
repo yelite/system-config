@@ -25,6 +25,7 @@ in {
       fd
       fzf
       tree
+      gdu
 
       difftastic
 
