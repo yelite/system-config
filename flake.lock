@@ -240,11 +240,11 @@
     },
     "lite-config": {
       "locked": {
-        "lastModified": 1719771911,
-        "narHash": "sha256-WPe8ZLhcUcQMqkIsgszoQygkgZiyQ4yPucHnIaZbACM=",
+        "lastModified": 1723608790,
+        "narHash": "sha256-xHQwXCvK5w+L5S5YPSMZVoND2NS2Nb4VKe39lARU/rc=",
         "owner": "yelite",
         "repo": "lite-config",
-        "rev": "bc7a952bf023f92d410d4f6e1810b60c2087438e",
+        "rev": "b1815649878a728f7f9ba40efe933f0dc8ae52a7",
         "type": "github"
       },
       "original": {
