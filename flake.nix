@@ -26,6 +26,7 @@
                   (inputs.get-flake ./overlays/fish).overlay
                   (import ./overlays/extra-pkgs)
                 ];
+                perSystemOverrides."aarch64-darwin".nixpkgs = inputs.darwin-nixpkgs;
               };
 
               systemModules = [./system];
@@ -58,6 +59,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    darwin-nixpkgs.url = "github:nixos/nixpkgs?rev=2e92235aa591abc613504fde2546d6f78b18c0cd";
     vm-nixpkgs.url = "github:nixos/nixpkgs?rev=4ca52fdf5f0da995fc26e7d07c6c30a710ed4f8a";
     flake-parts.url = "github:hercules-ci/flake-parts";
     lite-config.url = "github:yelite/lite-config";
