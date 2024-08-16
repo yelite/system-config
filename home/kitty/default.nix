@@ -21,7 +21,7 @@ lib.mkIf config.myConfig.kitty.enable {
         package = pkgs.nerdfonts.override {
           fonts = ["Hack"];
         };
-        size = 14;
+        size = 16;
       };
     settings = {
       cursor_blink_interval = 0;
