@@ -6,6 +6,23 @@
 }: let
   cfg = config.myConfig;
   inherit (lib) mkEnableOption mkOption types;
+  mointorOptionType = types.submodule {
+    options = {
+      id = mkOption {
+        type = types.str;
+        default = "1";
+        description = "Display number according to ddcutil.";
+      };
+      localSource = mkOption {
+        type = types.str;
+        default = "17";
+      };
+      remoteSource = mkOption {
+        type = types.str;
+        default = "1";
+      };
+    };
+  };
 in {
   options.myConfig = {
     username = mkOption {
@@ -20,6 +37,22 @@ in {
 
       displayProfiles = mkOption {
         type = with types; attrsOf (uniq anything);
+        description = "Autorandr profiles specification.";
+        default = {};
+      };
+      monitors = mkOption {
+        type = types.submodule {
+          options = {
+            primary = mkOption {
+              type = types.nullOr mointorOptionType;
+              default = null;
+            };
+            secondary = mkOption {
+              type = types.nullOr mointorOptionType;
+              default = null;
+            };
+          };
+        };
         description = "Autorandr profiles specification.";
         default = {};
       };

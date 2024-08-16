@@ -85,6 +85,6 @@ in {
     isNormalUser = true;
     shell = pkgs.fish;
     # TODO: Split into different modules
-    extraGroups = ["wheel" "networkmanager" "libvirtd"];
+    extraGroups = ["wheel" "networkmanager" "libvirtd" "i2c"];
   };
 }

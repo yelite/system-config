@@ -16,7 +16,6 @@ in {
   config = mkIf cfg.enable {
     services = {
       geoclue2.enable = true;
-      ddccontrol.enable = true;
 
       pipewire = {
         enable = true;
