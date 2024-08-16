@@ -7,11 +7,12 @@
   ...
 }: let
   # We don't use the flake.packages, instead we use callPackage from our own nixpkgs instance
-  # to create derivations from the <flake-dir>/default.nix. Otherwise plugins with unfree license 
+  # to create derivations from the <flake-dir>/default.nix. Otherwise plugins with unfree license
   # will refuse to be evaluated, regardless of the config of our own nixpkgs instance.
   addonsPkgs = pkgs.callPackage inputs.firefox-addons {};
-in
-  lib.mkIf (config.myConfig.firefox.enable) {
+in {
+  imports = [./darwin-profile-fix.nix];
+  config = lib.mkIf (config.myConfig.firefox.enable) {
     programs.firefox = {
       enable = true;
       package =
@@ -242,4 +243,5 @@ in
         };
       };
     };
-  }
+  };
+}
