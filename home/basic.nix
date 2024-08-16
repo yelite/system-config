@@ -31,6 +31,7 @@ in {
 
       nix-tree
       nixpkgs-fmt
+      nvd
       alejandra
       cachix
 
