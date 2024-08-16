@@ -39,7 +39,6 @@ in {
       age
       gopass
       rbw
-      pinentry-qt
       kitty.terminfo
     ]
     ++ optionals useGUI [
@@ -70,6 +69,7 @@ in {
       chromium
       picard
       rsgain
+      pinentry-qt
 
       gimp-with-plugins
       gimpPlugins.resynthesizer
