@@ -14,8 +14,12 @@
     nativeBuildInputs = [pkgs.makeWrapper];
     postBuild = "wrapProgram $out/bin/i3lock-run --prefix PATH : ${pkgs.i3lock-color}/bin";
   };
-in
-  lib.mkIf (cfg.enable && config.myConfig.desktop.enable) {
+in {
+  imports = [
+    ./config.nix
+  ];
+
+  config = lib.mkIf (cfg.enable && config.myConfig.desktop.enable) {
     home.packages = with pkgs; [
       jq
       xidlehook
@@ -23,7 +27,6 @@ in
 
     xsession.windowManager.i3 = {
       enable = true;
-      config = import ./config.nix {inherit cfg pkgs;};
       extraConfig = ''
       '';
     };
@@ -153,4 +156,5 @@ in
         ];
       };
     };
-  }
+  };
+}
