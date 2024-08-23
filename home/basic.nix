@@ -26,6 +26,7 @@ in {
       fzf
       tree
       gdu
+      tmux
 
       difftastic
 
