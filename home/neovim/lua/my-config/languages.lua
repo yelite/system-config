@@ -62,7 +62,20 @@ require("fidget").setup({})
 if util.is_copilot_installed() then
     require("copilot").setup({
         suggestion = { enabled = false },
-        panel = { enabled = true, auto_refresh = true },
+        panel = { enabled = true },
+        filetypes = {
+            yaml = false,
+            markdown = false,
+            help = false,
+            gitcommit = false,
+            gitrebase = false,
+            hgcommit = false,
+            svn = false,
+            cvs = false,
+            toggleterm = false,
+            TelescopePrompt = false,
+            ["."] = false,
+        },
     })
     require("copilot_cmp").setup()
 end
