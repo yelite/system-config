@@ -222,7 +222,7 @@ wk.register({
     ["J"] = search_keymap.F, -- Search in the current directory
     ["k"] = { require("my-config.telescope").quick_find_files, "Quick Find Files" },
     ["K"] = file_keymap.e, -- Start broswer in the same directory
-    ["l"] = code_keymap.s, -- Workspace Symbols
+    ["l"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
     ["L"] = file_keymap.E, -- Open file browser in folder mode
     ["x"] = { "<cmd>Telescope commands<cr>", "Commands" },
     ["."] = session_keymap.t, -- Resume last telescope picker
