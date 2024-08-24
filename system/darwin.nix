@@ -32,6 +32,10 @@ in {
     };
 
     system.defaults.".GlobalPreferences"."com.apple.mouse.scaling" = -1.0;
+    system.keyboard.enableKeyMapping = true;
+    system.keyboard.remapCapsLockToControl = true;
+    system.defaults.WindowManager.GloballyEnabled = true;
+    system.defaults.dock.mru-spaces = false;
 
     home-manager.sharedModules = [
       inputs.mac-app-util.homeManagerModules.default
