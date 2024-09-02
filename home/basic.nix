@@ -42,6 +42,7 @@ in {
       gopass
       rbw
       kitty.terminfo
+      exiftool
     ]
     ++ optionals useGUI [
       obsidian
@@ -180,6 +181,12 @@ in {
     yazi = {
       enable = true;
       enableFishIntegration = true;
+      settings = {
+        preview = {
+          max_width = 800;
+          max_height = 800;
+        };
+      };
       keymap = {
         manager.prepend_keymap = [
           {
