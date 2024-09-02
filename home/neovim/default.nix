@@ -140,7 +140,10 @@ in {
         SchemaStore-nvim
 
         {
-          plugin = sqlite-lua;
+          plugin = sqlite-lua.overrideAttrs (oldAttrs: {
+            # TODO: remove this once upstream fixes the quoting issue of sqlite_clib_path string
+            postPatch = "";
+          });
           config = "let g:sqlite_clib_path = '${sqlite3_lib_path}'";
         }
       ]
