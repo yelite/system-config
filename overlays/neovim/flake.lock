@@ -161,15 +161,16 @@
     "smart-open-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1718197413,
-        "narHash": "sha256-bEo5p7tHeoE13P8QsjC8RqNA0NMogjdYzN0oatQaIJY=",
-        "owner": "danielfalk",
+        "lastModified": 1725236160,
+        "narHash": "sha256-xWqD6QZBS3J/XwxljDbE2P0sT1te5PrIAEIYx8tUDdk=",
+        "owner": "yelite",
         "repo": "smart-open.nvim",
-        "rev": "f4e39e9a1b05a6b82b1182a013677acc44b27abb",
+        "rev": "e0da853db80b54d899bac8ebea9d45bac3713212",
         "type": "github"
       },
       "original": {
-        "owner": "danielfalk",
+        "owner": "yelite",
+        "ref": "nix-index-file",
         "repo": "smart-open.nvim",
         "type": "github"
       }

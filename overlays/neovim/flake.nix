@@ -43,7 +43,7 @@
       flake = false;
     };
     smart-open-nvim = {
-      url = "github:danielfalk/smart-open.nvim";
+      url = "github:yelite/smart-open.nvim?ref=nix-index-file";
       flake = false;
     };
     hlchunk-nvim = {
