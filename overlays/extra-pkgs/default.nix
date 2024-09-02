@@ -1,4 +1,5 @@
-final: prev: {
+final: prev:
+{
   apple-cursor = final.callPackage ./apple-cursor.nix {};
   xremap = final.callPackage ./xremap.nix {};
   supersonic =
@@ -44,4 +45,15 @@ final: prev: {
     if prev.stdenv.isDarwin
     then final.callPackage ./firefox-devedition-darwin.nix {}
     else prev.firefox-devedition-bin;
+}
+// prev.lib.optionalAttrs prev.stdenv.isDarwin {
+  # TODO: remove after https://github.com/NixOS/nixpkgs/pull/338033 is in unstable
+  kitty = prev.kitty.overrideAttrs (old: {
+    buildPhase =
+      ''
+        mkdir ./fonts/
+        cp "${(final.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})}/share/fonts/truetype/NerdFonts/SymbolsNerdFontMono-Regular.ttf" ./fonts/
+      ''
+      + old.buildPhase;
+  });
 }
