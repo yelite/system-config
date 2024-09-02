@@ -98,6 +98,7 @@ in {
     nfs-client.enable = mkEnableOption "Enable NFS client support";
     nvfancontrol.enable = mkEnableOption "nvfancontrol";
     syncthing.enable = mkEnableOption "syncthing";
+    shpool.enable = mkEnableOption "shpool" // {default = cfg.isServer;};
 
     uinputGroup.enable = mkEnableOption "uinput group";
   };

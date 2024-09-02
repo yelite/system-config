@@ -12,6 +12,7 @@
     ./dunst
     ./fish
     ./firefox
+    ./shpool.nix
   ];
 
   config = {
