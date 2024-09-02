@@ -20,6 +20,9 @@ in {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       shpool
+      (pkgs.writeShellScriptBin "satt" ''
+        ${lib.getExe pkgs.shpool} attach $@
+      '')
     ];
 
     systemd.user = {
