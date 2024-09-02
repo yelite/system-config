@@ -205,6 +205,8 @@ in {
     };
   };
 
+  systemd.user.startServices = "sd-switch";
+
   systemd.user.services.kdeconnect-indicator = lib.mkIf isLinuxGUI {
     Unit = {
       Description = "kdeconnect-indicator";

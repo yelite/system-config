@@ -8,9 +8,10 @@
   cfg = config.myConfig.shpool;
   toml = pkgs.formats.toml {};
   configFilePath = toml.generate "config.toml" {
+    prompt_prefix = "";
     keybinding = [
       {
-        binding = "Ctrl-Esc Ctrl-Esc";
+        binding = "Ctrl-z Ctrl-d";
         action = "detach";
       }
     ];
