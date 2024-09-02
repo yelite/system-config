@@ -54,9 +54,13 @@ possession.setup({
         on_load = true,
         on_quit = true,
     },
-    autoload = {
-        cwd = should_enable_auto_session,
-    },
+    autoload = function()
+        if should_enable_auto_session() then
+            return "auto_cwd"
+        else
+            return false
+        end
+    end,
     hooks = {
         before_save = save_user_data,
         -- load user data before sourcing the session vimscript,
