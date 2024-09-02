@@ -180,6 +180,15 @@ in {
     yazi = {
       enable = true;
       enableFishIntegration = true;
+      keymap = {
+        manager.prepend_keymap = [
+          {
+            on = ["<Enter>"];
+            run = "enter";
+            desc = "Enter the child directory";
+          }
+        ];
+      };
     };
   };
 
