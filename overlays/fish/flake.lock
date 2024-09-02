@@ -35,11 +35,11 @@
     "forgit": {
       "flake": false,
       "locked": {
-        "lastModified": 1715472008,
-        "narHash": "sha256-odxdySx3Bzxs5RMXJ4nivwltQYIaM/UrPb+A0/pnDSk=",
+        "lastModified": 1723687571,
+        "narHash": "sha256-8QgnEu41BHeX6heP2slQT+X+Dti+7Ij+J2zqmU4dm3I=",
         "owner": "wfxr",
         "repo": "forgit",
-        "rev": "17394d10569899eded337dec59ef461f8becea51",
+        "rev": "8b60a899f49839992cb11a34a0dc7e562a71a0d4",
         "type": "github"
       },
       "original": {
@@ -67,11 +67,11 @@
     "replay": {
       "flake": false,
       "locked": {
-        "lastModified": 1655689996,
-        "narHash": "sha256-bM6+oAd/HXaVgpJMut8bwqO54Le33hwO9qet9paK1kY=",
+        "lastModified": 1719805987,
+        "narHash": "sha256-TzQ97h9tBRUg+A7DSKeTBWLQuThicbu19DHMwkmUXdg=",
         "owner": "jorgebucaran",
         "repo": "replay.fish",
-        "rev": "bd8e5b89ec78313538e747f0292fcaf631e87bd2",
+        "rev": "d2ecacd3fe7126e822ce8918389f3ad93b14c86c",
         "type": "github"
       },
       "original": {
