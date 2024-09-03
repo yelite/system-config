@@ -13,7 +13,7 @@ rustPlatform.buildRustPackage rec {
     sha256 = "sha256-KL3NxnzppOzlg4QW96Qh3WLHIwX0ctRdVmZR2yZhEnM=";
   };
 
-  cargoSha256 = "sha256-spxgNZP4bgbvP7vX9IfSS3Zg0E/luZHpCvvTwbD4zgk=";
+  cargoHash = "sha256-spxgNZP4bgbvP7vX9IfSS3Zg0E/luZHpCvvTwbD4zgk=";
 
   meta = {
     description = "Another implementation of this classic (and useful) example of i3 ipc use.";
