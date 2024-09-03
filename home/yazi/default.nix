@@ -15,7 +15,21 @@
           run = "enter";
           desc = "Enter the child directory";
         }
+        {
+          on = ["T"];
+          run = "plugin --sync max-preview";
+          desc = "Maximize or restore preview";
+        }
+        {
+          on = ["<C-t>"];
+          run = "plugin --sync hide-preview";
+          desc = "Hide or restore preview";
+        }
       ];
+    };
+    plugins = {
+      max-preview = ./plugins/max-preview.yazi;
+      hide-preview = ./plugins/hide-preview.yazi;
     };
   };
 
