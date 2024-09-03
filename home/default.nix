@@ -13,6 +13,7 @@
     ./fish
     ./firefox
     ./shpool.nix
+    ./yazi
   ];
 
   config = {
