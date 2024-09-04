@@ -33,6 +33,10 @@
     };
   };
 
+  programs.fish.shellAliases = {
+    "yz" = "yazi";
+  };
+
   xdg.configFile = {
     "yazi/theme.toml" = {
       source = ./theme.toml;
