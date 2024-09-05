@@ -86,6 +86,7 @@ in {
     ]
     ++ optionals hostPlatform.isDarwin [
       terminal-notifier
+      stats
     ];
 
   programs = {
