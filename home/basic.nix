@@ -38,8 +38,6 @@ in {
 
       flake-repl
 
-      age
-      gopass
       rbw
       kitty.terminfo
       exiftool
