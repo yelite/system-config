@@ -1,4 +1,4 @@
-{
+{lib, hostPlatform, ...}: {
   imports = [
     ../options.nix
     ./syncthing
@@ -14,6 +14,8 @@
     ./firefox
     ./shpool.nix
     ./yazi
+  ] ++ lib.optionals hostPlatform.isDarwin [
+    ./hammerspoon
   ];
 
   config = {

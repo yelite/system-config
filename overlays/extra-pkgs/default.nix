@@ -56,4 +56,5 @@ final: prev:
       ''
       + old.buildPhase;
   });
+  hammerspoon = final.callPackage ./hammerspoon.nix {};
 }
