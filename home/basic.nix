@@ -87,6 +87,58 @@ in {
       stats
     ];
 
+  xdg.mimeApps = lib.mkIf isLinuxGUI {
+    enable = true;
+    defaultApplications = let
+      genEntries = {
+        app,
+        types,
+      }:
+        lib.genAttrs types (_: app);
+    in
+      (genEntries {
+        app = "feh.desktop";
+        types = [
+          "image/bmp"
+          "image/gif"
+          "image/jpeg"
+          "image/jpg"
+          "image/pjpeg"
+          "image/png"
+          "image/tiff"
+          "image/webp"
+          "image/x-bmp"
+          "image/x-pcx"
+          "image/x-png"
+          "image/x-portable-anymap"
+          "image/x-portable-bitmap"
+          "image/x-portable-graymap"
+          "image/x-portable-pixmap"
+          "image/x-tga"
+          "image/x-xbitmap"
+          "image/heic"
+        ];
+      })
+      // (genEntries {
+        app = "firefox-devedition.desktop";
+        types = [
+          "x-scheme-handler/http"
+          "x-scheme-handler/https"
+          "text/html"
+          "x-scheme-handler/standardnotes"
+          "x-scheme-handler/notion"
+          "x-scheme-handler/postman"
+          "x-scheme-handler/chrome"
+          "application/x-extension-htm"
+          "application/x-extension-html"
+          "application/x-extension-shtml"
+          "application/xhtml+xml"
+          "application/x-extension-xhtml"
+          "application/x-extension-xht"
+        ];
+      });
+  };
+
   programs = {
     direnv = {
       enable = true;
