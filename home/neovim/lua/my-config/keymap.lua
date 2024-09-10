@@ -1,6 +1,7 @@
 local toggleterm = require("toggleterm")
 local leap = require("leap")
 local leap_util = require("leap.util")
+local wk = require("which-key")
 
 local my_window = require("my-config.window")
 local my_settings = require("my-config.settings")
@@ -12,7 +13,6 @@ local M = {}
 vim.g.mapleader = " "
 vim.o.timeoutlen = 1200
 
-local wk = require("which-key")
 wk.setup({
     win = { border = "single" },
     icons = { separator = " " },
@@ -46,6 +46,33 @@ local function leap_to_window()
         end,
     })
 end
+
+local function search_current_dir()
+    require("telescope").extensions.live_grep_args.live_grep_args({
+        cwd = "%:p:h",
+        results_title = vim.fn.fnamemodify(vim.fn.expand("%:h"), ":~:."),
+    })
+end
+
+local function browse_current_dir()
+    require("telescope").extensions.file_browser.file_browser({ path = "%:p:h" })
+end
+
+local function browse_project_root_folders()
+    require("telescope").extensions.file_browser.file_browser({ files = false })
+end
+
+wk.add({
+    { "<leader>j", require("my-config.telescope").git_changed_files, desc = "Changed Files in Git Branch" },
+    { "<leader>J", search_current_dir, desc = "Search in the directory of current file" },
+    { "<leader>k", require("my-config.telescope").quick_find_files, desc = "Quick Find Files" },
+    { "<leader>K", browse_current_dir, desc = "Browser in current directory" },
+    { "<leader>l", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Workspace Symbols" },
+    { "<leader>L", browse_project_root_folders, desc = "Browser folders" },
+    { "<leader>x", "<cmd>Telescope commands<cr>", desc = "Commands" },
+    { "<leader>.", "<cmd>Telescope resume<cr>", desc = "Resume Last Telescope Picker" },
+    { "<leader>>", "<cmd>Telescope pickers<cr>", desc = "Previous Telescope Pickers" },
+})
 
 -- e -> edit
 local edit_keymap = {
@@ -218,15 +245,6 @@ wk.register({
     t = toggle_feature_keymap,
     v = vcs_keymap,
     w = window_keymap,
-    ["j"] = { require("my-config.telescope").git_changed_files, "Changed Files in Git Branch" },
-    ["J"] = search_keymap.F, -- Search in the current directory
-    ["k"] = { require("my-config.telescope").quick_find_files, "Quick Find Files" },
-    ["K"] = file_keymap.e, -- Start broswer in the same directory
-    ["l"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
-    ["L"] = file_keymap.E, -- Open file browser in folder mode
-    ["x"] = { "<cmd>Telescope commands<cr>", "Commands" },
-    ["."] = session_keymap.t, -- Resume last telescope picker
-    [">"] = session_keymap.T, -- View cached telescope pickers
 }, {
     prefix = "<leader>",
 })
