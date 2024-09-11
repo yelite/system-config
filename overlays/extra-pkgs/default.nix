@@ -2,13 +2,6 @@ final: prev:
 {
   apple-cursor = final.callPackage ./apple-cursor.nix {};
   xremap = final.callPackage ./xremap.nix {};
-  supersonic =
-    if prev.stdenv.isDarwin
-    then prev.supersonic
-    else
-      final.writeShellScriptBin "supersonic" ''
-        FYNE_SCALE=2 ${prev.supersonic}/bin/supersonic
-      '';
   i3-focus-last = final.callPackage ./i3-focus-last.nix {};
   fcitx5-fluent-dark = final.callPackage ./fcitx5-fluent-dark {};
   rime-dict = final.callPackage ./rime-dict.nix {};
@@ -45,6 +38,25 @@ final: prev:
     if prev.stdenv.isDarwin
     then final.callPackage ./firefox-devedition-darwin.nix {}
     else prev.firefox-devedition-bin;
+
+  supersonic =
+    if prev.stdenv.isDarwin
+    then
+      prev.supersonic.overrideAttrs (old: {
+        postPhases = (old.postPhases or []) ++ ["patchMacOSBundleIconPhase"];
+        patchMacOSBundleIconPhase = let
+          iconFile = prev.fetchurl {
+            url = "https://raw.githubusercontent.com/yelite/supersonic/fix-macos-icon/res/appicon-macos.icns";
+            sha256 = "sha256-WKIF1jfk4xVHV7p19nKUJJu6qohmHvWOKSy0YxY+5vE=";
+          };
+        in ''
+          cp ${iconFile} $out/Applications/Supersonic.app/Contents/Resources/supersonic.icns
+        '';
+      })
+    else
+      final.writeShellScriptBin "supersonic" ''
+        FYNE_SCALE=2 ${prev.supersonic}/bin/supersonic
+      '';
 }
 // prev.lib.optionalAttrs prev.stdenv.isDarwin {
   # TODO: remove after https://github.com/NixOS/nixpkgs/pull/338033 is in unstable
