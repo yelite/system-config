@@ -40,5 +40,10 @@ in {
     home-manager.sharedModules = [
       inputs.mac-app-util.homeManagerModules.default
     ];
+
+    nixpkgs.flake.setFlakeRegistry = false;
+    nixpkgs.flake.setNixPath = false;
+
+    system.stateVersion = 5;
   };
 }
