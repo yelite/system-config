@@ -1,5 +1,7 @@
 local nvim_lsp = require("lspconfig")
 local lspsaga = require("lspsaga")
+local dap = require("dap")
+local dapui = require("dapui")
 local lsp_signature = require("lsp_signature")
 local rust_tools = require("rust-tools")
 local keymap = require("my-config.keymap")
@@ -143,15 +145,14 @@ require("go").setup({
     },
     trouble = true,
     luasnip = true,
-})
-
-nvim_lsp.gopls.setup({
-    on_attach = M.standard_lsp_on_attach,
-    capabilities = M.standard_lsp_capabilities,
-    settings = {
-        gopls = {
-            usePlaceholders = true,
-            gofumpt = true,
+    lsp_cfg = {
+        on_attach = M.standard_lsp_on_attach,
+        capabilities = M.standard_lsp_capabilities,
+        settings = {
+            gopls = {
+                usePlaceholders = true,
+                gofumpt = true,
+            },
         },
     },
 })
@@ -283,6 +284,20 @@ require("null-ls").setup({
     },
     on_attach = M.standard_lsp_on_attach,
 })
+
+dapui.setup()
+dap.listeners.before.attach.dapui_config = function()
+    dapui.open()
+end
+dap.listeners.before.launch.dapui_config = function()
+    dapui.open()
+end
+dap.listeners.before.event_terminated.dapui_config = function()
+    dapui.close()
+end
+dap.listeners.before.event_exited.dapui_config = function()
+    dapui.close()
+end
 
 vim.api.nvim_create_augroup("MyLangCustomization", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {

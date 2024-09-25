@@ -18,6 +18,13 @@
       golines
       gofumpt
       golangci-lint
+      gotools
+      reftools
+      gomodifytags
+      gotests
+      iferr
+      gotestsum
+      govulncheck
       impl
       reftools
       delve

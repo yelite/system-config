@@ -77,6 +77,7 @@ in {
         pets-nvim
         hologram-nvim # dependency of pets-nvim
         nui-nvim # dependency of pets-nvim
+        nvim-nio # dependency of nvim-dap-ui
         dressing-nvim
         hlchunk-nvim
         gitsigns-nvim
@@ -120,6 +121,7 @@ in {
         lspsaga-nvim
         trouble-nvim
         nvim-dap
+        nvim-dap-ui
         nvim-cmp
         cmp-buffer
         cmp-nvim-lsp
