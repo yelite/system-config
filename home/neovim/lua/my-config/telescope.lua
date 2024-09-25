@@ -136,6 +136,7 @@ require("telescope").setup({
             display_stat = { size = true },
             hijack_netrw = true,
             hide_parent_dir = true,
+            git_status = false,
             mappings = {
                 i = {
                     ["<C-f>"] = { "<Right>", type = "command" },
