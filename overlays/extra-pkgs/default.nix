@@ -59,14 +59,17 @@ final: prev:
       '';
 }
 // prev.lib.optionalAttrs prev.stdenv.isDarwin {
-  # TODO: remove after https://github.com/NixOS/nixpkgs/pull/338033 is in unstable
+  # TODO: remove after https://github.com/NixOS/nixpkgs/pull/338070 is in unstable
   kitty = prev.kitty.overrideAttrs (old: {
-    buildPhase =
-      ''
-        mkdir ./fonts/
-        cp "${(final.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})}/share/fonts/truetype/NerdFonts/SymbolsNerdFontMono-Regular.ttf" ./fonts/
-      ''
-      + old.buildPhase;
+    doChek = false;
+    doInstallCheck = false;
+    patches = old.patches ++ [./patches/kitty-darwin.patch];
+    preCheck = ''
+      # theme collection test starts an http server
+      rm tools/themes/collection_test.go
+      # passwd_test tries to exec /usr/bin/dscl
+      rm tools/utils/passwd_test.go
+    '';
   });
   hammerspoon = final.callPackage ./hammerspoon.nix {};
 }

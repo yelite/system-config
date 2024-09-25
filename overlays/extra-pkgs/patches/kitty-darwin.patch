@@ -1,0 +1,31 @@
+From c1be2e2bb64bc0f9fda001af1832d173312b44fc Mon Sep 17 00:00:00 2001
+From: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>
+Date: Wed, 28 Aug 2024 20:49:50 -0400
+Subject: [PATCH] Set IN_NIX_SHELL=1 for tests
+
+This helps isolating system-wide zsh instance running in tests from the
+broader system shell initialization for limited nix environments.
+
+This fixes failures as reported here:
+https://github.com/NixOS/nixpkgs/issues/312692
+
+Signed-off-by: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>
+---
+ kitty_tests/shell_integration.py | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/kitty_tests/shell_integration.py b/kitty_tests/shell_integration.py
+index 160e53360..53b9f2935 100644
+--- a/kitty_tests/shell_integration.py
++++ b/kitty_tests/shell_integration.py
+@@ -42,6 +42,7 @@ def basic_shell_env(home_dir):
+         'BASH_SILENCE_DEPRECATION_WARNING': '1',
+         'PYTHONDONTWRITEBYTECODE': '1',
+         'WEZTERM_SHELL_SKIP_ALL': '1',  # dont fail if WezTerm's system wide, default on (why?) shell integration is installed
++        'IN_NIX_SHELL': '1',
+     }
+     for x in ('USER', 'LANG'):
+         if os.environ.get(x):
+-- 
+2.45.2
+
