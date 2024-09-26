@@ -155,6 +155,8 @@ require("go").setup({
         },
     },
     lsp_inlay_hints = {
+        -- TODO: Revisit this after https://github.com/ray-x/go.nvim/issues/416
+        enable = false,
         style = "eol",
     },
     dap_debug_keymap = false,
