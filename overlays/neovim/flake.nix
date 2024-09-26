@@ -54,5 +54,9 @@
       url = "github:jonahgoldwastaken/copilot-status.nvim";
       flake = false;
     };
+    nvim-lsp-endhints = {
+      url = "github:chrisgrieser/nvim-lsp-endhints";
+      flake = false;
+    };
   };
 }

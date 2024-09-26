@@ -111,6 +111,22 @@
         "type": "indirect"
       }
     },
+    "nvim-lsp-endhints": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1726297653,
+        "narHash": "sha256-dCySjZoCxcCkt8D1UVJF9wQheU8vgmDxkI0JeGURpnQ=",
+        "owner": "chrisgrieser",
+        "repo": "nvim-lsp-endhints",
+        "rev": "391ef40521b631a8a2fb7aef78db6967ead6b39d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chrisgrieser",
+        "repo": "nvim-lsp-endhints",
+        "type": "github"
+      }
+    },
     "pets-nvim": {
       "flake": false,
       "locked": {
@@ -152,6 +168,7 @@
         "hop-extensions": "hop-extensions",
         "lazydev-nvim": "lazydev-nvim",
         "nixpkgs": "nixpkgs",
+        "nvim-lsp-endhints": "nvim-lsp-endhints",
         "pets-nvim": "pets-nvim",
         "possession-nvim": "possession-nvim",
         "smart-open-nvim": "smart-open-nvim",

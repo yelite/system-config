@@ -61,6 +61,21 @@ lspsaga.setup({
 
 require("fidget").setup({})
 
+require("lsp-endhints").setup({
+    icons = {
+        type = "󰠱 ",
+        parameter = "󰊕 ",
+        offspec = "=> ", -- hint kind not defined in official LSP spec
+        unknown = " ", -- hint kind is nil
+    },
+    label = {
+        padding = 1,
+        marginLeft = 0,
+        bracketedParameters = true,
+    },
+    autoEnableHints = true,
+})
+
 if util.is_copilot_installed() then
     require("copilot").setup({
         suggestion = { enabled = false },
@@ -155,9 +170,7 @@ require("go").setup({
         },
     },
     lsp_inlay_hints = {
-        -- TODO: Revisit this after https://github.com/ray-x/go.nvim/issues/416
         enable = false,
-        style = "eol",
     },
     dap_debug_keymap = false,
 })
