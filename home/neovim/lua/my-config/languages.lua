@@ -136,10 +136,9 @@ nvim_lsp.nil_ls.setup(vim.tbl_deep_extend("force", standard_lsp_config, {
 }))
 
 require("go").setup({
-    max_line_len = 105,
-    lsp_gofumpt = true,
     lsp_keymaps = false,
-    lsp_codelens = false,
+    lsp_codelens = true,
+    lsp_gofumpt = true,
     disgnostic = {
         hdlr = false,
     },
@@ -155,6 +154,10 @@ require("go").setup({
             },
         },
     },
+    lsp_inlay_hints = {
+        style = "eol",
+    },
+    dap_debug_keymap = false,
 })
 
 require("lazydev").setup({
@@ -275,12 +278,6 @@ require("null-ls").setup({
         require("null-ls").builtins.formatting.prettier.with({
             filetypes = { "html", "json", "markdown" },
         }),
-        require("null-ls").builtins.formatting.golines.with({
-            extra_args = {
-                "--max-len=105",
-            },
-        }),
-        require("null-ls").builtins.diagnostics.golangci_lint,
     },
     on_attach = M.standard_lsp_on_attach,
 })
