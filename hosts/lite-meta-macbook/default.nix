@@ -1,5 +1,6 @@
 {
   myConfig = {
+    publicConfigDirectory = "$HOME/.system-config";
     fish.enable = true;
     neovim = {
       enable = true;

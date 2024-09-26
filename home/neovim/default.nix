@@ -53,9 +53,16 @@ lib.mkIf config.myConfig.neovim.enable (let
       vim
     ]);
 in {
-  home.packages = lib.optionals hostPlatform.isLinux [
-    pkgs.neovide
-  ];
+  home.packages =
+    [
+      (pkgs.writeShellScriptBin "nvim-dirty" ''
+        export VIMINIT='set rtp^=${config.myConfig.publicConfigDirectory}/home/neovim/ | source $HOME/.config/nvim/init.lua'
+        $HOME/.nix-profile/bin/nvim $@
+      '')
+    ]
+    ++ lib.optionals hostPlatform.isLinux [
+      pkgs.neovide
+    ];
 
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -131,6 +138,7 @@ in {
         luasnip
         lspkind-nvim
         lsp_signature-nvim
+        nvim-lsp-endhints
 
         todo-comments-nvim
         comment-nvim

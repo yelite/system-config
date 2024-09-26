@@ -30,6 +30,16 @@ in {
       default = "liteye";
     };
 
+    configDirectory = mkOption {
+      type = types.str;
+      default = "$HOME/.system-config";
+    };
+
+    publicConfigDirectory = mkOption {
+      type = types.str;
+      default = "$HOME/.system-config/public";
+    };
+
     isServer = mkEnableOption "isServer";
 
     desktop = {
