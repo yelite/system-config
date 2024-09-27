@@ -110,10 +110,12 @@ in {
         telescope-file-browser-nvim
         telescope-live-grep-args-nvim
         telescope-alternate
+        telescope-dap-nvim
         toggleterm-nvim
         which-key-nvim
         smart-open-nvim
         yazi-nvim
+        guihua
 
         autosave
         possession-nvim

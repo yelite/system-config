@@ -58,5 +58,9 @@
       url = "github:chrisgrieser/nvim-lsp-endhints";
       flake = false;
     };
+    guihua = {
+      url = "github:ray-x/guihua.lua";
+      flake = false;
+    };
   };
 }

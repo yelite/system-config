@@ -66,7 +66,7 @@ require("lsp-endhints").setup({
         type = "󰠱 ",
         parameter = "󰊕 ",
         offspec = "=> ", -- hint kind not defined in official LSP spec
-        unknown = " ", -- hint kind is nil
+        unknown = "", -- hint kind is nil
     },
     label = {
         padding = 1,
@@ -161,7 +161,16 @@ require("go").setup({
     luasnip = true,
     lsp_cfg = {
         on_attach = M.standard_lsp_on_attach,
-        capabilities = M.standard_lsp_capabilities,
+        capabilities = vim.tbl_deep_extend("force", M.standard_lsp_capabilities, {
+            workspace = {
+                didChangeWatchedFiles = {
+                    -- Fix for https://github.com/neovim/neovim/issues/28058
+                    -- From https://github.com/fredrikaverpil/dotfiles/blob/219cde0111c613154121a8b2c34956bda859ff9c/nvim-fredrik/lua/plugins/lsp.lua#L88-L96
+                    dynamicRegistration = false,
+                    relativePatternSupport = false,
+                },
+            },
+        }),
         settings = {
             gopls = {
                 usePlaceholders = true,
@@ -172,7 +181,7 @@ require("go").setup({
     lsp_inlay_hints = {
         enable = false,
     },
-    dap_debug_keymap = false,
+    dap_debug_keymap = true,
 })
 
 require("lazydev").setup({

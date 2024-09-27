@@ -91,7 +91,15 @@ require("lualine").setup({
     options = {
         theme = "nord",
         globalstatus = true,
-        disabled_filetypes = { winbar = { "toggleterm" } },
+        disabled_filetypes = { winbar = { "toggleterm", "dap-repl", "dapui_console" } },
+        ignore_focus = {
+            "dapui_watches",
+            "dapui_breakpoints",
+            "dapui_scopes",
+            "dapui_console",
+            "dapui_stacks",
+            "dap-repl",
+        },
     },
     sections = {
         lualine_a = { { "mode", fmt = pad_mode } },

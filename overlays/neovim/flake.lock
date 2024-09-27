@@ -48,6 +48,22 @@
         "type": "github"
       }
     },
+    "guihua": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1717591195,
+        "narHash": "sha256-V5rlORFlhgjAT0n+LcpMNdY+rEqQpur/KGTGH6uFxMY=",
+        "owner": "ray-x",
+        "repo": "guihua.lua",
+        "rev": "225db770e36aae6a1e9e3a65578095c8eb4038d3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ray-x",
+        "repo": "guihua.lua",
+        "type": "github"
+      }
+    },
     "hlchunk-nvim": {
       "flake": false,
       "locked": {
@@ -164,6 +180,7 @@
         "autosave": "autosave",
         "copilot-status-nvim": "copilot-status-nvim",
         "gitlinker-nvim": "gitlinker-nvim",
+        "guihua": "guihua",
         "hlchunk-nvim": "hlchunk-nvim",
         "hop-extensions": "hop-extensions",
         "lazydev-nvim": "lazydev-nvim",

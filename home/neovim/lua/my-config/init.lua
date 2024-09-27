@@ -33,7 +33,7 @@ o.writebackup = false
 
 o.updatetime = 800
 
-o.signcolumn = "no"
+o.signcolumn = "auto"
 o.number = true
 o.conceallevel = 1
 

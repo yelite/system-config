@@ -171,5 +171,6 @@ require("telescope").load_extension("file_browser")
 require("telescope").load_extension("live_grep_args")
 require("telescope").load_extension("telescope-alternate")
 require("telescope").load_extension("smart_open")
+require("telescope").load_extension("dap")
 
 return M
