@@ -166,7 +166,6 @@ require("go").setup({
                 didChangeWatchedFiles = {
                     -- Fix for https://github.com/neovim/neovim/issues/28058
                     -- From https://github.com/fredrikaverpil/dotfiles/blob/219cde0111c613154121a8b2c34956bda859ff9c/nvim-fredrik/lua/plugins/lsp.lua#L88-L96
-                    dynamicRegistration = false,
                     relativePatternSupport = false,
                 },
             },
