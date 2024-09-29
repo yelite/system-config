@@ -152,10 +152,10 @@ wk.add({
     { "<leader>iD", [[<cmd>Trouble document_diagnostics<cr>]], desc = "Document Diagnostics" },
     { "<leader>ir", [[<cmd>Lspsaga rename<cr>]], desc = "Rename Symbol" },
     { "<leader>is", [[<cmd>Telescope lsp_dynamic_workspace_symbols<cr>]], desc = "Workspace Symbols" },
-    { "<leader>iS", [[<cmd>Telescope lsp_document_symbols<cr>]], desc = "Document Symbols" },
+    { "<leader>iS", [[<cmd>Telescope lsp_document_symbols symbol_width=50<cr>]], desc = "Document Symbols" },
 
     { "<leader>d", group = "debug" },
-    { "<leader>dr", require'telescope'.extensions.dap.commands, desc = "commands" },
+    { "<leader>dr", require("telescope").extensions.dap.commands, desc = "commands" },
     {
         "<leader>dS",
         function()
@@ -163,9 +163,9 @@ wk.add({
         end,
         desc = "stop",
     },
-    { "<leader>df", require'telescope'.extensions.dap.frames, desc = "toggle breakpoint" },
+    { "<leader>df", require("telescope").extensions.dap.frames, desc = "toggle breakpoint" },
     { "<leader>db", require("dap").toggle_breakpoint, desc = "toggle breakpoint" },
-    { "<leader>dl", require'telescope'.extensions.dap.list_breakpoints, desc = "list breakpoints" },
+    { "<leader>dl", require("telescope").extensions.dap.list_breakpoints, desc = "list breakpoints" },
     { "<leader>dp", require("dap").pause, desc = "pause" },
 
     { "<leader>n", group = "notes" },
@@ -244,8 +244,8 @@ wk.add({
     },
     { "<leader>ww", leap_to_window, desc = "Jump to Window" },
 
-    { "]c", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", desc = "Next Hunk", expr = true },
-    { "[c", "&diff ? '[c' : '<cmd>Gitsigns prev<CR>'", desc = "Previous Hunk", expr = true },
+    { "]c", [[<cmd>Gitsigns next_hunk<CR>]], desc = "Next Hunk", expr = true },
+    { "[c", [[<cmd>Gitsigns prev<CR>]], desc = "Previous Hunk", expr = true },
 
     { "gl", "<cmd>HopLineStart<cr>", desc = "Hop Line" },
 })
