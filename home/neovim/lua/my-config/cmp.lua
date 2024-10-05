@@ -125,6 +125,8 @@ cmp.setup({
         disabled = disabled or (vim.fn.reg_executing() ~= "")
         disabled = disabled or (context.in_treesitter_capture("comment"))
         disabled = disabled or (context.in_syntax_group("Comment"))
+        -- disable in lsp rename popup
+        disabled = disabled or (vim.bo.buftype == "nofile" and vim.bo.filetype == "sagarename")
         return not disabled
     end,
     snippet = {
