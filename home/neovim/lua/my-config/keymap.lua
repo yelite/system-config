@@ -244,8 +244,8 @@ wk.add({
     },
     { "<leader>ww", leap_to_window, desc = "Jump to Window" },
 
-    { "]c", [[<cmd>Gitsigns next_hunk<CR>]], desc = "Next Hunk", expr = true },
-    { "[c", [[<cmd>Gitsigns prev<CR>]], desc = "Previous Hunk", expr = true },
+    { "]c", [[<cmd>Gitsigns next_hunk<CR>]], desc = "Next Hunk" },
+    { "[c", [[<cmd>Gitsigns prev_hunk<CR>]], desc = "Previous Hunk" },
 
     { "gl", "<cmd>HopLineStart<cr>", desc = "Hop Line" },
 })
