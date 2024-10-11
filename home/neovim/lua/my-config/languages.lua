@@ -9,8 +9,20 @@ local util = require("my-config.util")
 
 local M = {}
 
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
 function M.standard_lsp_on_attach(client, bufnr)
     keymap.bind_lsp_keys(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = augroup,
+            buffer = bufnr,
+            callback = function()
+                util.auto_lsp_formatting(bufnr)
+            end,
+        })
+    end
 end
 
 M.standard_lsp_capabilities = vim.tbl_deep_extend("force", {}, require("cmp_nvim_lsp").default_capabilities())
@@ -299,6 +311,12 @@ require("null-ls").setup({
         require("null-ls").builtins.formatting.buf,
         require("null-ls").builtins.formatting.clang_format.with({
             filetypes = { "c", "cpp", "cs", "java", "cuda" },
+        }),
+        require("null-ls").builtins.formatting.golines.with({
+            extra_args = {
+                "--max-len=100",
+                "--base-formatter=gofumpt",
+            },
         }),
         require("null-ls").builtins.formatting.stylua,
         require("null-ls").builtins.diagnostics.pylint.with({

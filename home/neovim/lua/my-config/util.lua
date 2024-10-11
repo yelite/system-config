@@ -74,4 +74,27 @@ M.toggle_copilot_suppression = function()
     })
 end
 
+M.lsp_formatting = function(bufnr)
+    vim.lsp.buf.format({
+        filter = function(client)
+            -- Use golines from null-ls instead of gopls
+            return client.name ~= "gopls"
+        end,
+        bufnr = bufnr,
+    })
+end
+
+local is_auto_lsp_formatting_enabled = true
+
+M.auto_lsp_formatting = function(bufnr)
+    if is_auto_lsp_formatting_enabled then
+        M.lsp_formatting(bufnr)
+    end
+end
+
+M.toggle_auto_lsp_formatting = function()
+    is_auto_lsp_formatting_enabled = not is_auto_lsp_formatting_enabled
+    print("Auto LSP formatting is now " .. (is_auto_lsp_formatting_enabled and "enabled" or "disabled"))
+end
+
 return M

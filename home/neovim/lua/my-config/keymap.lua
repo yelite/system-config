@@ -201,6 +201,7 @@ wk.add({
     { "<leader>tC", [[<cmd>Copilot panel<cr>]], desc = "Toggle Copilot panel" },
     { "<leader>td", [[<cmd>TroubleToggle<cr>]], desc = "Trouble Window" },
     { "<leader>tf", require("zen-mode").toggle, desc = "Focus Mode" },
+    { "<leader>tl", my_util.toggle_auto_lsp_formatting, desc = "LSP formatting on save" },
     {
         "<leader>tgb",
         my_util.make_async_func(my_settings.prompt_setting, "git_base_branch"),
@@ -365,9 +366,9 @@ end
 
 function M.bind_lsp_keys(client, bufnr)
     local opts = { buffer = bufnr, silent = true }
-    mapkey("<leader>if", "n", "<cmd>lua vim.lsp.buf.format({timeout_ms = 2000})<cr>", opts, "Format")
+    mapkey("<leader>if", "n", my_util.lsp_formatting, opts, "Format")
     if client.server_capabilities.documentRangeFormattingProvider then
-        mapkey("<leader>if", "x", "<cmd>lua vim.lsp.buf.format({timeout_ms = 2000})<cr>", opts, "Format")
+        mapkey("<leader>if", "x", my_util.lsp_formatting, opts, "Format")
     end
 
     mapkey("<leader>ic", "n", "<cmd>Lspsaga incoming_calls<cr>", opts, "Incoming Calls")
