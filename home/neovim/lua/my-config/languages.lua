@@ -14,13 +14,14 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 function M.standard_lsp_on_attach(client, bufnr)
     keymap.bind_lsp_keys(client, bufnr)
     if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_buf_create_user_command(bufnr, "LspFormatting", function()
+            util.auto_lsp_formatting(bufnr)
+        end, {})
         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
         vim.api.nvim_create_autocmd("BufWritePre", {
             group = augroup,
             buffer = bufnr,
-            callback = function()
-                util.auto_lsp_formatting(bufnr)
-            end,
+            command = "undojoin | LspFormatting",
         })
     end
 end
