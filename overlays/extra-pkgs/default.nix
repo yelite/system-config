@@ -7,7 +7,6 @@ final: prev:
   rime-dict = final.callPackage ./rime-dict.nix {};
   flake-repl = final.callPackage ./flake-repl {};
   cloudflare-utils = final.callPackage ./cloudflare-utils.nix {};
-  discord-smtp-server = final.callPackage ./discord-smtp-server.nix {};
 
   flameshot = prev.flameshot.overrideAttrs (old: {
     patches = old.patches ++ [./patches/flameshot.patch];
