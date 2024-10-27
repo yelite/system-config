@@ -89,7 +89,7 @@ in {
 
   # link ~/.terminfo to /usr/share/terminfo
   # https://github.com/NixOS/nixpkgs/issues/36146#issuecomment-421460165
-  systemd.user.tmpfiles.rules = [
+  systemd.user.tmpfiles.rules = lib.mkIf hostPlatform.isLinux [
     "L+ %h/.terminfo - - - - /usr/share/terminfo"
   ];
 
