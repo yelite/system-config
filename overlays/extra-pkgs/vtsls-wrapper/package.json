@@ -14,7 +14,7 @@
     "language-server-protocol"
   ],
   "dependencies": {
-    "@vtsls/language-server": "0.2.4"
+    "@vtsls/language-server": "0.2.6"
   },
   "repository": {
     "type": "git",
