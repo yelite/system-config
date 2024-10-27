@@ -84,6 +84,7 @@ in {
   users.users.${myConfig.username} = {
     isNormalUser = true;
     shell = pkgs.fish;
+    linger = true;
     # TODO: Split into different modules
     extraGroups = ["wheel" "networkmanager" "libvirtd" "i2c"];
   };
