@@ -30,7 +30,7 @@ final: prev:
     pname = "vtsls";
     version = "0.2.4";
     src = ./vtsls-wrapper;
-    npmDepsHash = "sha256-TrrN+tPZILaxjboOEUEgCpadyKvgeBIIPGE+WOyk3Ro=";
+    npmDepsHash = "sha256-I12A/t70SdqSvbq2BF8NAqjtr0zYJF9oKkDIxovG4fo=";
     dontNpmBuild = true;
   };
 
