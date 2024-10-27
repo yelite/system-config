@@ -61,7 +61,6 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     # Pinned nixpkgs to fix the swift build failure on darwin https://github.com/NixOS/nixpkgs/issues/327836
     darwin-nixpkgs.url = "github:nixos/nixpkgs?rev=2e92235aa591abc613504fde2546d6f78b18c0cd";
-    vm-nixpkgs.url = "github:nixos/nixpkgs?rev=4ca52fdf5f0da995fc26e7d07c6c30a710ed4f8a";
     flake-parts.url = "github:hercules-ci/flake-parts";
     lite-config.url = "github:yelite/lite-config";
     get-flake.url = "github:ursi/get-flake";

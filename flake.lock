@@ -366,8 +366,7 @@
         "mac-app-util": "mac-app-util",
         "microvm": "microvm",
         "nix-darwin": "nix-darwin",
-        "nixpkgs": "nixpkgs_2",
-        "vm-nixpkgs": "vm-nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       }
     },
     "spectrum": {
@@ -446,22 +445,6 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "vm-nixpkgs": {
-      "locked": {
-        "lastModified": 1722166270,
-        "narHash": "sha256-yxklKKqEu2qAKgccZ6ct9VxPfDr1WVDj3g6r3nWHUAs=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "4ca52fdf5f0da995fc26e7d07c6c30a710ed4f8a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "4ca52fdf5f0da995fc26e7d07c6c30a710ed4f8a",
         "type": "github"
       }
     }
