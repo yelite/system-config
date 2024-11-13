@@ -59,17 +59,11 @@ final: prev:
       '';
 }
 // prev.lib.optionalAttrs prev.stdenv.isDarwin {
-  # TODO: remove after https://github.com/NixOS/nixpkgs/pull/338070 is in unstable
+  # TODO: https://github.com/NixOS/nixpkgs/issues/353489
   kitty = prev.kitty.overrideAttrs (old: {
+    nativeBuildInputs = old.nativeBuildInputs ++ [prev.makeBinaryWrapper prev.darwin.autoSignDarwinBinariesHook];
     doChek = false;
     doInstallCheck = false;
-    patches = old.patches ++ [./patches/kitty-darwin.patch];
-    preCheck = ''
-      # theme collection test starts an http server
-      rm tools/themes/collection_test.go
-      # passwd_test tries to exec /usr/bin/dscl
-      rm tools/utils/passwd_test.go
-    '';
   });
   hammerspoon = final.callPackage ./hammerspoon.nix {};
 }
