@@ -25,7 +25,6 @@
                   (inputs.get-flake ./overlays/neovim).overlay
                   (inputs.get-flake ./overlays/fish).overlay
                   (import ./overlays/extra-pkgs)
-                  (import ./overlays/darwin-swift-fix.nix inputs.darwin-nixpkgs)
                 ];
               };
 
@@ -59,8 +58,6 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    # Pinned nixpkgs to fix the swift build failure on darwin https://github.com/NixOS/nixpkgs/issues/327836
-    darwin-nixpkgs.url = "github:nixos/nixpkgs?rev=2e92235aa591abc613504fde2546d6f78b18c0cd";
     flake-parts.url = "github:hercules-ci/flake-parts";
     lite-config.url = "github:yelite/lite-config";
     get-flake.url = "github:ursi/get-flake";

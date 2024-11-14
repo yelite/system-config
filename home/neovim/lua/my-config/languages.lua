@@ -207,7 +207,6 @@ require("go").setup({
         enable = false,
     },
     dap_debug_keymap = true,
-    diagnostic = false,
 })
 
 require("lazydev").setup({
