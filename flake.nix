@@ -58,6 +58,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    quickwit-nixpkgs.url = "github:nixos/nixpkgs?rev=18536bf04cd71abd345f9579158841376fdd0c5a";
     flake-parts.url = "github:hercules-ci/flake-parts";
     lite-config.url = "github:yelite/lite-config";
     get-flake.url = "github:ursi/get-flake";
