@@ -89,10 +89,6 @@ require("lsp-endhints").setup({
     autoEnableHints = true,
 })
 
-vim.diagnostic.config({
-    signs = false,
-})
-
 if util.is_copilot_installed() then
     require("copilot").setup({
         suggestion = { enabled = false },
@@ -207,6 +203,10 @@ require("go").setup({
         enable = false,
     },
     dap_debug_keymap = true,
+})
+
+vim.diagnostic.config({
+    signs = false,
 })
 
 require("lazydev").setup({
