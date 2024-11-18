@@ -381,12 +381,5 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.bo.indentexpr = "GetNixIndent()"
     end,
 })
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "json" },
-    group = "MyLangCustomization",
-    callback = function()
-        vim.bo.conceallevel = 0
-    end,
-})
 
 return M
