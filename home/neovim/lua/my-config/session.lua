@@ -77,11 +77,11 @@ possession.setup({
     plugins = {
         close_windows = {
             hooks = { "before_save", "before_load" },
-            preserve_layout = true, -- or fun(win): boolean
+            preserve_layout = false,
             match = {
                 floating = true,
                 buftype = {},
-                filetype = {},
+                filetype = { "AvanteInput", "Avante" },
                 custom = false, -- or fun(win): boolean
             },
         },
@@ -90,7 +90,10 @@ possession.setup({
                 "before_load",
                 vim.o.sessionoptions:match("buffer") and "before_save",
             },
-            force = false,
+            force = function(bufnr)
+                local bt = vim.bo[bufnr].buftype
+                return bt == "nofile" or bt == "nowrite" or bt == "terminal"
+            end,
         },
         symbols_outline = true,
     },

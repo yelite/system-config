@@ -163,6 +163,7 @@ in {
         copilot-lua
         copilot-cmp
         copilot-status-nvim
+        avante-nvim
       ];
 
     extraConfig = ''

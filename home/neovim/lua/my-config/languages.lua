@@ -108,6 +108,19 @@ if util.is_copilot_installed() then
         },
     })
     require("copilot_cmp").setup()
+    require("avante_lib").load()
+    require("avante").setup({
+        provider = "copilot",
+        copilot = {
+            model = "claude-3.5-sonnet",
+            timeout = 30000,
+            temperature = 0,
+            max_tokens = 4096,
+        },
+        windows = {
+            width = 36,
+        },
+    })
 end
 
 rust_tools.setup({
