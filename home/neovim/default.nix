@@ -61,7 +61,8 @@ in {
       '')
     ]
     ++ lib.optionals hostPlatform.isLinux [
-      pkgs.neovide
+      # TODO: wait for https://github.com/NixOS/nixpkgs/pull/356292 to hit unstable
+      # pkgs.neovide
     ];
 
   home.sessionVariables = {

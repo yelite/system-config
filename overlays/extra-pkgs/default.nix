@@ -8,6 +8,17 @@ final: prev:
   flake-repl = final.callPackage ./flake-repl {};
   cloudflare-utils = final.callPackage ./cloudflare-utils.nix {};
 
+  opentelemetry-collector-contrib = prev.opentelemetry-collector-contrib.overrideAttrs (oldAttrs: rec {
+    version = "0.110.0";
+    src = prev.fetchFromGitHub {
+      owner = "open-telemetry";
+      repo = "opentelemetry-collector-contrib";
+      rev = "v${version}";
+      hash = "sha256-bDtP7EFKus0NJpLccbD+HlzEusc+KAbKWmS/KGthtwY=";
+    };
+    vendorHash = "sha256-pDDEqtXu167b+J1+k7rC1BE5/ehxzG0ZAkhxqmJpHsg=";
+  });
+
   flameshot = prev.flameshot.overrideAttrs (old: {
     patches = old.patches ++ [./patches/flameshot.patch];
   });
