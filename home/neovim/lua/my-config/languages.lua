@@ -120,6 +120,9 @@ if util.is_copilot_installed() then
         windows = {
             width = 36,
         },
+        behaviour = {
+            auto_set_keymap = false,
+        },
     })
 end
 

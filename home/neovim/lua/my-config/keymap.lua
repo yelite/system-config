@@ -73,6 +73,8 @@ local function browse_project_root_folders()
 end
 
 wk.add({
+    { "<leader>a", require("avante.api").ask, desc = "Ask AI", mode = { "n", "v" } },
+    { "<leader>A", require("avante.api").refresh, desc = "Avante Refresh", mode = { "n", "v" } },
     { "<leader>j", require("my-config.telescope").git_changed_files, desc = "Changed Files in Git Branch" },
     { "<leader>J", search_current_dir, desc = "Search in the directory of current file" },
     { "<leader>k", require("my-config.telescope").quick_find_files, desc = "Quick Find Files" },
@@ -147,10 +149,11 @@ wk.add({
     },
 
     { "<leader>i", group = "code" },
-    { "<leader>ia", [[<cmd>Telescope lsp_range_code_actions<cr>]], desc = "Code Actions" },
+    { "<leader>ia", [[<cmd>Telescope lsp_range_code_actions<cr>]], desc = "Code Actions", mode = { "n", "v" } },
+    { "<leader>ie", require("avante.api").edit, desc = "Avante edit", mode = { "n", "v" } },
     { "<leader>id", [[<cmd>Trouble workspace_diagnostics<cr>]], desc = "Workspace Diagnostics" },
     { "<leader>iD", [[<cmd>Trouble document_diagnostics<cr>]], desc = "Document Diagnostics" },
-    { "<leader>ir", [[<cmd>Lspsaga rename<cr>]], desc = "Rename Symbol" },
+    { "<leader>ir", [[<cmd>Lspsaga rename<cr>]], desc = "Rename Symbol", mode = { "n", "v" } },
     { "<leader>is", [[<cmd>Telescope lsp_dynamic_workspace_symbols<cr>]], desc = "Workspace Symbols" },
     { "<leader>iS", [[<cmd>Telescope lsp_document_symbols symbol_width=50<cr>]], desc = "Document Symbols" },
 
@@ -235,9 +238,10 @@ wk.add({
     { "<leader>vU", [[<cmd>Gitsigns reset_buffer_index<cr>]], desc = "Reset Buffer Index" },
     { "<leader>vv", [[<cmd>lua require("my-config.terminal").toggle_lazygit()<cr>]], desc = "Open lazygit" },
 
-    { "<leader>w", group = "window" },
-    { "<leader>wo", my_window.move_to_next_window, desc = "Move Buffer to Next Window" },
-    { "<leader>wO", my_window.open_in_next_window, desc = "Open Buffer in Next Window" },
+    { "<leader>w", group = "window", mode = { "n", "v" } },
+    { "<leader>wa", require("avante.api").focus, desc = "Focus Avante window", mode = { "n", "v" } },
+    { "<leader>wo", my_window.move_to_next_window, desc = "Move Buffer to Next Window", mode = { "n", "v" } },
+    { "<leader>wO", my_window.open_in_next_window, desc = "Open Buffer in Next Window", mode = { "n", "v" } },
     {
         "<leader>wp",
         [[<cmd>lua require'my-config.window'.move_to_next_window(true)<cr>]],

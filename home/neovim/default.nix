@@ -91,6 +91,7 @@ in {
         gitsigns-nvim
         bufdelete-nvim
         gitlinker-nvim
+        render-markdown-nvim
 
         leap-nvim
         flash-nvim

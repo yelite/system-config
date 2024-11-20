@@ -136,6 +136,10 @@ require("glow").setup({
     border = "single",
 })
 
+require("render-markdown").setup({
+    file_types = { "Avante" },
+})
+
 require("hop").setup({
     jump_on_sole_occurrence = false,
 })
