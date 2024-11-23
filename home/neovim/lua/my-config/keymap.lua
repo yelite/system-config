@@ -488,4 +488,26 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = enable_text_mode,
 })
 
+local function set_avanteinput()
+    local opts = { buffer = vim.fn.bufnr(), silent = true }
+    mapkey("<S-CR>", "i", "<CR>", vim.tbl_extend("force", opts, { remap = false }))
+    mapkey("<C-s>", "i", function()
+        vim.api.nvim_input("<esc>")
+        -- Use schedule so that the side bar is turned off after
+        -- getting back to normal mode, in this way the cursor
+        -- won't move one char backward.
+        vim.schedule(function()
+            require("avante.api").toggle()
+        end)
+    end, opts)
+    vim.wo.wrap = true
+end
+
+vim.api.nvim_create_augroup("AvanteInputMappings", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "AvanteInput",
+    group = "AvanteInputMappings",
+    callback = set_avanteinput,
+})
+
 return M
