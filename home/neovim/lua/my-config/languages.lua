@@ -113,6 +113,7 @@ if util.is_copilot_installed() then
         provider = "copilot",
         copilot = {
             model = "gpt-4o-2024-08-06",
+            -- model = "claude-3.5-sonnet",
             timeout = 30000,
             temperature = 0,
             max_tokens = 4096,
@@ -121,7 +122,7 @@ if util.is_copilot_installed() then
             width = 36,
         },
         behaviour = {
-            auto_set_keymap = false,
+            auto_set_keymaps = false,
         },
     })
 end

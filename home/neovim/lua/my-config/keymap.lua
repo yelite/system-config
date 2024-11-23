@@ -74,7 +74,6 @@ end
 
 wk.add({
     { "<leader>a", require("avante.api").ask, desc = "Ask AI", mode = { "n", "v" } },
-    { "<leader>A", require("avante.api").refresh, desc = "Avante Refresh", mode = { "n", "v" } },
     { "<leader>j", require("my-config.telescope").git_changed_files, desc = "Changed Files in Git Branch" },
     { "<leader>J", search_current_dir, desc = "Search in the directory of current file" },
     { "<leader>k", require("my-config.telescope").quick_find_files, desc = "Quick Find Files" },
@@ -84,6 +83,24 @@ wk.add({
     { "<leader>x", "<cmd>Telescope commands<cr>", desc = "Commands" },
     { "<leader>.", "<cmd>Telescope resume<cr>", desc = "Resume Last Telescope Picker" },
     { "<leader>>", "<cmd>Telescope pickers<cr>", desc = "Previous Telescope Pickers" },
+
+    { "<leader>A", group = "Avante" },
+    { "<leader>Ar", require("avante.api").refresh, desc = "avante: refresh" },
+    { "<leader>AR", require("avante.repo_map").show, desc = "avante: repo map" },
+    {
+        "<leader>Ad",
+        function()
+            require("avante.api").toggle.debug()
+        end,
+        desc = "Avante: toggle debug",
+    },
+    {
+        "<leader>Ah",
+        function()
+            require("avante.api").toggle.hint()
+        end,
+        desc = "Avante: toggle hints",
+    },
 
     { "<leader>b", group = "buffer" },
     { "<leader>bb", [[<cmd>Telescope buffers<cr>]], desc = "Switch Buffer" },
@@ -240,6 +257,15 @@ wk.add({
 
     { "<leader>w", group = "window", mode = { "n", "v" } },
     { "<leader>wa", require("avante.api").focus, desc = "Focus Avante window", mode = { "n", "v" } },
+    { "<C-w>a", require("avante.api").focus, desc = "Focus Avante window", mode = { "n", "v" } },
+    {
+        "<leader>wA",
+        function()
+            require("avante.api").toggle()
+        end,
+        desc = "Toggle Avante window",
+        mode = { "n", "v" },
+    },
     { "<leader>wo", my_window.move_to_next_window, desc = "Move Buffer to Next Window", mode = { "n", "v" } },
     { "<leader>wO", my_window.open_in_next_window, desc = "Open Buffer in Next Window", mode = { "n", "v" } },
     {
