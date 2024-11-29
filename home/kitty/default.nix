@@ -32,7 +32,7 @@ lib.mkIf config.myConfig.kitty.enable {
       placement_strategy = "top-left";
     };
     shellIntegration.mode = "no-sudo";
-    theme = "Tomorrow Night Eighties";
+    themeFile = "Tomorrow_Night_Eighties";
     keybindings = {
       "ctrl+tab" = "no_op";
       "ctrl+shift+tab" = "no_op";
