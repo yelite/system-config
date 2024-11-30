@@ -491,6 +491,9 @@ vim.api.nvim_create_autocmd("FileType", {
 local function set_avanteinput()
     local opts = { buffer = vim.fn.bufnr(), silent = true }
     mapkey("<S-CR>", "i", "<CR>", vim.tbl_extend("force", opts, { remap = false }))
+    mapkey("<C-s>", "n", function()
+        require("avante.api").toggle()
+    end, opts)
     mapkey("<C-s>", "i", function()
         vim.api.nvim_input("<esc>")
         -- Use schedule so that the side bar is turned off after
