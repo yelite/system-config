@@ -124,6 +124,7 @@ if util.is_copilot_installed() then
         behaviour = {
             auto_set_keymaps = false,
         },
+        hints = { enabled = false },
         mappings = {
             submit = {
                 insert = "<CR>",
