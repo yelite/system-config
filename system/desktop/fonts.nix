@@ -22,10 +22,7 @@ in
         noto-fonts-emoji
         roboto-mono
         overpass
-
-        (nerdfonts.override {
-          fonts = ["Hack"];
-        })
+        nerd-fonts.hack
       ];
 
       enableDefaultPackages = false;

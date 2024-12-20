@@ -18,9 +18,7 @@ lib.mkIf config.myConfig.kitty.enable {
         size = 12;
       }
       // lib.optionalAttrs hostPlatform.isDarwin {
-        package = pkgs.nerdfonts.override {
-          fonts = ["Hack"];
-        };
+        package = pkgs.nerd-fonts.hack;
         size = 16;
       };
     settings = {
