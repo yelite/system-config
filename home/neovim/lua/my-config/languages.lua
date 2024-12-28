@@ -206,7 +206,6 @@ require("go").setup({
                 },
             },
         }),
-        cmd_env = { GOFUMPT_SPLIT_LONG_LINES = "on" },
         settings = {
             gopls = {
                 usePlaceholders = true,
@@ -336,12 +335,12 @@ require("null-ls").setup({
         require("null-ls").builtins.formatting.clang_format.with({
             filetypes = { "c", "cpp", "cs", "java", "cuda" },
         }),
-        -- require("null-ls").builtins.formatting.golines.with({
-        --     extra_args = {
-        --         "--max-len=100",
-        --         "--base-formatter=gofumpt",
-        --     },
-        -- }),
+        require("null-ls").builtins.formatting.golines.with({
+            extra_args = {
+                "--max-len=100",
+                "--base-formatter=gofumpt",
+            },
+        }),
         require("null-ls").builtins.formatting.stylua,
         require("null-ls").builtins.diagnostics.pylint.with({
             -- TODO: read project config

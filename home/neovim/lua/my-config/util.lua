@@ -76,6 +76,11 @@ end
 
 M.lsp_formatting = function(bufnr)
     vim.lsp.buf.format({
+        filter = function(client)
+            -- Use golines from null-ls instead of gopls
+            return client.name ~= "gopls"
+        end,
+        async = true,
         bufnr = bufnr,
     })
 end
