@@ -17,7 +17,15 @@ require("nvim-treesitter.configs").setup({
     indent = {
         enable = true,
         is_supported = function(lang)
-            return queries.has_indents(lang) and lang ~= "nix"
+            if lang == "nix" then
+                -- use my customized indent function
+                return false
+            end
+            if lang == "go" then
+                -- too slow for big file
+                return false
+            end
+            return queries.has_indents(lang)
         end,
     },
     textobjects = {
