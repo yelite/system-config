@@ -5,7 +5,7 @@ let
       name = name;
       value = set.${name};
     }) (attrNames set);
-in (pkgs: rawPlugins:
+in (buildVimPlugin: rawPlugins:
     listToAttrs (
       map
       (
@@ -13,7 +13,7 @@ in (pkgs: rawPlugins:
           inherit (item) name;
         in {
           inherit name;
-          value = pkgs.vimUtils.buildVimPlugin {
+          value = buildVimPlugin {
             pname = name;
             version = "flake";
             src = item.value;

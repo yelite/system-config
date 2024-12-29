@@ -96,7 +96,6 @@ in {
         leap-nvim
         flash-nvim
         hop-nvim
-        hop-extensions
         nvim-autopairs
         vim-repeat
         vim-surround

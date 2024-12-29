@@ -72,7 +72,7 @@ in {
       rsgain
       pinentry-qt
 
-      gimp-with-plugins
+      gimp
       gimpPlugins.resynthesizer
 
       kdePackages.dolphin
