@@ -6,7 +6,6 @@ final: prev:
   fcitx5-fluent-dark = final.callPackage ./fcitx5-fluent-dark {};
   rime-dict = final.callPackage ./rime-dict.nix {};
   flake-repl = final.callPackage ./flake-repl {};
-  cloudflare-utils = final.callPackage ./cloudflare-utils.nix {};
 
   flameshot = prev.flameshot.overrideAttrs (old: {
     patches = old.patches ++ [./patches/flameshot.patch];
@@ -59,11 +58,5 @@ final: prev:
       '';
 }
 // prev.lib.optionalAttrs prev.stdenv.isDarwin {
-  # TODO: https://github.com/NixOS/nixpkgs/issues/353489
-  kitty = prev.kitty.overrideAttrs (old: {
-    nativeBuildInputs = old.nativeBuildInputs ++ [prev.makeBinaryWrapper prev.darwin.autoSignDarwinBinariesHook];
-    doChek = false;
-    doInstallCheck = false;
-  });
   hammerspoon = final.callPackage ./hammerspoon.nix {};
 }
