@@ -16,9 +16,9 @@ in
       *)
         if [ -z "$1" ]; then
           if [[ $OSTYPE == 'darwin'* ]]; then
-            nix repl --argstr hostname $(hostname) ${./repl.nix}
+            nix repl --argstr hostname $(hostname) --file ${./repl.nix}
           else
-            nix repl ${./repl.nix}
+            nix repl --file ${./repl.nix}
           fi
         else
           nix repl --arg flakePath $(${coreutils}/bin/readlink -f $1 | ${gnused}/bin/sed 's|/flake.nix||') ${./repl.nix}

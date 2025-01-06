@@ -6,9 +6,11 @@
 }: let
   inherit (builtins) getFlake head match currentSystem readFile pathExists filter fromJSON;
 
-  selfFlake =
+  selfFlake = let
+    registryContent = builtins.unsafeDiscardStringContext (readFile registryPath);
+  in
     if pathExists registryPath
-    then filter (it: it.from.id == "self") (fromJSON (readFile registryPath)).flakes
+    then filter (it: it.from.id == "self") (fromJSON registryContent).flakes
     else [];
 
   flakePath' =
