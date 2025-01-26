@@ -6,12 +6,6 @@
   ...
 }:
 lib.mkIf config.myConfig.neovim.enable (let
-  sqlite3_lib_path =
-    if pkgs.stdenv.isLinux
-    then "${pkgs.sqlite.out}/lib/libsqlite3.so"
-    else if pkgs.stdenv.isDarwin
-    then "${pkgs.sqlite.out}/lib/libsqlite3.dylib"
-    else assert false; "Unsupported";
   my-treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (p:
     with p; [
       astro
@@ -151,14 +145,7 @@ in {
         clangd_extensions-nvim
         go-nvim
         SchemaStore-nvim
-
-        {
-          plugin = sqlite-lua.overrideAttrs (oldAttrs: {
-            # TODO: remove this once upstream fixes the quoting issue of sqlite_clib_path string
-            postPatch = "";
-          });
-          config = "let g:sqlite_clib_path = '${sqlite3_lib_path}'";
-        }
+        sqlite-lua
       ]
       ++ lib.optionals config.myConfig.neovim.copilot.enable [
         copilot-lua
