@@ -73,7 +73,14 @@ local function browse_project_root_folders()
 end
 
 wk.add({
-    { "<leader>a", require("avante.api").ask, desc = "Ask AI", mode = { "n", "v" } },
+    {
+        "<leader>a",
+        function()
+            require("avante.api").ask()
+        end,
+        desc = "Ask AI",
+        mode = { "n", "v" },
+    },
     { "<leader>j", require("my-config.telescope").git_changed_files, desc = "Changed Files in Git Branch" },
     { "<leader>J", search_current_dir, desc = "Search in the directory of current file" },
     { "<leader>k", require("my-config.telescope").quick_find_files, desc = "Quick Find Files" },
@@ -85,8 +92,20 @@ wk.add({
     { "<leader>>", "<cmd>Telescope pickers<cr>", desc = "Previous Telescope Pickers" },
 
     { "<leader>A", group = "Avante" },
-    { "<leader>Ar", require("avante.api").refresh, desc = "avante: refresh" },
-    { "<leader>AR", require("avante.repo_map").show, desc = "avante: repo map" },
+    {
+        "<leader>Ar",
+        function()
+            require("avante.api").refresh()
+        end,
+        desc = "avante: refresh",
+    },
+    {
+        "<leader>AR",
+        function()
+            require("avante.repo_map").show()
+        end,
+        desc = "avante: repo map",
+    },
     {
         "<leader>Ad",
         function()
@@ -167,7 +186,14 @@ wk.add({
 
     { "<leader>i", group = "code" },
     { "<leader>ia", [[<cmd>Telescope lsp_range_code_actions<cr>]], desc = "Code Actions", mode = { "n", "v" } },
-    { "<leader>ie", require("avante.api").edit, desc = "Avante edit", mode = { "n", "v" } },
+    {
+        "<leader>ie",
+        function()
+            require("avante.api").edit()
+        end,
+        desc = "Avante edit",
+        mode = { "n", "v" },
+    },
     { "<leader>id", [[<cmd>Trouble diagnostics<cr>]], desc = "Diagnostics" },
     { "<leader>ir", [[<cmd>Lspsaga rename<cr>]], desc = "Rename Symbol", mode = { "n", "v" } },
     { "<leader>is", [[<cmd>Telescope lsp_dynamic_workspace_symbols<cr>]], desc = "Workspace Symbols" },
@@ -255,8 +281,22 @@ wk.add({
     { "<leader>vv", [[<cmd>lua require("my-config.terminal").toggle_lazygit()<cr>]], desc = "Open lazygit" },
 
     { "<leader>w", group = "window", mode = { "n", "v" } },
-    { "<leader>wa", require("avante.api").focus, desc = "Focus Avante window", mode = { "n", "v" } },
-    { "<C-w>a", require("avante.api").focus, desc = "Focus Avante window", mode = { "n", "v" } },
+    {
+        "<leader>wa",
+        function()
+            require("avante.api").focus()
+        end,
+        desc = "Focus Avante window",
+        mode = { "n", "v" },
+    },
+    {
+        "<C-w>a",
+        function()
+            require("avante.api").focus()
+        end,
+        desc = "Focus Avante window",
+        mode = { "n", "v" },
+    },
     {
         "<leader>wA",
         function()

@@ -116,7 +116,7 @@ if util.is_copilot_installed() then
             model = "claude-3.5-sonnet",
             timeout = 30000,
             temperature = 0,
-            max_tokens = 4096,
+            disable_tools = true,
         },
         windows = {
             width = 36,
