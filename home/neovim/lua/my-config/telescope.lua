@@ -113,6 +113,7 @@ require("telescope").setup({
         },
         lsp_document_symbols = {
             layout_strategy = "vertical",
+            symbol_width = 70,
         },
         commands = {
             theme = "ivy",
