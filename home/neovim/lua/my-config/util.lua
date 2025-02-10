@@ -98,4 +98,12 @@ M.toggle_auto_lsp_formatting = function()
     print("Auto LSP formatting is now " .. (is_auto_lsp_formatting_enabled and "enabled" or "disabled"))
 end
 
+M.code_action = function()
+    vim.lsp.buf.code_action({
+        filter = function(action)
+            return action.kind ~= "gopls.doc.features"
+        end,
+    })
+end
+
 return M

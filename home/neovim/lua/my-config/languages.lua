@@ -70,6 +70,14 @@ lspsaga.setup({
     beacon = {
         enable = false,
     },
+    code_action = {
+        show_server_name = true,
+        max_height = 0.4,
+        keys = {
+            quit = { "q", "<Esc>" },
+            exec = "<CR>",
+        },
+    },
 })
 
 require("fidget").setup({})

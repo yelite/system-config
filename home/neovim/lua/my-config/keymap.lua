@@ -454,7 +454,7 @@ function M.bind_lsp_keys(client, bufnr)
     mapkey("goo", "n", "<cmd>Lspsaga show_line_diagnostics<cr>", opts, "Show Line Diagnostics")
     mapkey("god", "n", "<cmd>Lspsaga peek_definition<cr>", opts, "Preview Definition")
     mapkey("got", "n", "<cmd>Lspsaga peek_type_definition<cr>", opts, "Preview Type Definition")
-    mapkey("ga", "n", "<cmd>Lspsaga code_action<cr>", opts, "Code Actions")
+    mapkey("ga", { "n", "x" }, my_util.code_action, opts, "Code Actions")
     mapkey("K", "n", "<cmd>Lspsaga hover_doc<cr>", opts, "LSP Hover")
 
     mapkey("[e", "n", function()
