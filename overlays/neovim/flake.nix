@@ -76,9 +76,5 @@
       url = "github:ray-x/guihua.lua";
       flake = false;
     };
-    go-nvim = {
-      url = "github:ray-x/go.nvim";
-      flake = false;
-    };
   };
 }

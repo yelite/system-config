@@ -59,7 +59,6 @@ in {
         # has to prefix profile name with dev-edition
         "main.dev-edition-default" = {
           id = 0;
-          name = "dev-edition-default";
           isDefault = true;
 
           userChrome = ''
