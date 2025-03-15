@@ -76,7 +76,7 @@ in {
             }
           '';
 
-          extensions = with addonsPkgs; [
+          extensions.packages = with addonsPkgs; [
             ublock-origin
             localcdn
             privacy-badger
