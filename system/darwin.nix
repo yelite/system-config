@@ -18,8 +18,6 @@ in {
       };
     };
 
-    nix.useDaemon = true;
-
     programs = {
       fish.enable = true;
     };
