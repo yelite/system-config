@@ -238,6 +238,9 @@ require("go").setup({
 
 vim.diagnostic.config({
     signs = false,
+    -- Need this to make lspsaga show_line_diagnostics work
+    -- https://github.com/nvimdev/lspsaga.nvim/issues/1520
+    severity_sort = true,
 })
 
 require("lazydev").setup({
