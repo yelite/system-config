@@ -6,24 +6,12 @@ local lsp_signature = require("lsp_signature")
 local rust_tools = require("rust-tools")
 local keymap = require("my-config.keymap")
 local util = require("my-config.util")
+local guard_ft = require("guard.filetype")
 
 local M = {}
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
 function M.standard_lsp_on_attach(client, bufnr)
     keymap.bind_lsp_keys(client, bufnr)
-    if client.supports_method("textDocument/formatting") then
-        vim.api.nvim_buf_create_user_command(bufnr, "LspFormatting", function()
-            util.auto_lsp_formatting(bufnr)
-        end, {})
-        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            group = augroup,
-            buffer = bufnr,
-            command = "undojoin | LspFormatting",
-        })
-    end
 end
 
 M.standard_lsp_capabilities = vim.tbl_deep_extend("force", {}, require("cmp_nvim_lsp").default_capabilities())
@@ -337,22 +325,31 @@ nvim_lsp.marksman.setup({
     capabilities = M.standard_lsp_capabilities,
 })
 
+---@diagnostic disable-next-line: inject-field
+vim.g.guard_config = {
+    fmt_on_save = true,
+    lsp_as_default_formatter = true,
+    save_on_fmt = true,
+    auto_lint = true,
+    lint_interval = 500,
+}
+
+-- TODO: Use ruff
+guard_ft("python"):fmt("isort"):append("black")
+guard_ft("c,cpp,cuda,cs"):fmt("clang-format")
+-- TODO: check if we need an additional golangci-lint
+guard_ft("go"):fmt({
+    cmd = "golines",
+    args = { "--max-len=100", "--base-formatter=gofumpt" },
+    stdin = true,
+})
+guard_ft("lua"):fmt("stylua")
+guard_ft("html,json,markdown"):fmt("prettier")
+
 require("null-ls").setup({
     diagnostics_format = "#{m} (#{c} #{s})",
     sources = {
-        require("null-ls").builtins.formatting.isort,
-        require("null-ls").builtins.formatting.black,
         require("null-ls").builtins.formatting.buf,
-        require("null-ls").builtins.formatting.clang_format.with({
-            filetypes = { "c", "cpp", "cs", "java", "cuda" },
-        }),
-        require("null-ls").builtins.formatting.golines.with({
-            extra_args = {
-                "--max-len=100",
-                "--base-formatter=gofumpt",
-            },
-        }),
-        require("null-ls").builtins.formatting.stylua,
         require("null-ls").builtins.diagnostics.pylint.with({
             -- TODO: read project config
             extra_args = {
@@ -361,11 +358,6 @@ require("null-ls").setup({
                 "--disable",
                 "protected-access",
             },
-        }),
-        -- TODO: install pyproject-flake8
-        -- require("null-ls").builtins.diagnostics.pyproject_flake8,
-        require("null-ls").builtins.formatting.prettier.with({
-            filetypes = { "html", "json", "markdown" },
         }),
     },
     on_attach = M.standard_lsp_on_attach,

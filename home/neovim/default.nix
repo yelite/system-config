@@ -136,6 +136,9 @@ in {
         lspkind-nvim
         lsp_signature-nvim
         nvim-lsp-endhints
+        guard-nvim
+        guard-collection
+        nvim-notify
 
         todo-comments-nvim
         comment-nvim

@@ -252,6 +252,14 @@ require("neoclip").setup({
     },
 })
 
+---@diagnostic disable-next-line: missing-fields
+require("notify").setup({
+    on_open = function(win)
+        vim.api.nvim_win_set_config(win, { focusable = false })
+    end,
+})
+vim.notify = require("notify")
+
 vim.g.code_action_menu_show_diff = false
 
 require("gitlinker").setup({

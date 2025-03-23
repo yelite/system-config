@@ -198,6 +198,7 @@ wk.add({
     { "<leader>ir", [[<cmd>Lspsaga rename<cr>]], desc = "Rename Symbol", mode = { "n", "v" } },
     { "<leader>is", [[<cmd>Telescope lsp_dynamic_workspace_symbols<cr>]], desc = "Workspace Symbols" },
     { "<leader>iS", [[<cmd>Telescope lsp_document_symbols symbol_width=50<cr>]], desc = "Document Symbols" },
+    { "<leader>if", [[<cmd>Guard fmt<cr>]], desc = "Format file", mode = { "n", "v" } },
 
     { "<leader>d", group = "debug" },
     { "<leader>dr", require("telescope").extensions.dap.commands, desc = "commands" },
@@ -246,7 +247,7 @@ wk.add({
     { "<leader>tC", [[<cmd>Copilot panel<cr>]], desc = "Toggle Copilot panel" },
     { "<leader>td", [[<cmd>TroubleToggle<cr>]], desc = "Trouble Window" },
     { "<leader>tf", require("zen-mode").toggle, desc = "Focus Mode" },
-    { "<leader>tl", my_util.toggle_auto_lsp_formatting, desc = "LSP formatting on save" },
+    { "<leader>tl", my_util.toggle_auto_formatting, desc = "Auto formatting on save" },
     {
         "<leader>tgb",
         my_util.make_async_func(my_settings.prompt_setting, "git_base_branch"),
@@ -435,11 +436,6 @@ end
 
 function M.bind_lsp_keys(client, bufnr)
     local opts = { buffer = bufnr, silent = true }
-    mapkey("<leader>if", "n", my_util.lsp_formatting, opts, "Format")
-    if client.server_capabilities.documentRangeFormattingProvider then
-        mapkey("<leader>if", "x", my_util.lsp_formatting, opts, "Format")
-    end
-
     mapkey("<leader>ic", "n", "<cmd>Lspsaga incoming_calls<cr>", opts, "Incoming Calls")
     mapkey("<leader>iC", "n", "<cmd>Lspsaga outgoing_calls<cr>", opts, "Outgoing Calls")
 

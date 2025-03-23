@@ -1,5 +1,7 @@
 local async = require("plenary.async")
 local lualine = require("lualine")
+local guard_events = require("guard.events")
+local guard_api = require("guard.api")
 
 local M = {}
 
@@ -74,28 +76,11 @@ M.toggle_copilot_suppression = function()
     })
 end
 
-M.lsp_formatting = function(bufnr)
-    vim.lsp.buf.format({
-        filter = function(client)
-            -- Use golines from null-ls instead of gopls
-            return client.name ~= "gopls"
-        end,
-        async = true,
-        bufnr = bufnr,
-    })
-end
-
-local is_auto_lsp_formatting_enabled = true
-
-M.auto_lsp_formatting = function(bufnr)
-    if is_auto_lsp_formatting_enabled then
-        M.lsp_formatting(bufnr)
-    end
-end
-
-M.toggle_auto_lsp_formatting = function()
-    is_auto_lsp_formatting_enabled = not is_auto_lsp_formatting_enabled
-    print("Auto LSP formatting is now " .. (is_auto_lsp_formatting_enabled and "enabled" or "disabled"))
+M.toggle_auto_formatting = function()
+    local guard_config = vim.g.guard_config
+    guard_config.fmt_on_save = not guard_config.fmt_on_save
+    vim.g.guard_config = guard_config
+    vim.notify("Auto formatting is now " .. (vim.g.guard_config.fmt_on_save and "enabled" or "disabled"))
 end
 
 M.code_action = function()
