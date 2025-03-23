@@ -339,8 +339,8 @@ guard_ft("python"):fmt("isort"):append("black")
 guard_ft("c,cpp,cuda,cs"):fmt("clang-format")
 -- TODO: check if we need an additional golangci-lint
 guard_ft("go"):fmt({
-    cmd = "golines",
-    args = { "--max-len=100", "--base-formatter=gofumpt" },
+    cmd = "sh",
+    args = { "-c", "golines --max-len=100 --base-formatter=gofumpt || true" },
     stdin = true,
 })
 guard_ft("lua"):fmt("stylua")
