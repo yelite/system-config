@@ -1,7 +1,5 @@
 local async = require("plenary.async")
 local lualine = require("lualine")
-local guard_events = require("guard.events")
-local guard_api = require("guard.api")
 
 local M = {}
 
