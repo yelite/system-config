@@ -153,7 +153,7 @@ in {
       ++ lib.optionals config.myConfig.neovim.copilot.enable [
         copilot-lua
         copilot-cmp
-        copilot-status-nvim
+        copilot-lualine
         avante-nvim
       ];
 
