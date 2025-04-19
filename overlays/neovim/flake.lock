@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "blink-copilot": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1743362146,
+        "narHash": "sha256-n+k3tmBHGTAvtkhYVFRgqU22DRmdE2Jskp2XqbvB9Z0=",
+        "owner": "fang2hou",
+        "repo": "blink-copilot",
+        "rev": "71102fe2fa1616353f8cb315bb8b85db0812a218",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fang2hou",
+        "repo": "blink-copilot",
+        "type": "github"
+      }
+    },
     "copilot-status-nvim": {
       "flake": false,
       "locked": {
@@ -162,6 +178,7 @@
     "root": {
       "inputs": {
         "autosave": "autosave",
+        "blink-copilot": "blink-copilot",
         "copilot-status-nvim": "copilot-status-nvim",
         "gitlinker-nvim": "gitlinker-nvim",
         "guihua": "guihua",

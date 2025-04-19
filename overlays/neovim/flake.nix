@@ -76,5 +76,9 @@
       url = "github:ray-x/guihua.lua";
       flake = false;
     };
+    blink-copilot = {
+      url = "github:fang2hou/blink-copilot";
+      flake = false;
+    };
   };
 }

@@ -126,19 +126,15 @@ in {
         trouble-nvim
         nvim-dap
         nvim-dap-ui
-        nvim-cmp
-        cmp-buffer
-        cmp-nvim-lsp
-        cmp-path
-        cmp-cmdline
-        cmp_luasnip
-        luasnip
-        lspkind-nvim
+        blink-cmp
+        blink-cmp-avante
+        blink-copilot
         lsp_signature-nvim
         nvim-lsp-endhints
         guard-nvim
         guard-collection
         nvim-notify
+        friendly-snippets
 
         todo-comments-nvim
         comment-nvim
@@ -152,7 +148,6 @@ in {
       ]
       ++ lib.optionals config.myConfig.neovim.copilot.enable [
         copilot-lua
-        copilot-cmp
         copilot-lualine
         avante-nvim
       ];
@@ -160,7 +155,6 @@ in {
     extraConfig = ''
       lua << END🤞
       vim.g._my_config_script_folder = "${./scripts}"
-      vim.g._friendly_snippets_path = "${pkgs.vimPlugins.friendly-snippets}"
       vim.g._copilot_enabled = ${lib.boolToString config.myConfig.neovim.copilot.enable}
       require "my-config"
       END🤞
