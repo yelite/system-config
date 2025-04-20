@@ -19,7 +19,7 @@ assert !(enableX11 && enableHypr);
       sha256 = "sha256-VLbFd+3en/Syy48j2IFMitwqP/S0PNxdokLXQLqDLaQ=";
     };
 
-    cargoHash = "sha256-aN8YMcb+qzqqDmSzIEC9TMmWLKuSeS6PBxqGQ0L2FyA=";
+    cargoHash = "sha256-S1oMBFkCllS69tuO7flMrWCBWFEqZ2kNcg6QUhKygOc=";
 
     buildFeatures =
       lib.optional enableX11 "x11"
