@@ -57,7 +57,7 @@ in {
       profiles = {
         # https://github.com/nix-community/home-manager/issues/4703
         # has to prefix profile name with dev-edition
-        "main.dev-edition-default" = {
+        "dev-edition-default" = {
           id = 0;
           isDefault = true;
 
