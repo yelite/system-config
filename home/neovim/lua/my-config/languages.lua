@@ -256,6 +256,11 @@ nvim_lsp.lua_ls.setup({
 	capabilities = M.standard_lsp_capabilities,
 })
 
+nvim_lsp.serve_d.setup({
+	on_attach = M.standard_lsp_on_attach,
+	capabilities = M.standard_lsp_capabilities,
+})
+
 nvim_lsp.buf_ls.setup({
 	on_attach = M.standard_lsp_on_attach,
 	capabilities = M.standard_lsp_capabilities,

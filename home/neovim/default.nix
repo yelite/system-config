@@ -193,6 +193,7 @@ in {
         buf
         python3Packages.jedi-language-server
         marksman
+        serve-d
 
         nodePackages.nodejs
         nodePackages.prettier
