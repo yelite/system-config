@@ -1,4 +1,5 @@
 local nvim_lsp = require("lspconfig")
+local lsp_util = require("lspconfig.util")
 local lspsaga = require("lspsaga")
 local dap = require("dap")
 local dapui = require("dapui")
@@ -326,6 +327,17 @@ nvim_lsp.cssls.setup({
 nvim_lsp.marksman.setup({
 	on_attach = M.standard_lsp_on_attach,
 	capabilities = M.standard_lsp_capabilities,
+
+	root_dir = function(fname)
+		-- Check if the buffer has a name and corresponds to a readable file
+		if fname == "" or vim.fn.filereadable(fname) == 0 then
+			-- If no valid file path, return nil to prevent Marksman from starting
+			return nil
+		end
+		local root_files = { ".marksman.toml" }
+		return lsp_util.root_pattern(unpack(root_files))(fname)
+			or vim.fs.dirname(vim.fs.find(".git", { path = fname, upward = true })[1])
+	end,
 })
 
 ---@diagnostic disable-next-line: inject-field
