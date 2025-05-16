@@ -194,6 +194,7 @@ in {
         python3Packages.jedi-language-server
         marksman
         serve-d
+        dcd
 
         nodePackages.nodejs
         nodePackages.prettier
