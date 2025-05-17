@@ -259,7 +259,11 @@ nvim_lsp.lua_ls.setup({
 
 if vim.loop.os_uname().sysname ~= "Darwin" then
     nvim_lsp.serve_d.setup({
-        on_attach = M.standard_lsp_on_attach,
+        on_attach = function(client, bufnr)
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
+            M.standard_lsp_on_attach(client, bufnr)
+        end,
         capabilities = M.standard_lsp_capabilities,
     })
 end
