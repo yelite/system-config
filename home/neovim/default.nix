@@ -138,7 +138,6 @@ in {
 
         todo-comments-nvim
         comment-nvim
-        null-ls-nvim
         lazydev-nvim
         rust-tools-nvim
         clangd_extensions-nvim

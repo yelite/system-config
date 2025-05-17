@@ -363,23 +363,6 @@ guard_ft("go"):fmt({
 guard_ft("lua"):fmt("stylua")
 guard_ft("html,json,markdown"):fmt("prettier")
 
-require("null-ls").setup({
-    diagnostics_format = "#{m} (#{c} #{s})",
-    sources = {
-        require("null-ls").builtins.formatting.buf,
-        require("null-ls").builtins.diagnostics.pylint.with({
-            -- TODO: read project config
-            extra_args = {
-                "--disable",
-                "typecheck",
-                "--disable",
-                "protected-access",
-            },
-        }),
-    },
-    on_attach = M.standard_lsp_on_attach,
-})
-
 dapui.setup()
 dap.listeners.before.attach.dapui_config = function()
     dapui.open()
