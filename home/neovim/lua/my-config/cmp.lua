@@ -63,7 +63,7 @@ blink_cmp.setup({
 		ghost_text = { enabled = true },
 	},
 	sources = {
-		default = { "lsp", "snippets", "copilot", "path", "buffer" },
+		default = { "avante", "lsp", "snippets", "copilot", "path", "buffer" },
 		providers = {
 			copilot = {
 				name = "copilot",
@@ -73,6 +73,11 @@ blink_cmp.setup({
 				opts = {
 					max_completions = 3,
 				},
+			},
+			avante = {
+				module = "blink-cmp-avante",
+				name = "Avante",
+				opts = {},
 			},
 		},
 	},
