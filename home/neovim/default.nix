@@ -193,8 +193,6 @@ in {
         buf
         python3Packages.jedi-language-server
         marksman
-        serve-d
-        dcd
 
         nodePackages.nodejs
         nodePackages.prettier
@@ -203,6 +201,10 @@ in {
         vtsls
         nodePackages."@astrojs/language-server"
         nodePackages."@tailwindcss/language-server"
+      ]
+      ++ lib.optionals hostPlatform.isLinux [
+        serve-d
+        dcd
       ]
       ++ lib.optionals hostPlatform.isDarwin [
         pngpaste # For ObsidianPasteImg
