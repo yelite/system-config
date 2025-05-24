@@ -54,10 +54,15 @@ in {
           "wikipedia@search.mozilla.org".installation_mode = "blocked";
         };
       };
-      profiles = {
+      profiles = let
+        profilename =
+          if hostPlatform.isDarwin
+          then "main.dev-edition-default"
+          else "dev-edition-default";
+      in {
         # https://github.com/nix-community/home-manager/issues/4703
         # has to prefix profile name with dev-edition
-        "dev-edition-default" = {
+        "${profilename}" = {
           id = 0;
           isDefault = true;
 

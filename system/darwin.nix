@@ -29,6 +29,8 @@ in {
       home = "/Users/${myConfig.username}";
     };
 
+    system.primaryUser = myConfig.username;
+
     system.defaults.".GlobalPreferences"."com.apple.mouse.scaling" = -1.0;
     system.keyboard.enableKeyMapping = true;
     system.keyboard.remapCapsLockToControl = true;

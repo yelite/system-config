@@ -24,7 +24,6 @@ lib.mkIf config.myConfig.neovim.enable (let
       jsonc
       lua
       nix
-      norg
       markdown
       (markdown_inline.overrideAttrs (old: {
         EXTENSION_WIKI_LINK = true;

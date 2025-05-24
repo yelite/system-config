@@ -34,11 +34,6 @@ final: prev:
     dontNpmBuild = true;
   };
 
-  firefox-devedition-bin =
-    if prev.stdenv.isDarwin
-    then final.callPackage ./firefox-devedition-darwin.nix {}
-    else prev.firefox-devedition-bin;
-
   supersonic =
     if prev.stdenv.isDarwin
     then
