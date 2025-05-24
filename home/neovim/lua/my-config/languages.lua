@@ -109,7 +109,7 @@ if util.is_copilot_installed() then
         provider = "copilot",
         copilot = {
             -- model = "gpt-4o-2024-08-06",
-            model = "claude-3.5-sonnet",
+            model = "gemini-2.5-pro",
             timeout = 30000,
             temperature = 0,
             disable_tools = true,
