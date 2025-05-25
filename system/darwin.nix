@@ -5,6 +5,9 @@
   ...
 }: let
   myConfig = config.myConfig;
+  system-rebuild = pkgs.writeShellScriptBin "system-rebuild" ''
+    darwin-rebuild --flake ~/.system-config "$@"
+  '';
 in {
   imports = [
     inputs.mac-app-util.darwinModules.default
@@ -13,9 +16,9 @@ in {
   config = {
     environment = {
       shells = [pkgs.fish];
-      shellAliases = {
-        system-rebuild = "darwin-rebuild --flake ~/.system-config";
-      };
+      systemPackages = [
+        system-rebuild
+      ];
     };
 
     programs = {
