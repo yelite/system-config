@@ -39,9 +39,7 @@ stdenv.mkDerivation rec {
     then ''
       make ldc
     ''
-    else ''
-      make all
-    '';
+    else null;
 
   installPhase = ''
     install -d $out/bin
