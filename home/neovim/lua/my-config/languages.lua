@@ -107,21 +107,33 @@ if util.is_copilot_installed() then
     require("avante_lib").load()
     require("avante").setup({
         provider = "copilot",
+        auto_suggestions_provider = nil,
+        memory_summary_provider = "copilot",
         copilot = {
             -- model = "gpt-4o-2024-08-06",
             model = "gemini-2.5-pro",
             timeout = 30000,
             temperature = 0,
-            disable_tools = true,
+            disable_tools = false,
         },
         windows = {
             width = 36,
+            sidebar_header = {
+                rounded = false,
+            },
+            edit = {
+                border = "rounded",
+            },
+            ask = {},
         },
         behaviour = {
             auto_set_keymaps = false,
         },
         hints = { enabled = false },
         mappings = {
+            files = {
+                add_current = "<leader>Ac",
+            },
             submit = {
                 insert = "<CR>",
             },

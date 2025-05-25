@@ -100,6 +100,20 @@ wk.add({
         desc = "avante: refresh",
     },
     {
+        "<leader>AA",
+        function()
+            require("avante.api").select_history()
+        end,
+        desc = "avante: history",
+    },
+    {
+        "<leader>Aa",
+        function()
+            require("avante.api").select_history()
+        end,
+        desc = "avante: history",
+    },
+    {
         "<leader>AR",
         function()
             require("avante.repo_map").show()
