@@ -71,6 +71,7 @@ blink_cmp.setup({
         default = { "avante", "lsp", "snippets", "copilot", "path", "buffer" },
         per_filetype = {
             AvanteInput = { "avante" },
+            AvantePromptInput = { "avante" },
         },
         providers = {
             copilot = {
