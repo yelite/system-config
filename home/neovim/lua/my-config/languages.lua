@@ -106,6 +106,7 @@ if util.is_copilot_installed() then
     })
     require("avante_lib").load()
     require("avante").setup({
+        -- mode = "legacy",
         provider = "copilot",
         auto_suggestions_provider = nil,
         memory_summary_provider = "copilot",
