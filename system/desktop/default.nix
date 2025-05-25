@@ -63,6 +63,8 @@ in {
       seahorse.enable = true;
     };
 
+    # https://github.com/NixOS/nixpkgs/issues/401891
+    security.pam.services.i3lock.enable = true;
     security.pam.services.greetd.enableGnomeKeyring = true;
 
     # To avoid kernel logging on greetd tty. See https://github.com/apognu/tuigreet/issues/17
