@@ -524,6 +524,7 @@ local function enable_text_mode()
 
     mapkey("<C-t>", "i", "<Plug>(bullets-demote)", opts)
     mapkey(">>", "n", "<Plug>(bullets-demote)", opts)
+
     mapkey(">", "v", "<Plug>(bullets-demote)", opts)
     mapkey("<C-d>", "i", "<Plug>(bullets-promote)", opts)
     mapkey("<<", "n", "<Plug>(bullets-promote)", opts)
@@ -560,6 +561,29 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = "AvanteInput",
     group = "AvanteInputMappings",
     callback = set_avanteinput,
+})
+
+vim.api.nvim_create_augroup("MyVimSurround", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*",
+    group = "MyVimSurround",
+    callback = function()
+        if vim.bo.filetype == "AvanteConfirm" then
+            return
+        end
+        local opts = { buffer = vim.fn.bufnr(), silent = true }
+
+        vim.keymap.set("n", "ds", "<Plug>Dsurround", opts)
+        vim.keymap.set("n", "cs", "<Plug>Csurround", opts)
+        vim.keymap.set("n", "cS", "<Plug>CSurround", opts)
+        vim.keymap.set("n", "ys", "<Plug>Ysurround", opts)
+        vim.keymap.set("n", "yS", "<Plug>YSurround", opts)
+        vim.keymap.set("n", "yss", "<Plug>Yssurround", opts)
+        vim.keymap.set("n", "ySs", "<Plug>YSsurround", opts)
+        vim.keymap.set("n", "ySS", "<Plug>YSsurround", opts)
+        vim.keymap.set("v", "S", "<Plug>VSurround", opts)
+        vim.keymap.set("v", "gS", "<Plug>VgSurround", opts)
+    end,
 })
 
 return M

@@ -245,8 +245,9 @@ vim.diagnostic.config({
 
 require("lazydev").setup({
     integrations = {
-        lspconfig = true,
-        cmp = true,
+        -- TODO: turn this back on once the formatter issue is fixed
+        lspconfig = false,
+        cmp = false,
     },
 })
 
