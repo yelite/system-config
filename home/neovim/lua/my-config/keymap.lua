@@ -563,6 +563,19 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = set_avanteinput,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "Avante",
+    group = "AvanteInputMappings",
+    callback = function()
+        local opts = { buffer = vim.fn.bufnr(), silent = true }
+        mapkey("<C-s>", "n", function()
+            vim.schedule(function()
+                require("avante.api").toggle()
+            end)
+        end, opts)
+    end,
+})
+
 vim.api.nvim_create_augroup("MyVimSurround", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "*",
