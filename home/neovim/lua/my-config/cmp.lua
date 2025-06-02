@@ -68,7 +68,7 @@ blink_cmp.setup({
         ghost_text = { enabled = true },
     },
     sources = {
-        default = { "avante", "lsp", "snippets", "copilot", "path", "buffer" },
+        default = { "lsp", "snippets", "copilot", "path", "buffer" },
         per_filetype = {
             AvanteInput = { "avante" },
             AvantePromptInput = { "avante" },
