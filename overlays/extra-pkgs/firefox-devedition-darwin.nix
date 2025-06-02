@@ -4,9 +4,10 @@
   stdenv,
   fetchurl,
   undmg,
+  ...
 }: let
-  version = "138.0b9";
-  sha256 = "sha256-GSjn1DQoVDRBBmu7zDeQTKmc/3wnbwoyUKseUy75HrI=";
+  version = "139.0b3";
+  sha256 = "bb516b07c4519ae946b79a6fc34e911221e5d83851aab2bafdff87c3e5b74b3c";
 in
   stdenv.mkDerivation {
     pname = "firefox-devedition-bin";

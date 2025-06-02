@@ -55,4 +55,5 @@ final: prev:
 }
 // prev.lib.optionalAttrs prev.stdenv.isDarwin {
   hammerspoon = final.callPackage ./hammerspoon.nix {};
+  firefox-devedition-bin = final.callPackage ./firefox-devedition-darwin.nix {};
 }
