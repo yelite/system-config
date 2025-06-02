@@ -130,6 +130,7 @@ if util.is_copilot_installed() then
         behaviour = {
             auto_set_keymaps = false,
         },
+        disabled_tools = { "web_search", "rag_search" },
         hints = { enabled = false },
         mappings = {
             files = {
