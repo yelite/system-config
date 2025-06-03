@@ -7,7 +7,6 @@ local lsp_signature = require("lsp_signature")
 local rust_tools = require("rust-tools")
 local keymap = require("my-config.keymap")
 local util = require("my-config.util")
-local guard_ft = require("guard.filetype")
 
 local M = {}
 
@@ -361,26 +360,45 @@ nvim_lsp.marksman.setup({
     end,
 })
 
----@diagnostic disable-next-line: inject-field
-vim.g.guard_config = {
-    fmt_on_save = true,
-    lsp_as_default_formatter = true,
-    save_on_fmt = true,
-    auto_lint = true,
-    lint_interval = 500,
-}
-
--- TODO: Use ruff
-guard_ft("python"):fmt("isort"):append("black")
-guard_ft("c,cpp,cuda,cs"):fmt("clang-format")
--- TODO: check if we need an additional golangci-lint
-guard_ft("go"):fmt({
-    cmd = "sh",
-    args = { "-c", "golines --max-len=100 --base-formatter=gofumpt || true" },
-    stdin = true,
+vim.g.disable_autoformat = false
+require("conform").setup({
+    undojoin = true,
+    formatters_by_ft = {
+        lua = { "stylua" },
+        -- Conform will run multiple formatters sequentially
+        python = { "isort", "black" },
+        go = { "golines" },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
+        html = { "prettier" },
+        json = { "prettier" },
+        markdown = { "prettier" },
+    },
+    format_after_save = function(bufnr)
+        -- Disable with a global or buffer-local variable
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+            return
+        end
+        return { undojoin = true, lsp_format = "fallback" }
+    end,
+    formatters = {
+        golines = {
+            inherit = true,
+            prepend_args = { "--max-len=100", "--base-formatter=gofumpt" },
+        },
+    },
 })
-guard_ft("lua"):fmt("stylua")
-guard_ft("html,json,markdown"):fmt("prettier")
+vim.api.nvim_create_user_command("Format", function(args)
+    local range = nil
+    if args.count ~= -1 then
+        local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+        range = {
+            start = { args.line1, 0 },
+            ["end"] = { args.line2, end_line:len() },
+        }
+    end
+    require("conform").format({ async = true, lsp_format = "fallback", range = range })
+end, { range = true })
 
 dapui.setup()
 dap.listeners.before.attach.dapui_config = function()

@@ -212,7 +212,7 @@ wk.add({
     { "<leader>ir", [[<cmd>Lspsaga rename<cr>]], desc = "Rename Symbol", mode = { "n", "v" } },
     { "<leader>is", [[<cmd>Telescope lsp_dynamic_workspace_symbols<cr>]], desc = "Workspace Symbols" },
     { "<leader>iS", [[<cmd>Telescope lsp_document_symbols symbol_width=50<cr>]], desc = "Document Symbols" },
-    { "<leader>if", [[<cmd>Guard fmt<cr>]], desc = "Format file", mode = { "n", "v" } },
+    { "<leader>if", [[<cmd>Format<cr>]], desc = "Format file", mode = { "n", "v" } },
 
     { "<leader>d", group = "debug" },
     { "<leader>dr", require("telescope").extensions.dap.commands, desc = "commands" },

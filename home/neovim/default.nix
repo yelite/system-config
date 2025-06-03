@@ -130,8 +130,7 @@ in {
         blink-copilot
         lsp_signature-nvim
         nvim-lsp-endhints
-        guard-nvim
-        guard-collection
+        conform-nvim
         nvim-notify
         friendly-snippets
 
@@ -217,3 +216,4 @@ in {
 
   xdg.configFile."nvim/lua".source = ./lua;
 })
+        go = { "golines" },

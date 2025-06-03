@@ -75,10 +75,8 @@ M.toggle_copilot_suppression = function()
 end
 
 M.toggle_auto_formatting = function()
-    local guard_config = vim.g.guard_config
-    guard_config.fmt_on_save = not guard_config.fmt_on_save
-    vim.g.guard_config = guard_config
-    vim.notify("Auto formatting is now " .. (vim.g.guard_config.fmt_on_save and "enabled" or "disabled"))
+    vim.g.disable_autoformat = not vim.g.disable_autoformat
+    vim.notify("Auto formatting is now " .. (vim.g.disable_autoformat and "disabled" or "enabled"))
 end
 
 M.code_action = function()
