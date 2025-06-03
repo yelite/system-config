@@ -216,4 +216,3 @@ in {
 
   xdg.configFile."nvim/lua".source = ./lua;
 })
-        go = { "golines" },
