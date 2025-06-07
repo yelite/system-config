@@ -16,6 +16,38 @@
         "type": "github"
       }
     },
+    "avante-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1749290810,
+        "narHash": "sha256-torZBEAQfEgQctM9C5g1v2nAS3a214NNjYyCbmE+MK0=",
+        "owner": "yetone",
+        "repo": "avante.nvim",
+        "rev": "574b0d37a32fcaf7ade1f76422ac4c8793af0301",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yetone",
+        "repo": "avante.nvim",
+        "type": "github"
+      }
+    },
+    "blink-cmp-avante": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1745821878,
+        "narHash": "sha256-YCBYae/hP0B7eaRf/Q9nel9RiqKV5ih1LkTdIa1hymU=",
+        "owner": "Kaiser-Yang",
+        "repo": "blink-cmp-avante",
+        "rev": "ddefb8de3cb1286ab39e0ccec0f32a45d03391f2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Kaiser-Yang",
+        "repo": "blink-cmp-avante",
+        "type": "github"
+      }
+    },
     "blink-copilot": {
       "flake": false,
       "locked": {
@@ -178,6 +210,8 @@
     "root": {
       "inputs": {
         "autosave": "autosave",
+        "avante-nvim": "avante-nvim",
+        "blink-cmp-avante": "blink-cmp-avante",
         "blink-copilot": "blink-copilot",
         "copilot-status-nvim": "copilot-status-nvim",
         "gitlinker-nvim": "gitlinker-nvim",
@@ -195,16 +229,15 @@
     "smart-open-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1725236160,
-        "narHash": "sha256-xWqD6QZBS3J/XwxljDbE2P0sT1te5PrIAEIYx8tUDdk=",
-        "owner": "yelite",
+        "lastModified": 1748444767,
+        "narHash": "sha256-usLu/18JRLveeOllxiqc607SZCvJWg9Gw8uJzZVbohg=",
+        "owner": "danielfalk",
         "repo": "smart-open.nvim",
-        "rev": "e0da853db80b54d899bac8ebea9d45bac3713212",
+        "rev": "f079c3201a0a62b1582563bd5ce4256c253634d4",
         "type": "github"
       },
       "original": {
-        "owner": "yelite",
-        "ref": "nix-index-file",
+        "owner": "danielfalk",
         "repo": "smart-open.nvim",
         "type": "github"
       }

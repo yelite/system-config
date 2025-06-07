@@ -107,15 +107,19 @@ if util.is_copilot_installed() then
     require("avante").setup({
         -- mode = "legacy",
         provider = "copilot",
+        providers = {
+            copilot = {
+                -- model = "gpt-4o-2024-08-06",
+                model = "gemini-2.5-pro",
+                timeout = 30000,
+                disable_tools = false,
+                extra_request_body = {
+                    temperature = 0,
+                },
+            },
+        },
         auto_suggestions_provider = nil,
         memory_summary_provider = "copilot",
-        copilot = {
-            -- model = "gpt-4o-2024-08-06",
-            model = "gemini-2.5-pro",
-            timeout = 30000,
-            temperature = 0,
-            disable_tools = false,
-        },
         windows = {
             width = 36,
             sidebar_header = {
