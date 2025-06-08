@@ -84,7 +84,7 @@
       flake = false;
     };
     avante-nvim = {
-      url = "github:yetone/avante.nvim";
+      url = "github:yelite/avante.nvim?ref=my";
       flake = false;
     };
     blink-cmp-avante = {
