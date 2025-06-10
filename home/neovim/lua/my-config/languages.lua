@@ -165,12 +165,7 @@ nvim_lsp.clangd.setup({
         "--header-insertion=iwyu",
     },
     filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
-    on_attach = function(client, bufnr)
-        M.standard_lsp_on_attach(client, bufnr)
-        require("clangd_extensions.inlay_hints").setup_autocmd()
-        require("clangd_extensions.inlay_hints").set_inlay_hints()
-    end,
-
+    on_attach = M.standard_lsp_on_attach,
     capabilities = M.standard_lsp_capabilities,
 })
 
