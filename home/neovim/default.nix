@@ -12,6 +12,7 @@ lib.mkIf config.myConfig.neovim.enable (let
       c
       cpp
       cmake
+      d
       rust
       python
       html
