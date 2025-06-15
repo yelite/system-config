@@ -1,7 +1,7 @@
 local blink_cmp = require("blink-cmp")
 local util = require("my-config.util")
 
-local disabled_filetypes = { "DressingInput", "text" }
+local disabled_filetypes = { "DressingInput", "text", "sagarename" }
 
 blink_cmp.setup({
     enabled = function()
@@ -69,6 +69,11 @@ blink_cmp.setup({
     },
     completion = {
         documentation = { auto_show = true, window = { border = "single" } },
+        menu = {
+            draw = {
+                treesitter = { "lsp" },
+            },
+        },
         ghost_text = { enabled = true },
     },
     sources = {
