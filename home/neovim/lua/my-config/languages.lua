@@ -4,7 +4,6 @@ local lspsaga = require("lspsaga")
 local dap = require("dap")
 local dapui = require("dapui")
 local lsp_signature = require("lsp_signature")
-local rust_tools = require("rust-tools")
 local keymap = require("my-config.keymap")
 local util = require("my-config.util")
 
@@ -146,14 +145,21 @@ if util.is_copilot_installed() then
     })
 end
 
-rust_tools.setup({
-    tools = {
-        hover_actions = {
-            auto_focus = false,
-        },
+vim.g.rustaceanvim = {
+    -- Plugin configuration
+    tools = {},
+    -- LSP configuration
+    server = {
+        on_attach = M.standard_lsp_on_attach,
+        capabilities = vim.tbl_deep_extend(
+            "force",
+            M.standard_lsp_capabilities,
+            require("rustaceanvim.config.server").create_client_capabilities()
+        ),
     },
-    server = standard_lsp_config,
-})
+    -- DAP configuration
+    dap = {},
+}
 
 nvim_lsp.clangd.setup({
     cmd = {

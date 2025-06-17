@@ -138,7 +138,7 @@ in {
         todo-comments-nvim
         comment-nvim
         lazydev-nvim
-        rust-tools-nvim
+        rustaceanvim
         clangd_extensions-nvim
         go-nvim
         SchemaStore-nvim
