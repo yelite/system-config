@@ -26,14 +26,6 @@ final: prev:
       });
     };
 
-  vtsls = final.buildNpmPackage {
-    pname = "vtsls";
-    version = "0.2.4";
-    src = ./vtsls-wrapper;
-    npmDepsHash = "sha256-8repvUtLMjJct9uUV8x0Phqe9huQEvpLVVjgToyv6JA=";
-    dontNpmBuild = true;
-  };
-
   supersonic =
     if prev.stdenv.isDarwin
     then
