@@ -38,6 +38,8 @@
       python3
 
       cloudflare-utils
+
+      process-compose
     ]
     ++ (with python3Packages; [
       ipython
@@ -65,4 +67,7 @@
     userName = "Lite Ye";
     userEmail = "yelite958@gmail.com";
   };
+
+  xdg.configFile."process-compose/shortcuts.yaml".source =
+    ./process-compose/shortcuts.yaml;
 }

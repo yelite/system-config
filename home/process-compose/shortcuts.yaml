@@ -1,0 +1,15 @@
+shortcuts:
+  log_follow: # action name - don't edit
+    shortcut: f # shortcut to be used
+  log_screen:
+    shortcut: l
+  process_restart:
+    shortcut: r
+  process_screen:
+    shortcut: o
+  process_start:
+    shortcut: s
+  process_stop:
+    shortcut: e
+  quit:
+    shortcut: q
