@@ -423,20 +423,20 @@ mapkey("zP", "n", "<cmd>put!<cr>")
 
 -- Tool windows
 mapkey("<C-1>", { "n", "t" }, "<cmd>Trouble diagnostics toggle focus=false filter.buf=0<cr>")
-mapkey(
-    "<C-2>",
-    { "n", "t" },
-    "<cmd>Trouble symbols toggle pinned=true focus=true win.position=left win.relative=win<cr>"
-)
+mapkey("<C-2>", { "n", "t" }, function()
+    require("my-config.terminal").toggle_lazygit()
+end)
 mapkey("<C-3>", { "n", "t" }, function()
     toggleterm.toggle(3, nil, nil, "float")
 end)
 mapkey("<C-4>", { "n", "t" }, function()
     toggleterm.toggle(4, nil, nil, "horizontal")
 end)
-mapkey("<C-5>", { "n", "t" }, function()
-    toggleterm.toggle(2, nil, nil, "horizontal")
-end)
+mapkey(
+    "<C-5>",
+    { "n", "t" },
+    "<cmd>Trouble symbols toggle pinned=true focus=true win.position=left win.relative=win<cr>"
+)
 
 -- LSP
 local function bind_rust_lsp_keys(bufnr)
