@@ -424,7 +424,7 @@ mapkey("zP", "n", "<cmd>put!<cr>")
 -- Tool windows
 mapkey("<C-1>", { "n", "t" }, "<cmd>Trouble diagnostics toggle focus=false filter.buf=0<cr>")
 mapkey("<C-2>", { "n", "t" }, function()
-    require("my-config.terminal").toggle_lazygit()
+    require("my-config.terminal").toggle_process_compose()
 end)
 mapkey("<C-3>", { "n", "t" }, function()
     toggleterm.toggle(3, nil, nil, "float")
