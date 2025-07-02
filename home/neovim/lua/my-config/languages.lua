@@ -175,19 +175,26 @@ nvim_lsp.clangd.setup({
     capabilities = M.standard_lsp_capabilities,
 })
 
-nvim_lsp.jedi_language_server.setup({
+vim.lsp.config("pylsp", {
     settings = {
-        jedi = {
-            workspace = {
-                symbols = {
-                    maxSymbols = 100,
+        pylsp = {
+            plugins = {
+                pyflakes = {
+                    enabled = false,
                 },
+                rope_autoimport = {
+                    enabled = true,
+                },
+            },
+            signature = {
+                formatter = "ruff",
             },
         },
     },
     on_attach = M.standard_lsp_on_attach,
     capabilities = M.standard_lsp_capabilities,
 })
+vim.lsp.enable("pylsp")
 
 nvim_lsp.cmake.setup(standard_lsp_config)
 nvim_lsp.nil_ls.setup(vim.tbl_deep_extend("force", standard_lsp_config, {

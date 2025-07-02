@@ -189,7 +189,9 @@ in {
         sumneko-lua-language-server
         cmake-language-server
         buf
-        python3Packages.jedi-language-server
+        ruff
+        python3Packages.python-lsp-server
+        python3Packages.python-lsp-ruff
         marksman
 
         nodePackages.nodejs
