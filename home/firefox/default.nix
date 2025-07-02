@@ -92,6 +92,7 @@ in {
             sidebery
             tampermonkey
             bitwarden
+            react-devtools
           ];
 
           settings = {
@@ -243,6 +244,9 @@ in {
             "general.smoothScroll.mouseWheel.durationMinMS" = 80;
             "general.smoothScroll.currentVelocityWeighting" = "0.15";
             "general.smoothScroll.stopDecelerationWeighting" = "0.6";
+
+            # webrtc local testing
+            "media.peerconnection.ice.loopback" = true;
           };
         };
       };
