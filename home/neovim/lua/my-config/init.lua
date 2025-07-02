@@ -42,6 +42,8 @@ o.spelloptions = "camel"
 o.spelllang = "en,cjk"
 o.spellfile = string.format("%s%s", vim.fn.stdpath("config"), "/spell/spell.add")
 
+o.exrc = true
+
 -- vim-surround
 g.surround_no_mappings = true
 
