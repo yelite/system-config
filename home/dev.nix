@@ -3,7 +3,8 @@
   lib,
   hostPlatform,
   ...
-}: {
+}:
+{
   home.packages = with pkgs;
     [
       git-lfs
@@ -70,4 +71,9 @@
 
   xdg.configFile."process-compose/shortcuts.yaml".source =
     ./process-compose/shortcuts.yaml;
+}
+// lib.optionalAttrs hostPlatform.isDarwin {
+  home.file."Library/Application Support/process-compose/shortcuts.yaml" = {
+    source = ./process-compose/shortcuts.yaml;
+  };
 }
