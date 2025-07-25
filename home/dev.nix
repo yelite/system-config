@@ -41,6 +41,8 @@
       cloudflare-utils
 
       process-compose
+
+      claude-code
     ]
     ++ (with python3Packages; [
       ipython
