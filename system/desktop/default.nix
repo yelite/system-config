@@ -28,6 +28,8 @@ in {
       gnome.gnome-keyring = {
         enable = true;
       };
+      # conflict with ssh.startAgent
+      gnome.gcr-ssh-agent.enable = lib.mkForce false;
 
       xserver = mkIf cfg.xserver.enable {
         enable = true;

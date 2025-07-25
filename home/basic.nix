@@ -72,9 +72,6 @@ in {
       rsgain
       pinentry-qt
 
-      gimp
-      gimpPlugins.resynthesizer
-
       kdePackages.dolphin
       kdePackages.qtsvg
       kdePackages.breeze

@@ -12,20 +12,6 @@ final: prev:
     patches = old.patches ++ [./patches/flameshot.patch];
   });
 
-  gimpPlugins =
-    prev.gimpPlugins
-    // {
-      resynthesizer = prev.gimpPlugins.resynthesizer.overrideAttrs (old: {
-        src = prev.fetchFromGitHub {
-          owner = "itr-tert";
-          repo = "gimp-resynthesizer-scm";
-          rev = "c44500b86e298433c32b0a4b05caf63b8811f959";
-          sha256 = "sha256-Zc1wJaT7a9GCa6EaoyAwXaHk59lYYwrEHY1KGbPu6ic=";
-        };
-        meta = {broken = false;};
-      });
-    };
-
   supersonic =
     if prev.stdenv.isDarwin
     then
