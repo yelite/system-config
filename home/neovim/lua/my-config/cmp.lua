@@ -65,7 +65,7 @@ blink_cmp.setup({
     },
     cmdline = {
         enabled = true,
-        keymap = { preset = "inherit" },
+        keymap = { preset = "inherit", ["<Tab>"] = { "show", "select_and_accept", "fallback" } },
     },
     completion = {
         documentation = { auto_show = true, window = { border = "single" } },
