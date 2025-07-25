@@ -138,8 +138,6 @@ in {
       "$mod SHIFT, 3, togglespecialworkspace, music"
       "$mod SHIFT, 3, focusmonitor, -1"
 
-      "$mod, escape, exec, bash ${./close_special_workspace.sh}"
-
       "$mod, o, focusmonitor, +1"
       "$mod SHIFT, o, movewindow, mon:+1"
       "$mod, p, focusurgentorlast,"
