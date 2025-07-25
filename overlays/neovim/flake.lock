@@ -36,11 +36,11 @@
     "blink-cmp-avante": {
       "flake": false,
       "locked": {
-        "lastModified": 1745821878,
-        "narHash": "sha256-YCBYae/hP0B7eaRf/Q9nel9RiqKV5ih1LkTdIa1hymU=",
+        "lastModified": 1753324560,
+        "narHash": "sha256-tozXOgP0dzIFd3a6mjGehUdytqerkWdfOo89CEVC/Rk=",
         "owner": "Kaiser-Yang",
         "repo": "blink-cmp-avante",
-        "rev": "ddefb8de3cb1286ab39e0ccec0f32a45d03391f2",
+        "rev": "4f494c6e124acbe31a8f5d58effa0c14aa38a6d5",
         "type": "github"
       },
       "original": {
@@ -52,11 +52,11 @@
     "blink-copilot": {
       "flake": false,
       "locked": {
-        "lastModified": 1743362146,
-        "narHash": "sha256-n+k3tmBHGTAvtkhYVFRgqU22DRmdE2Jskp2XqbvB9Z0=",
+        "lastModified": 1745468784,
+        "narHash": "sha256-7P4CUg4ryfQnrc15/4dCMYEDP0u+L2QrI/GPI/r1/zM=",
         "owner": "fang2hou",
         "repo": "blink-copilot",
-        "rev": "71102fe2fa1616353f8cb315bb8b85db0812a218",
+        "rev": "bdc45bbbed2ec252b3a29f4adecf031e157b5573",
         "type": "github"
       },
       "original": {
@@ -68,11 +68,11 @@
     "copilot-status-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1704580084,
-        "narHash": "sha256-jJqbMuTjTN2n7s2iXAoxJDKiRCFkBdpJEHap5KphKbM=",
+        "lastModified": 1745997834,
+        "narHash": "sha256-gfrNX9OnS6RdQoEtOlTwforaxSxrMnM4icaRxeXubo4=",
         "owner": "jonahgoldwastaken",
         "repo": "copilot-status.nvim",
-        "rev": "decbffa57732f3d257641aea1d5541dd4fe536f6",
+        "rev": "272de1a830506a5838f249293376f2e9fe64a359",
         "type": "github"
       },
       "original": {
@@ -100,11 +100,11 @@
     "guihua": {
       "flake": false,
       "locked": {
-        "lastModified": 1744880427,
-        "narHash": "sha256-51+C0jnUje1KrzL4VioyeybufyxyrgpLXDl2dxpnCiA=",
+        "lastModified": 1747619705,
+        "narHash": "sha256-R/ckeCwzWixvL7q2+brvqcvfSK9Mx8pu6zOFgh2lde4=",
         "owner": "ray-x",
         "repo": "guihua.lua",
-        "rev": "3bce83823fe59fe438b0484777e56250153aaebf",
+        "rev": "87bea7b98429405caf2a0ce4d029b027bb017c70",
         "type": "github"
       },
       "original": {
@@ -116,11 +116,11 @@
     "hlchunk-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1743843422,
-        "narHash": "sha256-d4bGGQ27Tc5fJ6lzmL5nd/+TSWWWE1xJ707Pz+wcY3o=",
+        "lastModified": 1746491539,
+        "narHash": "sha256-zXWMwUNvofGNjLVYK/pPW7b062zP/yqUMk6lj3zgZqs=",
         "owner": "shellRaining",
         "repo": "hlchunk.nvim",
-        "rev": "19bf4090ab8619fffe07b73a4f92348324f35c98",
+        "rev": "474ec5d0f220158afa83aaefab32402e710d3032",
         "type": "github"
       },
       "original": {
@@ -147,11 +147,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1744463964,
-        "narHash": "sha256-LWqduOgLHCFxiTNYi3Uj5Lgz0SR+Xhw3kr/3Xd0GPTM=",
+        "lastModified": 1753250450,
+        "narHash": "sha256-i+CQV2rPmP8wHxj0aq4siYyohHwVlsh40kV89f3nw1s=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "2631b0b7abcea6e640ce31cd78ea58910d31e650",
+        "rev": "fc02ee70efb805d3b2865908a13ddd4474557ecf",
         "type": "github"
       },
       "original": {
@@ -163,11 +163,11 @@
     "nvim-lsp-endhints": {
       "flake": false,
       "locked": {
-        "lastModified": 1744889511,
-        "narHash": "sha256-2VCZskYIm1WuSYpIjendfZ/rcd4ouI8jAf7AsC8Q+zQ=",
+        "lastModified": 1750099890,
+        "narHash": "sha256-ZssCVWm7/4U7oAsEXB1JgLoSzcdAjXsO2wEDyS40/SQ=",
         "owner": "chrisgrieser",
         "repo": "nvim-lsp-endhints",
-        "rev": "5e46e51f60fd9c0a3564a1f0b640fc30da57b3a7",
+        "rev": "7917c7af1ec345ca9b33e8dbcd3723fc15d023c0",
         "type": "github"
       },
       "original": {
@@ -246,11 +246,11 @@
     "telescope-alternate": {
       "flake": false,
       "locked": {
-        "lastModified": 1713211208,
-        "narHash": "sha256-oit93iNRGlQhKAgsy0JgaJLkf+1miDhi3XjzE39gx7g=",
+        "lastModified": 1751749107,
+        "narHash": "sha256-1RKL4vB0VQXDgGbv4Zt8e5HvptByrzBFzow4lvVli2E=",
         "owner": "otavioschwanck",
         "repo": "telescope-alternate",
-        "rev": "2efa87d99122ee1abe8ada1a50304180a1802c34",
+        "rev": "9d1fa85b1585b5709b5e84a67463cb93c498a95e",
         "type": "github"
       },
       "original": {

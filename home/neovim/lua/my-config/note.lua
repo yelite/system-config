@@ -12,7 +12,6 @@ require("obsidian").setup({
         date_format = "%Y-%m-%d",
         alias_format = "%Y-%m-%d",
     },
-    mappings = {},
     ui = {
         checkboxes = {
             [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
@@ -25,6 +24,7 @@ require("obsidian").setup({
             ["!"] = { char = "", hl_group = "ObsidianImportant" },
         },
     },
+    legacy_commands = false,
 })
 
 return M

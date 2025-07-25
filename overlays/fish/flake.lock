@@ -19,11 +19,11 @@
     "done": {
       "flake": false,
       "locked": {
-        "lastModified": 1712867771,
-        "narHash": "sha256-DMIRKRAVOn7YEnuAtz4hIxrU93ULxNoQhW6juxCoh4o=",
+        "lastModified": 1747320793,
+        "narHash": "sha256-WA6DBrPBuXRIloO05UBunTJ9N01d6tO1K1uqojjO0mo=",
         "owner": "franciscolourenco",
         "repo": "done",
-        "rev": "eb32ade85c0f2c68cbfcff3036756bbf27a4f366",
+        "rev": "0bfe402753681f705a482694fcaf20c2bfc6deb7",
         "type": "github"
       },
       "original": {
@@ -35,11 +35,11 @@
     "forgit": {
       "flake": false,
       "locked": {
-        "lastModified": 1741932072,
-        "narHash": "sha256-GxX7oLhF3+EZiiOJS2anEZcux8TeboQ3cBB8jato4bM=",
+        "lastModified": 1753256377,
+        "narHash": "sha256-IvR8wifdHVnMiHh5BkbqqM+C8CBvn12mD+9F1ToODGo=",
         "owner": "wfxr",
         "repo": "forgit",
-        "rev": "aec8b1f2b5b53f668fb07c48e8333f728a35004c",
+        "rev": "9a4ff16829e7805210f63ff7b7a6d52b29d0d796",
         "type": "github"
       },
       "original": {
