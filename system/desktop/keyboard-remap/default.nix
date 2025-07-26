@@ -26,7 +26,7 @@ in {
           systemd.user.services.xremap-hypr = mkIf desktopCfg.wayland.enable {
             Unit = {
               Description = "xremap-hypr";
-              PartOf = ["hyprland-session.target"];
+              PartOf = ["niri-session.target"];
               Conflicts = ["hm-graphical-session.target"];
             };
             Service = {
@@ -36,7 +36,7 @@ in {
               ExecStart = "${xremap-hypr}/bin/xremap --watch ${./config.yml}";
             };
             Install = {
-              WantedBy = ["hyprland-session.target"];
+              WantedBy = ["niri-session.target"];
             };
           };
         })
@@ -70,7 +70,7 @@ in {
             Unit = {
               Description = "xremap-x11";
               PartOf = ["hm-graphical-session.target"];
-              Conflicts = ["hyprland-session.target"];
+              Conflicts = ["niri-session.target"];
             };
             Service = {
               Type = "simple";

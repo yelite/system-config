@@ -5,7 +5,7 @@
   ...
 }: let
   cfg = config.myConfig.desktop;
-  inherit (lib) mkIf mkMerge;
+  inherit (lib) mkIf;
 in {
   imports = [
     ./fonts.nix

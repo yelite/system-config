@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }: let
   cfg = config.myConfig.desktop;
@@ -11,6 +12,7 @@ in {
     ./wayland.nix
     ./xserver.nix
     ./toggle-source.nix
+    inputs.niri.homeModules.niri
   ];
 
   config = mkIf cfg.enable {

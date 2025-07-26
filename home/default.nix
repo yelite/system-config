@@ -12,15 +12,18 @@
       ./dev.nix
       ./desktop
       ./neovim
-      ./i3
       ./kitty
       ./neovim
-      ./dunst
       ./fish
       ./firefox
       ./shpool.nix
       ./yazi
       inputs.nix-index-database.homeModules.nix-index
+    ]
+    ++ lib.optionals hostPlatform.isLinux [
+      ./dunst
+      ./i3
+      ./niri
     ]
     ++ lib.optionals hostPlatform.isDarwin [
       ./hammerspoon

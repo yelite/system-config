@@ -25,6 +25,7 @@
                   (inputs.get-flake ./overlays/neovim).overlay
                   (inputs.get-flake ./overlays/fish).overlay
                   (import ./overlays/extra-pkgs)
+                  inputs.niri.overlays.niri
                 ];
               };
 
@@ -89,6 +90,10 @@
     };
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    niri = {
+      url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
