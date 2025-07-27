@@ -21,7 +21,7 @@ in
             nix repl --file ${./repl.nix}
           fi
         else
-          nix repl --arg flakePath $(${coreutils}/bin/readlink -f $1 | ${gnused}/bin/sed 's|/flake.nix||') ${./repl.nix}
+          nix repl --arg flakePath $(${coreutils}/bin/readlink -f $1 | ${gnused}/bin/sed 's|/flake.nix||') --file ${./repl.nix}
         fi
       ;;
     esac
