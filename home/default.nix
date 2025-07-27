@@ -1,6 +1,7 @@
 {
   lib,
   hostPlatform,
+  inputs,
   ...
 }: {
   imports =
@@ -19,6 +20,7 @@
       ./firefox
       ./shpool.nix
       ./yazi
+      inputs.nix-index-database.homeModules.nix-index
     ]
     ++ lib.optionals hostPlatform.isDarwin [
       ./hammerspoon

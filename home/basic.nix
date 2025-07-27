@@ -148,8 +148,8 @@ in {
       nix-direnv.enable = true;
     };
 
+    nix-index-database.comma.enable = true;
     nix-index = {
-      enable = true;
       enableFishIntegration = true;
     };
 
