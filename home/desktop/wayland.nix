@@ -17,12 +17,11 @@ in
 
     services = {
       gammastep = {
-        # TODO: Enable after nvidia driver support GAMMA_LUT
-        enable = false;
+        enable = true;
         provider = "geoclue2";
 
         temperature = {
-          night = 4500;
+          night = 5200;
           day = 6500;
         };
       };
