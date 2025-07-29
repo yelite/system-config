@@ -27,7 +27,9 @@ in
           inside-wrong-color = "bf616a";
           inside-clear-color = "a3be8c";
           line-color = "ECEFF422";
-          separator-color = "ECEFF422";
+          ring-color = "e5e9f0";
+          key-hl-color = "81a1c1";
+          separator-color = "e5e9f0";
           indicator-idle-visible = true;
           indicator-radius = 150;
           show-failed-attempts = true;
@@ -78,6 +80,23 @@ in
             command = "${pkgs.systemd}/bin/systemctl suspend";
           }
         ];
+      };
+    };
+
+    systemd.user.services = {
+      sway-audio-idle-inhibit = {
+        Unit = {
+          Description = "Prevents swayidle from sleeping while any application is outputting or receiving audio.";
+          Documentation = "https://github.com/ErikReider/SwayAudioIdleInhibit";
+          PartOf = ["niri.service"];
+        };
+        Service = {
+          ExecStart = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit";
+          Type = "simple";
+        };
+        Install = {
+          WantedBy = ["niri.service"];
+        };
       };
     };
   }
