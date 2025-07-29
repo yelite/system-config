@@ -55,3 +55,4 @@ keymap:
         - neovide-notes
         - firefox # the ui.key.accelKey is changed to super key so we don't need to remap it here.
         - firefox-dev
+        - firefox-devedition
