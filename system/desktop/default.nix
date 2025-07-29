@@ -50,12 +50,17 @@ in {
         vt = 2; # To avoid kernel logging. See https://github.com/apognu/tuigreet/issues/17
         settings = {
           default_session = {
-            command = lib.concatStringsSep " " [
-              "${pkgs.greetd.tuigreet}/bin/tuigreet"
-              "--asterisks"
-              "--remember"
-              ''--cmd "systemd-cat -t i3 startx ~/.xsession-hm"''
-            ];
+            command = lib.concatStringsSep " " ([
+                "${pkgs.greetd.tuigreet}/bin/tuigreet"
+                "--asterisks"
+                "--remember"
+                ''--cmd "systemd-cat -t i3 startx ~/.xsession-hm"''
+              ]
+              ++ lib.optionals cfg.wayland.enable [
+                "--sessions"
+                # TODO: this should be consistent with home manager's program.niri.package.
+                "${pkgs.niri}/share/wayland-sessions"
+              ]);
           };
         };
       };

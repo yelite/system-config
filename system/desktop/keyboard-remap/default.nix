@@ -7,8 +7,7 @@
   cfg = config.myConfig.desktop.keyboardRemap;
   desktopCfg = config.myConfig.desktop;
   inherit (lib) mkIf mkMerge;
-  xremap-x11 = pkgs.xremap.override {enableX11 = true;};
-  xremap-hypr = pkgs.xremap.override {enableHypr = true;};
+  xremap-x11 = pkgs.xremap.x11;
 in {
   config = mkMerge [
     (mkIf cfg.enable {
@@ -23,20 +22,20 @@ in {
       home-manager.sharedModules = [
         ({pkgs, ...}: {
           _file = ./default.nix;
-          systemd.user.services.xremap-hypr = mkIf desktopCfg.wayland.enable {
+          systemd.user.services.xremap-wlroots = mkIf desktopCfg.wayland.enable {
             Unit = {
-              Description = "xremap-hypr";
-              PartOf = ["niri-session.target"];
+              Description = "xremap-wlroots";
+              PartOf = ["niri.service"];
               Conflicts = ["hm-graphical-session.target"];
             };
             Service = {
               Type = "simple";
               # Hack to wait for the hyprland socket to be ready
               ExecStartPre = "${pkgs.coreutils}/bin/sleep 2";
-              ExecStart = "${xremap-hypr}/bin/xremap --watch ${./config.yml}";
+              ExecStart = "${pkgs.xremap}/bin/xremap --watch ${./config.yml}";
             };
             Install = {
-              WantedBy = ["niri-session.target"];
+              WantedBy = ["niri.service"];
             };
           };
         })
