@@ -59,7 +59,7 @@ in {
     ++ optionals isLinuxGUI [
       zeal
       libsForQt5.okular
-      feh
+      imv
       flameshot
       satty
       playerctl
@@ -100,7 +100,7 @@ in {
         lib.genAttrs types (_: app);
     in
       (genEntries {
-        app = "feh.desktop";
+        app = "imv.desktop";
         types = [
           "image/bmp"
           "image/gif"
