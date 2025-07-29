@@ -82,10 +82,10 @@ in {
         code = {
           open-on-output = main-display;
         };
-        code2 = {
+        web = {
           open-on-output = side-display;
         };
-        web = {
+        code2 = {
           open-on-output = side-display;
         };
         o1 = {
@@ -100,7 +100,7 @@ in {
         {
           matches = [
             {
-              app-id = "firefox-devedition";
+              app-id = "firefox";
             }
             {
               app-id = "kitty";
@@ -112,8 +112,8 @@ in {
         {
           matches = [
             {
-              title = "Albert";
-              app-id = "";
+              title = "^Albert$";
+              app-id = "^$";
             }
           ];
           border = {

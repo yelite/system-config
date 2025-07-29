@@ -12,10 +12,18 @@ in
       wev
       wl-clipboard
       cliphist
+      xwayland-satellite
       wofi
     ];
 
     programs = {
+      waybar = {
+        enable = true;
+        systemd = {
+          enable = true;
+          target = "niri.service";
+        };
+      };
       swaylock = {
         enable = true;
         package = pkgs.swaylock;
