@@ -71,6 +71,7 @@ in {
     };
 
     # https://github.com/NixOS/nixpkgs/issues/401891
+    security.pam.services.swaylock.enable = true;
     security.pam.services.i3lock.enable = true;
     security.pam.services.greetd.enableGnomeKeyring = true;
 

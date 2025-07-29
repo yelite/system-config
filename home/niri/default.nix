@@ -74,8 +74,7 @@ in {
 
       spawn-at-startup = [
         {command = ["${pkgs.albert}/bin/albert"];}
-        # {command = ["wl-paste" "--type" "text" "--watch" "cliphist" "store"];}
-        # {command = ["wl-paste" "--type" "image" "--watch" "cliphist" "store"];}
+        {command = ["wl-paste" "--watch" "cliphist" "store"];}
         # {command = ["kitty"];}
       ];
 
