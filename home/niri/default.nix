@@ -47,6 +47,8 @@ in {
         };
       };
 
+      gestures.hot-corners.enable = false;
+      animations.workspace-switch.enable = false;
       clipboard.disable-primary = true;
 
       layout = {
@@ -64,8 +66,8 @@ in {
         border = {
           enable = true;
           width = 2;
-          inactive.color = "#434c5e";
-          active.color = "#81a1c1";
+          inactive.color = "#3b405e";
+          active.color = "#64748b";
           urgent.color = "#d08770";
         };
       };
@@ -112,12 +114,42 @@ in {
         {
           matches = [
             {
+              app-id = "org.pipewire.Helvum";
+            }
+            {
+              app-id = "nm-connection-editor";
+            }
+            {
+              title = "^Settings — Albert$";
+              app-id = "^$";
+            }
+          ];
+          open-floating = true;
+        }
+        {
+          # https://github.com/YaLTeR/niri/issues/895
+          # client broder makes niri border thinner on some app
+          matches = [
+            {
+              app-id = "firefox";
+            }
+          ];
+          clip-to-geometry = true;
+        }
+        {
+          matches = [
+            {
               title = "^Albert$";
               app-id = "^$";
             }
           ];
           border = {
             enable = false;
+          };
+          default-floating-position = {
+            relative-to = "top";
+            x = 0;
+            y = 220;
           };
         }
       ];
@@ -157,8 +189,8 @@ in {
         "Mod+Shift+T".action = toggle-column-tabbed-display;
         "Mod+Shift+V".action = maximize-column;
 
-        "Mod+Space".action.spawn = ["${pkgs.wofi}/bin/wofi" "--show" "drun"];
-        "Mod+Super+C".action.spawn = ["sh" "-c" "cliphist list | wofi --dmenu | cliphist decode | wl-copy"];
+        "Mod+Space".action = spawn "${pkgs.albert}/bin/albert" "toggle";
+        "Mod+Super+C".action = spawn "sh" "-c" "cliphist list | wofi --dmenu | cliphist decode | wl-copy";
 
         "Mod+Shift+X".action = close-window;
         "Mod+Slash".action = switch-focus-between-floating-and-tiling;
@@ -192,6 +224,9 @@ in {
         "Mod+Shift+Control+3" = {
           action = spawn "systemctl" "hibernate";
           allow-when-locked = true;
+        };
+        "Mod+Shift+Control+Escape" = {
+          action = quit {skip-confirmation = false;};
         };
       };
     };

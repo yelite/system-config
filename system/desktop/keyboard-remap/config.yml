@@ -1,10 +1,10 @@
 # Credit: https://github.com/mooz/xkeysnail/blob/bf3c93b4fe6efd42893db4e6588e5ef1c4909cfb/example/config.py#L62-L125
 keymap:
-  - name: power buttons
-    exact_match: true
-    remap:
-      C-M-Shift-2: sleep
-      C-M-Shift-3: power
+  # - name: power buttons
+  #   exact_match: true
+  #   remap:
+  #     C-M-Shift-2: sleep
+  #     C-M-Shift-3: power
   - name: Emacs
     exact_match: true
     remap:

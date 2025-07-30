@@ -26,9 +26,15 @@ final: prev:
         '';
       })
     else
-      final.writeShellScriptBin "supersonic" ''
-        FYNE_SCALE=2 ${prev.supersonic}/bin/supersonic
-      '';
+      prev.supersonic.overrideAttrs (old: {
+        nativeBuildInputs = (old.nativeBuildInputs or []) ++ [prev.makeWrapper];
+        postInstall =
+          (old.postInstall or "")
+          + ''
+            wrapProgram $out/bin/supersonic \
+              --set FYNE_SCALE 2
+          '';
+      });
 }
 // prev.lib.optionalAttrs prev.stdenv.isDarwin {
   hammerspoon = final.callPackage ./hammerspoon.nix {};
