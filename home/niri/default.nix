@@ -51,6 +51,11 @@ in {
       animations.workspace-switch.enable = false;
       clipboard.disable-primary = true;
 
+      environment = {
+        # TODO: use the native xwayland-satellite integration in the next stable niri release
+        DISPLAY = ":0";
+      };
+
       layout = {
         gaps = 0;
         center-focused-column = "never";
@@ -126,6 +131,9 @@ in {
             {
               title = "Extension:.*Bitwarden";
               app-id = "firefox";
+            }
+            {
+              app-id = "^Supersonic$";
             }
           ];
           open-floating = true;
