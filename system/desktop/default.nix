@@ -16,8 +16,6 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = [
       pkgs.helvum
-      # for the nm-connection-editor
-      pkgs.networkmanagerapplet
     ];
 
     services = {

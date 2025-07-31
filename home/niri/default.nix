@@ -67,7 +67,7 @@ in {
           enable = true;
           width = 2;
           inactive.color = "#3b405e";
-          active.color = "#64748b";
+          active.color = "#81a1c1";
           urgent.color = "#d08770";
         };
       };
@@ -122,6 +122,10 @@ in {
             {
               title = "^Settings — Albert$";
               app-id = "^$";
+            }
+            {
+              title = "Extension:.*Bitwarden";
+              app-id = "firefox";
             }
           ];
           open-floating = true;
