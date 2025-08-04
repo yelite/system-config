@@ -102,8 +102,11 @@ in
 
             clock = {
               format = "{:%a %F %R}";
-              tooltip-format = "{:%A, %B %d, %Y}";
+              tooltip-format = "<tt><small>{calendar}</small></tt>";
               interval = 30;
+              calendar = {
+                mode = "month";
+              };
             };
 
             idle_inhibitor = {
