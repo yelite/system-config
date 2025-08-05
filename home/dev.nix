@@ -9,6 +9,7 @@ lib.mkMerge [
     home.packages = with pkgs;
       [
         git-lfs
+        git-filter-repo
         jq
         fx
         htop
@@ -70,6 +71,9 @@ lib.mkMerge [
       enable = true;
       userName = "Lite Ye";
       userEmail = "yelite958@gmail.com";
+      lfs = {
+        enable = true;
+      };
     };
 
     xdg.configFile."process-compose/shortcuts.yaml".source =
