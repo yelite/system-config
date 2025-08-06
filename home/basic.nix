@@ -190,6 +190,12 @@ in {
             showGraph = "always";
           };
         };
+        os = {
+          edit = ''[ -z "$NVIM" ] && nvim -- {{filename}} || nvim --server "$NVIM" --remote-send "<C-s><cmd>e {{filename}}<cr>" '';
+          editAtLine = ''[ -z "$NVIM" ] && nvim +{{line}} -- {{filename}} || nvim --server "$NVIM" --remote-send "<C-s><cmd>e {{filename}}<cr>" && nvim --server "$NVIM" --remote-send "<cmd>{{line}}<CR>"'';
+          openDirInEditor = ''[ -z "$NVIM" ] && nvim -- {{dir}} || nvim --server "$NVIM" --remote {{dir}}'';
+          editPreset = "nvim-remote";
+        };
       };
     };
 
