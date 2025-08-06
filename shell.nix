@@ -8,10 +8,10 @@
         '')
         (pkgs.writeShellScriptBin "nvim" ''
           export VIMINIT='set rtp^=$PWD/home/neovim/ | source $HOME/.config/nvim/init.lua'
-          $HOME/.nix-profile/bin/nvim $@
+          $HOME/.nix-profile/bin/nvim "$@"
         '')
         (pkgs.writeShellScriptBin "safe-nvim" ''
-          $HOME/.nix-profile/bin/nvim $@
+          $HOME/.nix-profile/bin/nvim "$@"
         '')
       ];
     };
