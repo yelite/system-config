@@ -51,7 +51,8 @@ in {
 
       greetd = {
         enable = true;
-        vt = 2; # To avoid kernel logging. See https://github.com/apognu/tuigreet/issues/17
+        # https://github.com/NixOS/nixpkgs/pull/428972 forces VT-1
+        # vt = 2; # To avoid kernel logging. See https://github.com/apognu/tuigreet/issues/17
         settings = {
           default_session = {
             command = lib.concatStringsSep " " ([
