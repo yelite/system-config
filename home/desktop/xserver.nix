@@ -69,7 +69,7 @@ in
 
     # TODO: move all fcitx config into nix
     xdg.dataFile."fcitx5/themes/FluentDark-my" = {
-      source = "${pkgs.fcitx5-fluent-dark}/share/fcitx5/themes/FluentDark";
+      source = "${pkgs.fcitx5-fluent-dark}/share/fcitx5/themes/FluentDark-solid";
     };
 
     xsession = {
