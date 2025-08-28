@@ -6,8 +6,8 @@
   undmg,
   ...
 }: let
-  version = "139.0b3";
-  sha256 = "bb516b07c4519ae946b79a6fc34e911221e5d83851aab2bafdff87c3e5b74b3c";
+  version = "143.0b5";
+  sha256 = "sha256-qRtJ4B73Khxxu4xl3bz4eQEbh/2b/vUJhgSZOTiaMZM=";
 in
   stdenv.mkDerivation {
     pname = "firefox-devedition-bin";
