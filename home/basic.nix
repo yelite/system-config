@@ -57,8 +57,8 @@ in {
       lsof
     ]
     ++ optionals isLinuxGUI [
-      zeal
-      libsForQt5.okular
+      zeal-qt6
+      kdePackages.okular
       imv
       flameshot
       satty
@@ -258,7 +258,7 @@ in {
 
     Service = {
       Environment = "PATH=${config.home.profileDirectory}/bin";
-      ExecStart = "${pkgs.plasma5Packages.kdeconnect-kde}/bin/kdeconnect-indicator";
+      ExecStart = "${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnect-indicator";
       Restart = "on-abort";
     };
   };

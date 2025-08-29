@@ -187,7 +187,8 @@ in {
         alejandra
         taplo
         sumneko-lua-language-server
-        cmake-language-server
+        # TODO: re-enable this
+        # cmake-language-server
         buf
         ruff
         basedpyright

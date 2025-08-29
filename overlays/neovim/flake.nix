@@ -47,10 +47,6 @@
       url = "github:jedrzejboczar/possession.nvim";
       flake = false;
     };
-    gitlinker-nvim = {
-      url = "github:linrongbin16/gitlinker.nvim";
-      flake = false;
-    };
     pets-nvim = {
       url = "github:giusgad/pets.nvim";
       flake = false;

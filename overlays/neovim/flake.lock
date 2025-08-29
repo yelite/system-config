@@ -52,11 +52,11 @@
     "blink-copilot": {
       "flake": false,
       "locked": {
-        "lastModified": 1745468784,
-        "narHash": "sha256-7P4CUg4ryfQnrc15/4dCMYEDP0u+L2QrI/GPI/r1/zM=",
+        "lastModified": 1753494804,
+        "narHash": "sha256-Ya9RagGE+Awo9xuF8XtwgAO2B9DKJLNsLDU2wsEMumo=",
         "owner": "fang2hou",
         "repo": "blink-copilot",
-        "rev": "bdc45bbbed2ec252b3a29f4adecf031e157b5573",
+        "rev": "41e91a659bd9b8cba9ba2ea68a69b52ba5a9ebd8",
         "type": "github"
       },
       "original": {
@@ -78,22 +78,6 @@
       "original": {
         "owner": "jonahgoldwastaken",
         "repo": "copilot-status.nvim",
-        "type": "github"
-      }
-    },
-    "gitlinker-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1741049669,
-        "narHash": "sha256-EO9Ol/TQ2b5x9uVtZ2sNgPdU5pMAwx+PWPd37dt9488=",
-        "owner": "linrongbin16",
-        "repo": "gitlinker.nvim",
-        "rev": "23982c86f50a9c3f4bc531d41b7a4a68ddd12355",
-        "type": "github"
-      },
-      "original": {
-        "owner": "linrongbin16",
-        "repo": "gitlinker.nvim",
         "type": "github"
       }
     },
@@ -147,11 +131,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1753250450,
-        "narHash": "sha256-i+CQV2rPmP8wHxj0aq4siYyohHwVlsh40kV89f3nw1s=",
+        "lastModified": 1756266583,
+        "narHash": "sha256-cr748nSmpfvnhqSXPiCfUPxRz2FJnvf/RjJGvFfaCsM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "fc02ee70efb805d3b2865908a13ddd4474557ecf",
+        "rev": "8a6d5427d99ec71c64f0b93d45778c889005d9c2",
         "type": "github"
       },
       "original": {
@@ -163,11 +147,11 @@
     "nvim-lsp-endhints": {
       "flake": false,
       "locked": {
-        "lastModified": 1750099890,
-        "narHash": "sha256-ZssCVWm7/4U7oAsEXB1JgLoSzcdAjXsO2wEDyS40/SQ=",
+        "lastModified": 1755842157,
+        "narHash": "sha256-bfQ7tT1TEEf/USy5hhn0kl4iYNEdLdg/8PPapvpWLWw=",
         "owner": "chrisgrieser",
         "repo": "nvim-lsp-endhints",
-        "rev": "7917c7af1ec345ca9b33e8dbcd3723fc15d023c0",
+        "rev": "f977426055fc6b5c6449b416e08e2462f59b9317",
         "type": "github"
       },
       "original": {
@@ -195,11 +179,11 @@
     "possession-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1743970536,
-        "narHash": "sha256-RJ+6qWBLJDhLqkjuV/ESescWUvmEWkVN9QnBLiLVpbs=",
+        "lastModified": 1755717556,
+        "narHash": "sha256-j7hH+WXYQjFjid5syGYJBks229pz0vpkCn3gWSAqj9I=",
         "owner": "jedrzejboczar",
         "repo": "possession.nvim",
-        "rev": "8fb21fabae4e5ffd98386e1b11e9d9d429633bdf",
+        "rev": "7e0abb58ccf1e7c03d9c80f9a2515ab9befb0d4d",
         "type": "github"
       },
       "original": {
@@ -215,7 +199,6 @@
         "blink-cmp-avante": "blink-cmp-avante",
         "blink-copilot": "blink-copilot",
         "copilot-status-nvim": "copilot-status-nvim",
-        "gitlinker-nvim": "gitlinker-nvim",
         "guihua": "guihua",
         "hlchunk-nvim": "hlchunk-nvim",
         "lazydev-nvim": "lazydev-nvim",

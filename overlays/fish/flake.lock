@@ -35,11 +35,11 @@
     "forgit": {
       "flake": false,
       "locked": {
-        "lastModified": 1753256377,
-        "narHash": "sha256-IvR8wifdHVnMiHh5BkbqqM+C8CBvn12mD+9F1ToODGo=",
+        "lastModified": 1755803151,
+        "narHash": "sha256-hbPiuuiyPOCtnByInhoA0atVDwNaMRfzp1n9dusg59I=",
         "owner": "wfxr",
         "repo": "forgit",
-        "rev": "9a4ff16829e7805210f63ff7b7a6d52b29d0d796",
+        "rev": "5d4d6121b1c92b4890abdb90fc232db67e08b10d",
         "type": "github"
       },
       "original": {
