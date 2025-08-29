@@ -27,6 +27,8 @@ in
       cp -r *.app $out/Applications
     '';
 
+    dontFixup = true;
+
     meta = with lib; {
       changelog = "https://www.mozilla.org/en-US/firefox/${version}/releasenotes/";
       description = "Mozilla Firefox, free web browser (binary package)";
