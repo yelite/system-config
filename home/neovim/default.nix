@@ -190,8 +190,7 @@ in {
         cmake-language-server
         buf
         ruff
-        python3Packages.python-lsp-server
-        python3Packages.python-lsp-ruff
+        basedpyright
         marksman
 
         nodePackages.nodejs

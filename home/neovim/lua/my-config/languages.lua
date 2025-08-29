@@ -175,26 +175,13 @@ nvim_lsp.clangd.setup({
     capabilities = M.standard_lsp_capabilities,
 })
 
-vim.lsp.config("pylsp", {
-    settings = {
-        pylsp = {
-            plugins = {
-                pyflakes = {
-                    enabled = false,
-                },
-                rope_autoimport = {
-                    enabled = true,
-                },
-            },
-            signature = {
-                formatter = "ruff",
-            },
-        },
-    },
+vim.lsp.config("basedpyright", {
+    settings = {},
     on_attach = M.standard_lsp_on_attach,
     capabilities = M.standard_lsp_capabilities,
 })
-vim.lsp.enable("pylsp")
+vim.lsp.enable("basedpyright")
+vim.lsp.enable("ruff")
 
 nvim_lsp.cmake.setup(standard_lsp_config)
 nvim_lsp.nil_ls.setup(vim.tbl_deep_extend("force", standard_lsp_config, {
