@@ -429,5 +429,17 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.bo.indentexpr = "GetNixIndent()"
     end,
 })
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = {
+        "*/.cargo/registry/src/*/*",
+        "*/.cargo/git/checkouts/*/*",
+        "*/.venv/*/*",
+    },
+    group = "MyLangCustomization",
+    callback = function()
+        vim.bo.readonly = true
+        vim.bo.modifiable = false
+    end,
+})
 
 return M
