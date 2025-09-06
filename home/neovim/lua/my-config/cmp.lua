@@ -26,9 +26,9 @@ blink_cmp.setup({
         ["<C-d>"] = { "scroll_documentation_down", "fallback" },
 
         ["<C-Space>"] = { "show" },
-        -- ["<C-e>"] = { "cancel", "fallback" },
+        ["<C-e>"] = { "cancel", "fallback" },
 
-        ["<CR>"] = { "accept", "fallback" },
+        -- ["<CR>"] = { "accept", "fallback" },
         ["<Tab>"] = { "select_and_accept", "snippet_forward", "fallback" },
         ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
@@ -65,7 +65,11 @@ blink_cmp.setup({
     },
     cmdline = {
         enabled = true,
-        keymap = { preset = "inherit", ["<Tab>"] = { "show", "select_and_accept", "fallback" } },
+        keymap = {
+            preset = "inherit",
+            ["<Tab>"] = { "show", "select_and_accept", "fallback" },
+            ["<C-e>"] = { "cancel", "fallback" },
+        },
     },
     completion = {
         documentation = { auto_show = true, window = { border = "single" } },
