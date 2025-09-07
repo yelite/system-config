@@ -28,7 +28,7 @@ blink_cmp.setup({
         ["<C-Space>"] = { "show" },
         ["<C-e>"] = { "cancel", "fallback" },
 
-        -- ["<CR>"] = { "accept", "fallback" },
+        ["<CR>"] = { "accept", "fallback" },
         ["<Tab>"] = { "select_and_accept", "snippet_forward", "fallback" },
         ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
