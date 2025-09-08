@@ -44,6 +44,7 @@ in {
     ]
     ++ optionals useGUI [
       obsidian
+      bitwarden-desktop
     ]
     ++ optionals (useGUI && !(hostPlatform.isx86 && hostPlatform.isDarwin)) [
       # TODO: revisit this: supersonic cannot be built on x86 mac
