@@ -23,9 +23,6 @@
         smart-open-nvim = super.smart-open-nvim.overrideAttrs (oldAttrs: {
           doCheck = false;
         });
-        avante-nvim = final.callPackage ./avante.nix {
-          src = inputs.avante-nvim;
-        };
       };
     in {
       vimPlugins = (prev.vimPlugins.extend extras).extend overrides;
@@ -77,14 +74,6 @@
     };
     blink-copilot = {
       url = "github:fang2hou/blink-copilot";
-      flake = false;
-    };
-    avante-nvim = {
-      url = "github:yelite/avante.nvim?ref=my";
-      flake = false;
-    };
-    blink-cmp-avante = {
-      url = "github:Kaiser-Yang/blink-cmp-avante";
       flake = false;
     };
   };

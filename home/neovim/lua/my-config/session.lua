@@ -81,7 +81,7 @@ possession.setup({
             match = {
                 floating = true,
                 buftype = {},
-                filetype = { "AvanteInput", "Avante", "AvanteSelectedFiles" },
+                filetype = {},
                 custom = false, -- or fun(win): boolean
             },
         },

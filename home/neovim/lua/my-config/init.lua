@@ -122,24 +122,8 @@ if not g.neovide then
     })
 end
 
-require("dressing").setup({
-    input = {
-        get_config = function(opts)
-            if opts.kind == "my_setting" or opts.kind == "note_prompt" then
-                return {
-                    relative = "editor",
-                }
-            end
-        end,
-    },
-})
-
 require("glow").setup({
     border = "single",
-})
-
-require("render-markdown").setup({
-    file_types = { "Avante" },
 })
 
 require("hop").setup({

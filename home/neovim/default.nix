@@ -80,7 +80,6 @@ in {
         hologram-nvim # dependency of pets-nvim
         nui-nvim # dependency of pets-nvim
         nvim-nio # dependency of nvim-dap-ui
-        dressing-nvim
         hlchunk-nvim
         gitsigns-nvim
         bufdelete-nvim
@@ -127,7 +126,6 @@ in {
         nvim-dap
         nvim-dap-ui
         blink-cmp
-        blink-cmp-avante
         blink-copilot
         lsp_signature-nvim
         nvim-lsp-endhints
@@ -147,7 +145,6 @@ in {
       ++ lib.optionals config.myConfig.neovim.copilot.enable [
         copilot-lua
         copilot-lualine
-        avante-nvim
       ];
 
     extraConfig = ''

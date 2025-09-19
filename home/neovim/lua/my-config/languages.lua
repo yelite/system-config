@@ -102,47 +102,6 @@ if util.is_copilot_installed() then
             ["."] = false,
         },
     })
-    require("avante_lib").load()
-    require("avante").setup({
-        -- mode = "legacy",
-        provider = "copilot",
-        providers = {
-            copilot = {
-                -- model = "gpt-4o-2024-08-06",
-                model = "gemini-2.5-pro",
-                timeout = 30000,
-                disable_tools = false,
-                extra_request_body = {
-                    temperature = 0,
-                },
-            },
-        },
-        auto_suggestions_provider = nil,
-        memory_summary_provider = "copilot",
-        windows = {
-            width = 36,
-            sidebar_header = {
-                rounded = false,
-            },
-            edit = {
-                border = "rounded",
-            },
-            ask = {},
-        },
-        behaviour = {
-            auto_set_keymaps = false,
-        },
-        disabled_tools = { "web_search", "rag_search" },
-        hints = { enabled = false },
-        mappings = {
-            files = {
-                add_current = "<leader>Ac",
-            },
-            submit = {
-                insert = "<CR>",
-            },
-        },
-    })
 end
 
 vim.g.rustaceanvim = {

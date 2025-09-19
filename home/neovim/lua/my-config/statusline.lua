@@ -104,18 +104,11 @@ require("lualine").setup({
         theme = "nord",
         globalstatus = true,
         disabled_filetypes = {
-            statusline = {
-                "AvanteInput",
-                "Avante",
-                "AvanteSelectedFiles",
-            },
+            statusline = {},
             winbar = {
                 "toggleterm",
                 "dap-repl",
                 "dapui_console",
-                "AvanteInput",
-                "Avante",
-                "AvanteSelectedFiles",
             },
         },
         ignore_focus = {

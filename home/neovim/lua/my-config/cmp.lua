@@ -1,7 +1,7 @@
 local blink_cmp = require("blink-cmp")
 local util = require("my-config.util")
 
-local disabled_filetypes = { "DressingInput", "text", "sagarename" }
+local disabled_filetypes = { "text", "sagarename" }
 
 blink_cmp.setup({
     enabled = function()
@@ -82,10 +82,7 @@ blink_cmp.setup({
     },
     sources = {
         default = { "lsp", "snippets", "copilot", "path", "buffer" },
-        per_filetype = {
-            AvanteInput = { "avante" },
-            AvantePromptInput = { "avante" },
-        },
+        per_filetype = {},
         providers = {
             copilot = {
                 name = "copilot",
@@ -95,11 +92,6 @@ blink_cmp.setup({
                 opts = {
                     max_completions = 3,
                 },
-            },
-            avante = {
-                module = "blink-cmp-avante",
-                name = "Avante",
-                opts = {},
             },
         },
     },

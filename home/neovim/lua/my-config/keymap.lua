@@ -73,14 +73,6 @@ local function browse_project_root_folders()
 end
 
 wk.add({
-    {
-        "<leader>a",
-        function()
-            require("avante.api").ask()
-        end,
-        desc = "Ask AI",
-        mode = { "n", "v" },
-    },
     { "<leader>j", require("my-config.telescope").git_changed_files, desc = "Changed Files in Git Branch" },
     { "<leader>J", search_current_dir, desc = "Search in the directory of current file" },
     { "<leader>k", require("my-config.telescope").quick_find_files, desc = "Quick Find Files" },
@@ -90,50 +82,6 @@ wk.add({
     { "<leader>x", "<cmd>Telescope commands<cr>", desc = "Commands" },
     { "<leader>.", "<cmd>Telescope resume<cr>", desc = "Resume Last Telescope Picker" },
     { "<leader>>", "<cmd>Telescope pickers<cr>", desc = "Previous Telescope Pickers" },
-
-    { "<leader>A", group = "Avante" },
-    {
-        "<leader>Ar",
-        function()
-            require("avante.api").refresh()
-        end,
-        desc = "avante: refresh",
-    },
-    {
-        "<leader>AA",
-        function()
-            require("avante.api").select_history()
-        end,
-        desc = "avante: history",
-    },
-    {
-        "<leader>Aa",
-        function()
-            require("avante.api").select_history()
-        end,
-        desc = "avante: history",
-    },
-    {
-        "<leader>AR",
-        function()
-            require("avante.repo_map").show()
-        end,
-        desc = "avante: repo map",
-    },
-    {
-        "<leader>Ad",
-        function()
-            require("avante.api").toggle.debug()
-        end,
-        desc = "Avante: toggle debug",
-    },
-    {
-        "<leader>Ah",
-        function()
-            require("avante.api").toggle.hint()
-        end,
-        desc = "Avante: toggle hints",
-    },
 
     { "<leader>b", group = "buffer" },
     { "<leader>bb", [[<cmd>Telescope buffers<cr>]], desc = "Switch Buffer" },
@@ -200,14 +148,6 @@ wk.add({
 
     { "<leader>i", group = "code" },
     { "<leader>ia", [[<cmd>Telescope lsp_range_code_actions<cr>]], desc = "Code Actions", mode = { "n", "v" } },
-    {
-        "<leader>ie",
-        function()
-            require("avante.api").edit()
-        end,
-        desc = "Avante edit",
-        mode = { "n", "v" },
-    },
     { "<leader>id", [[<cmd>Trouble diagnostics<cr>]], desc = "Diagnostics" },
     { "<leader>ir", [[<cmd>Lspsaga rename<cr>]], desc = "Rename Symbol", mode = { "n", "v" } },
     { "<leader>is", [[<cmd>Telescope lsp_dynamic_workspace_symbols<cr>]], desc = "Workspace Symbols" },
@@ -296,30 +236,6 @@ wk.add({
     { "<leader>vv", [[<cmd>lua require("my-config.terminal").toggle_lazygit()<cr>]], desc = "Open lazygit" },
 
     { "<leader>w", group = "window", mode = { "n", "v" } },
-    {
-        "<leader>wa",
-        function()
-            require("avante.api").focus()
-        end,
-        desc = "Focus Avante window",
-        mode = { "n", "v" },
-    },
-    {
-        "<C-w>a",
-        function()
-            require("avante.api").focus()
-        end,
-        desc = "Focus Avante window",
-        mode = { "n", "v" },
-    },
-    {
-        "<leader>wA",
-        function()
-            require("avante.api").toggle()
-        end,
-        desc = "Toggle Avante window",
-        mode = { "n", "v" },
-    },
     { "<leader>wo", my_window.move_to_next_window, desc = "Move Buffer to Next Window", mode = { "n", "v" } },
     { "<leader>wO", my_window.open_in_next_window, desc = "Open Buffer in Next Window", mode = { "n", "v" } },
     {
@@ -541,52 +457,11 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = enable_text_mode,
 })
 
-local function set_avanteinput()
-    local opts = { buffer = vim.fn.bufnr(), silent = true }
-    mapkey("<S-CR>", "i", "<CR>", vim.tbl_extend("force", opts, { remap = false }))
-    mapkey("<C-s>", "n", function()
-        require("avante.api").toggle()
-    end, opts)
-    mapkey("<C-s>", "i", function()
-        vim.api.nvim_input("<esc>")
-        -- Use schedule so that the side bar is turned off after
-        -- getting back to normal mode, in this way the cursor
-        -- won't move one char backward.
-        vim.schedule(function()
-            require("avante.api").toggle()
-        end)
-    end, opts)
-    vim.wo.wrap = true
-end
-
-vim.api.nvim_create_augroup("AvanteInputMappings", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "AvanteInput",
-    group = "AvanteInputMappings",
-    callback = set_avanteinput,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "Avante",
-    group = "AvanteInputMappings",
-    callback = function()
-        local opts = { buffer = vim.fn.bufnr(), silent = true }
-        mapkey("<C-s>", "n", function()
-            vim.schedule(function()
-                require("avante.api").toggle()
-            end)
-        end, opts)
-    end,
-})
-
 vim.api.nvim_create_augroup("MyVimSurround", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "*",
     group = "MyVimSurround",
     callback = function()
-        if vim.bo.filetype == "AvanteConfirm" then
-            return
-        end
         local opts = { buffer = vim.fn.bufnr(), silent = true }
 
         vim.keymap.set("n", "ds", "<Plug>Dsurround", opts)
