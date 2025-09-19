@@ -1,7 +1,7 @@
 local blink_cmp = require("blink-cmp")
 local util = require("my-config.util")
 
-local disabled_filetypes = { "text", "sagarename" }
+local disabled_filetypes = { "text", "sagarename", "snacks_input" }
 
 blink_cmp.setup({
     enabled = function()

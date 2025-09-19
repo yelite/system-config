@@ -110,6 +110,7 @@ in {
         smart-open-nvim
         yazi-nvim
         guihua
+        snacks-nvim
 
         autosave
         possession-nvim

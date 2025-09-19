@@ -184,6 +184,17 @@ require("gitsigns").setup({
     numhl = true,
 })
 
+require("snacks").setup({
+    input = {
+        enabled = true,
+        relative = "editor",
+    },
+    picker = {
+        enabled = true,
+        ui_select = true,
+    },
+})
+
 require("trouble").setup({
     indent_line = false,
     auto_preview = false,
