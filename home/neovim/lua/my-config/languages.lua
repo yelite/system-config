@@ -373,11 +373,18 @@ end
 
 vim.api.nvim_create_augroup("MyLangCustomization", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "markdown", "json", "yaml", "cpp", "c", "nix" },
+    pattern = { "markdown", "json", "jsonc", "yaml", "cpp", "c", "nix" },
     group = "MyLangCustomization",
     callback = function()
         vim.bo.tabstop = 2
         vim.bo.shiftwidth = 2
+    end,
+})
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "json", "jsonc", "markdown" },
+    group = "MyLangCustomization",
+    callback = function()
+        vim.opt_local.conceallevel = 0
     end,
 })
 vim.api.nvim_create_autocmd("FileType", {
