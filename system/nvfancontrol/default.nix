@@ -14,10 +14,4 @@ in
     environment.etc = {
       "xdg/nvfancontrol.conf".source = ./nvfancontrol.toml;
     };
-
-    services.xserver = {
-      deviceSection = ''
-        Option     "Coolbits" "4"
-      '';
-    };
   }

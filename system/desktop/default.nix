@@ -35,14 +35,6 @@ in {
       # conflict with ssh.startAgent
       gnome.gcr-ssh-agent.enable = lib.mkForce false;
 
-      xserver = mkIf cfg.xserver.enable {
-        enable = true;
-        displayManager = {
-          startx.enable = true;
-        };
-        wacom.enable = true;
-      };
-
       libinput = {
         enable = true;
         mouse.accelProfile = "flat";
@@ -59,7 +51,6 @@ in {
                 "${pkgs.greetd.tuigreet}/bin/tuigreet"
                 "--asterisks"
                 "--remember"
-                ''--cmd "systemd-cat -t i3 startx ~/.xsession-hm"''
               ]
               ++ lib.optionals cfg.wayland.enable [
                 "--sessions"
@@ -77,7 +68,6 @@ in {
 
     # https://github.com/NixOS/nixpkgs/issues/401891
     security.pam.services.swaylock.enable = true;
-    security.pam.services.i3lock.enable = true;
     security.pam.services.greetd.enableGnomeKeyring = true;
 
     # To avoid kernel logging on greetd tty. See https://github.com/apognu/tuigreet/issues/17

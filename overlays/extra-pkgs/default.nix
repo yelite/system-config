@@ -1,7 +1,6 @@
 final: prev:
 {
   apple-cursor = final.callPackage ./apple-cursor.nix {};
-  i3-focus-last = final.callPackage ./i3-focus-last.nix {};
   fcitx5-fluent-dark = final.callPackage ./fcitx5-fluent-dark {};
   rime-dict = final.callPackage ./rime-dict.nix {};
   flake-repl = final.callPackage ./flake-repl {};

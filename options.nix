@@ -68,24 +68,6 @@ in {
       };
       highDPI = mkEnableOption "highDPI";
 
-      xserver = {
-        enable = mkOption {
-          default = true;
-          example = false;
-          description = "Whether to enable xserver.";
-          type = types.bool;
-        };
-      };
-
-      i3 = {
-        enable = mkEnableOption "i3";
-
-        secondaryMonitorName = mkOption {
-          type = types.str;
-          default = "primary";
-        };
-      };
-
       wayland = {
         enable = mkEnableOption "wayland";
       };

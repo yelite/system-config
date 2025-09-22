@@ -22,7 +22,6 @@
     ]
     ++ lib.optionals hostPlatform.isLinux [
       ./dunst
-      ./i3
       ./niri
     ]
     ++ lib.optionals hostPlatform.isDarwin [
