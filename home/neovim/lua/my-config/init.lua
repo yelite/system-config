@@ -216,6 +216,21 @@ require("todo-comments").setup({
     },
 })
 
+require("render-markdown").setup({
+    completions = { blink = { enabled = true } },
+    heading = {
+        sign = false,
+        width = "block",
+        right_pad = 1,
+    },
+    code = {
+        sign = false,
+    },
+    sign = {
+        enabled = false,
+    },
+})
+
 require("yazi").setup({})
 
 require("Comment").setup({})
