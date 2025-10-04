@@ -192,6 +192,13 @@ require("snacks").setup({
     picker = {
         enabled = true,
         ui_select = true,
+        win = {
+            input = {
+                keys = {
+                    ["<Esc>"] = { "close", mode = { "n", "i" } },
+                },
+            },
+        },
     },
 })
 
