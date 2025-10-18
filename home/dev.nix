@@ -45,6 +45,7 @@ lib.mkMerge [
         process-compose
 
         claude-code
+        gemini-cli
       ]
       ++ (with python3Packages; [
         ipython
