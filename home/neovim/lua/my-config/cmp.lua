@@ -82,7 +82,9 @@ blink_cmp.setup({
     },
     sources = {
         default = { "lsp", "snippets", "copilot", "path", "buffer" },
-        per_filetype = {},
+        per_filetype = {
+            ["dap-repl"] = { "buffer" },
+        },
         providers = {
             copilot = {
                 name = "copilot",

@@ -163,10 +163,12 @@ wk.add({
         end,
         desc = "stop",
     },
-    { "<leader>df", require("telescope").extensions.dap.frames, desc = "toggle breakpoint" },
+    { "<leader>df", require("telescope").extensions.dap.frames, desc = "search frames" },
     { "<leader>db", require("dap").toggle_breakpoint, desc = "toggle breakpoint" },
     { "<leader>dl", require("telescope").extensions.dap.list_breakpoints, desc = "list breakpoints" },
     { "<leader>dp", require("dap").pause, desc = "pause" },
+    { "<leader>dr", require("dap").run_last, desc = "run the last configuration" },
+    { "<leader>dn", require("dap-python").test_method, desc = "run the Python test at cursor" },
 
     { "<leader>n", group = "notes" },
 

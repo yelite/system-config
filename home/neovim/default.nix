@@ -126,6 +126,7 @@ in {
         trouble-nvim
         nvim-dap
         nvim-dap-ui
+        nvim-dap-python
         blink-cmp
         blink-copilot
         lsp_signature-nvim
@@ -199,6 +200,7 @@ in {
         vtsls
         nodePackages."@astrojs/language-server"
         nodePackages."@tailwindcss/language-server"
+        python3Packages.debugpy
       ]
       ++ lib.optionals hostPlatform.isLinux [
         serve-d

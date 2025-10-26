@@ -370,6 +370,7 @@ end
 dap.listeners.before.event_exited.dapui_config = function()
     dapui.close()
 end
+require("dap-python").setup("debugpy-adapter")
 
 vim.api.nvim_create_augroup("MyLangCustomization", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
