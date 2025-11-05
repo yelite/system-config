@@ -45,6 +45,7 @@ lib.mkMerge [
         process-compose
 
         claude-code
+        claude-code-notification
         gemini-cli
       ]
       ++ (with python3Packages; [
@@ -79,6 +80,25 @@ lib.mkMerge [
 
     xdg.configFile."process-compose/shortcuts.yaml".source =
       ./process-compose/shortcuts.yaml;
+
+    home.file.".claude/settings.json".text = builtins.toJSON {
+      hooks = {
+        Notification = [
+          {
+            matcher = "*";
+            hooks = [
+              {
+                type = "command";
+                command =
+                  if hostPlatform.isDarwin
+                  then "claude-code-notification --sound Ping"
+                  else "claude-code-notification";
+              }
+            ];
+          }
+        ];
+      };
+    };
   }
   (lib.optionalAttrs hostPlatform.isDarwin {
     home.file."Library/Application Support/process-compose/shortcuts.yaml" = {

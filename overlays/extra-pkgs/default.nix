@@ -5,6 +5,7 @@ final: prev:
   rime-dict = final.callPackage ./rime-dict.nix {};
   flake-repl = final.callPackage ./flake-repl {};
   dcd = final.callPackage ./dcd.nix {};
+  claude-code-notification = final.callPackage ./claude-code-notification.nix {};
 
   flameshot = prev.flameshot.overrideAttrs (old: {
     patches = old.patches ++ [./patches/flameshot.patch];
