@@ -398,9 +398,10 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     pattern = {
-        "*/.cargo/registry/src/*/*",
-        "*/.cargo/git/checkouts/*/*",
-        "*/.venv/*/*",
+        "*/.cargo/registry/src/*",
+        "*/.cargo/git/checkouts/*",
+        "*/.venv/*",
+        "*/node_modules/*",
     },
     group = "MyLangCustomization",
     callback = function()
