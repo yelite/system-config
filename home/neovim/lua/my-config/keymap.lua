@@ -199,8 +199,6 @@ wk.add({
 
     { "<leader>t", group = "toggle features" },
     { "<leader>tb", [[<cmd>Gitsigns toggle_current_line_blame<cr>]], desc = "Toggle Blame Line" },
-    { "<leader>tc", my_util.toggle_copilot_suppression, desc = "Toggle Copilot suppression" },
-    { "<leader>tC", [[<cmd>Copilot panel<cr>]], desc = "Toggle Copilot panel" },
     { "<leader>td", [[<cmd>TroubleToggle<cr>]], desc = "Trouble Window" },
     { "<leader>tf", require("zen-mode").toggle, desc = "Focus Mode" },
     { "<leader>tl", my_util.toggle_auto_formatting, desc = "Auto formatting on save" },

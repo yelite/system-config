@@ -39,41 +39,6 @@ end
 
 vim.api.nvim_create_user_command("OpenFloat", M.open_float_window, { desc = "Open a float window" })
 
-local copilot_suppressed = false
-
-M.is_copilot_installed = function()
-    return vim.g._copilot_enabled
-end
-
-M.is_copilot_suppressed = function()
-    return copilot_suppressed
-end
-
-M.toggle_copilot_suppression = function()
-    if not M.is_copilot_installed() then
-        print("Tried to toggle copilot suppression without copilot installed. No action taken.")
-        return
-    end
-
-    local copilot_client = require("copilot.client")
-    local copilot_command = require("copilot.command")
-
-    if not copilot_client.is_disabled() then
-        copilot_command.disable()
-        copilot_suppressed = true
-    elseif copilot_suppressed then
-        copilot_command.enable()
-        copilot_suppressed = false
-    else
-        print("Tried to toggle copilot suppression without copilot enabled. No action taken.")
-    end
-
-    lualine.refresh({
-        place = { "statusline" },
-        tirgger = "copilot_suppression",
-    })
-end
-
 M.toggle_auto_formatting = function()
     vim.g.disable_autoformat = not vim.g.disable_autoformat
     vim.notify("Auto formatting is now " .. (vim.g.disable_autoformat and "disabled" or "enabled"))

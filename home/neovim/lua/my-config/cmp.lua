@@ -32,18 +32,6 @@ blink_cmp.setup({
         ["<Tab>"] = { "select_and_accept", "snippet_forward", "fallback" },
         ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
-        ["<C-i>"] = {
-            function(cmp)
-                if cmp.is_visible() then
-                    util.toggle_copilot_suppression()
-                    -- Refresh candidates
-                    cmp.reload()
-                    return true
-                end
-            end,
-            "fallback",
-        },
-
         ["<C-f>"] = {
             function(cmp)
                 -- Confirm if this is the end of line, otherwise abort completion and fallback
@@ -81,20 +69,10 @@ blink_cmp.setup({
         ghost_text = { enabled = true },
     },
     sources = {
-        default = { "lsp", "snippets", "copilot", "path", "buffer" },
+        default = { "lsp", "snippets", "path", "buffer" },
         per_filetype = {
             ["dap-repl"] = { "buffer" },
         },
-        providers = {
-            copilot = {
-                name = "copilot",
-                module = "blink-copilot",
-                score_offset = 100,
-                async = true,
-                opts = {
-                    max_completions = 3,
-                },
-            },
-        },
+        providers = {},
     },
 })

@@ -16,38 +16,6 @@
         "type": "github"
       }
     },
-    "blink-copilot": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1759208401,
-        "narHash": "sha256-s57/vIMvWoumP/Sp+3JMv0bHOf4rq33aEWPMLJdsBpk=",
-        "owner": "fang2hou",
-        "repo": "blink-copilot",
-        "rev": "5d35fd07fcc148be20442da1bdd2407e03263d7d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "fang2hou",
-        "repo": "blink-copilot",
-        "type": "github"
-      }
-    },
-    "copilot-status-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1745997834,
-        "narHash": "sha256-gfrNX9OnS6RdQoEtOlTwforaxSxrMnM4icaRxeXubo4=",
-        "owner": "jonahgoldwastaken",
-        "repo": "copilot-status.nvim",
-        "rev": "272de1a830506a5838f249293376f2e9fe64a359",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jonahgoldwastaken",
-        "repo": "copilot-status.nvim",
-        "type": "github"
-      }
-    },
     "guihua": {
       "flake": false,
       "locked": {
@@ -162,8 +130,6 @@
     "root": {
       "inputs": {
         "autosave": "autosave",
-        "blink-copilot": "blink-copilot",
-        "copilot-status-nvim": "copilot-status-nvim",
         "guihua": "guihua",
         "hlchunk-nvim": "hlchunk-nvim",
         "lazydev-nvim": "lazydev-nvim",

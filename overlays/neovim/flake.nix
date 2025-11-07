@@ -60,20 +60,12 @@
       url = "github:shellRaining/hlchunk.nvim";
       flake = false;
     };
-    copilot-status-nvim = {
-      url = "github:jonahgoldwastaken/copilot-status.nvim";
-      flake = false;
-    };
     nvim-lsp-endhints = {
       url = "github:chrisgrieser/nvim-lsp-endhints";
       flake = false;
     };
     guihua = {
       url = "github:ray-x/guihua.lua";
-      flake = false;
-    };
-    blink-copilot = {
-      url = "github:fang2hou/blink-copilot";
       flake = false;
     };
   };

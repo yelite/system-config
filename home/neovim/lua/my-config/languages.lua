@@ -84,26 +84,6 @@ require("lsp-endhints").setup({
     autoEnableHints = true,
 })
 
-if util.is_copilot_installed() then
-    require("copilot").setup({
-        suggestion = { enabled = false },
-        panel = { enabled = true },
-        filetypes = {
-            yaml = false,
-            markdown = false,
-            help = false,
-            gitcommit = false,
-            gitrebase = false,
-            hgcommit = false,
-            svn = false,
-            cvs = false,
-            toggleterm = false,
-            TelescopePrompt = false,
-            ["."] = false,
-        },
-    })
-end
-
 vim.g.rustaceanvim = {
     -- Plugin configuration
     tools = {},

@@ -66,93 +66,86 @@ in {
   programs.neovim = {
     enable = true;
 
-    plugins = with pkgs.vimPlugins;
-      [
-        plenary-nvim
-        popup-nvim
+    plugins = with pkgs.vimPlugins; [
+      plenary-nvim
+      popup-nvim
 
-        my-treesitter
-        nvim-treesitter-textobjects
+      my-treesitter
+      nvim-treesitter-textobjects
 
-        gbprod-nord
-        nvim-web-devicons
-        pets-nvim
-        hologram-nvim # dependency of pets-nvim
-        nui-nvim # dependency of pets-nvim
-        nvim-nio # dependency of nvim-dap-ui
-        hlchunk-nvim
-        gitsigns-nvim
-        bufdelete-nvim
-        gitlinker-nvim
-        render-markdown-nvim
+      gbprod-nord
+      nvim-web-devicons
+      pets-nvim
+      hologram-nvim # dependency of pets-nvim
+      nui-nvim # dependency of pets-nvim
+      nvim-nio # dependency of nvim-dap-ui
+      hlchunk-nvim
+      gitsigns-nvim
+      bufdelete-nvim
+      gitlinker-nvim
+      render-markdown-nvim
 
-        leap-nvim
-        flash-nvim
-        hop-nvim
-        nvim-autopairs
-        vim-repeat
-        vim-surround
-        vim-subversive
-        vim-textobj-entire
-        nvim-spectre
-        bullets-vim
+      leap-nvim
+      flash-nvim
+      hop-nvim
+      nvim-autopairs
+      vim-repeat
+      vim-surround
+      vim-subversive
+      vim-textobj-entire
+      nvim-spectre
+      bullets-vim
 
-        lualine-nvim
-        nvim-navic
-        telescope-nvim
-        telescope-fzf-native-nvim
-        telescope-file-browser-nvim
-        telescope-live-grep-args-nvim
-        telescope-alternate
-        telescope-dap-nvim
-        toggleterm-nvim
-        which-key-nvim
-        smart-open-nvim
-        yazi-nvim
-        guihua
-        snacks-nvim
+      lualine-nvim
+      nvim-navic
+      telescope-nvim
+      telescope-fzf-native-nvim
+      telescope-file-browser-nvim
+      telescope-live-grep-args-nvim
+      telescope-alternate
+      telescope-dap-nvim
+      toggleterm-nvim
+      which-key-nvim
+      smart-open-nvim
+      yazi-nvim
+      guihua
+      snacks-nvim
 
-        autosave
-        possession-nvim
-        nvim-neoclip-lua
+      autosave
+      possession-nvim
+      nvim-neoclip-lua
 
-        zen-mode-nvim
-        glow-nvim
-        obsidian-nvim
+      zen-mode-nvim
+      glow-nvim
+      obsidian-nvim
 
-        nvim-lspconfig
-        fidget-nvim
-        lspsaga-nvim
-        trouble-nvim
-        nvim-dap
-        nvim-dap-ui
-        nvim-dap-python
-        blink-cmp
-        blink-copilot
-        lsp_signature-nvim
-        nvim-lsp-endhints
-        conform-nvim
-        nvim-notify
-        friendly-snippets
+      nvim-lspconfig
+      fidget-nvim
+      lspsaga-nvim
+      trouble-nvim
+      nvim-dap
+      nvim-dap-ui
+      nvim-dap-python
+      blink-cmp
+      lsp_signature-nvim
+      nvim-lsp-endhints
+      conform-nvim
+      nvim-notify
+      friendly-snippets
 
-        todo-comments-nvim
-        comment-nvim
-        lazydev-nvim
-        rustaceanvim
-        clangd_extensions-nvim
-        go-nvim
-        SchemaStore-nvim
-        sqlite-lua
-      ]
-      ++ lib.optionals config.myConfig.neovim.copilot.enable [
-        copilot-lua
-        copilot-lualine
-      ];
+      todo-comments-nvim
+      comment-nvim
+      lazydev-nvim
+      rustaceanvim
+      clangd_extensions-nvim
+      go-nvim
+      SchemaStore-nvim
+      sqlite-lua
+    ];
 
     extraConfig = ''
       lua << END🤞
       vim.g._my_config_script_folder = "${./scripts}"
-      vim.g._copilot_enabled = ${lib.boolToString config.myConfig.neovim.copilot.enable}
       require "my-config"
       END🤞
     '';

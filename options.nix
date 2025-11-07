@@ -86,7 +86,6 @@ in {
     fish.enable = mkEnableOption "fish";
     kitty.enable = mkEnableOption "kitty";
     neovim.enable = mkEnableOption "neovim";
-    neovim.copilot.enable = mkEnableOption "neovim copilot" // {default = cfg.neovim.enable;};
     nfs-client.enable = mkEnableOption "Enable NFS client support";
     nvfancontrol.enable = mkEnableOption "nvfancontrol";
     syncthing.enable = mkEnableOption "syncthing";
