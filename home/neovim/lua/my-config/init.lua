@@ -234,6 +234,7 @@ require("render-markdown").setup({
         sign = false,
         conceal_delimiters = false,
         border = "none",
+        inline_pad = 1,
     },
     sign = {
         enabled = false,
