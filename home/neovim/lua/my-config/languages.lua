@@ -284,8 +284,21 @@ nvim_lsp.tailwindcss.setup({
     capabilities = M.standard_lsp_capabilities,
 })
 nvim_lsp.vtsls.setup({
-    on_attach = M.standard_lsp_on_attach,
+    on_attach = function(client, bufnr)
+        -- use biome
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+        M.standard_lsp_on_attach(client, bufnr)
+    end,
     capabilities = M.standard_lsp_capabilities,
+    settings = {
+        vtsls = {
+            autoUseWorkspaceTsdk = true,
+        },
+        typescript = {
+            updateImportsOnFileMove = { enabled = "always" },
+        },
+    },
 })
 nvim_lsp.html.setup({
     on_attach = M.standard_lsp_on_attach,
@@ -317,6 +330,10 @@ nvim_lsp.marksman.setup({
             or vim.fs.dirname(vim.fs.find(".git", { path = fname, upward = true })[1])
     end,
 })
+nvim_lsp.biome.setup({
+    on_attach = M.standard_lsp_on_attach,
+    capabilities = M.standard_lsp_capabilities,
+})
 
 vim.g.disable_autoformat = false
 require("conform").setup({
@@ -327,8 +344,6 @@ require("conform").setup({
         go = { "golines" },
         c = { "clang-format" },
         cpp = { "clang-format" },
-        html = { "prettier" },
-        json = { "prettier" },
         markdown = { "prettier" },
     },
     format_after_save = function(bufnr)
@@ -374,7 +389,25 @@ require("dap-python").setup("debugpy-adapter")
 
 vim.api.nvim_create_augroup("MyLangCustomization", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "markdown", "json", "jsonc", "yaml", "cpp", "c", "nix" },
+    pattern = {
+        "markdown",
+        "json",
+        "jsonc",
+        "yaml",
+        "cpp",
+        "c",
+        "nix",
+        "astro",
+        "css",
+        "graphql",
+        "javascript",
+        "javascriptreact",
+        "svelte",
+        "typescript",
+        "typescript.tsx",
+        "typescriptreact",
+        "vue",
+    },
     group = "MyLangCustomization",
     callback = function()
         vim.bo.tabstop = 2

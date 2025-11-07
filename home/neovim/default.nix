@@ -192,6 +192,7 @@ in {
         ruff
         basedpyright
         marksman
+        biome
 
         nodePackages.nodejs
         nodePackages.prettier
