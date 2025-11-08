@@ -178,7 +178,7 @@ in {
         nil
         alejandra
         taplo
-        sumneko-lua-language-server
+        lua-language-server
         # TODO: re-enable this
         # cmake-language-server
         buf

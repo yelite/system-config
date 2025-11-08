@@ -71,8 +71,6 @@ lib.mkMerge [
 
     programs.git = {
       enable = true;
-      userName = "Lite Ye";
-      userEmail = "yelite958@gmail.com";
       lfs = {
         enable = true;
       };

@@ -157,25 +157,29 @@ in {
 
     git = {
       enable = true;
-      delta = {
-        enable = true;
-        options = {
-          syntax-theme = "Nord";
-          line-numbers = true;
-          line-numbers-minus-style = "#733c3f";
-          line-numbers-zero-style = "#4C566A";
-          line-numbers-plus-style = "#627354";
-          minus-style = "syntax #331b1d";
-          minus-emph-style = "normal #733c3f";
-          plus-style = "syntax #2b3325";
-          plus-emph-style = "normal #627354";
-        };
-      };
       includes = [
         {path = "~/.config/git/config.inc";}
       ];
-      extraConfig = {
+      settings = {
         init.defaultBranch = "main";
+        user.name = "Lite Ye";
+        user.email = "yelite958@gmail.com";
+      };
+    };
+
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+      options = {
+        syntax-theme = "Nord";
+        line-numbers = true;
+        line-numbers-minus-style = "#733c3f";
+        line-numbers-zero-style = "#4C566A";
+        line-numbers-plus-style = "#627354";
+        minus-style = "syntax #331b1d";
+        minus-emph-style = "normal #733c3f";
+        plus-style = "syntax #2b3325";
+        plus-emph-style = "normal #627354";
       };
     };
 
@@ -183,10 +187,12 @@ in {
       enable = true;
       settings = {
         git = {
-          paging = {
-            colorArg = "always";
-            pager = "delta --dark --paging=never --syntax-theme=Nord";
-          };
+          pagers = [
+            {
+              colorArg = "always";
+              pager = "delta --dark --paging=never --syntax-theme=Nord";
+            }
+          ];
           log = {
             showGraph = "always";
           };
