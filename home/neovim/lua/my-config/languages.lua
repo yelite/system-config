@@ -1,24 +1,24 @@
-local nvim_lsp = require("lspconfig")
 local lsp_util = require("lspconfig.util")
 local lspsaga = require("lspsaga")
 local dap = require("dap")
 local dapui = require("dapui")
 local lsp_signature = require("lsp_signature")
 local keymap = require("my-config.keymap")
-local util = require("my-config.util")
 
 local M = {}
 
-function M.standard_lsp_on_attach(client, bufnr)
-    keymap.bind_lsp_keys(client, bufnr)
-end
+function M.standard_lsp_on_attach(client, bufnr) end
 
-M.standard_lsp_capabilities = require("blink.cmp").get_lsp_capabilities({}, true)
-
-local standard_lsp_config = {
-    on_attach = M.standard_lsp_on_attach,
-    capabilities = M.standard_lsp_capabilities,
-}
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = function(ev)
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if client == nil then
+            return
+        end
+        keymap.bind_lsp_keys(client.name, ev.buf)
+    end,
+})
 
 lsp_signature.setup({
     bind = true,
@@ -88,19 +88,12 @@ vim.g.rustaceanvim = {
     -- Plugin configuration
     tools = {},
     -- LSP configuration
-    server = {
-        on_attach = M.standard_lsp_on_attach,
-        capabilities = vim.tbl_deep_extend(
-            "force",
-            M.standard_lsp_capabilities,
-            require("rustaceanvim.config.server").create_client_capabilities()
-        ),
-    },
+    server = {},
     -- DAP configuration
     dap = {},
 }
 
-nvim_lsp.clangd.setup({
+vim.lsp.config("clangd", {
     cmd = {
         "clangd",
         "--background-index",
@@ -110,20 +103,12 @@ nvim_lsp.clangd.setup({
         "--header-insertion=iwyu",
     },
     filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
-    on_attach = M.standard_lsp_on_attach,
-    capabilities = M.standard_lsp_capabilities,
 })
-
-vim.lsp.config("basedpyright", {
-    settings = {},
-    on_attach = M.standard_lsp_on_attach,
-    capabilities = M.standard_lsp_capabilities,
-})
+vim.lsp.enable("clangd")
 vim.lsp.enable("basedpyright")
 vim.lsp.enable("ruff")
-
-nvim_lsp.cmake.setup(standard_lsp_config)
-nvim_lsp.nil_ls.setup(vim.tbl_deep_extend("force", standard_lsp_config, {
+vim.lsp.enable("cmake")
+vim.lsp.config("nil_ls", {
     settings = {
         ["nil"] = {
             formatting = {
@@ -131,7 +116,8 @@ nvim_lsp.nil_ls.setup(vim.tbl_deep_extend("force", standard_lsp_config, {
             },
         },
     },
-}))
+})
+vim.lsp.enable("nil_ls")
 
 require("go").setup({
     lsp_keymaps = false,
@@ -143,7 +129,7 @@ require("go").setup({
     trouble = true,
     lsp_cfg = {
         on_attach = M.standard_lsp_on_attach,
-        capabilities = vim.tbl_deep_extend("force", M.standard_lsp_capabilities, {
+        capabilities = {
             workspace = {
                 didChangeWatchedFiles = {
                     -- Fix for https://github.com/neovim/neovim/issues/28058
@@ -151,7 +137,7 @@ require("go").setup({
                     relativePatternSupport = false,
                 },
             },
-        }),
+        },
         settings = {
             gopls = {
                 usePlaceholders = true,
@@ -189,7 +175,7 @@ require("lazydev").setup({
     },
 })
 
-nvim_lsp.lua_ls.setup({
+vim.lsp.config("lua_ls", {
     settings = {
         Lua = {
             completion = {
@@ -205,32 +191,22 @@ nvim_lsp.lua_ls.setup({
             },
         },
     },
-    on_attach = M.standard_lsp_on_attach,
-    capabilities = M.standard_lsp_capabilities,
 })
+vim.lsp.enable("lua_ls")
 
 if vim.loop.os_uname().sysname ~= "Darwin" then
-    nvim_lsp.serve_d.setup({
+    vim.lsp.config("serve_d", {
         on_attach = function(client, bufnr)
             client.server_capabilities.documentFormattingProvider = false
             client.server_capabilities.documentRangeFormattingProvider = false
-            M.standard_lsp_on_attach(client, bufnr)
         end,
-        capabilities = M.standard_lsp_capabilities,
     })
+    vim.lsp.enable("serve_d")
 end
 
-nvim_lsp.buf_ls.setup({
-    on_attach = M.standard_lsp_on_attach,
-    capabilities = M.standard_lsp_capabilities,
-})
-
-nvim_lsp.taplo.setup({
-    on_attach = M.standard_lsp_on_attach,
-    capabilities = M.standard_lsp_capabilities,
-})
-
-nvim_lsp.jsonls.setup({
+vim.lsp.enable("buf_ls")
+vim.lsp.enable("taplo")
+vim.lsp.config("jsonls", {
     settings = {
         json = {
             schemas = require("schemastore").json.schemas(),
@@ -238,13 +214,9 @@ nvim_lsp.jsonls.setup({
         },
     },
 })
+vim.lsp.enable("jsonls")
 
-nvim_lsp.yamlls.setup({
-    on_attach = function(client, bufnr)
-        M.standard_lsp_on_attach(client, bufnr)
-        client.server_capabilities.documentFormattingProvider = true
-    end,
-    capabilities = M.standard_lsp_capabilities,
+vim.lsp.config("yamlls", {
     settings = {
         yaml = {
             schemaStore = {
@@ -253,24 +225,20 @@ nvim_lsp.yamlls.setup({
             schemas = require("schemastore").yaml.schemas(),
         },
     },
+    on_attach = function(client, bufnr)
+        client.server_capabilities.documentFormattingProvider = true
+    end,
 })
+vim.lsp.enable("yamlls")
 
-nvim_lsp.astro.setup({
-    on_attach = M.standard_lsp_on_attach,
-    capabilities = M.standard_lsp_capabilities,
-})
-nvim_lsp.tailwindcss.setup({
-    on_attach = M.standard_lsp_on_attach,
-    capabilities = M.standard_lsp_capabilities,
-})
-nvim_lsp.vtsls.setup({
+vim.lsp.enable("astro")
+vim.lsp.enable("tailwindcss")
+vim.lsp.config("vtsls", {
     on_attach = function(client, bufnr)
         -- use biome
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
-        M.standard_lsp_on_attach(client, bufnr)
     end,
-    capabilities = M.standard_lsp_capabilities,
     settings = {
         vtsls = {
             autoUseWorkspaceTsdk = true,
@@ -280,13 +248,9 @@ nvim_lsp.vtsls.setup({
         },
     },
 })
-nvim_lsp.html.setup({
-    on_attach = M.standard_lsp_on_attach,
-    capabilities = M.standard_lsp_capabilities,
-})
-nvim_lsp.cssls.setup({
-    on_attach = M.standard_lsp_on_attach,
-    capabilities = M.standard_lsp_capabilities,
+vim.lsp.enable("vtsls")
+vim.lsp.enable("html")
+vim.lsp.config("cssls", {
     settings = {
         css = {
             lint = {
@@ -295,10 +259,8 @@ nvim_lsp.cssls.setup({
         },
     },
 })
-nvim_lsp.marksman.setup({
-    on_attach = M.standard_lsp_on_attach,
-    capabilities = M.standard_lsp_capabilities,
-
+vim.lsp.enable("cssls")
+vim.lsp.config("marksman", {
     root_dir = function(fname)
         -- Check if the buffer has a name and corresponds to a readable file
         if fname == "" or vim.fn.filereadable(fname) == 0 then
@@ -310,10 +272,8 @@ nvim_lsp.marksman.setup({
             or vim.fs.dirname(vim.fs.find(".git", { path = fname, upward = true })[1])
     end,
 })
-nvim_lsp.biome.setup({
-    on_attach = M.standard_lsp_on_attach,
-    capabilities = M.standard_lsp_capabilities,
-})
+vim.lsp.enable("marksman")
+vim.lsp.enable("biome")
 
 vim.g.disable_autoformat = false
 require("conform").setup({

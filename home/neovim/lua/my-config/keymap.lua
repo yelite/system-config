@@ -365,7 +365,7 @@ local function bind_rust_lsp_keys(bufnr)
     mapkey("<leader>ioc", "n", "<cmd>RustOpenCargo<cr>", opt, "Open Cargo")
 end
 
-function M.bind_lsp_keys(client, bufnr)
+function M.bind_lsp_keys(client_name, bufnr)
     local opts = { buffer = bufnr, silent = true }
     mapkey("<leader>ic", "n", "<cmd>Lspsaga incoming_calls<cr>", opts, "Incoming Calls")
     mapkey("<leader>iC", "n", "<cmd>Lspsaga outgoing_calls<cr>", opts, "Outgoing Calls")
@@ -404,9 +404,9 @@ function M.bind_lsp_keys(client, bufnr)
     mapkey("<C-k>", "i", "<cmd>Lspsaga hover_doc<cr>", opts)
     mapkey("<C-g>", "i", "<cmd>Lspsaga code_action<cr>", opts)
 
-    if client.name == "rust_analyzer" then
+    if client_name == "rust_analyzer" then
         bind_rust_lsp_keys(bufnr)
-    elseif client.name == "clangd" then
+    elseif client_name == "clangd" then
         mapkey("gi", "n", "<cmd>ClangdSwitchSourceHeader<cr>", opts, "Goto header/source")
     end
 end
