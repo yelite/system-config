@@ -3,6 +3,7 @@
 , fetchFromGitHub
 , pkg-config
 , dbus
+, openssl
 , stdenv
 }:
 
@@ -25,7 +26,11 @@ rustPlatform.buildRustPackage rec {
 
   buildInputs = lib.optionals stdenv.isLinux [
     dbus
+    openssl
   ];
+
+  # Disable tests that require network access
+  doCheck = false;
 
   meta = with lib; {
     description = "A high-performance Rust CLI tool for displaying cross-platform desktop notifications for Claude Code";
