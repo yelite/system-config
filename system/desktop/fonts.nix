@@ -19,7 +19,7 @@ in
         source-han-mono
         noto-fonts
         noto-fonts-cjk-sans
-        noto-fonts-emoji
+        noto-fonts-color-emoji
         roboto-mono
         overpass
         nerd-fonts.hack

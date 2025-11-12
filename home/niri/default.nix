@@ -210,8 +210,8 @@ in {
         "Mod+Shift+F".action.fullscreen-window = {};
         "Mod+Shift+G".action.toggle-windowed-fullscreen = {};
 
-        "Ctrl+Shift+Super+4".action = screenshot-window {write-to-disk = false;};
-        "Ctrl+Shift+Super+5".action = screenshot {show-pointer = false;};
+        "Ctrl+Shift+Super+4".action.screenshot-window = {write-to-disk = false;};
+        "Ctrl+Shift+Super+5".action.screenshot = {show-pointer = false;};
 
         "XF86AudioPlay" = {
           action = spawn "${playerctl}" "play-pause";

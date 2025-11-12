@@ -65,7 +65,7 @@ in {
       satty
       playerctl
       zoom-us
-      write_stylus
+      styluslabs-write-bin
       reaper
       realvnc-vnc-viewer
       chromium
