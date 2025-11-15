@@ -372,14 +372,14 @@ hydra({
     heads = {
         -- Git hunk navigation
         {
-            "]",
+            "n",
             function()
                 require("gitsigns").nav_hunk("next")
             end,
             { desc = "next hunk", nowait = true },
         },
         {
-            "[",
+            "N",
             function()
                 require("gitsigns").nav_hunk("prev")
             end,
@@ -402,7 +402,7 @@ hydra({
             { desc = "stage buffer", exit = true },
         },
         {
-            "p",
+            "<c-p>",
             function()
                 require("gitsigns").preview_hunk()
             end,
