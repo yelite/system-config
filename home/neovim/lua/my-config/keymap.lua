@@ -2,6 +2,7 @@ local toggleterm = require("toggleterm")
 local leap = require("leap")
 local leap_util = require("leap.util")
 local wk = require("which-key")
+local hydra = require("hydra")
 
 local my_window = require("my-config.window")
 local my_settings = require("my-config.settings")
@@ -74,7 +75,7 @@ end
 
 wk.add({
     { "<leader>j", require("my-config.telescope").git_changed_files, desc = "Changed Files in Git Branch" },
-    { "<leader>J", search_current_dir, desc = "Search in the directory of current file" },
+    { "<leader>h", search_current_dir, desc = "Search in the directory of current file" },
     { "<leader>k", require("my-config.telescope").quick_find_files, desc = "Quick Find Files" },
     { "<leader>K", browse_current_dir, desc = "Browser in current directory" },
     { "<leader>l", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document Symbols" },
@@ -353,6 +354,78 @@ mapkey(
     { "n", "t" },
     "<cmd>Trouble symbols toggle pinned=true focus=true win.position=left win.relative=win<cr>"
 )
+
+hydra({
+    name = "Code Review",
+    config = {
+        color = "pink",
+        invoke_on_body = true,
+        hint = {
+            type = "window",
+            float_opts = {
+                border = "double",
+            },
+        },
+    },
+    mode = { "n" },
+    body = "<leader>J",
+    heads = {
+        -- Git hunk navigation
+        {
+            "]",
+            function()
+                require("gitsigns").nav_hunk("next")
+            end,
+            { desc = "next hunk", nowait = true },
+        },
+        {
+            "[",
+            function()
+                require("gitsigns").nav_hunk("prev")
+            end,
+            { desc = "previous hunk", nowait = true },
+        },
+
+        -- Git hunk operations
+        {
+            "s",
+            function()
+                require("gitsigns").stage_hunk()
+            end,
+            { desc = "stage hunk" },
+        },
+        {
+            "S",
+            function()
+                require("gitsigns").stage_buffer()
+            end,
+            { desc = "stage buffer", exit = true },
+        },
+        {
+            "p",
+            function()
+                require("gitsigns").preview_hunk()
+            end,
+            { desc = "preview hunk" },
+        },
+
+        -- Diagnostic navigation
+        {
+            "e",
+            function()
+                require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+            end,
+            { desc = "next error" },
+        },
+
+        -- Exit
+        { "i", "i", { exit = true, desc = nil } },
+        { "a", "a", { exit = true, desc = nil } },
+        { "o", "o", { exit = true, desc = nil } },
+        { "q", nil, { exit = true, desc = "exit" } },
+        { "<Esc>", nil, { exit = true, desc = "exit" } },
+    },
+})
 
 -- LSP
 local function bind_rust_lsp_keys(bufnr)

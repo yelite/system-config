@@ -88,6 +88,7 @@ in {
       leap-nvim
       flash-nvim
       hop-nvim
+      hydra-nvim
       nvim-autopairs
       vim-repeat
       vim-surround
