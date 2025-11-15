@@ -39,6 +39,33 @@ local function copy_expansion_result(s)
     vim.notify('Copied "' .. path .. '" to the clipboard!')
 end
 
+local function copy_file_path_with_line_result(s)
+    local path = vim.fn.expand("%:.")
+
+    local line_suffix
+    local mode = vim.fn.mode()
+    if mode == "v" or mode == "V" or mode == "\22" then
+        -- We are in visual mode (char, line, or block)
+        -- 'v' is the mark for the start of the visual selection
+        -- '.' is the mark for the current cursor position
+        local start_pos = vim.fn.getpos("v")
+        local end_pos = vim.fn.getpos(".")
+
+        -- Use math.min/max to handle selecting upwards
+        local line_start = math.min(start_pos[2], end_pos[2])
+        local line_end = math.max(start_pos[2], end_pos[2])
+        line_suffix = string.format("#L%d-%d", line_start, line_end)
+    else
+        -- We are in normal mode, just get the cursor line
+        line_suffix = string.format("#L%d", vim.api.nvim_win_get_cursor(0)[1])
+    end
+
+    -- Format the final string
+    local result_string = path .. line_suffix
+    vim.fn.setreg("+", result_string)
+    vim.notify('Copied "' .. result_string .. '" to the clipboard!')
+end
+
 -- TODO: generalize this to a window selector so that the open/move in other window function can use it.
 local function leap_to_window()
     local target_windows = leap_util.get_enterable_windows()
@@ -128,6 +155,12 @@ wk.add({
             copy_expansion_result("%:.:h")
         end,
         desc = "Copy relative path of the current directory",
+    },
+    {
+        "<leader>fl",
+        copy_file_path_with_line_result,
+        desc = "Copy relative path of the current file with line number",
+        mode = { "n", "v" },
     },
     { "<leader>fr", [[<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>]], desc = "Recent Files" },
     { "<leader>fR", [[<cmd>lua require('telescope.builtin').oldfiles({})<cr>]], desc = "Global Recent Files" },
@@ -357,11 +390,13 @@ mapkey(
 
 hydra({
     name = "Code Review",
+    hint = [[Code review mode]],
     config = {
         color = "pink",
         invoke_on_body = true,
         hint = {
             type = "window",
+            position = "bottom-left",
             float_opts = {
                 border = "double",
             },
@@ -370,46 +405,41 @@ hydra({
     mode = { "n" },
     body = "<leader>J",
     heads = {
-        -- Git hunk navigation
         {
             "n",
             function()
                 require("gitsigns").nav_hunk("next")
             end,
-            { desc = "next hunk", nowait = true },
+            { desc = "next", nowait = true },
         },
         {
             "N",
             function()
                 require("gitsigns").nav_hunk("prev")
             end,
-            { desc = "previous hunk", nowait = true },
+            { desc = "previous", nowait = true },
         },
-
-        -- Git hunk operations
         {
             "s",
             function()
                 require("gitsigns").stage_hunk()
             end,
-            { desc = "stage hunk" },
+            { desc = "stage" },
         },
         {
             "S",
             function()
                 require("gitsigns").stage_buffer()
             end,
-            { desc = "stage buffer", exit = true },
+            { desc = "stage all", exit = true },
         },
         {
             "<c-p>",
             function()
                 require("gitsigns").preview_hunk()
             end,
-            { desc = "preview hunk" },
+            { desc = "diff" },
         },
-
-        -- Diagnostic navigation
         {
             "e",
             function()
@@ -417,11 +447,21 @@ hydra({
             end,
             { desc = "next error" },
         },
+        {
+            "y",
+            copy_file_path_with_line_result,
+            { desc = "copy path", nowait = true },
+        },
+        {
+            "<leader>g",
+            [[<cmd>Telescope git_status<cr>]],
+            { desc = "git status", nowait = true },
+        },
 
         -- Exit
-        { "i", "i", { exit = true, desc = nil } },
-        { "a", "a", { exit = true, desc = nil } },
-        { "o", "o", { exit = true, desc = nil } },
+        { "i", "i", { exit = true, desc = false } },
+        { "a", "a", { exit = true, desc = false } },
+        { "o", "o", { exit = true, desc = false } },
         { "q", nil, { exit = true, desc = "exit" } },
         { "<Esc>", nil, { exit = true, desc = "exit" } },
     },
