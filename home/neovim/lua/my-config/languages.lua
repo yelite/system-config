@@ -231,6 +231,13 @@ vim.lsp.config("yamlls", {
 })
 vim.lsp.enable("yamlls")
 
+vim.lsp.config("astro", {
+    on_attach = function(client, bufnr)
+        -- use biome
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+    end,
+})
 vim.lsp.enable("astro")
 vim.lsp.enable("tailwindcss")
 vim.lsp.config("vtsls", {
