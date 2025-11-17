@@ -123,6 +123,7 @@ in {
       nvim-lspconfig
       fidget-nvim
       lspsaga-nvim
+      nvim-highlight-colors
       trouble-nvim
       nvim-dap
       nvim-dap-ui

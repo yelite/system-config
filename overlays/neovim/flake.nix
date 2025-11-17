@@ -23,6 +23,16 @@
         smart-open-nvim = super.smart-open-nvim.overrideAttrs (oldAttrs: {
           doCheck = false;
         });
+        nvim-highlight-colors = super.nvim-highlight-colors.overrideAttrs {
+          # Test module
+          nvimSkipModules = [
+            "nvim-highlight-colors.utils_spec"
+            "nvim-highlight-colors.buffer_utils_spec"
+            "nvim-highlight-colors.color.converters_spec"
+            "nvim-highlight-colors.color.patterns_spec"
+            "nvim-highlight-colors.color.utils_spec"
+          ];
+        };
       };
     in {
       vimPlugins = (prev.vimPlugins.extend extras).extend overrides;
@@ -66,6 +76,10 @@
     };
     guihua = {
       url = "github:ray-x/guihua.lua";
+      flake = false;
+    };
+    nvim-highlight-colors = {
+      url = "github:neckbeard-69/nvim-highlight-colors/e9eee7fa3d32eb2274f587571c361fae2c91f8bb";
       flake = false;
     };
   };

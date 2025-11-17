@@ -282,6 +282,17 @@ vim.lsp.config("marksman", {
 vim.lsp.enable("marksman")
 vim.lsp.enable("biome")
 
+require("nvim-highlight-colors").setup({
+    render = "virtual",
+    virtual_symbol_suffix = "",
+    virtual_symbol_position = "eol",
+    exclude_buffer = function(bufnr)
+        local file_size = vim.fn.getfsize(vim.api.nvim_buf_get_name(bufnr))
+        return vim.bo[bufnr].filetype ~= "css" or file_size > 1000000
+    end,
+})
+require("nvim-highlight-colors").turnOff()
+
 vim.g.disable_autoformat = false
 require("conform").setup({
     undojoin = true,

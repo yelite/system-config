@@ -79,6 +79,23 @@
         "type": "indirect"
       }
     },
+    "nvim-highlight-colors": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1760450237,
+        "narHash": "sha256-/WNxh0wjTqisc8JOJ0ivS11ZGN3skpAFkxYxxmWqivI=",
+        "owner": "neckbeard-69",
+        "repo": "nvim-highlight-colors",
+        "rev": "e9eee7fa3d32eb2274f587571c361fae2c91f8bb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "neckbeard-69",
+        "repo": "nvim-highlight-colors",
+        "rev": "e9eee7fa3d32eb2274f587571c361fae2c91f8bb",
+        "type": "github"
+      }
+    },
     "nvim-lsp-endhints": {
       "flake": false,
       "locked": {
@@ -134,6 +151,7 @@
         "hlchunk-nvim": "hlchunk-nvim",
         "lazydev-nvim": "lazydev-nvim",
         "nixpkgs": "nixpkgs",
+        "nvim-highlight-colors": "nvim-highlight-colors",
         "nvim-lsp-endhints": "nvim-lsp-endhints",
         "pets-nvim": "pets-nvim",
         "possession-nvim": "possession-nvim",

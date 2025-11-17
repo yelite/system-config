@@ -251,6 +251,7 @@ wk.add({
     { "<leader>ti", require("lsp-endhints").toggle, desc = "Inlay hint at EOL" },
     { "<leader>ts", require("auto-save").toggle, desc = "Auto Save" },
     { "<leader>tS", [[<cmd>set invspell<cr>]], desc = "Spell Check" },
+    { "<leader>tc", [[<cmd>HighlightColors Toggle<cr>]], desc = "Color highlight" },
 
     { "<leader>v", group = "version control" },
     { "<leader>vb", [[<cmd>lua require"gitsigns".blame_line{}<cr>]], desc = "Blame" },
