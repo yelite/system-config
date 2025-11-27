@@ -93,6 +93,7 @@ in {
             tampermonkey
             bitwarden
             react-devtools
+            reduxdevtools
           ];
 
           settings = {
