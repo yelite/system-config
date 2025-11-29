@@ -49,6 +49,10 @@
             };
           };
         };
+        nvim-spectre = super.nvim-spectre.overrideAttrs (oldAttrs: {
+          postInstall = "";
+          doCheck = false;
+        });
       };
     in {
       vimPlugins = (prev.vimPlugins.extend extras).extend overrides;
