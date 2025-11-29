@@ -269,53 +269,54 @@ vim.lsp.config("vtsls", {
 })
 vim.lsp.enable("vtsls")
 
+local function make_vtsls_action_handler(title)
+    return function(err, locations, ctx, config)
+        if err then
+            error(err)
+        end
+
+        local client = vim.lsp.get_client_by_id(ctx.client_id)
+        if client == nil then
+            vim.notify("No lsp client found", vim.log.levels.INFO)
+            return
+        end
+
+        -- Handle empty results
+        if not locations or vim.tbl_isempty(locations) then
+            vim.notify("No locations found for " .. title, vim.log.levels.INFO)
+            return
+        end
+
+        -- If there is only one result, jump to it directly (standard behavior)
+        if #locations == 1 then
+            vim.lsp.util.show_document(locations[1], client.offset_encoding, { reuse_win = true, focus = true })
+            return
+        end
+
+        local items = vim.lsp.util.locations_to_items(locations, client.offset_encoding)
+        local pickers = require("telescope.pickers")
+        local finders = require("telescope.finders")
+        local conf = require("telescope.config").values
+        local make_entry = require("telescope.make_entry")
+
+        pickers
+            .new({}, {
+                prompt_title = title,
+                finder = finders.new_table({
+                    results = items,
+                    entry_maker = make_entry.gen_from_quickfix({}),
+                }),
+                previewer = conf.qflist_previewer({}),
+                sorter = conf.generic_sorter({}),
+            })
+            :find()
+    end
+end
+
 require("vtsls").config({
     handlers = {
-        source_definition = function(err, locations, ctx, config)
-            if err then
-                error(err)
-            end
-
-            local client = vim.lsp.get_client_by_id(ctx.client_id)
-            if client == nil then
-                vim.notify("No lsp client found", vim.log.levels.INFO)
-                return
-            end
-
-            -- Handle empty results
-            if not locations or vim.tbl_isempty(locations) then
-                vim.notify("No locations found for source definition", vim.log.levels.INFO)
-                return
-            end
-
-            -- If there is only one result, jump to it directly (standard behavior)
-            if #locations == 1 then
-                vim.lsp.util.show_document(locations[1], client.offset_encoding, { reuse_win = true, focus = true })
-                return
-            end
-
-            local items = vim.lsp.util.locations_to_items(locations, client.offset_encoding)
-            local pickers = require("telescope.pickers")
-            local finders = require("telescope.finders")
-            local conf = require("telescope.config").values
-            local make_entry = require("telescope.make_entry")
-
-            pickers
-                .new({}, {
-                    prompt_title = "Source Definitions",
-                    finder = finders.new_table({
-                        results = items,
-                        entry_maker = make_entry.gen_from_quickfix({}),
-                    }),
-                    previewer = conf.qflist_previewer({}),
-                    sorter = conf.generic_sorter({}),
-                    attach_mappings = function(prompt_bufnr)
-                        -- Optional: Add actions here if needed
-                        return true
-                    end,
-                })
-                :find()
-        end,
+        source_definition = make_vtsls_action_handler("Source Definitions"),
+        file_references = make_vtsls_action_handler("File References"),
     },
 })
 
