@@ -522,6 +522,9 @@ function M.bind_lsp_keys(client_name, bufnr)
         bind_rust_lsp_keys(bufnr)
     elseif client_name == "clangd" then
         mapkey("gi", "n", "<cmd>ClangdSwitchSourceHeader<cr>", opts, "Goto header/source")
+    elseif client_name == "vtsls" then
+        mapkey("grd", "n", "<cmd>VtsExec goto_source_definition<cr>", opts, "Goto source definition")
+        mapkey("grf", "n", "<cmd>VtsExec file_references<cr>", opts, "Goto file references")
     end
 end
 

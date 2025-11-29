@@ -141,6 +141,7 @@ in {
       rustaceanvim
       clangd_extensions-nvim
       go-nvim
+      nvim-vtsls
       SchemaStore-nvim
       sqlite-lua
     ];
