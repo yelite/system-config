@@ -30,6 +30,8 @@
 
   config = {
     # https://github.com/nix-community/home-manager/issues/3047
-    home.stateVersion = "23.11";
+    home.stateVersion = "25.11";
+    # We are on unstable for both nixpkgs and hm
+    home.enableNixpkgsReleaseCheck = true;
   };
 }
