@@ -425,14 +425,14 @@ hydra({
             function()
                 require("gitsigns").stage_hunk()
             end,
-            { desc = "stage" },
+            { desc = "stage", nowait = true },
         },
         {
             "S",
             function()
                 require("gitsigns").stage_buffer()
             end,
-            { desc = "stage all", exit = true },
+            { desc = "stage all", exit = true, nowait = true },
         },
         {
             "<c-p>",
