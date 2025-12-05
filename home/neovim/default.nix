@@ -137,6 +137,7 @@ in {
 
       todo-comments-nvim
       comment-nvim
+      nvim-ts-context-commentstring
       lazydev-nvim
       rustaceanvim
       clangd_extensions-nvim
