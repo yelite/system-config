@@ -13,10 +13,18 @@ in
       wl-clipboard
       cliphist
       xwayland-satellite
-      wofi
     ];
 
     programs = {
+      wofi = {
+        enable = true;
+        settings = {
+          allow_markup = true;
+          key_down = "Down,Ctrl-n";
+          key_up = "Up,Ctrl-p";
+        };
+      };
+
       waybar = {
         enable = true;
         systemd = {
