@@ -285,9 +285,11 @@ in
           Description = "Prevents swayidle from sleeping while any application is outputting or receiving audio.";
           Documentation = "https://github.com/ErikReider/SwayAudioIdleInhibit";
           PartOf = ["niri.service"];
+          After = ["niri.service"];
         };
         Service = {
           ExecStart = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit";
+          ExecStartPre = "${pkgs.coreutils}/bin/sleep 5";
           Type = "simple";
         };
         Install = {
