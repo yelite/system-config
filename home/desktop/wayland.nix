@@ -294,11 +294,14 @@ in
           Documentation = "https://github.com/ErikReider/SwayAudioIdleInhibit";
           PartOf = ["niri.service"];
           After = ["niri.service"];
+          StartLimitIntervalSec = 60;
+          StartLimitBurst = 5;
         };
         Service = {
           ExecStart = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit";
-          ExecStartPre = "${pkgs.coreutils}/bin/sleep 5";
           Type = "simple";
+          Restart = "on-failure";
+          RestartSec = 3;
         };
         Install = {
           WantedBy = ["niri.service"];
