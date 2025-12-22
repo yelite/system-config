@@ -55,6 +55,8 @@ local function copy_file_path_with_line_result(s)
         local line_start = math.min(start_pos[2], end_pos[2])
         local line_end = math.max(start_pos[2], end_pos[2])
         line_suffix = string.format("#L%d-%d", line_start, line_end)
+        -- return to normal mode
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
     else
         -- We are in normal mode, just get the cursor line
         line_suffix = string.format("#L%d", vim.api.nvim_win_get_cursor(0)[1])
