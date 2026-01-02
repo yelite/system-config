@@ -19,11 +19,11 @@
     "done": {
       "flake": false,
       "locked": {
-        "lastModified": 1747320793,
-        "narHash": "sha256-WA6DBrPBuXRIloO05UBunTJ9N01d6tO1K1uqojjO0mo=",
+        "lastModified": 1765757154,
+        "narHash": "sha256-GZ1ZpcaEfbcex6XvxOFJDJqoD9C5out0W4bkkn768r0=",
         "owner": "franciscolourenco",
         "repo": "done",
-        "rev": "0bfe402753681f705a482694fcaf20c2bfc6deb7",
+        "rev": "998ad4f5fc9cee36c09840a7e635b56428e554f9",
         "type": "github"
       },
       "original": {
@@ -35,11 +35,11 @@
     "forgit": {
       "flake": false,
       "locked": {
-        "lastModified": 1764239312,
-        "narHash": "sha256-DN2QUxCVVjYn7b4xt/7+k5g1/7dfZ+cp5Yi0nJWh1mM=",
+        "lastModified": 1767308118,
+        "narHash": "sha256-ERVSEmFfjkcmNML8SVjDnvZYxARaukiie2/lnKHJy58=",
         "owner": "wfxr",
         "repo": "forgit",
-        "rev": "582a64ea36a3cf1b84e33e957f527e8092597c1e",
+        "rev": "53da496336305b8896e9cc2c8c5fbb016f31847c",
         "type": "github"
       },
       "original": {
@@ -110,11 +110,11 @@
     "z": {
       "flake": false,
       "locked": {
-        "lastModified": 1739459792,
-        "narHash": "sha256-emmjTsqt8bdI5qpx1bAzhVACkg0MNB/uffaRjjeuFxU=",
+        "lastModified": 1766313233,
+        "narHash": "sha256-4c9ScQVf55b2ANaR7Lp/oqLeuK+FxH/wKmSNLV+b/CE=",
         "owner": "jethrokuan",
         "repo": "z",
-        "rev": "067e867debee59aee231e789fc4631f80fa5788e",
+        "rev": "d2f502f5575b18a32e1bee2f2b3f869a5053c159",
         "type": "github"
       },
       "original": {

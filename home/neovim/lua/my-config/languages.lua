@@ -194,15 +194,16 @@ vim.lsp.config("lua_ls", {
 })
 vim.lsp.enable("lua_ls")
 
-if vim.loop.os_uname().sysname ~= "Darwin" then
-    vim.lsp.config("serve_d", {
-        on_attach = function(client, bufnr)
-            client.server_capabilities.documentFormattingProvider = false
-            client.server_capabilities.documentRangeFormattingProvider = false
-        end,
-    })
-    vim.lsp.enable("serve_d")
-end
+-- TODO: enable after dcd build issue is fixed.
+-- if vim.loop.os_uname().sysname ~= "Darwin" then
+--     vim.lsp.config("serve_d", {
+--         on_attach = function(client, bufnr)
+--             client.server_capabilities.documentFormattingProvider = false
+--             client.server_capabilities.documentRangeFormattingProvider = false
+--         end,
+--     })
+--     vim.lsp.enable("serve_d")
+-- end
 
 vim.lsp.enable("buf_ls")
 vim.lsp.enable("taplo")

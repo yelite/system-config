@@ -46,7 +46,8 @@ lib.mkMerge [
 
         claude-code
         claude-code-notification
-        gemini-cli
+        # TODO: enable after the build failure is fixed.
+        # gemini-cli
       ]
       ++ (with python3Packages; [
         ipython

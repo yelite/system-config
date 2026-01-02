@@ -48,7 +48,7 @@ in {
         settings = {
           default_session = {
             command = lib.concatStringsSep " " ([
-                "${pkgs.greetd.tuigreet}/bin/tuigreet"
+                "${pkgs.tuigreet}/bin/tuigreet"
                 "--asterisks"
                 "--remember"
               ]

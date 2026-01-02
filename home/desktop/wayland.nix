@@ -256,16 +256,10 @@ in
         enable = true;
         extraArgs = ["-w"];
         systemdTarget = "niri.service";
-        events = [
-          {
-            event = "before-sleep";
-            command = "${pkgs.swaylock}/bin/swaylock -f";
-          }
-          {
-            event = "lock";
-            command = "${pkgs.swaylock}/bin/swaylock -f";
-          }
-        ];
+        events = {
+          before-sleep = "${pkgs.swaylock}/bin/swaylock -f";
+          lock = "${pkgs.swaylock}/bin/swaylock -f";
+        };
         timeouts = [
           {
             timeout = 450;

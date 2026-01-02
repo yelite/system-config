@@ -58,7 +58,7 @@ in {
       lsof
     ]
     ++ optionals isLinuxGUI [
-      zeal-qt6
+      zeal
       kdePackages.okular
       imv
       flameshot

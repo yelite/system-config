@@ -201,8 +201,9 @@ in {
         python3Packages.debugpy
       ]
       ++ lib.optionals hostPlatform.isLinux [
-        serve-d
-        dcd
+        # TODO: enable after build failure is fixed
+        # serve-d
+        # dcd
       ]
       ++ lib.optionals hostPlatform.isDarwin [
         pngpaste # For ObsidianPasteImg
