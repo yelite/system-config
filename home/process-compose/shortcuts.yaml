@@ -3,6 +3,8 @@ shortcuts:
     shortcut: f # shortcut to be used
   log_screen:
     shortcut: l
+  log_select:
+    shortcut: v
   process_restart:
     shortcut: r
   process_screen:
