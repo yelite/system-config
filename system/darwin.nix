@@ -23,6 +23,8 @@ in {
 
     programs = {
       fish.enable = true;
+      # TODO: clean up after https://github.com/nix-community/home-manager/issues/8435 is resolved
+      fish.useBabelfish = true;
     };
 
     users.users.${myConfig.username} = {
@@ -47,6 +49,6 @@ in {
     nixpkgs.flake.setFlakeRegistry = false;
     nixpkgs.flake.setNixPath = false;
 
-    system.stateVersion = 5;
+    system.stateVersion = 6;
   };
 }

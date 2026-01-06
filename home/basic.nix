@@ -257,6 +257,9 @@ in {
     };
   };
 
+  # TODO: https://github.com/nix-community/home-manager/issues/7935
+  manual.manpages.enable = lib.mkIf hostPlatform.isDarwin false;
+
   services = {
     playerctld = lib.mkIf isLinuxGUI {
       enable = true;
