@@ -11,6 +11,7 @@
 in {
   imports = [
     inputs.mac-app-util.darwinModules.default
+    inputs.nix-rosetta-builder.darwinModules.default
   ];
 
   config = {
@@ -48,6 +49,14 @@ in {
 
     nixpkgs.flake.setFlakeRegistry = false;
     nixpkgs.flake.setNixPath = false;
+
+    # nix.linux-builder.enable = false;
+
+    # Linux VM builder for nix (enables building x86_64-linux packages on aarch64-darwin via Rosetta)
+    nix-rosetta-builder = {
+      onDemand = true;
+      onDemandLingerMinutes = 40;
+    };
 
     system.stateVersion = 6;
   };
