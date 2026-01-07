@@ -96,5 +96,9 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    virby = {
+      url = "github:quinneden/virby-nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

@@ -53,6 +53,12 @@
           postInstall = "";
           doCheck = false;
         });
+        go-nvim = super.go-nvim.overrideAttrs {
+          dependencies = with self; [
+            nvim-treesitter
+            guihua
+          ];
+        };
       };
     in {
       vimPlugins = (prev.vimPlugins.extend extras).extend overrides;

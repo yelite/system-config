@@ -22,7 +22,6 @@ lib.mkIf config.myConfig.neovim.enable (let
       fish
       go
       json
-      jsonc
       lua
       nix
       markdown
