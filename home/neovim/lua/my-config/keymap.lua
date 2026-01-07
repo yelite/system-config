@@ -3,6 +3,7 @@ local leap = require("leap")
 local leap_util = require("leap.util")
 local wk = require("which-key")
 local hydra = require("hydra")
+local ts_select = require("nvim-treesitter-textobjects.select")
 
 local my_window = require("my-config.window")
 local my_settings = require("my-config.settings")
@@ -347,6 +348,26 @@ mapkey("s", { "n" }, leap_both_direction)
 mapkey("x", { "o", "x" }, "<Plug>(leap-forward-till)")
 mapkey("X", { "o", "x" }, "<Plug>(leap-backward-till)")
 mapkey("gs", { "n" }, "<Plug>(leap-cross-window)")
+
+-- treesitter textobjects
+require("nvim-treesitter-textobjects").setup({
+    select = {
+        lookahead = true,
+    },
+})
+
+local function make_ts_select(capture)
+    return function()
+        ts_select.select_textobject(capture, "textobjects")
+    end
+end
+
+mapkey("af", { "x", "o" }, make_ts_select("@function.outer"), {}, "Function outer")
+mapkey("if", { "x", "o" }, make_ts_select("@function.inner"), {}, "Function inner")
+mapkey("aC", { "x", "o" }, make_ts_select("@class.outer"), {}, "Class outer")
+mapkey("iC", { "x", "o" }, make_ts_select("@class.inner"), {}, "Class inner")
+mapkey("aa", { "x", "o" }, make_ts_select("@parameter.outer"), {}, "Parameter outer")
+mapkey("ia", { "x", "o" }, make_ts_select("@parameter.inner"), {}, "Parameter inner")
 
 -- flash
 mapkey("s", { "x" }, [[<cmd>lua require("flash").treesitter()<cr>]], {}, "Flash TS Search")

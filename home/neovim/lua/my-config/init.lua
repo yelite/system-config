@@ -298,7 +298,6 @@ require("gitlinker").setup({
 require("my-config.keymap")
 require("my-config.session")
 require("my-config.terminal")
-require("my-config.treesitter")
 require("my-config.edit")
 require("my-config.note")
 require("my-config.cmp")

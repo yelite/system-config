@@ -449,14 +449,6 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.conceallevel = 0
     end,
 })
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "nix" },
-    group = "MyLangCustomization",
-    callback = function()
-        require("my-config.nix-indent")
-        vim.bo.indentexpr = "GetNixIndent()"
-    end,
-})
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     pattern = {
         "*/.cargo/registry/src/*",
@@ -468,6 +460,20 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     callback = function()
         vim.bo.readonly = true
         vim.bo.modifiable = false
+    end,
+})
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "*" },
+    group = "MyLangCustomization",
+    callback = function()
+        if vim.treesitter.get_parser(nil, nil, { error = false }) then
+            vim.treesitter.start()
+            vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+            vim.wo[0][0].foldmethod = "expr"
+            if vim.bo.filetype ~= "go" then
+                vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            end
+        end
     end,
 })
 
