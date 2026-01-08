@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }: let
   myConfig = config.myConfig;
@@ -13,6 +14,17 @@ in {
     inputs.mac-app-util.darwinModules.default
     inputs.nix-rosetta-builder.darwinModules.default
   ];
+
+  options = {
+    system.defaults.".GlobalPreferences"."com.apple.mouse.linear" = lib.mkOption {
+      type = lib.types.nullOr lib.types.bool;
+      default = true;
+      description = ''
+        disable mouse acceleration.
+        https://macos-defaults.com/mouse/linear.html
+      '';
+    };
+  };
 
   config = {
     environment = {
@@ -37,7 +49,6 @@ in {
 
     system.primaryUser = myConfig.username;
 
-    system.defaults.".GlobalPreferences"."com.apple.mouse.scaling" = -1.0;
     system.keyboard.enableKeyMapping = true;
     system.keyboard.remapCapsLockToControl = true;
     system.defaults.WindowManager.GloballyEnabled = true;
