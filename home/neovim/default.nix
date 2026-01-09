@@ -69,7 +69,12 @@ in {
       plenary-nvim
       popup-nvim
 
-      my-treesitter
+      {
+        plugin = my-treesitter;
+        config = ''vim.opt.rtp:prepend("${my-treesitter}/runtime/")'';
+        type = "lua";
+      }
+
       nvim-treesitter-textobjects
 
       gbprod-nord
