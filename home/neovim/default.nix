@@ -74,8 +74,11 @@ in {
         config = ''vim.opt.rtp:prepend("${my-treesitter}/runtime/")'';
         type = "lua";
       }
-
-      nvim-treesitter-textobjects
+      (nvim-treesitter-textobjects.overrideAttrs {
+        dependencies = [
+          my-treesitter
+        ];
+      })
 
       gbprod-nord
       nvim-web-devicons
@@ -145,7 +148,10 @@ in {
       lazydev-nvim
       rustaceanvim
       clangd_extensions-nvim
-      go-nvim
+      (go-nvim.overrideAttrs {
+        # TODO: remove after https://github.com/NixOS/nixpkgs/pull/477519 is in unstable
+        doCheck = false;
+      })
       nvim-vtsls
       SchemaStore-nvim
       sqlite-lua

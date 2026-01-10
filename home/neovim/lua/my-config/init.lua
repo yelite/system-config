@@ -19,8 +19,6 @@ o.tabstop = 4
 o.shiftwidth = 4
 o.expandtab = true
 
-o.foldmethod = "expr"
-o.foldexpr = "nvim_treesitter#foldexpr()"
 o.foldlevel = 99 -- Unfold everything by default
 o.foldtext =
     [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
