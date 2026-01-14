@@ -17,7 +17,7 @@ in {
           layout = "us";
         };
         mouse = {
-          accel-speed = -0.62;
+          accel-speed = -0.68;
           accel-profile = "flat";
         };
         focus-follows-mouse = {
