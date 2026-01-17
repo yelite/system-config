@@ -34,6 +34,14 @@ local function goto_start_of_line()
     end
 end
 
+local function position_line_at_percent(percent)
+    local line = vim.fn.line(".")
+    local height = vim.fn.winheight(0)
+    local topline = line - math.floor(height * percent) + 1
+    if topline < 1 then topline = 1 end
+    vim.fn.winrestview({ topline = topline })
+end
+
 local function copy_expansion_result(s)
     local path = vim.fn.expand(s)
     vim.fn.setreg("+", path)
@@ -433,6 +441,7 @@ hydra({
             "n",
             function()
                 require("gitsigns").nav_hunk("next")
+                position_line_at_percent(0.8)
             end,
             { desc = "next", nowait = true },
         },
@@ -440,6 +449,7 @@ hydra({
             "N",
             function()
                 require("gitsigns").nav_hunk("prev")
+                position_line_at_percent(0.8)
             end,
             { desc = "previous", nowait = true },
         },
