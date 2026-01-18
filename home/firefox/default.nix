@@ -26,6 +26,7 @@ in {
         DisableFirefoxStudies = true;
         DisablePocket = true;
         DisableTelemetry = true;
+        DisableAppUpdate = true;
         NoDefaultBookmarks = true;
         OfferToSaveLogins = false;
         OfferToSaveLoginsDefault = false;
