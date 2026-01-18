@@ -38,7 +38,9 @@ local function position_line_at_percent(percent)
     local line = vim.fn.line(".")
     local height = vim.fn.winheight(0)
     local topline = line - math.floor(height * percent) + 1
-    if topline < 1 then topline = 1 end
+    if topline < 1 then
+        topline = 1
+    end
     vim.fn.winrestview({ topline = topline })
 end
 
@@ -433,6 +435,12 @@ hydra({
                 border = "double",
             },
         },
+        on_enter = function()
+            vim.wo.cursorlineopt = "both"
+        end,
+        on_exit = function()
+            vim.wo.cursorlineopt = "number"
+        end,
     },
     mode = { "n" },
     body = "<leader>J",
@@ -440,16 +448,18 @@ hydra({
         {
             "n",
             function()
-                require("gitsigns").nav_hunk("next")
-                position_line_at_percent(0.8)
+                require("gitsigns").nav_hunk("next"):await(function()
+                    position_line_at_percent(0.2)
+                end)
             end,
             { desc = "next", nowait = true },
         },
         {
             "N",
             function()
-                require("gitsigns").nav_hunk("prev")
-                position_line_at_percent(0.8)
+                require("gitsigns").nav_hunk("prev"):await(function()
+                    position_line_at_percent(0.2)
+                end)
             end,
             { desc = "previous", nowait = true },
         },
