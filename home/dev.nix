@@ -46,6 +46,7 @@ lib.mkMerge [
 
         claude-code
         claude-code-notification
+        claude-squad
         # TODO: enable after the build failure is fixed.
         # gemini-cli
       ]
