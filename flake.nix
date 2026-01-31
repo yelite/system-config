@@ -29,7 +29,7 @@
                   inputs.bun2nix.overlays.default
                   (final: prev:
                     prev.lib.optionalAttrs prev.stdenv.isDarwin (let
-                      nixpkgs_swift = import inputs.nixpkgs_swift {inherit (prev) system;};
+                      nixpkgs_swift = import inputs.nixpkgs_swift {system = prev.stdenv.hostPlatform.system;};
                     in {
                       inherit (nixpkgs_swift) swift swiftPackages dotnetCorePackages dotnet-sdk dotnet-runtime;
                     }))
