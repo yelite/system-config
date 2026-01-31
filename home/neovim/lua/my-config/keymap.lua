@@ -1,6 +1,6 @@
 local toggleterm = require("toggleterm")
 local leap = require("leap")
-local leap_util = require("leap.util")
+local leap_util = require("leap.user")
 local wk = require("which-key")
 local hydra = require("hydra")
 local ts_select = require("nvim-treesitter-textobjects.select")
