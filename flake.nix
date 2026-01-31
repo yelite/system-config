@@ -27,6 +27,12 @@
                   (import ./overlays/extra-pkgs)
                   inputs.niri.overlays.niri
                   inputs.bun2nix.overlays.default
+                  (final: prev:
+                    prev.lib.optionalAttrs prev.stdenv.isDarwin (let
+                      nixpkgs_swift = import inputs.nixpkgs_swift {inherit (prev) system;};
+                    in {
+                      inherit (nixpkgs_swift) swift swiftPackages dotnetCorePackages dotnet-sdk dotnet-runtime;
+                    }))
                 ];
               };
 
@@ -60,6 +66,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs_swift.url = "github:nixos/nixpkgs?rev=5912c1772a44e31bf1c63c0390b90501e5026886";
     quickwit-nixpkgs.url = "github:nixos/nixpkgs?rev=18536bf04cd71abd345f9579158841376fdd0c5a";
     flake-parts.url = "github:hercules-ci/flake-parts";
     lite-config.url = "github:yelite/lite-config";
@@ -76,7 +83,10 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mac-app-util.url = "github:hraban/mac-app-util";
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
+      inputs.nixpkgs.follows = "nixpkgs_swift";
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
