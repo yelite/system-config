@@ -81,6 +81,23 @@ lib.mkMerge [
     xdg.configFile."process-compose/shortcuts.yaml".source =
       ./process-compose/shortcuts.yaml;
 
+    xdg.configFile."ccmanager/config.json".text = builtins.toJSON {
+      shortcuts = {
+        returnToMenu = {
+          ctrl = true;
+          key = "s";
+        };
+        cancel = {
+          key = "escape";
+        };
+      };
+      worktree = {
+        autoDirectory = true;
+        copySessionData = true;
+        sortByLastSession = true;
+      };
+    };
+
     home.file.".claude/settings.json".text = builtins.toJSON {
       hooks = {
         Notification = [
