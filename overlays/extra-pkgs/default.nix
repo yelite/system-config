@@ -6,7 +6,7 @@ final: prev:
   flake-repl = final.callPackage ./flake-repl {};
   dcd = final.callPackage ./dcd.nix {};
   claude-code-notification = final.callPackage ./claude-code-notification.nix {};
-  claude-squad = final.callPackage ./claude-squad.nix {};
+  ccmanager = final.callPackage ./ccmanager {};
 
   flameshot = prev.flameshot.overrideAttrs (old: {
     patches = old.patches ++ [./patches/flameshot.patch];

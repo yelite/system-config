@@ -26,6 +26,7 @@
                   (inputs.get-flake ./overlays/fish).overlay
                   (import ./overlays/extra-pkgs)
                   inputs.niri.overlays.niri
+                  inputs.bun2nix.overlays.default
                 ];
               };
 
@@ -98,6 +99,10 @@
     };
     nix-rosetta-builder = {
       url = "github:cpick/nix-rosetta-builder";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    bun2nix = {
+      url = "github:nix-community/bun2nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
