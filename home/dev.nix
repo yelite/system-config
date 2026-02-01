@@ -47,6 +47,11 @@ lib.mkMerge [
         claude-code
         claude-code-notification
         ccmanager
+        (pkgs.writeShellScriptBin "claude-direnv" ''
+          ${pkgs.direnv}/bin/direnv allow
+          eval "$(${pkgs.direnv}/bin/direnv export bash)"
+          exec ${pkgs.claude-code}/bin/claude "$@"
+        '')
         # TODO: enable after the build failure is fixed.
         # gemini-cli
       ]
@@ -95,6 +100,21 @@ lib.mkMerge [
         autoDirectory = true;
         copySessionData = true;
         sortByLastSession = true;
+      };
+      commandPresets = {
+        presets = [
+          {
+            id = "1";
+            name = "Claude";
+            command = "claude";
+          }
+          {
+            id = "2";
+            name = "Claude with direnv";
+            command = "claude-direnv";
+          }
+        ];
+        defaultPresetId = "2";
       };
     };
 
