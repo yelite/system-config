@@ -351,7 +351,7 @@ mapkey("<C-y>", "c", "<C-r><C-o>+")
 
 -- leap
 local function leap_both_direction()
-    leap.leap({ target_windows = { vim.fn.win_getid() } })
+    leap.leap({ target_windows = { vim.fn.win_getid() }, opts = { case_sensitive = false } })
 end
 
 mapkey("s", { "n" }, leap_both_direction)
