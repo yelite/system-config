@@ -48,8 +48,19 @@ lib.mkMerge [
         claude-code-notification
         ccmanager
         (pkgs.writeShellScriptBin "claude-direnv" ''
-          ${pkgs.direnv}/bin/direnv allow
-          eval "$(${pkgs.direnv}/bin/direnv export bash)"
+          if [[ -f .envrc ]]; then
+            if ! ${pkgs.direnv}/bin/direnv status | grep -q "Found RC allowed 0"; then
+              echo "Found .envrc in $(pwd)"
+              read -p "Allow direnv for this directory? [y/N] " -n 1 -r
+              echo
+              if [[ $REPLY =~ ^[Yy]$ ]]; then
+                ${pkgs.direnv}/bin/direnv allow
+              else
+                exit 1
+              fi
+            fi
+            eval "$(${pkgs.direnv}/bin/direnv export bash)"
+          fi
           exec ${pkgs.claude-code}/bin/claude "$@"
         '')
         # TODO: enable after the build failure is fixed.
@@ -116,6 +127,19 @@ lib.mkMerge [
         ];
         defaultPresetId = "2";
       };
+    };
+
+    home.file.".claude/keybindings.json".text = builtins.toJSON {
+      "$schema" = "https://www.schemastore.org/claude-code-keybindings.json";
+      "$docs" = "https://code.claude.com/docs/en/keybindings";
+      bindings = [
+        {
+          context = "Task";
+          bindings = {
+            "ctrl+b" = null;
+          };
+        }
+      ];
     };
 
     home.file.".claude/settings.json".text = builtins.toJSON {
