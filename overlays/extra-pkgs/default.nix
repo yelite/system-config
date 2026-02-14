@@ -13,11 +13,11 @@ final: prev:
   });
 
   claude-code = prev.claude-code.overrideAttrs (finalAttrs: previousAttrs: {
-    version = "2.1.39";
+    version = "2.1.42";
 
     src = final.fetchzip {
       url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${finalAttrs.version}.tgz";
-      hash = "sha256-NLLiaJkU91ZnEcQUWIAX9oUTt+C5fnWXFFPelTtWmdo=";
+      hash = "sha256-+99eaqKAOUvz+omHJ4bxlDepdpn8FNLmvxKcVDR76o4=";
     };
   });
 }
