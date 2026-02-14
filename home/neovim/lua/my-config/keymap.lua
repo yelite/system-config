@@ -113,6 +113,42 @@ local function browse_project_root_folders()
     require("telescope").extensions.file_browser.file_browser({ files = false })
 end
 
+local todo_win = nil
+local todo_win_path = nil
+
+local function open_todo_float()
+    local todo_path = vim.fn.fnamemodify(vim.fn.getcwd() .. "/../todo.md", ":p")
+    if vim.fn.filereadable(todo_path) ~= 1 then
+        vim.notify("../todo.md not found", vim.log.levels.WARN)
+        return
+    end
+    if todo_win_path ~= todo_path then
+        if todo_win then
+            todo_win:close()
+        end
+        todo_win = nil
+    end
+    if not todo_win then
+        todo_win = Snacks.win({
+            file = todo_path,
+            width = 0.55,
+            height = 0.75,
+            border = "rounded",
+            title = " todo.md ",
+            title_pos = "center",
+            enter = true,
+            show = false,
+            ft = "markdown",
+            bo = { modifiable = true },
+            keys = {
+                ["<C-s>"] = "close",
+            },
+        })
+        todo_win_path = todo_path
+    end
+    todo_win:toggle()
+end
+
 wk.add({
     { "<leader>j", require("my-config.telescope").git_changed_files, desc = "Changed Files in Git Branch" },
     { "<leader>h", search_current_dir, desc = "Search in the directory of current file" },
@@ -413,14 +449,10 @@ end)
 mapkey("<C-3>", { "n", "t" }, function()
     toggleterm.toggle(3, nil, nil, "float")
 end)
-mapkey("<C-4>", { "n", "t" }, function()
+mapkey("<C-4>", { "n", "t" }, open_todo_float)
+mapkey("<C-5>", { "n", "t" }, function()
     toggleterm.toggle(4, nil, nil, "horizontal")
 end)
-mapkey(
-    "<C-5>",
-    { "n", "t" },
-    "<cmd>Trouble symbols toggle pinned=true focus=true win.position=left win.relative=win<cr>"
-)
 
 hydra({
     name = "Code Review",
