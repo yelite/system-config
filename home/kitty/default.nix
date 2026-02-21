@@ -23,7 +23,7 @@ lib.mkIf config.myConfig.kitty.enable {
       };
     settings = {
       cursor_blink_interval = 0;
-      enabled_layouts = "tall:bias=50;full_size=1;mirrored=false, horizontal";
+      enabled_layouts = "horizontal, grid";
       "mouse_map left click ungrabbed" = "mouse_handle_click selection prompt";
       enable_audio_bell = false;
       visual_bell_duration = "0.3";
@@ -47,6 +47,7 @@ lib.mkIf config.myConfig.kitty.enable {
       "super+3" = "goto_tab 3";
       "super+4" = "goto_tab 4";
       "super+5" = "goto_tab 5";
+      "super+6" = "goto_tab 6";
       "super+equal" = "change_font_size all +2.0";
       "super+minus" = "change_font_size all -2.0";
       "super+0" = "change_font_size all 0";
