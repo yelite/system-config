@@ -27,6 +27,31 @@ in
 
       waybar = {
         enable = true;
+        # TODO: revert to default waybar once https://github.com/Alexays/Waybar/issues/4864 is fixed
+        package = let
+          libcavaSrc = pkgs.fetchFromGitHub {
+            owner = "LukashonakV";
+            repo = "cava";
+            tag = "0.10.4";
+            hash = "sha256-9eTDqM+O1tA/3bEfd1apm8LbEcR9CVgELTIspSVPMKM=";
+          };
+        in
+          pkgs.waybar.overrideAttrs (old: {
+            version = "0.14.0";
+            src = pkgs.fetchFromGitHub {
+              owner = "Alexays";
+              repo = "Waybar";
+              rev = "0.14.0";
+              hash = "sha256-mGiBZjfvtZZkSHrha4UF2l1Ogbij8J//r2h4gcZAJ6w=";
+            };
+            postUnpack = ''
+              pushd "$sourceRoot"
+              cp -R --no-preserve=mode,ownership ${libcavaSrc} \
+                subprojects/cava-0.10.4
+              patchShebangs .
+              popd
+            '';
+          });
         systemd = {
           enable = true;
           target = "niri.service";

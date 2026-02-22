@@ -9,7 +9,15 @@
   # We don't use the flake.packages, instead we use callPackage from our own nixpkgs instance
   # to create derivations from the <flake-dir>/default.nix. Otherwise plugins with unfree license
   # will refuse to be evaluated, regardless of the config of our own nixpkgs instance.
-  addonsPkgs = pkgs.callPackage inputs.firefox-addons {};
+  #
+  # buildMozillaXpiAddon is not in nixpkgs so callPackage can't auto-fill it.
+  # It must be constructed from the nur-expressions repo's lib/mozilla.nix.
+  # inputs.firefox-addons points to the pkgs/firefox-addons subdir, so we go up
+  # two levels to reach the repo root where lib/mozilla.nix lives.
+  nurExpressionsRoot = inputs.firefox-addons + "/../..";
+  libMozilla = import (nurExpressionsRoot + "/lib/mozilla.nix") {inherit (pkgs) lib;};
+  buildMozillaXpiAddon = libMozilla.mkBuildMozillaXpiAddon {inherit (pkgs) fetchurl stdenv;};
+  addonsPkgs = pkgs.callPackage inputs.firefox-addons {inherit buildMozillaXpiAddon;};
 in {
   imports = [./darwin-profile-fix.nix];
   config = lib.mkIf (config.myConfig.firefox.enable) {
