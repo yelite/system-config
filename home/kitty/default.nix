@@ -23,12 +23,14 @@ lib.mkIf config.myConfig.kitty.enable {
       };
     settings = {
       cursor_blink_interval = 0;
-      enabled_layouts = "horizontal, grid";
+      enabled_layouts = "stack, grid";
       "mouse_map left click ungrabbed" = "mouse_handle_click selection prompt";
       enable_audio_bell = false;
       visual_bell_duration = "0.3";
       placement_strategy = "top-left";
       macos_option_as_alt = "yes";
+      tab_bar_min_tabs = 1;
+      tab_title_template = "{' ' if layout_name == 'stack' and num_windows > 1 else ''}{'['+str(num_windows)+'] ' if num_windows > 1 else ''}{title}";
     };
     shellIntegration.mode = "no-sudo";
     themeFile = "Tomorrow_Night_Eighties";
