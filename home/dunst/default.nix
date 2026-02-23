@@ -10,10 +10,10 @@ lib.mkIf config.myConfig.dunst.enable {
       global = {
         follow = "keyboard";
         width = 325;
-        height = 250;
+        height = "(0, 250)";
         frame_width = 2;
         corner_radius = 5;
-        offset = "20x45";
+        offset = "(20, 45)";
         font = "Hack Nerd Font Mono 9";
         markup = "full";
         frame_color = "#eeffff";
