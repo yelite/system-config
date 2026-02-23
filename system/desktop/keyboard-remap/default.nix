@@ -30,7 +30,7 @@ in {
               Type = "simple";
               # Hack to wait for the hyprland socket to be ready
               ExecStartPre = "${pkgs.coreutils}/bin/sleep 2";
-              ExecStart = "${pkgs.xremap}/bin/xremap --watch ${./config.yml}";
+              ExecStart = "${pkgs.xremap}/bin/xremap --watch --ignore 'LogiOps Virtual Input' ${./config.yml}";
             };
             Install = {
               WantedBy = ["niri.service"];
