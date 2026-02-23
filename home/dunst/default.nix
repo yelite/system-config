@@ -13,7 +13,7 @@ lib.mkIf config.myConfig.dunst.enable {
         height = "(0, 250)";
         frame_width = 2;
         corner_radius = 5;
-        offset = "(20, 45)";
+        offset = "(20, 20)";
         font = "Hack Nerd Font Mono 9";
         markup = "full";
         frame_color = "#eeffff";
