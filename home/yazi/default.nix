@@ -2,6 +2,7 @@
   programs.yazi = {
     enable = true;
     enableFishIntegration = true;
+    shellWrapperName = "y";
     settings = {
       preview = {
         max_width = 800;
