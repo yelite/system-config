@@ -35,8 +35,6 @@ lib.mkIf config.myConfig.kitty.enable {
     shellIntegration.mode = "no-sudo";
     themeFile = "Tomorrow_Night_Eighties";
     keybindings = {
-      "ctrl+tab" = "no_op";
-      "ctrl+shift+tab" = "no_op";
       "super+c" = "copy_to_clipboard";
       "super+v" = "paste_from_clipboard";
       "super+t" = "new_tab";
