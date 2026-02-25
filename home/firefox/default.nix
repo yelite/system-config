@@ -257,6 +257,9 @@ in {
 
             # webrtc local testing
             "media.peerconnection.ice.loopback" = true;
+
+            # disable ai
+            "browser.ml.enable" = false;
           };
         };
       };
