@@ -293,6 +293,8 @@ require("gitlinker").setup({
     mappings = nil,
 })
 
+require("diffview").setup({})
+
 require("my-config.keymap")
 require("my-config.session")
 require("my-config.terminal")

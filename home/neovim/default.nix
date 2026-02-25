@@ -88,6 +88,7 @@ in {
       nvim-nio # dependency of nvim-dap-ui
       hlchunk-nvim
       gitsigns-nvim
+      diffview-nvim
       bufdelete-nvim
       gitlinker-nvim
       render-markdown-nvim

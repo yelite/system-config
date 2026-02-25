@@ -317,6 +317,10 @@ wk.add({
     { "<leader>vS", [[<cmd>Gitsigns stage_buffer<cr>]], desc = "Stage Buffer" },
     { "<leader>vu", [[<cmd>Gitsigns undo_stage_hunk<cr>]], desc = "Undo Stage Hunk" },
     { "<leader>vU", [[<cmd>Gitsigns reset_buffer_index<cr>]], desc = "Reset Buffer Index" },
+    { "<leader>vd", [[<cmd>DiffviewOpen<cr>]], desc = "Diff view (working tree)" },
+    { "<leader>vD", [[<cmd>DiffviewOpen HEAD~1<cr>]], desc = "Diff view (last commit)" },
+    { "<leader>vi", [[<cmd>DiffviewFileHistory %<cr>]], desc = "File history (current file)" },
+    { "<leader>vI", [[<cmd>DiffviewFileHistory<cr>]], desc = "File history (repo)" },
     { "<leader>vv", [[<cmd>lua require("my-config.terminal").toggle_lazygit()<cr>]], desc = "Open lazygit" },
 
     { "<leader>w", group = "window", mode = { "n", "v" } },
