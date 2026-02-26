@@ -44,6 +44,7 @@ lib.mkIf config.myConfig.kitty.enable {
       "super+shift+s" = "new_window";
       "super+shift+w" = "close_window";
       "super+shift+a" = "next_layout";
+      "super+shift+d" = "detach_tab ask";
       "super+1" = "goto_tab 1";
       "super+2" = "goto_tab 2";
       "super+3" = "goto_tab 3";
