@@ -20,4 +20,16 @@ function M.toggle_process_compose()
     process_compose:toggle()
 end
 
+local bv = nil
+function M.toggle_bv()
+    if vim.fn.executable("bv") ~= 1 then
+        vim.notify("bv not found in PATH", vim.log.levels.WARN)
+        return
+    end
+    if not bv then
+        bv = Terminal:new({ cmd = "bv", display_name = "bv", count = 9, direction = "float" })
+    end
+    bv:toggle()
+end
+
 return M
