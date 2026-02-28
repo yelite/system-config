@@ -4,11 +4,11 @@
   fetchNpmDeps,
 }:
 claude-code.overrideAttrs (finalAttrs: previousAttrs: {
-  version = "2.1.51";
+  version = "2.1.63";
 
   src = fetchzip {
     url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${finalAttrs.version}.tgz";
-    hash = "sha256-WY0f6oWAnw/0BA7/ITV5EMkD5unex9LBfPmnYi5ZcX8=";
+    hash = "sha256-tVk1GXqh9Ice8ZbbLnmN4sSlIY41KsrqWi2eDo47/zI=";
   };
 
   postPatch = ''
