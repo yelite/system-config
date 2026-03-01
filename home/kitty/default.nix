@@ -23,7 +23,7 @@ lib.mkIf config.myConfig.kitty.enable {
       };
     settings = {
       cursor_blink_interval = 0;
-      enabled_layouts = "stack, grid";
+      enabled_layouts = "grid, stack";
       "mouse_map left click ungrabbed" = "mouse_handle_click selection prompt";
       enable_audio_bell = false;
       visual_bell_duration = "0.3";
