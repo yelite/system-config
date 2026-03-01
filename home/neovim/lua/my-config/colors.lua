@@ -24,6 +24,11 @@ require("nord").setup({
         highlights["FlashCurrent"] = { fg = colors.polar_night.origin, bg = colors.aurora.green, nocombine = true }
 
         highlights["@error"] = nil
+
+        highlights["DiffAdd"] = { bg = "#3a4a3f", fg = "NONE" } -- muted aurora.green
+        highlights["DiffDelete"] = { bg = "#4c383e", fg = "NONE" } -- muted aurora.red
+        highlights["DiffChange"] = { bg = "#323c4a", fg = "NONE" } -- muted frost.artic_ocean
+        highlights["DiffText"] = { bg = "#4a5e77", fg = "NONE" } -- muted frost.artic_ocean
     end,
 })
 
