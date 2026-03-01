@@ -317,7 +317,16 @@ wk.add({
     { "<leader>vS", [[<cmd>Gitsigns stage_buffer<cr>]], desc = "Stage Buffer" },
     { "<leader>vu", [[<cmd>Gitsigns undo_stage_hunk<cr>]], desc = "Undo Stage Hunk" },
     { "<leader>vU", [[<cmd>Gitsigns reset_buffer_index<cr>]], desc = "Reset Buffer Index" },
-    { "<leader>vd", [[<cmd>DiffviewOpen<cr>]], desc = "Diff view (working tree)" },
+    { "<leader>vd", function()
+        local lib = require("diffview.lib")
+        for _, view in ipairs(lib.views) do
+            if view.tabpage and vim.api.nvim_tabpage_is_valid(view.tabpage) then
+                vim.api.nvim_set_current_tabpage(view.tabpage)
+                return
+            end
+        end
+        vim.cmd("DiffviewOpen")
+    end, desc = "Diff view (toggle/go to)" },
     { "<leader>vD", [[<cmd>DiffviewOpen HEAD~1<cr>]], desc = "Diff view (last commit)" },
     { "<leader>vi", [[<cmd>DiffviewFileHistory %<cr>]], desc = "File history (current file)" },
     { "<leader>vI", [[<cmd>DiffviewFileHistory<cr>]], desc = "File history (repo)" },
@@ -331,10 +340,29 @@ wk.add({
         [[<cmd>lua require'my-config.window'.move_to_next_window(true)<cr>]],
         desc = "Move Buffer to Next Window And Enter",
     },
+    { "<leader>wt", function()
+        local lib = require("diffview.lib")
+        local prev = lib.get_prev_non_view_tabpage()
+        if prev then
+            vim.api.nvim_set_current_tabpage(prev)
+        end
+    end, desc = "Go to previous tab" },
     { "<leader>ww", leap_to_window, desc = "Jump to Window" },
 
-    { "]c", [[<cmd>Gitsigns next_hunk<CR>]], desc = "Next Hunk" },
-    { "[c", [[<cmd>Gitsigns prev_hunk<CR>]], desc = "Previous Hunk" },
+    { "]c", function()
+        if vim.wo.diff then
+            vim.cmd("normal! ]c")
+        else
+            require("gitsigns").nav_hunk("next")
+        end
+    end, desc = "Next Hunk/Change" },
+    { "[c", function()
+        if vim.wo.diff then
+            vim.cmd("normal! [c")
+        else
+            require("gitsigns").nav_hunk("prev")
+        end
+    end, desc = "Previous Hunk/Change" },
 
     { "gl", "<cmd>HopLineStart<cr>", desc = "Hop Line" },
 })

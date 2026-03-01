@@ -293,7 +293,31 @@ require("gitlinker").setup({
     mappings = nil,
 })
 
-require("diffview").setup({})
+require("diffview").setup({
+    keymaps = {
+        view = {
+            { "n", "<leader>q", require("diffview.actions").close, { desc = "Close diffview" } },
+            { "n", "q", function()
+                local lib = require("diffview.lib")
+                local prev = lib.get_prev_non_view_tabpage()
+                if prev then
+                    vim.api.nvim_set_current_tabpage(prev)
+                end
+            end, { desc = "Go to previous tab" } },
+        },
+        file_panel = {
+            { "n", "<leader>q", require("diffview.actions").close, { desc = "Close diffview" } },
+            { "n", "q", function()
+                local lib = require("diffview.lib")
+                local prev = lib.get_prev_non_view_tabpage()
+                if prev then
+                    vim.api.nvim_set_current_tabpage(prev)
+                end
+            end, { desc = "Go to previous tab" } },
+            { "n", "l", require("diffview.actions").focus_entry, { desc = "Open and focus diff" } },
+        },
+    },
+})
 
 require("my-config.keymap")
 require("my-config.session")
