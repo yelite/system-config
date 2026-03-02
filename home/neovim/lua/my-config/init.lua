@@ -281,9 +281,7 @@ require("neoclip").setup({
 ---@diagnostic disable-next-line: missing-fields
 require("notify").setup({
     top_down = false,
-    on_open = function(win)
-        vim.api.nvim_win_set_config(win, { focusable = false })
-    end,
+    on_open = function(win) end,
 })
 vim.notify = require("notify")
 
@@ -296,25 +294,53 @@ require("gitlinker").setup({
 require("diffview").setup({
     keymaps = {
         view = {
-            { "n", "<leader>q", require("diffview.actions").close, { desc = "Close diffview" } },
-            { "n", "q", function()
-                local lib = require("diffview.lib")
-                local prev = lib.get_prev_non_view_tabpage()
-                if prev then
-                    vim.api.nvim_set_current_tabpage(prev)
-                end
-            end, { desc = "Go to previous tab" } },
+            {
+                "n",
+                "<leader>q",
+                function()
+                    vim.cmd("DiffviewClose")
+                end,
+                { desc = "Close diffview" },
+            },
+            {
+                "n",
+                "q",
+                function()
+                    local lib = require("diffview.lib")
+                    local prev = lib.get_prev_non_view_tabpage()
+                    if prev then
+                        vim.api.nvim_set_current_tabpage(prev)
+                    end
+                end,
+                { desc = "Go to previous tab" },
+            },
         },
         file_panel = {
-            { "n", "<leader>q", require("diffview.actions").close, { desc = "Close diffview" } },
-            { "n", "q", function()
-                local lib = require("diffview.lib")
-                local prev = lib.get_prev_non_view_tabpage()
-                if prev then
-                    vim.api.nvim_set_current_tabpage(prev)
-                end
-            end, { desc = "Go to previous tab" } },
+            {
+                "n",
+                "<leader>q",
+                function()
+                    vim.cmd("DiffviewClose")
+                end,
+                { desc = "Close diffview" },
+            },
+            {
+                "n",
+                "q",
+                function()
+                    local lib = require("diffview.lib")
+                    local prev = lib.get_prev_non_view_tabpage()
+                    if prev then
+                        vim.api.nvim_set_current_tabpage(prev)
+                    end
+                end,
+                { desc = "Go to previous tab" },
+            },
             { "n", "l", require("diffview.actions").focus_entry, { desc = "Open and focus diff" } },
+            { "n", "<c-b>", require("diffview.actions").scroll_view(-0.7), { desc = "Scroll the view up" } },
+            { "n", "<c-f>", require("diffview.actions").scroll_view(0.7), { desc = "Scroll the view down" } },
+            { "n", "<c-d>", require("diffview.actions").scroll_view(0.3), { desc = "Scroll the view down" } },
+            { "n", "<c-u>", require("diffview.actions").scroll_view(-0.3), { desc = "Scroll the view up" } },
         },
     },
 })

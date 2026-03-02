@@ -340,13 +340,7 @@ wk.add({
         [[<cmd>lua require'my-config.window'.move_to_next_window(true)<cr>]],
         desc = "Move Buffer to Next Window And Enter",
     },
-    { "<leader>wt", function()
-        local lib = require("diffview.lib")
-        local prev = lib.get_prev_non_view_tabpage()
-        if prev then
-            vim.api.nvim_set_current_tabpage(prev)
-        end
-    end, desc = "Go to previous tab" },
+    { "<leader>wt", "<cmd>tabnext<cr>", desc = "Next tab" },
     { "<leader>ww", leap_to_window, desc = "Jump to Window" },
 
     { "]c", function()
